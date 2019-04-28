@@ -1,0 +1,409 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "todo-app": {
+      "root": "apps/todo-app",
+      "sourceRoot": "apps/todo-app/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/todo-app",
+            "index": "apps/todo-app/src/index.html",
+            "main": "apps/todo-app/src/main.ts",
+            "polyfills": "apps/todo-app/src/polyfills.ts",
+            "tsConfig": "apps/todo-app/tsconfig.app.json",
+            "assets": [
+              "apps/todo-app/src/favicon.ico",
+              "apps/todo-app/src/assets",
+              "apps/todo-app/src/manifest.json"
+            ],
+            "styles": [
+              "apps/todo-app/src/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/todo-app/src/styles"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/todo-app/src/environments/environment.ts",
+                  "with": "apps/todo-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "serviceWorker": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "todo-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "todo-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "todo-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/todo-app/src/test.ts",
+            "polyfills": "apps/todo-app/src/polyfills.ts",
+            "tsConfig": "apps/todo-app/tsconfig.spec.json",
+            "karmaConfig": "apps/todo-app/karma.conf.js",
+            "styles": [
+              "apps/todo-app/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/todo-app/src/favicon.ico",
+              "apps/todo-app/src/assets",
+              "apps/todo-app/src/manifest.json"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/todo-app/tsconfig.app.json",
+              "apps/todo-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "todo-app-e2e": {
+      "root": "apps/todo-app-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/todo-app-e2e/protractor.conf.js",
+            "devServerTarget": "todo-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "todo-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/todo-app-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "todo-app-lib": {
+      "root": "libs/todo-app-lib",
+      "sourceRoot": "libs/todo-app-lib/src",
+      "projectType": "library",
+      "prefix": "todo",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo-app-lib/tsconfig.lib.json",
+              "libs/todo-app-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/todo-app-lib/src/test.ts",
+            "tsConfig": "libs/todo-app-lib/tsconfig.spec.json",
+            "karmaConfig": "libs/todo-app-lib/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-ui": {
+      "root": "libs/shared/ui",
+      "sourceRoot": "libs/shared/ui/src",
+      "projectType": "library",
+      "prefix": "todo",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/tsconfig.lib.json",
+              "libs/shared/ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/shared/ui/src/test.ts",
+            "tsConfig": "libs/shared/ui/tsconfig.spec.json",
+            "karmaConfig": "libs/shared/ui/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-data-access": {
+      "root": "libs/shared/data-access",
+      "sourceRoot": "libs/shared/data-access/src",
+      "projectType": "library",
+      "prefix": "todo",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/data-access/tsconfig.lib.json",
+              "libs/shared/data-access/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/shared/data-access/src/test.ts",
+            "tsConfig": "libs/shared/data-access/tsconfig.spec.json",
+            "karmaConfig": "libs/shared/data-access/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-utils": {
+      "root": "libs/shared/utils",
+      "sourceRoot": "libs/shared/utils/src",
+      "projectType": "library",
+      "prefix": "todo",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/utils/tsconfig.lib.json",
+              "libs/shared/utils/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/shared/utils/src/test.ts",
+            "tsConfig": "libs/shared/utils/tsconfig.spec.json",
+            "karmaConfig": "libs/shared/utils/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "todo-admin": {
+      "root": "apps/todo-admin/",
+      "sourceRoot": "apps/todo-admin/src",
+      "projectType": "application",
+      "prefix": "todo",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/todo-admin",
+            "index": "apps/todo-admin/src/index.html",
+            "main": "apps/todo-admin/src/main.ts",
+            "polyfills": "apps/todo-admin/src/polyfills.ts",
+            "tsConfig": "apps/todo-admin/tsconfig.app.json",
+            "assets": [
+              "apps/todo-admin/src/favicon.ico",
+              "apps/todo-admin/src/assets"
+            ],
+            "styles": [
+              "apps/todo-admin/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/todo-admin/src/environments/environment.ts",
+                  "with": "apps/todo-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "todo-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "todo-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "todo-admin:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/todo-admin/tsconfig.app.json",
+              "apps/todo-admin/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/todo-admin/src/test.ts",
+            "tsConfig": "apps/todo-admin/tsconfig.spec.json",
+            "karmaConfig": "apps/todo-admin/karma.conf.js",
+            "polyfills": "apps/todo-admin/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
+          }
+        }
+      }
+    },
+    "todo-admin-e2e": {
+      "root": "apps/todo-admin-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/todo-admin-e2e/cypress.json",
+            "tsConfig": "apps/todo-admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "todo-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "todo-admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/todo-admin-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "todo-app",
+  "cli": {
+    "defaultCollection": "@nrwl/schematics"
+  }
+}

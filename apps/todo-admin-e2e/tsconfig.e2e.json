@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": false,
+    "outDir": "../../dist/out-tsc/apps/todo-admin-e2e/src"
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

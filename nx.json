@@ -1,0 +1,54 @@
+{
+  "npmScope": "todo",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "todo-app": {
+      "tags": [
+        "scope:todo-app",
+        "type:app"
+      ]
+    },
+    "todo-app-e2e": {
+      "tags": [
+        "type:e2e"
+      ]
+    },
+    "todo-app-lib": {
+      "tags": [
+        "scope:todo-app"
+      ]
+    },
+    "shared-ui": {
+      "tags": [
+        "type:ui"
+      ]
+    },
+    "shared-data-access": {
+      "tags": [
+        "type:data-access"
+      ]
+    },
+    "shared-utils": {
+      "tags": [
+        "type:util"
+      ]
+    },
+    "todo-admin": {
+      "tags": [
+        "todo-admin",
+        "type:app"
+      ]
+    },
+    "todo-admin-e2e": {
+      "tags": [
+        "type:e2e"
+      ]
+    }
+  }
+}
