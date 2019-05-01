@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SpinnerComponent } from '@shared-lib/spinner/spinner.component';
+import { SpinnerComponent } from './spinner.component';
 
 @Component({
   selector: 'app-spinner',
