@@ -5,10 +5,11 @@ import { SpinnerComponent } from '@shared-lib/spinner/spinner.component';
   selector: 'app-spinner',
   template: ''
 })
+// tslint:disable-next-line:component-class-suffix
 export class SpinnerComponentMock implements OnInit, SpinnerComponent {
-  @Input() message = '';
+  @Input() public message = '';
 
   constructor() {}
 
-  ngOnInit() {}
+  public ngOnInit() {}
 }

@@ -68,17 +68,19 @@
     "@ngrx/router-store": "7.2.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^0.10.0",
+    "@angular/cli": "^7.0.5",
     "@angular/compiler-cli": "^7.0.0",
     "@angular/language-service": "^7.0.0",
-    "@angular-devkit/build-angular": "^0.10.0",
-    "codelyzer": "~4.5.0",
-    "cypress": "3.1.0",
-    "@types/jquery": "3.3.6",
+    "@ngrx/store-devtools": "7.2.0",
     "@nrwl/builders": "7.8.3",
-    "@angular/cli": "^7.0.5",
+    "@nrwl/schematics": "7.8.3",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/jquery": "3.3.6",
     "@types/node": "~8.9.4",
+    "codelyzer": "~4.5.0",
+    "cypress": "3.1.0",
     "jasmine-core": "~2.99.1",
     "jasmine-marbles": "^0.4.1",
     "jasmine-spec-reporter": "~4.2.1",
@@ -87,14 +89,13 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ngrx-store-freeze": "0.2.4",
     "nodemon": "^1.17.1",
+    "prettier": "1.16.4",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.1.6",
-    "@ngrx/store-devtools": "7.2.0",
-    "ngrx-store-freeze": "0.2.4",
-    "@nrwl/schematics": "7.8.3",
-    "prettier": "1.16.4"
+    "tslint-jasmine-rules": "^1.5.1",
+    "typescript": "~3.1.6"
   }
 }

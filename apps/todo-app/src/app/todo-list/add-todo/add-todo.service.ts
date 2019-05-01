@@ -23,6 +23,7 @@ export class AddTodoService {
 
   public save(form: NgForm) {
     if (!form.valid) {
+      // tslint:disable-next-line: no-console
       console.log('Invalid form!');
       // TODO: display form errors
       return;

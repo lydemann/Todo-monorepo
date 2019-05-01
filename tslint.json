@@ -128,70 +128,43 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "no-access-missing-member": true,
-    "templates-use-public": true,
-    "invoke-injectable": true,
     "no-focused-tests": true,
     "no-disabled-tests": false,
     "nx-enforce-module-boundaries": [
-      true,
-      {
-        "allow": [],
-        "depConstraints": [
-          {
-            "sourceTag": "*",
-            "onlyDependOnLibsWithTags": [
-              "*"
-            ]
-          }
-        ]
-      },
-      {
-        "allow": [],
-        "depConstraints": [
-          {
-            "sourceTag": "scope:todo-app",
-            "onlyDependOnLibsWithTags": [
-              "scope:todo-app",
-            ],
-          }
-        ]
-      },
-      {
-        "allow": [],
-        "depConstraints": [
-          {
-            "sourceTag": "type:ui",
-            "onlyDependOnLibsWithTags": [
-              "type:util",
-              "type:ui",
-            ],
-          }
-        ]
-      },
-      {
-        "allow": [],
-        "depConstraints": [
-          {
-            "sourceTag": "type:data-access",
-            "onlyDependOnLibsWithTags": [
-              "type:util",
-              "type:data-access"
-            ],
-          }
-        ]
-      },
-      {
-        "allow": [],
-        "depConstraints": [
-          {
-            "sourceTag": "type:util",
-            "onlyDependOnLibsWithTags": [
-              "type:util"
-            ],
-          }
-        ]
-      },
-    ]
+			true,
+			{
+				"allow": [],
+				"depConstraints": [
+					{ 
+						"sourceTag": "scope:shared",
+						"onlyDependOnLibsWithTags": ["scope:shared"] 
+					},
+					{
+						"sourceTag": "scope:todo-app",
+						"onlyDependOnLibsWithTags": ["scope:todo-app", "scope:shared"] 
+					},					
+					{ 
+						"sourceTag": "scope:todo-admin",
+						"onlyDependOnLibsWithTags": ["scope:todo-admin", "scope:shared"] 
+					},
+					{ 
+						"sourceTag": "type:util",
+						"onlyDependOnLibsWithTags": ["type:util"] 
+					},		
+					{ 
+						"sourceTag": "type:ui",
+						"onlyDependOnLibsWithTags": ["type:ui", "type:interface", "type:util"] 
+					},
+					{ 
+						"sourceTag": "type:data-access",
+						"onlyDependOnLibsWithTags": ["type:data-access", "type:util", "type:interface"] 
+					},
+					{ 
+						"sourceTag": "type:e2e",
+						"onlyDependOnLibsWithTags": ["type:e2e"] 
+					}
+				]
+			}
+		]
   }
 }

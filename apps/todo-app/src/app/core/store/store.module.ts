@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from 'apps/todo-app/src/environments/environment';
+import { environment } from '@todo-app/environments/environment';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { environment } from 'apps/todo-app/src/environments/environment';
   declarations: []
 })
 export class StateModule {
-  static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders {
     return {
       ngModule: StateModule
     };

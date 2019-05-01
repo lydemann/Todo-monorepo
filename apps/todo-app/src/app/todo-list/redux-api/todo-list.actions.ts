@@ -14,43 +14,43 @@ export enum TodoListActionTypes {
 }
 
 export class LoadTodoList implements Action {
-  readonly type = TodoListActionTypes.LoadTodoList;
+  public readonly type = TodoListActionTypes.LoadTodoList;
 
   constructor() {}
 }
 
 export class TodoItemsLoaded implements Action {
-  readonly type = TodoListActionTypes.TodoItemsLoaded;
+  public readonly type = TodoListActionTypes.TodoItemsLoaded;
 
   constructor(public payload: TODOItem[]) {}
 }
 
 export class TodoItemsLoadFailed implements Action {
-  readonly type = TodoListActionTypes.TodoItemsLoadFailed;
+  public readonly type = TodoListActionTypes.TodoItemsLoadFailed;
 
   constructor(public payload: Error) {}
 }
 
 export class TodoItemCreated implements Action {
-  readonly type = TodoListActionTypes.TodoItemCreated;
+  public readonly type = TodoListActionTypes.TodoItemCreated;
 
   constructor(public payload: TODOItem) {}
 }
 
 export class TodoItemDeleted implements Action {
-  readonly type = TodoListActionTypes.TodoItemDeleted;
+  public readonly type = TodoListActionTypes.TodoItemDeleted;
 
   constructor(public payload: string) {}
 }
 
 export class TodoItemUpdated implements Action {
-  readonly type = TodoListActionTypes.TodoItemUpdated;
+  public readonly type = TodoListActionTypes.TodoItemUpdated;
 
   constructor(public payload: TODOItem) {}
 }
 
 export class TodoItemCompleted implements Action {
-  readonly type = TodoListActionTypes.TodoItemCompleted;
+  public readonly type = TodoListActionTypes.TodoItemCompleted;
 
   constructor(public payload: string) {}
 }

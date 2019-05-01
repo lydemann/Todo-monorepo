@@ -2,19 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-todo',
-  template: '',
+  template: ''
 })
+// tslint:disable-next-line:component-class-suffix
 export class AddTodoComponentMock implements OnInit {
-
   public isLoading = false;
 
   @Input()
   public currentTODO;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  public ngOnInit() {}
 
-  save() {
-  }
+  public save() {}
 }

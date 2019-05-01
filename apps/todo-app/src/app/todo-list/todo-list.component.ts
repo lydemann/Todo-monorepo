@@ -18,7 +18,7 @@ export class TodoListComponent implements OnInit {
     private todoListActions: TodoListActions
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.todoListActions.loadTodoList();
   }
 

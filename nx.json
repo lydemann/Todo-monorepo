@@ -21,27 +21,31 @@
     },
     "todo-app-lib": {
       "tags": [
-        "scope:todo-app"
+        "scope:todo-app",
+        "type:feature"
       ]
     },
     "shared-ui": {
       "tags": [
-        "type:ui"
+        "type:ui",
+        "scope:shared"
       ]
     },
     "shared-data-access": {
       "tags": [
-        "type:data-access"
+        "type:data-access",
+        "scope:shared"
       ]
     },
     "shared-utils": {
       "tags": [
-        "type:util"
+        "type:util",
+        "scope:shared"
       ]
     },
     "todo-admin": {
       "tags": [
-        "todo-admin",
+        "scope:todo-admin",
         "type:app"
       ]
     },

@@ -6,10 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./spinner-overlay-wrapper.component.scss']
 })
 export class SpinnerOverlayWrapperComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  public ngOnInit() {}
 }

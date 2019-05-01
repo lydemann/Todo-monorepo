@@ -49,14 +49,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NxModule.forRoot()
   ],
   providers: [
-    AppInitService,
-    AppInitService,
     {
       provide: APP_INITIALIZER,
       useFactory: init_app,
       deps: [AppInitService],
       multi: true
-    }
+    },
+    AppInitService,
+    AppInitService
   ],
   bootstrap: [AppComponent]
 })
