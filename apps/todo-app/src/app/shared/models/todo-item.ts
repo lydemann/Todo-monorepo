@@ -1,5 +1,3 @@
-import { Guid } from '@todo-app/shared/models/guid';
-
 export class TODOItem {
   public id: string;
   public title: string;
@@ -7,7 +5,6 @@ export class TODOItem {
   public dueDate?: string;
   public completed?: boolean;
   constructor(title: string, description: string, dueDate: string = null) {
-    this.id = Guid.newGuid();
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;

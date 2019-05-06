@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
-import { TodoListCompletedService } from './todo-list-completed.service';
+import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({
   selector: 'app-todo-list-completed',
-  templateUrl: './todo-list-completed.component.html',
-  styleUrls: ['./todo-list-completed.component.css'],
-  viewProviders: [TodoListCompletedService]
+  templateUrl: './todo-list-completed.component.html'
 })
 export class TodoListCompletedComponent {
-  constructor(private todoListCompletedService: TodoListCompletedService) {}
+  public completedTodos$ = this.todoListSandboxService.completedTodos$;
 
-  public get todoList() {
-    return this.todoListCompletedService.todoList;
-  }
+  constructor(private todoListSandboxService: TodoListSandboxService) {}
 }

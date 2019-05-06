@@ -1,7 +1,7 @@
-import { GenericAction } from '@todo-app/core/store/generic-action';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { GenericAction } from 'libs/todo-app-lib/src/lib/generic-action';
 import { TodoListActionTypes } from './todo-list.actions';
-import { TodoListInitState, todoListReducers } from './todo-list.reducers';
+import { todoListInitState, todoListReducers } from './todo-list.reducers';
 
 describe('TodoList reducer', () => {
   describe('default', () => {
@@ -9,16 +9,14 @@ describe('TodoList reducer', () => {
       const noopAction = new GenericAction('noop' as TodoListActionTypes);
       const newState = todoListReducers(undefined, noopAction);
 
-      const initState = new TodoListInitState();
-      expect(newState).toEqual(initState);
+      expect(newState).toEqual(todoListInitState);
     });
   });
 
   describe('loadTodoItems', () => {
     it('should return isLoading true', () => {
-      const initState = new TodoListInitState();
       const loadTodoItemsAction = new GenericAction(TodoListActionTypes.LoadTodoList);
-      const newState = todoListReducers(initState, loadTodoItemsAction);
+      const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
 
       expect(newState.isLoading).toBe(true);
     });
@@ -26,10 +24,9 @@ describe('TodoList reducer', () => {
 
   describe('todoItemsLoadFailed', () => {
     it('should return isLoading false and error', () => {
-      const initState = new TodoListInitState();
       const error = new Error('http error');
-      const loadTodoItemsAction = new GenericAction(TodoListActionTypes.TodoItemsLoadFailed, error);
-      const newState = todoListReducers(initState, loadTodoItemsAction);
+      const loadTodoItemsAction = new GenericAction(TodoListActionTypes.LoadTodoListFailed, error);
+      const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
 
       expect(newState.isLoading).toBe(false);
       expect(newState.errors).toBe(error);
@@ -38,10 +35,12 @@ describe('TodoList reducer', () => {
 
   describe('todoItemCreatedReducer', () => {
     it('should add new todo to todo list', () => {
-      const initState = new TodoListInitState();
       const newTodo = new TODOItem('new todo', 'this is new');
-      const loadTodoItemsAction = new GenericAction(TodoListActionTypes.TodoItemCreated, newTodo);
-      const newState = todoListReducers(initState, loadTodoItemsAction);
+      const loadTodoItemsAction = new GenericAction(
+        TodoListActionTypes.AddTodoItemSuccess,
+        newTodo
+      );
+      const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
 
       expect(newState.todos.length).toBe(1);
       expect(newState.todos[0]).toEqual(newTodo);
@@ -50,17 +49,16 @@ describe('TodoList reducer', () => {
 
   describe('todoItemDeletedReducer', () => {
     it('should delete todo from todo list', () => {
-      const initState = new TodoListInitState();
-      initState.todos = [new TODOItem('todoToDelete', '')];
+      todoListInitState.todos = [new TODOItem('todoToDelete', '')];
 
-      expect(initState.todos.length).toBe(1);
+      expect(todoListInitState.todos.length).toBe(1);
 
       const todoToDelete = 'todoToDelete';
       const loadTodoItemsAction = new GenericAction(
-        TodoListActionTypes.TodoItemDeleted,
+        TodoListActionTypes.DeleteTodoItem,
         todoToDelete
       );
-      const newState = todoListReducers(initState, loadTodoItemsAction);
+      const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
 
       expect(newState.todos.length).toBe(0);
     });
@@ -68,20 +66,19 @@ describe('TodoList reducer', () => {
 
   describe('todoItemUpdatedReducer', () => {
     it('should update todo item', () => {
-      const initState = new TodoListInitState();
       const oldTodoItem = new TODOItem('todoToUpdate', '');
       oldTodoItem.id = 'todoToUpdate';
-      initState.todos = [oldTodoItem];
+      todoListInitState.todos = [oldTodoItem];
 
-      expect(initState.todos.length).toBe(1);
+      expect(todoListInitState.todos.length).toBe(1);
 
       const updatedTodo = new TODOItem('todoToUpdate', 'new msg');
       updatedTodo.id = oldTodoItem.id;
       const loadTodoItemsAction = new GenericAction(
-        TodoListActionTypes.TodoItemUpdated,
+        TodoListActionTypes.UpdateTodoItem,
         updatedTodo
       );
-      const newState = todoListReducers(initState, loadTodoItemsAction);
+      const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
 
       expect(newState.todos[0]).toBe(updatedTodo);
     });
@@ -89,20 +86,19 @@ describe('TodoList reducer', () => {
 
   describe('todoItemCompletedReducer', () => {
     it('should complete given todo item', () => {
-      const initState = new TodoListInitState();
       const oldTodoItem = new TODOItem('todoToUpdate', '');
       oldTodoItem.id = 'todoToUpdate';
       oldTodoItem.completed = false;
-      initState.todos = [oldTodoItem];
+      todoListInitState.todos = [oldTodoItem];
 
-      expect(initState.todos.length).toBe(1);
-      expect(initState.todos[0].completed).toBe(false);
+      expect(todoListInitState.todos.length).toBe(1);
+      expect(todoListInitState.todos[0].completed).toBe(false);
 
       const loadTodoItemsAction = new GenericAction(
-        TodoListActionTypes.TodoItemCompleted,
+        TodoListActionTypes.ToggleCompleteTodoItem,
         oldTodoItem.id
       );
-      const newState = todoListReducers(initState, loadTodoItemsAction);
+      const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
 
       expect(newState.todos[0].completed).toBe(true);
     });

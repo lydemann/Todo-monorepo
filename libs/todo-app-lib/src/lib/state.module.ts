@@ -4,12 +4,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '@todo-app/environments/environment';
+import { todoAppReducers } from './todo-app.reducers';
+import { TodoListEffects } from './todo-list/state/todo-list.effects';
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(todoAppReducers),
+    EffectsModule.forRoot([TodoListEffects]),
     StoreDevtoolsModule.instrument({
       name: 'NgRx Testing Store DevTools',
       logOnly: environment.production

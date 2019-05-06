@@ -2,9 +2,9 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { completedTodoPath } from '@todo-app/app.routes';
-import { TodoListService } from '@todo-app/core/todo-list/todo-list.service';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
+import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 describe('TodoListCompletedComponent', () => {
   let component: TodoListCompletedComponent;
@@ -21,7 +21,7 @@ describe('TodoListCompletedComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue: completedTodoPath },
         {
-          provide: TodoListService,
+          provide: TodoListSandboxService,
           useValue: {
             todoList: todoList
           }
@@ -43,6 +43,8 @@ describe('TodoListCompletedComponent', () => {
   });
 
   it('should have one completed TODO item', () => {
-    expect(component.todoList.length).toBe(1);
+    component.completedTodos$.subscribe((todos) => {
+      expect(todos.length).toBe(1);
+    });
   });
 });

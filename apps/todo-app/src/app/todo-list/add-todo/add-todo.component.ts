@@ -1,32 +1,37 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
-import { AddTodoService } from './add-todo.service';
+import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({
   selector: 'app-add-todo',
   templateUrl: './add-todo.component.html',
-  styleUrls: ['./add-todo.component.css'],
-  viewProviders: [AddTodoService]
+  styleUrls: ['add-todo.component.scss']
 })
 export class AddTodoComponent implements OnInit {
-  public get isLoading() {
-    return this.addTodoService.isLoading;
-  }
+  public isLoading$ = this.todoListSandboxService.isLoading$;
 
+  private _currentTODO = new TODOItem('', '');
   public get currentTODO(): TODOItem {
-    return this.addTodoService.currentTODO;
+    return this._currentTODO;
   }
   @Input()
-  public set currentTODO(todo: TODOItem) {
-    this.addTodoService.currentTODO = todo;
+  public set currentTODO(todoItem: TODOItem) {
+    this._currentTODO = { ...todoItem };
   }
 
-  constructor(private addTodoService: AddTodoService) {}
+  constructor(private todoListSandboxService: TodoListSandboxService) {}
 
   public ngOnInit() {}
 
   public save(form: NgForm) {
-    this.addTodoService.save(form);
+    if (!form.valid) {
+      // tslint:disable-next-line: no-console
+      console.error('Invalid form!');
+      return;
+    }
+    this.todoListSandboxService.save$(this.currentTODO).subscribe(() => {
+      form.resetForm();
+    });
   }
 }

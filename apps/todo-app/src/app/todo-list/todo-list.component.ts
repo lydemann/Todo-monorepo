@@ -8,8 +8,7 @@ import { TodoListSandboxService } from '@todo/todo-app-lib';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  // TODO: current todo item i store
-  public currentTODO: TODOItem = new TODOItem('', '');
+  public selectedTodo$ = this.todoListSandboxService.selectedTodo$;
   public todoList$ = this.todoListSandboxService.todoList$;
 
   constructor(private todoListSandboxService: TodoListSandboxService) {}
@@ -20,8 +19,7 @@ export class TodoListComponent implements OnInit {
     this.todoListSandboxService.deleteTodo(id);
   }
 
-  // TODO: dispatch action
-  public editTodo(todoItem: TODOItem) {
-    this.currentTODO = todoItem;
+  public selectTodoForEdit(todoItem: TODOItem) {
+    this.todoListSandboxService.selectTodoForEdit(todoItem);
   }
 }
