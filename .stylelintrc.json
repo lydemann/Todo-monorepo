@@ -1,0 +1,44 @@
+{
+	"extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+	"plugins": ["stylelint-scss"],
+	"ignoreFiles": ["libs/**/_normalize.scss"],
+	"rules": {
+		"color-named": [
+			"never",
+			{
+				"ignore": ["inside-function"]
+			}
+		],
+		"color-no-hex": true,
+		"declaration-no-important": true,
+		"at-rule-no-unknown": [
+			true,
+			{
+				"ignoreAtRules": [
+					"for",
+					"if",
+					"else",
+					"each",
+					"extend",
+					"include",
+					"mixin"
+				]
+			}
+		],
+		"max-nesting-depth": [
+			3,
+			{
+				"ignoreAtRules": ["include"]
+			}
+		],
+		"property-no-vendor-prefix": true,
+		"selector-max-id": 0,
+		"selector-type-no-unknown": [
+			true,
+			{
+				"ignore": ["custom-elements"]
+			}
+		],
+		"value-no-vendor-prefix": true
+	}
+}
