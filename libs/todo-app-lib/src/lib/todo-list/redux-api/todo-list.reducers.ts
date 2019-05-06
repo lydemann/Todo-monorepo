@@ -3,15 +3,10 @@ import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoListActionTypes } from './todo-list.actions';
 import { TodoListState } from './todo-list.model';
 
-export class TodoListInitState implements TodoListState {
-  public todos: TODOItem[];
-  public errors?: Error;
-  public isLoading: boolean;
-  constructor() {
-    this.todos = [];
-    this.isLoading = false;
-  }
-}
+const todoListInitState: TodoListState = {
+  todos: [],
+  isLoading: false
+};
 
 const loadTodoItems = (
   lastState: TodoListState,
@@ -84,10 +79,10 @@ const todoItemCompletedReducer = (
   return { ...lastState };
 };
 
-export const todoListReducers = (
-  lastState: TodoListState = new TodoListInitState(),
+export function todoListReducers(
+  lastState: TodoListState = todoListInitState,
   action: GenericAction<TodoListActionTypes, any>
-): TodoListState => {
+): TodoListState {
   switch (action.type) {
     case TodoListActionTypes.LoadTodoList:
       return loadTodoItems(lastState, action);
@@ -109,4 +104,4 @@ export const todoListReducers = (
     default:
       return lastState;
   }
-};
+}
