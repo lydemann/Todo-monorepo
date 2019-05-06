@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { TodoListSandboxModule } from './todo-list/todo-list-sandbox.module';
 
 @NgModule({
-  imports: [CommonModule]
+  imports: [TodoListSandboxModule]
 })
 export class TodoAppLibModule {}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
-import { TodoListActions } from './redux-api/todo-list.actions';
-import { TodoListSelector } from './redux-api/todo-list.selector';
+import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,19 +10,14 @@ import { TodoListSelector } from './redux-api/todo-list.selector';
 export class TodoListComponent implements OnInit {
   // TODO: current todo item i store
   public currentTODO: TODOItem = new TODOItem('', '');
-  public todoList$ = this.todoListSelector.getTodoList();
+  public todoList$ = this.todoListSandboxService.todoList$;
 
-  constructor(
-    private todoListSelector: TodoListSelector,
-    private todoListActions: TodoListActions
-  ) {}
+  constructor(private todoListSandboxService: TodoListSandboxService) {}
 
-  public ngOnInit(): void {
-    this.todoListActions.loadTodoList();
-  }
+  public ngOnInit(): void {}
 
   public deleteTodo(id: string) {
-    this.todoListActions.deleteTodo(id);
+    this.todoListSandboxService.deleteTodo(id);
   }
 
   // TODO: dispatch action
