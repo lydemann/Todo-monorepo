@@ -41,13 +41,11 @@ const todoItemsLoadFailed = (
   };
 };
 
-const todoItemCreatedReducer = (
+const AddTodoItemSuccessReducer = (
   lastState: TodoListState,
   action: GenericAction<TodoListActionTypes, TODOItem>
 ): TodoListState => {
-  const prevTodos = lastState.todos;
-  prevTodos.push(action.payload);
-  const newTodos = prevTodos;
+  const newTodos = [...lastState.todos, { ...action.payload }];
   return {
     ...lastState,
     todos: newTodos
@@ -58,18 +56,23 @@ const todoItemDeletedReducer = (
   action: GenericAction<TodoListActionTypes, string>
 ): TodoListState => {
   const deleteIdx = lastState.todos.findIndex((todo) => todo.id === action.payload);
+  const newTodos = ImmutableCollectionHelper.removeItem(lastState.todos, deleteIdx);
 
-  lastState.todos.splice(deleteIdx, 1);
-
-  return { ...lastState };
+  return { ...lastState, todos: newTodos };
 };
-const todoItemUpdatedReducer = (
+const UpdateTodoItemReducer = (
   lastState: TodoListState,
   action: GenericAction<TodoListActionTypes, TODOItem>
 ): TodoListState => {
   const updatedTodoIdx = lastState.todos.findIndex((todo) => todo.id === action.payload.id);
-  lastState.todos[updatedTodoIdx] = action.payload;
-  return { ...lastState };
+
+  const newTodos = ImmutableCollectionHelper.updateObjectInArray(
+    lastState.todos,
+    updatedTodoIdx,
+    action.payload
+  );
+
+  return { ...lastState, todos: newTodos, selectedTodoItemId: null };
 };
 const toggleTodoItemReducer = (
   lastState: TodoListState,
@@ -105,13 +108,13 @@ export function todoListReducers(
     case TodoListActionTypes.LoadTodoListFailed:
       return todoItemsLoadFailed(lastState, action);
     case TodoListActionTypes.AddTodoItemSuccess:
-      return todoItemCreatedReducer(lastState, action);
+      return AddTodoItemSuccessReducer(lastState, action);
     case TodoListActionTypes.LoadTodoListFailed:
       return todoItemsLoadFailed(lastState, action);
     case TodoListActionTypes.DeleteTodoItem:
       return todoItemDeletedReducer(lastState, action);
     case TodoListActionTypes.UpdateTodoItem:
-      return todoItemUpdatedReducer(lastState, action);
+      return UpdateTodoItemReducer(lastState, action);
     case TodoListActionTypes.ToggleCompleteTodoItem:
       return toggleTodoItemReducer(lastState, action);
     case TodoListActionTypes.SelectTodoForEdit:
@@ -121,3 +124,5 @@ export function todoListReducers(
       return lastState;
   }
 }
+
+// TODO: add store freeze meta reducer
