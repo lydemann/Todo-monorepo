@@ -1,13 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TodoListService } from '@todo-app/core/todo-list/todo-list.service';
+import { createMagicalMock } from '@todo-app/helpers/spy-helper';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoItemListRowComponentMock } from '@todo-app/shared/todo-item-list-row/todo-item-list-row.component.mock';
 import { AddTodoComponentMock } from '@todo-app/todo-list/add-todo/add-todo.component.mock';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
-import { of } from 'rxjs';
-import { TodoListActions } from './redux-api/todo-list.actions';
-import { TodoListSelector } from './redux-api/todo-list.selector';
+import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 describe('TodoListComponent', () => {
   let component: TodoListComponent;
@@ -18,25 +16,15 @@ describe('TodoListComponent', () => {
     todo1.completed = true;
     const todoList = [todo1, new TODOItem('Buy flowers', 'Remember to buy flowers')];
 
+    const todoListSandboxServiceStub = createMagicalMock(TodoListSandboxService);
+
     TestBed.configureTestingModule({
       declarations: [TodoListComponent, TodoItemListRowComponentMock, AddTodoComponentMock],
       imports: [],
       providers: [
         {
-          provide: TodoListService,
-          useValue: { todoList: todoList }
-        },
-        {
-          provide: TodoListSelector,
-          useValue: {
-            getTodoList: () => of([])
-          }
-        },
-        {
-          provide: TodoListActions,
-          useValue: {
-            loadTodoList: () => {}
-          }
+          provide: TodoListSandboxService,
+          useValue: todoListSandboxServiceStub
         }
       ]
     })

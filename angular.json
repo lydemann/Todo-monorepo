@@ -92,6 +92,11 @@
             "styles": [
               "apps/todo-app/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "libs/shared/styles/src/lib"
+              ]
+            },
             "scripts": [],
             "assets": [
               "apps/todo-app/src/favicon.ico",

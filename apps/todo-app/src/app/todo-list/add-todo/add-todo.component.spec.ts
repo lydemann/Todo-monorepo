@@ -3,8 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { TodoListService } from '@todo-app/core/todo-list/todo-list.service';
-import { SpyHelper } from '@todo-app/helpers/spy-helper';
+import { provideMagicalMock } from '@todo-app/helpers/spy-helper';
+import { TodoListSandboxService } from '@todo/todo-app-lib';
 import { of } from 'rxjs';
 import { AddTodoComponent } from './add-todo.component';
 
@@ -16,14 +16,14 @@ describe('AddTodoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AddTodoComponent],
       imports: [FormsModule, TranslateModule.forRoot()],
-      providers: [SpyHelper.provideMagicalMock(TodoListService)],
+      providers: [provideMagicalMock(TodoListSandboxService)],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
-  let todoListServiceMock: jasmine.SpyObj<TodoListService>;
+  let todoListSandboxServiceMock: jasmine.SpyObj<TodoListSandboxService>;
   beforeEach(() => {
-    todoListServiceMock = TestBed.get(TodoListService);
+    todoListSandboxServiceMock = TestBed.get(TodoListSandboxService);
 
     fixture = TestBed.createComponent(AddTodoComponent);
     component = fixture.componentInstance;
@@ -40,8 +40,7 @@ describe('AddTodoComponent', () => {
       { id: 'task1', title: 'Buy Milk', description: 'Remember to buy milk' },
       { id: 'task2', title: 'Go to the gym', description: 'Remember to work out' }
     ];
-    (todoListServiceMock as any).todoList = todoList;
-    todoListServiceMock.updateTodo.and.returnValue(of([]));
+    todoListSandboxServiceMock.save$.and.returnValue(of([]));
 
     // Act
     component.currentTODO = todoList[0];
@@ -49,7 +48,7 @@ describe('AddTodoComponent', () => {
     component.save(form);
 
     // Assert
-    expect(todoListServiceMock.updateTodo).toHaveBeenCalledWith(component.currentTODO);
+    expect(todoListSandboxServiceMock.save$).toHaveBeenCalledWith(component.currentTODO);
   });
 
   it('should add new todo item when todo item is not in todo list', () => {
@@ -60,16 +59,16 @@ describe('AddTodoComponent', () => {
       { id: 'task1', title: 'Buy Milk', description: 'Remember to buy milk', completed: false },
       { id: 'task2', title: 'Go to the gym', description: 'Remember to work out', completed: false }
     ];
-    (todoListServiceMock as any).todoList = todoList;
-    todoListServiceMock.addTodo.and.returnValue(of([]));
-
-    // Act
+    (todoListSandboxServiceMock as any).todoList = todoList;
+    todoListSandboxServiceMock.save$.and.returnValue(of([]));
     component.currentTODO = newTodo;
     const form = new NgForm([], []);
+
+    // Act
 
     component.save(form);
 
     // Assert
-    expect(todoListServiceMock.addTodo).toHaveBeenCalledWith(newTodo);
+    expect(todoListSandboxServiceMock.save$).toHaveBeenCalledWith(newTodo);
   });
 });

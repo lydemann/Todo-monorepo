@@ -2,19 +2,21 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { completedTodoPath } from '@todo-app/app.routes';
+import { createMagicalMock } from '@todo-app/helpers/spy-helper';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { of } from 'rxjs';
 
 describe('TodoListCompletedComponent', () => {
   let component: TodoListCompletedComponent;
   let fixture: ComponentFixture<TodoListCompletedComponent>;
+  const todoListSandboxServiceStub = createMagicalMock(TodoListSandboxService);
+  const todo1 = { ...new TODOItem('Buy milk', 'Remember to buy milk'), completed: true };
+  const todoList = [todo1];
 
   beforeEach(async(() => {
-    const todo1 = new TODOItem('Buy milk', 'Remember to buy milk');
-    todo1.completed = true;
-    const todoList = [todo1, new TODOItem('Buy flowers', 'Remember to buy flowers')];
-
+    todoListSandboxServiceStub.completedTodos$ = of(todoList) as any;
     TestBed.configureTestingModule({
       declarations: [TodoListCompletedComponent],
       imports: [],
@@ -22,9 +24,7 @@ describe('TodoListCompletedComponent', () => {
         { provide: APP_BASE_HREF, useValue: completedTodoPath },
         {
           provide: TodoListSandboxService,
-          useValue: {
-            todoList: todoList
-          }
+          useValue: todoListSandboxServiceStub
         }
       ]
     })
@@ -44,7 +44,7 @@ describe('TodoListCompletedComponent', () => {
 
   it('should have one completed TODO item', () => {
     component.completedTodos$.subscribe((todos) => {
-      expect(todos.length).toBe(1);
+      expect(todos).toBe(todoList);
     });
   });
 });

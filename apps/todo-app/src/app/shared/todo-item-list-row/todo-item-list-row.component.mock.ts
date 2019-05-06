@@ -12,6 +12,7 @@ export class TodoItemListRowComponentMock implements OnInit, TodoItemListRowComp
   @Input() public readOnlyTODO: boolean;
   @Output() public todoDelete = new EventEmitter();
   @Output() public todoEdit = new EventEmitter();
+  @Output() public todoCompleteToggled: EventEmitter<string>;
 
   constructor() {}
 
