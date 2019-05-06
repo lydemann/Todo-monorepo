@@ -11,11 +11,11 @@
 </div>
 
 <ng-template #todoItemCardRef let-todo="data">
-  <app-todo-item-card [todoItem]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="selectTodoForEdit($event)"></app-todo-item-card>
+  <app-todo-item-card [todoItem]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="selectTodoForEdit($event)" (todoCompleteToggled)="todoCompleteToggled($event)"></app-todo-item-card>
 </ng-template>
 
 <ng-template #todoListRef let-todos="data">
   <ul class="list-group mb-3">
-    <app-todo-item-list-row *ngFor="let todo of todos" [todoItem]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="selectTodoForEdit($event)"></app-todo-item-list-row>
+    <app-todo-item-list-row *ngFor="let todo of todos" [todoItem]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="selectTodoForEdit($event)" (todoCompleteToggled)="todoCompleteToggled($event)"></app-todo-item-list-row>
   </ul>
 </ng-template>

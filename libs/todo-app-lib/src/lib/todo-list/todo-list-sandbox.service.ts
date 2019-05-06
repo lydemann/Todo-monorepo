@@ -10,6 +10,7 @@ import {
   LoadTodoList,
   SaveTodoItemStartedAction,
   SelectTodoForEditAction,
+  ToggleCompleteTodoItemAction,
   UpdateTodoItemAction as UpdateTodoItemSuccessAction
 } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
@@ -31,6 +32,9 @@ export class TodoListSandboxService {
   public todoList$ = this.store.select(todoListSelector);
 
   constructor(private store: Store<TodoListState>) {}
+  public todoCompletedToggled(todoId: string) {
+    this.store.dispatch(new ToggleCompleteTodoItemAction(todoId));
+  }
   public selectTodoForEdit(todoItem: TODOItem) {
     this.store.dispatch(new SelectTodoForEditAction(todoItem.id));
   }

@@ -79,7 +79,7 @@ const toggleTodoItemReducer = (
   const oldTodo = lastState.todos[index];
   const newTodo = {
     ...oldTodo,
-    completed: !oldTodo
+    completed: !oldTodo.completed
   };
   const newTodos = ImmutableCollectionHelper.updateObjectInArray(lastState.todos, index, newTodo);
 

@@ -22,4 +22,8 @@ export class TodoListComponent implements OnInit {
   public selectTodoForEdit(todoItem: TODOItem) {
     this.todoListSandboxService.selectTodoForEdit(todoItem);
   }
+
+  public todoCompleteToggled(todoId: string) {
+    this.todoListSandboxService.todoCompletedToggled(todoId);
+  }
 }

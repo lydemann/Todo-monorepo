@@ -11,13 +11,14 @@ export class TodoItemCardComponent implements OnInit {
   @Input() public readOnlyTODO: boolean;
   @Output() public todoDelete = new EventEmitter();
   @Output() public todoEdit = new EventEmitter();
+  @Output() public todoCompleteToggled = new EventEmitter<string>();
 
   constructor() {}
 
   public ngOnInit() {}
 
   public completeClick() {
-    this.todoItem.completed = !this.todoItem.completed;
+    this.todoCompleteToggled.emit(this.todoItem.id);
   }
 
   public deleteClick() {

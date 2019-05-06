@@ -57,8 +57,8 @@ describe('AddTodoComponent', () => {
     const newTodo = { id: 'lala1', title: 'Buy Milk', description: 'Remember to buy milk' };
 
     const todoList = [
-      { id: 'task1', title: 'Buy Milk', description: 'Remember to buy milk' },
-      { id: 'task2', title: 'Go to the gym', description: 'Remember to work out' }
+      { id: 'task1', title: 'Buy Milk', description: 'Remember to buy milk', completed: false },
+      { id: 'task2', title: 'Go to the gym', description: 'Remember to work out', completed: false }
     ];
     (todoListServiceMock as any).todoList = todoList;
     todoListServiceMock.addTodo.and.returnValue(of([]));
