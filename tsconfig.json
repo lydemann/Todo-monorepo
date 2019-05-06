@@ -32,6 +32,9 @@
       ],
       "@todo/shared/utils": [
         "libs/shared/utils/src/index.ts"
+      ],
+      "@todo/shared/styles": [
+        "libs/shared/styles/src/index.ts"
       ]
     }
   }

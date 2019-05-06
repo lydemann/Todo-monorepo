@@ -53,6 +53,11 @@
       "tags": [
         "type:e2e"
       ]
+    },
+    "shared-styles": {
+      "tags": [
+        "scope:shared"
+      ]
     }
   }
 }

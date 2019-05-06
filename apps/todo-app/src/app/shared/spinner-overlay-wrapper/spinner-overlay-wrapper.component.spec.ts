@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SpinnerModule } from '@shared-lib/spinner/spinner.module';
 import { SpinnerOverlayWrapperComponent } from '@todo-app/shared/spinner-overlay-wrapper/spinner-overlay-wrapper.component';
+import { SpinnerModule } from '@todo/shared/ui';
 
 describe('SpinnerOverlayWrapperComponent', () => {
   let component: SpinnerOverlayWrapperComponent;

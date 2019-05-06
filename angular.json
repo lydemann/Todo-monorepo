@@ -32,7 +32,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "apps/todo-app/src/styles"
+                "libs/shared/styles/src/lib"
               ]
             },
             "scripts": []
@@ -400,7 +400,19 @@
           }
         }
       }
-    }
+    },
+    "shared-styles": {
+			"root": "libs/shared/styles",
+			"sourceRoot": "libs/shared/styles/src",
+			"projectType": "library",
+			"prefix": "todo",
+			"architect": {},
+			"schematics": {
+				"@nrwl/schematics:component": {
+					"styleext": "scss"
+				}
+			}
+		}
   },
   "defaultProject": "todo-app",
   "cli": {
