@@ -36,29 +36,27 @@ describe('TodoList reducer', () => {
   describe('todoItemCreatedReducer', () => {
     it('should add new todo to todo list', () => {
       const newTodo = new TODOItem('new todo', 'this is new');
-      const loadTodoItemsAction = new GenericAction(
-        TodoListActionTypes.AddTodoItemSuccess,
-        newTodo
-      );
-      const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
+      const addTodoItemsAction = new GenericAction(TodoListActionTypes.AddTodoItemSuccess, newTodo);
+      const newState = todoListReducers(todoListInitState, addTodoItemsAction);
 
       expect(newState.todos.length).toBe(1);
-      expect(newState.todos[0]).toEqual(newTodo);
+      expect(newState.todos[0]).toEqual({ ...newTodo });
     });
   });
 
   describe('todoItemDeletedReducer', () => {
     it('should delete todo from todo list', () => {
+      const todoToDelete = 'todoToDelete';
       todoListInitState.todos = [new TODOItem('todoToDelete', '')];
+      todoListInitState.todos[0].id = todoToDelete;
 
       expect(todoListInitState.todos.length).toBe(1);
 
-      const todoToDelete = 'todoToDelete';
-      const loadTodoItemsAction = new GenericAction(
+      const deleteTodoItemAction = new GenericAction(
         TodoListActionTypes.DeleteTodoItem,
         todoToDelete
       );
-      const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
+      const newState = todoListReducers(todoListInitState, deleteTodoItemAction);
 
       expect(newState.todos.length).toBe(0);
     });
@@ -72,7 +70,7 @@ describe('TodoList reducer', () => {
 
       expect(todoListInitState.todos.length).toBe(1);
 
-      const updatedTodo = new TODOItem('todoToUpdate', 'new msg');
+      const updatedTodo = { ...new TODOItem('todoToUpdate', 'new msg') };
       updatedTodo.id = oldTodoItem.id;
       const loadTodoItemsAction = new GenericAction(
         TodoListActionTypes.UpdateTodoItem,
@@ -80,7 +78,7 @@ describe('TodoList reducer', () => {
       );
       const newState = todoListReducers(todoListInitState, loadTodoItemsAction);
 
-      expect(newState.todos[0]).toBe(updatedTodo);
+      expect(newState.todos[0]).toEqual(updatedTodo);
     });
   });
 

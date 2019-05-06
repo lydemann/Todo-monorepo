@@ -1,12 +1,13 @@
 /* tslint:disable:no-unused-variable */
 
 import { inject, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TodoListSandboxService } from './todo-list-sandbox.service';
 
-describe('Service: TodoList', () => {
+describe('Service: TodoListSandboxService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TodoListSandboxService]
+      providers: [TodoListSandboxService, provideMockStore()]
     });
   });
 

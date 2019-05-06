@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { TodoListService } from '@todo-app/core/todo-list/todo-list.service';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { createMagicalMock } from '@todo/shared/utils';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
+import { TodoListResourcesService } from '../resources/todo-list-resources.service';
 import {
   LoadTodoList,
   LoadTodoListFailedAction,
@@ -15,7 +16,7 @@ describe('TodoListEffects', () => {
   let actions: Observable<any>;
 
   let effects: TodoListEffects;
-  let todoListService: jasmine.SpyObj<TodoListService>;
+  const todoListResourcesStub = createMagicalMock(TodoListResourcesService);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,16 +24,13 @@ describe('TodoListEffects', () => {
         TodoListEffects,
         provideMockActions(() => actions),
         {
-          provide: TodoListService,
-          useValue: {
-            getTodos: jasmine.createSpy()
-          }
+          provide: TodoListResourcesService,
+          useValue: todoListResourcesStub
         }
       ]
     });
 
     effects = TestBed.get(TodoListEffects);
-    todoListService = TestBed.get(TodoListService);
   });
 
   describe('loadTodoList', () => {
@@ -43,7 +41,7 @@ describe('TodoListEffects', () => {
 
       actions = hot('-a', { a: action });
       const response = cold('-a|', { a: todoList });
-      todoListService.getTodos.and.returnValue(response);
+      todoListResourcesStub.getTodos$.and.returnValue(response);
 
       const expected = cold('--b', { b: outcome });
       expect(effects.loadTodoList$).toBeObservable(expected);
@@ -56,7 +54,7 @@ describe('TodoListEffects', () => {
 
       actions = hot('-a', { a: action });
       const response = cold('-#|', {}, error);
-      todoListService.getTodos.and.returnValue(response);
+      todoListResourcesStub.getTodos$.and.returnValue(response);
 
       const expected = cold('--(b|)', { b: outcome });
       expect(effects.loadTodoList$).toBeObservable(expected);

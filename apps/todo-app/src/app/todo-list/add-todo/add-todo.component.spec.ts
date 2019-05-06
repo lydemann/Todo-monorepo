@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { provideMagicalMock } from '@todo-app/helpers/spy-helper';
+import { provideMagicalMock } from '@todo/shared/utils';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 import { of } from 'rxjs';
 import { AddTodoComponent } from './add-todo.component';

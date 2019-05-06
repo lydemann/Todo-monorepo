@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { TodoListResourcesService } from './todo-list-resources.service';
 
 describe('Service: TodoListResources', () => {
@@ -9,8 +9,4 @@ describe('Service: TodoListResources', () => {
       providers: [TodoListResourcesService]
     });
   });
-
-  it('should ...', inject([TodoListResourcesService], (service: TodoListResourcesService) => {
-    expect(service).toBeTruthy();
-  }));
 });

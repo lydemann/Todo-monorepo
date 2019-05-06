@@ -2,9 +2,9 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { completedTodoPath } from '@todo-app/app.routes';
-import { createMagicalMock } from '@todo-app/helpers/spy-helper';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
+import { createMagicalMock } from '@todo/shared/utils';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 import { of } from 'rxjs';
 
