@@ -125,9 +125,10 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "apps/todo-app-e2e/protractor.conf.js",
+            "cypressConfig": "apps/todo-app-e2e/cypress.json",
+            "tsConfig": "apps/todo-app-e2e/tsconfig.e2e.json",
             "devServerTarget": "todo-app:serve"
           },
           "configurations": {
