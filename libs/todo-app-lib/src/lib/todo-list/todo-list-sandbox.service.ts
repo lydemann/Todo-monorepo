@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
-import { Guid } from '@todo/shared/utils';
-import { of } from 'rxjs';
-import { delay, first, tap } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
+import { TodoListResourcesService } from './resources/todo-list-resources.service';
 import {
   AddTodoItemSuccessAction,
   DeleteTodoItemAction,
@@ -11,7 +10,7 @@ import {
   SaveTodoItemStartedAction,
   SelectTodoForEditAction,
   ToggleCompleteTodoItemAction,
-  UpdateTodoItemAction as UpdateTodoItemSuccessAction
+  UpdateTodoItemSuccessAction
 } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
 import {
@@ -31,7 +30,10 @@ export class TodoListSandboxService {
 
   public todoList$ = this.store.select(todoListSelector);
 
-  constructor(private store: Store<TodoListState>) {}
+  constructor(
+    private store: Store<TodoListState>,
+    private todoListResourcesService: TodoListResourcesService
+  ) {}
   public todoCompletedToggled(todoId: string) {
     this.store.dispatch(new ToggleCompleteTodoItemAction(todoId));
   }
@@ -43,29 +45,20 @@ export class TodoListSandboxService {
     this.store.dispatch(new SaveTodoItemStartedAction());
 
     if (!!todoItem.id) {
-      return this.updateTodo(todoItem).pipe(
+      return this.todoListResourcesService.updateTodo(todoItem).pipe(
         first(),
-        tap(() => {
-          this.store.dispatch(new UpdateTodoItemSuccessAction(todoItem));
+        tap((todoItm) => {
+          this.store.dispatch(new UpdateTodoItemSuccessAction(todoItm));
         })
       );
     } else {
-      return this.addTodoOnServer(todoItem).pipe(
+      return this.todoListResourcesService.addTodo(todoItem).pipe(
         first(),
-        tap(() => {
-          todoItem.id = Guid.newGuid();
-          this.store.dispatch(new AddTodoItemSuccessAction(todoItem));
+        tap((todoItm) => {
+          this.store.dispatch(new AddTodoItemSuccessAction(todoItm));
         })
       );
     }
-  }
-
-  public addTodoOnServer(todo: TODOItem) {
-    return of(null).pipe(delay(2000));
-  }
-
-  public updateTodo(todo: TODOItem) {
-    return of(null).pipe(delay(2000));
   }
 
   /**

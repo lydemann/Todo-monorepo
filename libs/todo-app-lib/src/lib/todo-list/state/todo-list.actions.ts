@@ -49,7 +49,7 @@ export class SaveTodoItemStartedAction implements Action {
   constructor() {}
 }
 
-export class UpdateTodoItemAction implements Action {
+export class UpdateTodoItemSuccessAction implements Action {
   public readonly type = TodoListActionTypes.UpdateTodoItem;
 
   constructor(public payload: TODOItem) {}
