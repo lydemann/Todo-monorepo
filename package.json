@@ -72,6 +72,8 @@
     "@angular/cli": "^7.0.5",
     "@angular/compiler-cli": "^7.0.0",
     "@angular/language-service": "^7.0.0",
+    "@commitlint/cli": "^7.6.0",
+    "@commitlint/config-conventional": "^7.6.0",
     "@ngrx/store-devtools": "7.2.0",
     "@nrwl/builders": "7.8.3",
     "@nrwl/schematics": "7.8.3",
@@ -89,9 +91,10 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "lint-staged": "^8.1.6",
     "ngrx-store-freeze": "0.2.4",
     "nodemon": "^1.17.1",
-    "prettier": "1.16.4",
+    "prettier": "^1.16.4",
     "protractor": "~5.4.0",
     "stylelint": "^8.2.0",
     "stylelint-config-prettier": "^5.1.0",
@@ -99,6 +102,7 @@
     "stylelint-scss": "^3.6.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-jasmine-rules": "^1.5.1",
     "typescript": "~3.1.6"
   }
