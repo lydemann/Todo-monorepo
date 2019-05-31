@@ -1,33 +1,12 @@
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { ImmutableCollectionHelper } from '@todo/shared/utils';
 import { GenericAction } from '../../generic-action';
-import { TodoListActionTypes } from './todo-list.actions';
+import { TodoListActions, TodoListActionTypes } from './todo-list.actions';
 import { TodoListState } from './todo-list.model';
 
 export const todoListInitState: TodoListState = {
   todos: [],
   isLoading: false
-};
-
-const loadTodoItems = (
-  lastState: TodoListState,
-  action: GenericAction<TodoListActionTypes, void>
-): TodoListState => {
-  return {
-    ...lastState,
-    isLoading: true
-  };
-};
-
-const todoItemsLoaded = (
-  lastState: TodoListState,
-  action: GenericAction<TodoListActionTypes, TODOItem[]>
-): TodoListState => {
-  return {
-    ...lastState,
-    todos: action.payload,
-    isLoading: false
-  };
 };
 
 const todoItemsLoadFailed = (
@@ -98,13 +77,22 @@ const selectTodoForEditAReducer = (
 
 export function todoListReducers(
   lastState: TodoListState = todoListInitState,
-  action: GenericAction<TodoListActionTypes, any>
+  action: TodoListActions
 ): TodoListState {
   switch (action.type) {
-    case TodoListActionTypes.LoadTodoList:
-      return loadTodoItems(lastState, action);
-    case TodoListActionTypes.LoadTodoListSuccess:
-      return todoItemsLoaded(lastState, action);
+    case TodoListActionTypes.LoadTodoList: {
+      return {
+        ...lastState,
+        isLoading: true
+      };
+    }
+    case TodoListActionTypes.LoadTodoListSuccess: {
+      return {
+        ...lastState,
+        todos: action.payload,
+        isLoading: false
+      };
+    }
     case TodoListActionTypes.LoadTodoListFailed:
       return todoItemsLoadFailed(lastState, action);
     case TodoListActionTypes.AddTodoItemSuccess:

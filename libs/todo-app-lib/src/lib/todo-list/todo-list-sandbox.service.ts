@@ -6,7 +6,7 @@ import { TodoListResourcesService } from './resources/todo-list-resources.servic
 import {
   AddTodoItemSuccessAction,
   DeleteTodoItemAction,
-  LoadTodoList,
+  LoadTodoListAction,
   SaveTodoItemStartedAction,
   SelectTodoForEditAction,
   ToggleCompleteTodoItemAction,
@@ -65,7 +65,7 @@ export class TodoListSandboxService {
    * loadTodoList
    */
   public loadTodoList() {
-    this.store.dispatch(new LoadTodoList());
+    this.store.dispatch(new LoadTodoListAction());
   }
 
   /**

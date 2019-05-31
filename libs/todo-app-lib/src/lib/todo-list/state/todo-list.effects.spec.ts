@@ -6,7 +6,7 @@ import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 import { TodoListResourcesService } from '../resources/todo-list-resources.service';
 import {
-  LoadTodoList,
+  LoadTodoListAction,
   LoadTodoListFailedAction,
   LoadTodoListSuccessAction
 } from './todo-list.actions';
@@ -36,7 +36,7 @@ describe('TodoListEffects', () => {
   describe('loadTodoList', () => {
     it('should return a stream with todo list loaded action', () => {
       const todoList: TODOItem[] = [{ title: '', id: '1', description: '' }];
-      const action = new LoadTodoList();
+      const action = new LoadTodoListAction();
       const outcome = new LoadTodoListSuccessAction(todoList);
 
       actions = hot('-a', { a: action });
@@ -48,7 +48,7 @@ describe('TodoListEffects', () => {
     });
 
     it('should fail and return an action with the error', () => {
-      const action = new LoadTodoList();
+      const action = new LoadTodoListAction();
       const error = new Error('some error') as any;
       const outcome = new LoadTodoListFailedAction(error);
 

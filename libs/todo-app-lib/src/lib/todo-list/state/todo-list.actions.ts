@@ -13,7 +13,7 @@ export enum TodoListActionTypes {
   SelectTodoForEdit = '[TodoList] Select Todo For Edit'
 }
 
-export class LoadTodoList implements Action {
+export class LoadTodoListAction implements Action {
   public readonly type = TodoListActionTypes.LoadTodoList;
 
   constructor() {}
@@ -66,3 +66,14 @@ export class SelectTodoForEditAction implements Action {
 
   constructor(public payload: string) {}
 }
+
+export type TodoListActions =
+  | LoadTodoListAction
+  | LoadTodoListSuccessAction
+  | LoadTodoListFailedAction
+  | AddTodoItemSuccessAction
+  | DeleteTodoItemAction
+  | SaveTodoItemStartedAction
+  | UpdateTodoItemSuccessAction
+  | ToggleCompleteTodoItemAction
+  | SelectTodoForEditAction;

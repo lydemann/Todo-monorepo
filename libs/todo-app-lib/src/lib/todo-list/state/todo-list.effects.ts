@@ -14,7 +14,7 @@ export class TodoListEffects {
   @Effect()
   public loadTodoList$ = this.actions$.pipe(
     ofType(TodoListActionTypes.LoadTodoList),
-    exhaustMap(() => this.todoListResourcesService.getTodos$()), // TODO: safe observable pattern
+    exhaustMap(() => this.todoListResourcesService.getTodos$()),
     map((todoList) => new LoadTodoListSuccessAction(todoList)),
     catchError((error: Error) => of(new LoadTodoListFailedAction(error)))
   );
