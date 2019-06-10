@@ -7,7 +7,7 @@ export enum TodoListActionTypes {
   LoadTodoListFailed = '[TodoList] Load Todo List Failed',
   AddTodoItemSuccess = '[TodoList] Add Todo Item Success',
   DeleteTodoItem = '[TodoList] Delete Todo Item',
-  UpdateTodoItem = '[TodoList] Update Todo Item',
+  UpdateTodoItemSuccess = '[TodoList] Update Todo Item success',
   SaveTodoItemStarted = '[TodoList] Save Todo Item Started',
   ToggleCompleteTodoItem = '[TodoList] Toggle Complete Todo Item',
   SelectTodoForEdit = '[TodoList] Select Todo For Edit'
@@ -50,7 +50,7 @@ export class SaveTodoItemStartedAction implements Action {
 }
 
 export class UpdateTodoItemSuccessAction implements Action {
-  public readonly type = TodoListActionTypes.UpdateTodoItem;
+  public readonly type = TodoListActionTypes.UpdateTodoItemSuccess;
 
   constructor(public payload: TODOItem) {}
 }

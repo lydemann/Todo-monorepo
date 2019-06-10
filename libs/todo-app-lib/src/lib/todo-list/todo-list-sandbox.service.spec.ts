@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
@@ -36,7 +36,7 @@ describe('Service: TodoListSandboxService', () => {
   });
 
   describe('save$', () => {
-    it('should create todo', fakeAsync(() => {
+    it('should create todo', (done) => {
       const todoItem = new TODOItem('', '');
 
       todoListResourcesServiceStub.addTodo.and.returnValue(of(todoItem));
@@ -44,14 +44,14 @@ describe('Service: TodoListSandboxService', () => {
       service
         .save$(todoItem)
         .pipe(first())
-        .subscribe();
-      tick(2500);
+        .subscribe(() => {
+          expect(store.dispatch).toHaveBeenCalledWith(new SaveTodoItemStartedAction());
+          expect(store.dispatch).toHaveBeenCalledWith(new AddTodoItemSuccessAction(todoItem));
+          done();
+        });
+    });
 
-      expect(store.dispatch).toHaveBeenCalledWith(new SaveTodoItemStartedAction());
-      expect(store.dispatch).toHaveBeenCalledWith(new AddTodoItemSuccessAction(todoItem));
-    }));
-
-    it('should update todo', fakeAsync(() => {
+    it('should update todo', (done) => {
       const todoItem = new TODOItem('', '');
       todoItem.id = 'someid';
 
@@ -60,11 +60,11 @@ describe('Service: TodoListSandboxService', () => {
       service
         .save$(todoItem)
         .pipe(first())
-        .subscribe();
-      tick(2500);
-
-      expect(store.dispatch).toHaveBeenCalledWith(new SaveTodoItemStartedAction());
-      expect(store.dispatch).toHaveBeenCalledWith(new UpdateTodoItemSuccessAction(todoItem));
-    }));
+        .subscribe(() => {
+          expect(store.dispatch).toHaveBeenCalledWith(new SaveTodoItemStartedAction());
+          expect(store.dispatch).toHaveBeenCalledWith(new UpdateTodoItemSuccessAction(todoItem));
+          done();
+        });
+    });
   });
 });

@@ -6,8 +6,9 @@
   </div>
 
   <hr>
-
-  <app-add-todo [currentTODO]="selectedTodo$ | async"></app-add-todo>
+  <div>
+    {{'todo-list-section.todos-duedate-today' | translate}}: {{duedateTodayCount$ | async}}
+  </div>
 </div>
 
 <ng-template #todoItemCardRef let-todo="data">

@@ -101,7 +101,7 @@ export function todoListReducers(
       return todoItemsLoadFailed(lastState, action);
     case TodoListActionTypes.DeleteTodoItem:
       return todoItemDeletedReducer(lastState, action);
-    case TodoListActionTypes.UpdateTodoItem:
+    case TodoListActionTypes.UpdateTodoItemSuccess:
       return UpdateTodoItemReducer(lastState, action);
     case TodoListActionTypes.ToggleCompleteTodoItem:
       return toggleTodoItemReducer(lastState, action);
