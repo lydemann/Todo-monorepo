@@ -28,14 +28,6 @@
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
     "help": "./node_modules/.bin/nx help"
   },
-  "prettier": {
-    "singleQuote": true,
-    "printWidth": 100,
-    "semi": true,
-    "bracketSpacing": true,
-    "arrowParens": "always",
-    "parser": "typescript"
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.0.0",
