@@ -41,7 +41,7 @@ export class TodoListSandboxService {
     this.store.dispatch(new SelectTodoForEditAction(todoItem.id));
   }
 
-  public save$(todoItem: TODOItem) {
+  public saveTodoItem(todoItem: TODOItem) {
     this.store.dispatch(new SaveTodoItemStartedAction());
 
     if (!!todoItem.id) {

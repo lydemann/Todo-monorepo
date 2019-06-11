@@ -35,14 +35,14 @@ describe('Service: TodoListSandboxService', () => {
     spyOn(store, 'dispatch');
   });
 
-  describe('save$', () => {
+  describe('saveTodoItem', () => {
     it('should create todo', (done) => {
       const todoItem = new TODOItem('', '');
 
       todoListResourcesServiceStub.addTodo.and.returnValue(of(todoItem));
 
       service
-        .save$(todoItem)
+        .saveTodoItem(todoItem)
         .pipe(first())
         .subscribe(() => {
           expect(store.dispatch).toHaveBeenCalledWith(new SaveTodoItemStartedAction());
@@ -58,7 +58,7 @@ describe('Service: TodoListSandboxService', () => {
       todoListResourcesServiceStub.updateTodo.and.returnValue(of(todoItem));
 
       service
-        .save$(todoItem)
+        .saveTodoItem(todoItem)
         .pipe(first())
         .subscribe(() => {
           expect(store.dispatch).toHaveBeenCalledWith(new SaveTodoItemStartedAction());
