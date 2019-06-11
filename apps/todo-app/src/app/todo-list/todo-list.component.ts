@@ -13,7 +13,10 @@ export class TodoListComponent implements OnInit {
   public todoList$ = this.todoListSandboxService.todoList$;
   public isLoading$ = this.todoListSandboxService.isLoading$;
   public duedateTodayCount$ = this.todoList$.pipe(
-    map((todoList) => todoList.filter((todoItem) => this.isToday(todoItem.dueDate)).length)
+    map(
+      (todoList) =>
+        todoList.filter((todoItem) => todoItem.dueDate && this.isToday(todoItem.dueDate)).length
+    )
   );
 
   constructor(private todoListSandboxService: TodoListSandboxService) {}
@@ -31,12 +34,17 @@ export class TodoListComponent implements OnInit {
   public todoCompleteToggled(todoId: string) {
     this.todoListSandboxService.todoCompletedToggled(todoId);
   }
-  private isToday(someDate) {
+  private isToday(todoDate) {
+    let newTodoDate = todoDate;
+    if (typeof todoDate === 'string') {
+      newTodoDate = new Date(todoDate);
+    }
+
     const today = new Date();
     return (
-      someDate.getDate() === today.getDate() &&
-      someDate.getMonth() === today.getMonth() &&
-      someDate.getFullYear() === today.getFullYear()
+      newTodoDate.getDate() === today.getDate() &&
+      newTodoDate.getMonth() === today.getMonth() &&
+      newTodoDate.getFullYear() === today.getFullYear()
     );
   }
 }

@@ -1,26 +1,27 @@
 var path = require('path');
 const express = require('express');
-var cors = require('cors')
+const faker = require('faker');
+var cors = require('cors');
 var app = express();
 
 app.use(cors());
 
 app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
 var apiRoutes = express.Router();
-app.use('/api', apiRoutes)
+app.use('/api', apiRoutes);
 apiRoutes.get('/todo-list', (req, res) => {
+  const todoList = [];
 
-  const todoList = [{
-      id: 'task1',
-      title: 'Buy Milk',
-      description: 'Remember to buy milk'
-    },
-    {
-      id: 'task2',
-      title: 'Go to the gym',
-      description: 'Remember to work out'
-    }
-  ];
+  for (let index = 0; index < 5; index++) {
+    const newTodo = {
+      id: faker.random.uuid(),
+      title: faker.random.words(2),
+      description: faker.random.words(5)
+    };
+
+    todoList.push(newTodo);
+  }
+
   return res.json(todoList);
 });
 

@@ -30,7 +30,7 @@ export class AddTodoComponent implements OnInit {
       console.error('Invalid form!');
       return;
     }
-    this.todoListSandboxService.save$(this.currentTODO).subscribe(() => {
+    this.todoListSandboxService.saveTodoItem(this.currentTODO).subscribe(() => {
       form.resetForm();
     });
   }

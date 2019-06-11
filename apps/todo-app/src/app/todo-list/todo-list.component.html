@@ -1,15 +1,23 @@
-<div class="todo-list-wrapper" *ngIf="(todoList$ | async) as todoList">
-  <div class="mx-auto col-10">
-    <h5>{{'todo-list' | translate}}</h5>
-    <hr>
-    <app-cards-list [tableRef]="todoListRef" [cardRef]="todoItemCardRef" [data]="todoList"></app-cards-list>
+<ng-container *ngIf="!(isLoading$ | async); else loadingRef">
+  <div class="todo-list-wrapper" *ngIf="(todoList$ | async) as todoList">
+    <div class="mx-auto col-10">
+      <h5>{{'todo-list' | translate}}</h5>
+      <hr>
+      <app-cards-list [tableRef]="todoListRef" [cardRef]="todoItemCardRef" [data]="todoList"></app-cards-list>
+      
+      <hr>
+      <div>
+        {{'todo-list-section.todos-duedate-today' | translate}}: {{duedateTodayCount$ | async}}
+      </div>
+      <hr>
+      <app-add-todo [currentTODO]="selectedTodo$ | async"></app-add-todo>
+    </div>
   </div>
+</ng-container>
 
-  <hr>
-  <div>
-    {{'todo-list-section.todos-duedate-today' | translate}}: {{duedateTodayCount$ | async}}
-  </div>
-</div>
+<ng-template #loadingRef>
+  <app-spinner [message]="'Getting todo items'"></app-spinner>
+</ng-template>
 
 <ng-template #todoItemCardRef let-todo="data">
   <app-todo-item-card [todoItem]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="selectTodoForEdit($event)" (todoCompleteToggled)="todoCompleteToggled($event)"></app-todo-item-card>

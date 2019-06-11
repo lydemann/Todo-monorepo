@@ -9,17 +9,6 @@
   width: 175px;
 }
 
-#loader {
-  bottom: 0;
-  height: 175px;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 175px;
-}
-
 #loader .dot {
   bottom: 0;
   height: 100%;
@@ -67,7 +56,7 @@
 
 #loader .dot:nth-child(7n+3)::before {
   animation: 0.8s linear 0.3s normal none infinite running load;
-  background: #00aaff none repeat scroll 0 0;
+  background: #0af none repeat scroll 0 0;
 }
 
 #loader .dot:nth-child(7n+4) {
@@ -141,5 +130,13 @@
 }
 
 .spinner-message {
+  bottom: 0;
+  height: 175px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 340px;
+  width: 175px;
   text-align: center;
 }
