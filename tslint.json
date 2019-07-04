@@ -3,7 +3,7 @@
 	"rulesDirectory": [
 		"node_modules/codelyzer",
 		"node_modules/tslint-jasmine-rules/dist",
-		"node_modules/@nrwl/schematics/src/tslint"
+		"node_modules/@nrwl/schematics/"
 	],
 	"rules": {
 		"arrow-return-shorthand": true,
