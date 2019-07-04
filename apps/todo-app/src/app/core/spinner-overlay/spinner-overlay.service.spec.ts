@@ -2,16 +2,20 @@
 
 import { Overlay } from '@angular/cdk/overlay';
 import { inject, TestBed } from '@angular/core/testing';
+
 import { SpinnerOverlayService } from '@todo-app/core/spinner-overlay/spinner-overlay.service';
 
 describe('Service: SpinnerOverlay', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [SpinnerOverlayService, Overlay]
-    });
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			providers: [SpinnerOverlayService, Overlay],
+		});
+	});
 
-  it('should ...', inject([SpinnerOverlayService], (service: SpinnerOverlayService) => {
-    expect(service).toBeTruthy();
-  }));
+	it('should ...', inject(
+		[SpinnerOverlayService],
+		(service: SpinnerOverlayService) => {
+			expect(service).toBeTruthy();
+		},
+	));
 });

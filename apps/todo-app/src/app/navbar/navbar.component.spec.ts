@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+
 import { AppComponent } from '@todo-app/app.component';
 import { appRouterModule } from '@todo-app/app.routes';
 import { CoreModule } from '@todo-app/core/core.module';
@@ -18,41 +19,41 @@ import { AddTodoComponent } from '@todo-app/todo-list/add-todo/add-todo.componen
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
 
 describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+	let component: NavbarComponent;
+	let fixture: ComponentFixture<NavbarComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        NavbarComponent,
-        TodoListComponent,
-        TodoItemListRowComponent,
-        FooterComponent,
-        AddTodoComponent,
-        TodoListCompletedComponent
-      ],
-      imports: [
-        BrowserModule,
-        NgbModule.forRoot(),
-        TranslateModule.forRoot(),
-        FormsModule,
-        CoreModule,
-        HttpClientModule,
-        appRouterModule
-      ],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
-      schemas: [NO_ERRORS_SCHEMA]
-    }).compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [
+				AppComponent,
+				NavbarComponent,
+				TodoListComponent,
+				TodoItemListRowComponent,
+				FooterComponent,
+				AddTodoComponent,
+				TodoListCompletedComponent,
+			],
+			imports: [
+				BrowserModule,
+				NgbModule,
+				TranslateModule.forRoot(),
+				FormsModule,
+				CoreModule,
+				HttpClientModule,
+				appRouterModule,
+			],
+			providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+			schemas: [NO_ERRORS_SCHEMA],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(NavbarComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });
