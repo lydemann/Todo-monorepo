@@ -98,8 +98,9 @@
 		"stylelint-config-standard": "^18.3.0",
 		"stylelint-scss": "^3.6.1",
 		"ts-node": "~7.0.0",
-		"tslint": "~5.11.0",
+		"tslint": "^5.18.0",
 		"tslint-config-prettier": "^1.18.0",
+		"tslint-eslint-rules": "^5.4.0",
 		"tslint-jasmine-rules": "^1.5.1",
 		"typescript": "~3.4.5"
 	}

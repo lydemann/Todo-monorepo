@@ -7,7 +7,7 @@
 	],
 	"rulesDirectory": [
 		"node_modules/codelyzer",
-		"node_modules/@nrwl/schematics/"
+		"node_modules/@nrwl/workspace/src/tslint"
 	],
 	"rules": {
 		"deprecation": {
@@ -26,6 +26,7 @@
 		"component-selector": [true, "element", "app", "kebab-case"],
 		"array-bracket-spacing": [true, "never"],
 		"object-curly-spacing": [true, "always"],
+		"max-classes-per-file": false,
 		"component-class-suffix": true,
 		"directive-class-suffix": true,
 		"directive-selector": [true, "attribute", "app", "camelCase"],
@@ -41,6 +42,7 @@
 		"use-pipe-transform-interface": true,
 		"no-non-null-assertion": true,
 		"no-switch-case-fall-through": true,
+		"jsdoc-format": false,
 		"one-line": [true, "check-open-brace"],
 		"align": false,
 		"import-blacklist": [true, "rxjs/Rx"],
@@ -59,17 +61,17 @@
 				"groups": [
 					{
 						"name": "shared_libraries",
-						"match": "^@ccap",
+						"match": "^@todo",
 						"order": 20
 					},
 					{
-						"name": "private_profile_app",
-						"match": "^@private-profile",
+						"name": "todo_app",
+						"match": "^@todo-app",
 						"order": 20
 					},
 					{
-						"name": "public_profile_app",
-						"match": "^@public-profile",
+						"name": "todo_admin_app",
+						"match": "^@todo-admin",
 						"order": 20
 					},
 					{
