@@ -14,10 +14,9 @@ const todoList = [
 ];
 describe('Todo', () => {
 	beforeEach(() => {
-		cy.server();
-		cy.route('http://localhost:8080/api/todo-list', todoList);
+		TodoPage.interceptTodoListRequest(todoList);
 
-		cy.visit('/');
+		TodoPage.goToPage();
 	});
 
 	it('should should show todo items', () => {
