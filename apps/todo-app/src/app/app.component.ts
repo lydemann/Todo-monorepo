@@ -6,7 +6,6 @@ import { TodoListSandboxService } from '@todo/todo-app-lib';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
 	constructor(

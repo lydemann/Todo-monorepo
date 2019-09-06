@@ -9,7 +9,6 @@
 				"ignore": ["inside-function"]
 			}
 		],
-		"color-no-hex": true,
 		"declaration-no-important": true,
 		"at-rule-no-unknown": [
 			true,
@@ -19,6 +18,8 @@
 					"if",
 					"else",
 					"each",
+					"function",
+					"returns",
 					"extend",
 					"include",
 					"mixin"
