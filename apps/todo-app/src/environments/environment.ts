@@ -5,15 +5,15 @@ declare var window: any;
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+	production: false,
 
-  get environment() {
-    return window.config.environment;
-  },
+	get environment() {
+		return window.config.environment;
+	},
 
-  get feServerUrl() {
-    return window.config.feServerUrl;
-  }
+	get feServerUrl() {
+		return window.config.feServerUrl;
+	},
 };
 
 /*

@@ -10,19 +10,19 @@ app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
 var apiRoutes = express.Router();
 app.use('/api', apiRoutes);
 apiRoutes.get('/todo-list', (req, res) => {
-  const todoList = [];
+	const todoList = [];
 
-  for (let index = 0; index < 5; index++) {
-    const newTodo = {
-      id: faker.random.uuid(),
-      title: faker.random.words(2),
-      description: faker.random.words(5)
-    };
+	for (let index = 0; index < 5; index++) {
+		const newTodo = {
+			id: faker.random.uuid(),
+			title: faker.random.words(2),
+			description: faker.random.words(5),
+		};
 
-    todoList.push(newTodo);
-  }
+		todoList.push(newTodo);
+	}
 
-  return res.json(todoList);
+	return res.json(todoList);
 });
 
 const port = 8080;

@@ -1,30 +1,46 @@
 <ng-container *ngIf="!(isLoading$ | async); else loadingRef">
-  <div class="todo-list-wrapper" *ngIf="(todoList$ | async) as todoList">
-    <div class="mx-auto col-10">
-      <h5>{{'todo-list' | translate}}</h5>
-      <hr>
-      <app-cards-list [tableRef]="todoListRef" [cardRef]="todoItemCardRef" [data]="todoList"></app-cards-list>
-      
-      <hr>
-      <div>
-        {{'todo-list-section.todos-duedate-today' | translate}}: {{duedateTodayCount$ | async}}
-      </div>
-      <hr>
-      <app-add-todo [currentTODO]="selectedTodo$ | async"></app-add-todo>
-    </div>
-  </div>
+	<div class="todo-list-wrapper" *ngIf="todoList$ | async as todoList">
+		<div class="mx-auto col-10">
+			<h5>{{ 'todo-list' | translate }}</h5>
+			<hr />
+			<app-cards-list
+				[tableRef]="todoListRef"
+				[cardRef]="todoItemCardRef"
+				[data]="todoList"
+			></app-cards-list>
+
+			<hr />
+			<div>
+				{{ 'todo-list-section.todos-duedate-today' | translate }}:
+				{{ duedateTodayCount$ | async }}
+			</div>
+			<hr />
+			<app-add-todo [currentTODO]="selectedTodo$ | async"></app-add-todo>
+		</div>
+	</div>
 </ng-container>
 
 <ng-template #loadingRef>
-  <app-spinner [message]="'Getting todo items'"></app-spinner>
+	<app-spinner [message]="'Getting todo items'"></app-spinner>
 </ng-template>
 
 <ng-template #todoItemCardRef let-todo="data">
-  <app-todo-item-card [todoItem]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="selectTodoForEdit($event)" (todoCompleteToggled)="todoCompleteToggled($event)"></app-todo-item-card>
+	<app-todo-item-card
+		[todoItem]="todo"
+		(todoDelete)="deleteTodo($event)"
+		(todoEdit)="selectTodoForEdit($event)"
+		(todoCompleteToggled)="todoCompleteToggled($event)"
+	></app-todo-item-card>
 </ng-template>
 
 <ng-template #todoListRef let-todos="data">
-  <ul class="list-group mb-3">
-    <app-todo-item-list-row *ngFor="let todo of todos" [todoItem]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="selectTodoForEdit($event)" (todoCompleteToggled)="todoCompleteToggled($event)"></app-todo-item-list-row>
-  </ul>
+	<ul class="list-group mb-3">
+		<app-todo-item-list-row
+			*ngFor="let todo of todos"
+			[todoItem]="todo"
+			(todoDelete)="deleteTodo($event)"
+			(todoEdit)="selectTodoForEdit($event)"
+			(todoCompleteToggled)="todoCompleteToggled($event)"
+		></app-todo-item-list-row>
+	</ul>
 </ng-template>

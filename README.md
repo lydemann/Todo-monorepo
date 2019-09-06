@@ -1,4 +1,5 @@
 # AngularBestPracticesDemo
+
 A demo of Angular best practices including:
 
 - VSCode config for fix on saving and organize imports
@@ -26,7 +27,6 @@ git subtree split --prefix src/shared-lib -b split --rejoin --squash
 
 and push the split:
 git push https://github.com/lydemann/angular-shared split:master
-
 
 ## Code scaffolding
 
