@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoItemListRowComponentMock } from '@todo-app/shared/todo-item-list-row/todo-item-list-row.component.mock';
@@ -23,6 +24,8 @@ describe('TodoListComponent', () => {
 		const todoListSandboxServiceStub = createMagicalMock(
 			TodoListSandboxService,
 		);
+
+		todoListSandboxServiceStub.todoList$ = of(todoList) as any;
 
 		TestBed.configureTestingModule({
 			declarations: [

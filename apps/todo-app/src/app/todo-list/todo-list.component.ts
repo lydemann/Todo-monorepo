@@ -7,7 +7,6 @@ import { TodoListSandboxService } from '@todo/todo-app-lib';
 @Component({
 	selector: 'app-todo-list',
 	templateUrl: './todo-list.component.html',
-	styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent {
 	public selectedTodo$ = this.todoListSandboxService.selectedTodo$;

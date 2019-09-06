@@ -45,7 +45,7 @@ describe('AddTodoComponent', () => {
 				description: 'Remember to work out',
 			},
 		];
-		todoListSandboxServiceMock.save$.and.returnValue(of([]));
+		todoListSandboxServiceMock.saveTodoItem.and.returnValue(of([]));
 
 		// Act
 		component.currentTODO = todoList[0];
@@ -53,7 +53,7 @@ describe('AddTodoComponent', () => {
 		component.save(form);
 
 		// Assert
-		expect(todoListSandboxServiceMock.save$).toHaveBeenCalledWith(
+		expect(todoListSandboxServiceMock.saveTodoItem).toHaveBeenCalledWith(
 			component.currentTODO,
 		);
 	});
@@ -81,7 +81,7 @@ describe('AddTodoComponent', () => {
 			},
 		];
 		(todoListSandboxServiceMock as any).todoList = todoList;
-		todoListSandboxServiceMock.save$.and.returnValue(of([]));
+		todoListSandboxServiceMock.saveTodoItem.and.returnValue(of([]));
 		component.currentTODO = newTodo;
 		const form = new NgForm([], []);
 
@@ -90,6 +90,8 @@ describe('AddTodoComponent', () => {
 		component.save(form);
 
 		// Assert
-		expect(todoListSandboxServiceMock.save$).toHaveBeenCalledWith(newTodo);
+		expect(todoListSandboxServiceMock.saveTodoItem).toHaveBeenCalledWith(
+			newTodo,
+		);
 	});
 });
