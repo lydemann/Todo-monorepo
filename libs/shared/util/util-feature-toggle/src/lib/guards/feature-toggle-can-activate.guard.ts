@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { FeatureToggleService } from '../services/feature-toggle.service';
 
 @Injectable({ providedIn: 'root' })
-export class FeatureFlagGuard implements CanActivate {
+export class FeatureToggleCanActivateGuard implements CanActivate {
 	constructor(private featureToggleService: FeatureToggleService) {}
 
 	public canActivate(route: ActivatedRouteSnapshot): boolean {

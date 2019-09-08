@@ -4,7 +4,7 @@ import { CanLoad, Route } from '@angular/router';
 import { FeatureToggleService } from '../services/feature-toggle.service';
 
 @Injectable({ providedIn: 'root' })
-export class FeatureToggleCanLoad implements CanLoad {
+export class FeatureToggleCanLoadGuard implements CanLoad {
 	constructor(private featureToggleService: FeatureToggleService) {}
 
 	public canLoad(route: Route): boolean {
