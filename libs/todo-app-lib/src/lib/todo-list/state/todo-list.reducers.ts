@@ -1,5 +1,5 @@
 import { TODOItem } from '@todo-app/shared/models/todo-item';
-import { ImmutableCollectionHelper } from '@todo/shared/utils';
+import { ImmutableCollectionHelper } from '@todo/shared/util';
 import { GenericAction } from '../../generic-action';
 import { TodoListActions, TodoListActionTypes } from './todo-list.actions';
 import { TodoListState } from './todo-list.model';

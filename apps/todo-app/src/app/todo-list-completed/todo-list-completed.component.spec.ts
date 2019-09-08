@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { completedTodoPath } from '@todo-app/app.routes';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
-import { createMagicalMock } from '@todo/shared/utils';
+import { createMagicalMock } from '@todo/shared/util';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 describe('TodoListCompletedComponent', () => {

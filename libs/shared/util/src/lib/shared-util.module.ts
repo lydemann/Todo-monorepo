@@ -4,4 +4,4 @@ import { NgModule } from '@angular/core';
 @NgModule({
 	imports: [CommonModule],
 })
-export class SharedUtilsModule {}
+export class SharedUtilModule {}

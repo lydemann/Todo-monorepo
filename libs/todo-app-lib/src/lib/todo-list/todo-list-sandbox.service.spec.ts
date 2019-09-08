@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { TODOItem } from '@todo-app/shared/models/todo-item';
-import { createMagicalMock } from '@todo/shared/utils';
+import { createMagicalMock } from '@todo/shared/util';
 import { TodoListResourcesService } from './resources/todo-list-resources.service';
 import {
 	AddTodoItemSuccessAction,

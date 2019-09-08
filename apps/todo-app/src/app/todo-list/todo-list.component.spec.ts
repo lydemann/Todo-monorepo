@@ -6,7 +6,7 @@ import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoItemListRowComponentMock } from '@todo-app/shared/todo-item-list-row/todo-item-list-row.component.mock';
 import { AddTodoComponentMock } from '@todo-app/todo-list/add-todo/add-todo.component.mock';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
-import { createMagicalMock } from '@todo/shared/utils';
+import { createMagicalMock } from '@todo/shared/util';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 describe('TodoListComponent', () => {

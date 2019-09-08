@@ -229,9 +229,9 @@
 				}
 			}
 		},
-		"shared-utils": {
-			"root": "libs/shared/utils",
-			"sourceRoot": "libs/shared/utils/src",
+		"shared-util": {
+			"root": "libs/shared/util",
+			"sourceRoot": "libs/shared/util/src",
 			"projectType": "library",
 			"prefix": "todo",
 			"architect": {
@@ -239,8 +239,8 @@
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
 						"tsConfig": [
-							"libs/shared/utils/tsconfig.lib.json",
-							"libs/shared/utils/tsconfig.spec.json"
+							"libs/shared/util/tsconfig.lib.json",
+							"libs/shared/util/tsconfig.spec.json"
 						],
 						"exclude": ["**/node_modules/**"]
 					}
@@ -248,9 +248,9 @@
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
-						"main": "libs/shared/utils/src/test.ts",
-						"tsConfig": "libs/shared/utils/tsconfig.spec.json",
-						"karmaConfig": "libs/shared/utils/karma.conf.js"
+						"main": "libs/shared/util/src/test.ts",
+						"tsConfig": "libs/shared/util/tsconfig.spec.json",
+						"karmaConfig": "libs/shared/util/karma.conf.js"
 					}
 				}
 			},

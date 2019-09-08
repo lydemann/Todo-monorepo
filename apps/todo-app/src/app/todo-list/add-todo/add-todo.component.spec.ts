@@ -5,7 +5,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
-import { provideMagicalMock } from '@todo/shared/utils';
+import { provideMagicalMock } from '@todo/shared/util';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 import { AddTodoComponent } from './add-todo.component';
 

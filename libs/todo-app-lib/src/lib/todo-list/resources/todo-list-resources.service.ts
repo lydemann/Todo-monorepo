@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { TODOItem } from '@todo-app/shared/models/todo-item';
-import { Guid } from '@todo/shared/utils';
+import { Guid } from '@todo/shared/util';
 
 @Injectable({
 	providedIn: 'root',
