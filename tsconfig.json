@@ -17,7 +17,10 @@
 			"@todo/shared/ui": ["libs/shared/ui/src/index.ts"],
 			"@todo/shared/data-access": ["libs/shared/data-access/src/index.ts"],
 			"@todo/shared/util": ["libs/shared/util/src/index.ts"],
-			"@todo/shared/styles": ["libs/shared/styles/src/index.ts"]
+			"@todo/shared/styles": ["libs/shared/styles/src/index.ts"],
+			"@todo/shared/util-feature-toggle": [
+				"libs/shared/util/util-feature-toggle/src/index.ts"
+			]
 		}
 	}
 }

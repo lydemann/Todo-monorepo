@@ -5,7 +5,6 @@
 		{{ 'app-title' | translate }}
 	</h5>
 	<nav class="my-2 my-md-0 mr-md-3">
-		<a class="p-2 text-dark" href="#"></a>
 		<a
 			class="p-2 text-dark"
 			routerLink="/"
@@ -17,9 +16,10 @@
 			class="p-2 text-dark"
 			routerLink="/completed-todos"
 			[routerLinkActive]="['nav-active']"
+			*appFeatureToggle="'completed-todos'"
 			>{{ 'completed-todos' | translate }}
 		</a>
-		<label>
+		<span>
 			{{ 'choose-language' | translate }}
 			<select #langSelect (change)="translate.use(langSelect.value)">
 				<option
@@ -29,6 +29,6 @@
 					>{{ lang }}</option
 				>
 			</select>
-		</label>
+		</span>
 	</nav>
 </div>

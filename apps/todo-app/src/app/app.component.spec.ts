@@ -6,7 +6,7 @@ import { AppComponent } from '@todo-app/app.component';
 import { provideMagicalMock } from '@todo/shared/util';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 import { FooterComponentMock } from './footer/footer.component.mock';
-import { NavbarComponentMock } from './navbar/navbar.component.mock';
+import { NavbarComponentMock } from './layout/navbar/navbar.component.mock';
 
 describe('AppComponent', () => {
 	beforeEach(async(() => {

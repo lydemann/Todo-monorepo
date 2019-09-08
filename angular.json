@@ -395,6 +395,34 @@
 					"styleext": "scss"
 				}
 			}
+		},
+		"shared-util-util-feature-toggle": {
+			"root": "libs/shared/util/util-feature-toggle",
+			"sourceRoot": "libs/shared/util/util-feature-toggle/src",
+			"projectType": "library",
+			"schematics": {},
+			"architect": {
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"libs/shared/util/util-feature-toggle/tsconfig.lib.json",
+							"libs/shared/util/util-feature-toggle/tsconfig.spec.json"
+						],
+						"exclude": [
+							"**/node_modules/**",
+							"!libs/shared/util/util-feature-toggle/**"
+						]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/shared/util/util-feature-toggle/jest.config.js",
+						"tsConfig": "libs/shared/util/util-feature-toggle/tsconfig.spec.json"
+					}
+				}
+			}
 		}
 	},
 	"defaultProject": "todo-app",

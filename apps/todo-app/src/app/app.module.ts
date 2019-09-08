@@ -13,14 +13,27 @@ import { appRouterModule } from '@todo-app/app.routes';
 import { CoreModule } from '@todo-app/core/core.module';
 import { environment } from '@todo-app/environments/environment';
 import { FooterComponent } from '@todo-app/footer/footer.component';
-import { NavbarComponent } from '@todo-app/navbar/navbar.component';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListCompletedModule } from '@todo-app/todo-list-completed/todo-list-completed.module';
 import { TodoListModule } from '@todo-app/todo-list/todo-list.module';
+import {
+	FeatureToggleModule,
+	FeatureToggleService,
+} from '@todo/shared/util-feature-toggle';
+import { LayoutModule } from './layout/layout.module';
 
 export function init_app(appLoadService: AppInitService) {
 	return () => appLoadService.init();
 }
+
+export function preloadFeagureFlags(
+	featureToggleService: FeatureToggleService,
+) {
+	return () => {
+		return featureToggleService.getFeatureFlags().toPromise();
+	};
+}
+
 export function HttpLoaderFactory(httpClient: HttpClient) {
 	return new TranslateHttpLoader(
 		httpClient,
@@ -29,14 +42,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 	);
 }
 @NgModule({
-	declarations: [AppComponent, NavbarComponent, FooterComponent],
+	declarations: [AppComponent, FooterComponent],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		CoreModule,
 		SharedModule,
 		HttpClientModule,
-		appRouterModule,
 		TodoListCompletedModule,
 		TodoListModule,
 		TranslateModule.forRoot({
@@ -50,6 +62,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 			enabled: environment.production,
 		}),
 		NxModule.forRoot(),
+		LayoutModule,
+		FeatureToggleModule,
 	],
 	providers: [
 		{
@@ -58,7 +72,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 			deps: [AppInitService],
 			multi: true,
 		},
-		AppInitService,
+		{
+			provide: APP_INITIALIZER,
+			multi: true,
+			useFactory: preloadFeagureFlags,
+			deps: [FeatureToggleService],
+		},
 		AppInitService,
 	],
 	bootstrap: [AppComponent],
