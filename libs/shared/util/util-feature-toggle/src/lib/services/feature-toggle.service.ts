@@ -6,7 +6,7 @@ import { featureFlags } from '../feature-flags';
 
 @Injectable()
 export class FeatureToggleService {
-	private enabledFeatures: string[];
+	private enabledFeatures: string[] = [];
 
 	constructor(private httpClient: HttpClient) {}
 

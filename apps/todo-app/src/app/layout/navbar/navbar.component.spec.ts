@@ -16,7 +16,10 @@ import { TodoItemListRowComponent } from '@todo-app/shared/todo-item-list-row/to
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
 import { AddTodoComponent } from '@todo-app/todo-list/add-todo/add-todo.component';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
-import { FeatureToggleDirective } from '@todo/shared/util-feature-toggle';
+import {
+	FeatureToggleDirective,
+	FeatureToggleService,
+} from '@todo/shared/util-feature-toggle';
 
 describe('NavbarComponent', () => {
 	let component: NavbarComponent;
@@ -43,7 +46,10 @@ describe('NavbarComponent', () => {
 				HttpClientModule,
 				appRouterModule,
 			],
-			providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+			providers: [
+				{ provide: APP_BASE_HREF, useValue: '/' },
+				FeatureToggleService,
+			],
 			schemas: [NO_ERRORS_SCHEMA],
 		}).compileComponents();
 	}));
