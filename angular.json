@@ -188,7 +188,10 @@
 					"options": {
 						"main": "libs/shared/ui/src/test.ts",
 						"tsConfig": "libs/shared/ui/tsconfig.spec.json",
-						"karmaConfig": "libs/shared/ui/karma.conf.js"
+						"karmaConfig": "libs/shared/ui/karma.conf.js",
+						"stylePreprocessorOptions": {
+							"includePaths": ["libs/shared/styles/src/lib"]
+						}
 					}
 				}
 			},
