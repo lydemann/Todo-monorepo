@@ -396,7 +396,7 @@
 				}
 			}
 		},
-		"shared-util-util-feature-toggle": {
+		"util-feature-toggle": {
 			"root": "libs/shared/util/util-feature-toggle",
 			"sourceRoot": "libs/shared/util/util-feature-toggle/src",
 			"projectType": "library",
@@ -416,10 +416,11 @@
 					}
 				},
 				"test": {
-					"builder": "@nrwl/jest:jest",
+					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
-						"jestConfig": "libs/shared/util/util-feature-toggle/jest.config.js",
-						"tsConfig": "libs/shared/util/util-feature-toggle/tsconfig.spec.json"
+						"main": "libs/shared/util/util-feature-toggle/src/test.ts",
+						"tsConfig": "libs/shared/util/util-feature-toggle/tsconfig.spec.json",
+						"karmaConfig": "libs/shared/util/util-feature-toggle/karma.conf.js"
 					}
 				}
 			}

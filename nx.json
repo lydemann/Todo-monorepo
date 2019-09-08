@@ -26,6 +26,9 @@
 		"shared-util": {
 			"tags": ["type:util", "scope:shared"]
 		},
+		"util-feature-toggle": {
+			"tags": ["scope:shared", "type:util"]
+		},
 		"todo-admin": {
 			"tags": ["scope:todo-admin", "type:app"]
 		},
@@ -34,9 +37,6 @@
 		},
 		"shared-styles": {
 			"tags": ["scope:shared"]
-		},
-		"shared-util-util-feature-toggle": {
-			"tags": []
 		}
 	}
 }

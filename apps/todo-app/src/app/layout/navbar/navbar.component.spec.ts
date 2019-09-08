@@ -16,6 +16,7 @@ import { TodoItemListRowComponent } from '@todo-app/shared/todo-item-list-row/to
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
 import { AddTodoComponent } from '@todo-app/todo-list/add-todo/add-todo.component';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
+import { FeatureToggleDirective } from '@todo/shared/util-feature-toggle';
 
 describe('NavbarComponent', () => {
 	let component: NavbarComponent;
@@ -31,6 +32,7 @@ describe('NavbarComponent', () => {
 				FooterComponent,
 				AddTodoComponent,
 				TodoListCompletedComponent,
+				FeatureToggleDirective,
 			],
 			imports: [
 				BrowserModule,
