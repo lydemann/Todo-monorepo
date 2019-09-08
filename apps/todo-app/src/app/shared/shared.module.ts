@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { appRouterModule } from '@todo-app/app.routes';
 import { InvalidDateValidatorDirective } from '@todo-app/shared/invalid-date.directive';
 import { SpinnerOverlayWrapperModule } from '@todo-app/shared/spinner-overlay-wrapper/spinner-overlay-wrapper.module';
 import { SpinnerModule } from '@todo/shared/ui';
@@ -21,7 +20,6 @@ import { TodoItemListRowComponent } from './todo-item-list-row/todo-item-list-ro
 		SpinnerOverlayWrapperModule,
 		TranslateModule,
 		CardListModule,
-		appRouterModule,
 		AppMaterialModule,
 		FeatureToggleModule,
 	],

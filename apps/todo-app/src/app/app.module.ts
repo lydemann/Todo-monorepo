@@ -14,7 +14,6 @@ import { CoreModule } from '@todo-app/core/core.module';
 import { environment } from '@todo-app/environments/environment';
 import { FooterComponent } from '@todo-app/footer/footer.component';
 import { SharedModule } from '@todo-app/shared/shared.module';
-import { TodoListCompletedModule } from '@todo-app/todo-list-completed/todo-list-completed.module';
 import { TodoListModule } from '@todo-app/todo-list/todo-list.module';
 import {
 	FeatureToggleModule,
@@ -49,8 +48,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 		CoreModule,
 		SharedModule,
 		HttpClientModule,
-		TodoListCompletedModule,
 		TodoListModule,
+		appRouterModule,
 		TranslateModule.forRoot({
 			loader: {
 				provide: TranslateLoader,
