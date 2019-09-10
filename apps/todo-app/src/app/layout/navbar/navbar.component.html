@@ -6,20 +6,20 @@
 	</h5>
 	<nav class="my-2 my-md-0 mr-md-3">
 		<a
-			class="p-2 text-dark"
+			class="p-2 text-dark nav-item"
 			routerLink="/"
 			[routerLinkActiveOptions]="{ exact: true }"
 			[routerLinkActive]="['nav-active']"
 			>{{ 'todo-list' | translate }}</a
 		>
 		<a
-			class="p-2 text-dark"
+			class="p-2 text-dark nav-item"
 			routerLink="/completed-todos"
 			[routerLinkActive]="['nav-active']"
 			*appFeatureToggle="'completed-todos'"
 			>{{ 'completed-todos' | translate }}
 		</a>
-		<span>
+		<span class="nav-item">
 			{{ 'choose-language' | translate }}
 			<select #langSelect (change)="translate.use(langSelect.value)">
 				<option
