@@ -68,6 +68,7 @@
 		"@angular/language-service": "^8.1.0",
 		"@commitlint/cli": "^7.6.0",
 		"@commitlint/config-conventional": "^7.6.0",
+		"@ngneat/spectator": "^4.2.1",
 		"@ngrx/store-devtools": "7.2.0",
 		"@nrwl/cypress": "^8.2.0",
 		"@nrwl/jest": "^8.2.0",

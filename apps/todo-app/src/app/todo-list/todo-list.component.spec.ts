@@ -1,57 +1,47 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import {
+	createComponentFactory,
+	mockProvider,
+	Spectator,
+} from '@ngneat/spectator';
+import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
 import { TODOItem } from '@todo-app/shared/models/todo-item';
-import { TodoItemListRowComponentMock } from '@todo-app/shared/todo-item-list-row/todo-item-list-row.component.mock';
-import { AddTodoComponentMock } from '@todo-app/todo-list/add-todo/add-todo.component.mock';
+import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
-import { createMagicalMock } from '@todo/shared/util';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { AddTodoComponent } from './add-todo/add-todo.component';
+import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
 
 describe('TodoListComponent', () => {
-	let component: TodoListComponent;
-	let fixture: ComponentFixture<TodoListComponent>;
-
-	beforeEach(async(() => {
-		const todo1 = new TODOItem('Buy milk', 'Remember to buy milk');
-		todo1.completed = true;
-		const todoList = [
-			todo1,
-			new TODOItem('Buy flowers', 'Remember to buy flowers'),
-		];
-
-		const todoListSandboxServiceStub = createMagicalMock(
-			TodoListSandboxService,
-		);
-
-		todoListSandboxServiceStub.todoList$ = of(todoList) as any;
-
-		TestBed.configureTestingModule({
-			declarations: [
-				TodoListComponent,
-				TodoItemListRowComponentMock,
-				AddTodoComponentMock,
-			],
-			imports: [],
-			providers: [
-				{
-					provide: TodoListSandboxService,
-					useValue: todoListSandboxServiceStub,
-				},
-			],
-		})
-			.overrideTemplate(TodoListComponent, '')
-			.compileComponents();
-	}));
-
-	beforeEach(() => {
-		fixture = TestBed.createComponent(TodoListComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
+	let spectator: Spectator<TodoListComponent>;
+	const createComponent = createComponentFactory({
+		component: TodoListComponent,
+		declarations: [AddTodoComponent, DuedateTodayCountPipe],
+		imports: [FormsModule, TranslateModule.forRoot(), SharedModule],
+		providers: [
+			mockProvider(TodoListSandboxService, {
+				todoList$: of([]),
+			}),
+		],
 	});
 
-	it('should create', () => {
-		expect(component).toBeTruthy();
+	beforeEach(() => (spectator = createComponent()));
+
+	describe('get todo list', () => {
+		// tslint:disable-next-line: no-focused-tests
+		fit('should show three todo items', async(() => {
+			const todoListSandboxService = spectator.get(TodoListSandboxService);
+			todoListSandboxService.todoList$ = of([
+				new TODOItem('1', ''),
+				new TODOItem('2', ''),
+				new TODOItem('3', ''),
+			]);
+			spectator = createComponent();
+
+			expect(spectator.queryAll('app-todo-item-list-row').length).toBe(3);
+		}));
 	});
 });
