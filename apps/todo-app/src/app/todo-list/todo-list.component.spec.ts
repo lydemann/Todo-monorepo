@@ -31,8 +31,7 @@ describe('TodoListComponent', () => {
 	beforeEach(() => (spectator = createComponent()));
 
 	describe('get todo list', () => {
-		// tslint:disable-next-line: no-focused-tests
-		fit('should show three todo items', async(() => {
+		it('should show three todo items', async(() => {
 			const todoListSandboxService = spectator.get(TodoListSandboxService);
 			todoListSandboxService.todoList$ = of([
 				new TODOItem('1', ''),
