@@ -5,7 +5,7 @@ describe('Todo', () => {
 		TodoPage.goToPage();
 	});
 
-	it('should create todo item', () => {
-		TodoPage.createTodoItem();
+	it('should should show todo items', () => {
+		TodoPage.checkForTodos();
 	});
 });
