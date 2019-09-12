@@ -38,6 +38,7 @@
 		<app-todo-item-list-row
 			*ngFor="let todo of todos"
 			[todoItem]="todo"
+			data-test="todo-item"
 			(todoDelete)="deleteTodo($event)"
 			(todoEdit)="selectTodoForEdit($event)"
 			(todoCompleteToggled)="todoCompleteToggled($event)"

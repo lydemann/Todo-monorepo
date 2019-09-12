@@ -18,6 +18,7 @@
 				name="todo-title"
 				[(ngModel)]="currentTODO.title"
 				class="form-control"
+				data-test="todo-title"
 				id="todo-title"
 				placeholder="Enter title"
 			/>
@@ -32,6 +33,7 @@
 				name="todo-description"
 				[(ngModel)]="currentTODO.description"
 				class="form-control"
+				data-test="todo-description"
 				id="todo-description"
 				placeholder="Enter description"
 			/>
@@ -44,12 +46,17 @@
 				placeholder="yyyy-mm-dd"
 				[appInvalidDate]="true"
 				class="form-control"
+				data-test="todo-duedate"
 				[(ngModel)]="currentTODO.dueDate"
 				id="todo-due-date"
 				placeholder="Enter due date"
 			/>
 		</div>
-		<button type="submit" class="btn btn-primary">
+		<button
+			type="submit"
+			data-test="create-todo-submit"
+			class="btn btn-primary"
+		>
 			{{ 'add-todo.create' | translate }}
 		</button>
 		<div *ngIf="isLoading$ | async" class="relative">

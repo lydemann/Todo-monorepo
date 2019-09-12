@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",
-		"start": "nodemon server | ng serve",
+		"start": "npm run start:server | ng serve",
 		"start:server": "nodemon server",
 		"build": "ng build --prod",
 		"start:pwa": "rimraf dist && npm run build && cd dist && http-server -p 4200",
@@ -11,7 +11,7 @@
 		"test:pr": "npm run affected:test -- --base origin/master --head HEAD",
 		"test:watch": "ng test --watch true",
 		"lint": "./node_modules/.bin/nx lint && ng lint",
-		"e2e": "ng e2e",
+		"e2e": "npm run start:server | ng e2e",
 		"affected:apps": "./node_modules/.bin/nx affected:apps",
 		"affected:libs": "./node_modules/.bin/nx affected:libs",
 		"affected:build": "./node_modules/.bin/nx affected:build",
