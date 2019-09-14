@@ -29,7 +29,7 @@
 						],
 						"styles": ["apps/todo-app/src/styles.scss"],
 						"stylePreprocessorOptions": {
-							"includePaths": ["libs/shared/styles/src/lib"]
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
 						},
 						"scripts": []
 					},
@@ -87,7 +87,7 @@
 						"karmaConfig": "apps/todo-app/karma.conf.js",
 						"styles": ["apps/todo-app/src/styles.scss"],
 						"stylePreprocessorOptions": {
-							"includePaths": ["libs/shared/styles/src/lib"]
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
 						},
 						"scripts": [],
 						"assets": [
@@ -190,7 +190,7 @@
 						"tsConfig": "libs/shared/ui/tsconfig.spec.json",
 						"karmaConfig": "libs/shared/ui/karma.conf.js",
 						"stylePreprocessorOptions": {
-							"includePaths": ["libs/shared/styles/src/lib"]
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
 						}
 					}
 				}
@@ -385,8 +385,8 @@
 			}
 		},
 		"shared-styles": {
-			"root": "libs/shared/styles",
-			"sourceRoot": "libs/shared/styles/src",
+			"root": "libs/shared/ui/styles",
+			"sourceRoot": "libs/shared/ui/styles/src",
 			"projectType": "library",
 			"prefix": "todo",
 			"architect": {},
