@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ThemeService } from '@todo/shared/ui-styles';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({
@@ -11,6 +12,9 @@ export class AppComponent implements OnInit {
 	constructor(
 		translate: TranslateService,
 		private todoListSandboxService: TodoListSandboxService,
+		private themeService: ThemeService,
+		private renderer: Renderer2,
+		private elementRef: ElementRef,
 	) {
 		translate.addLangs(['en', 'da']);
 		translate.setDefaultLang('en');
@@ -20,5 +24,10 @@ export class AppComponent implements OnInit {
 	}
 	public ngOnInit(): void {
 		this.todoListSandboxService.loadTodoList();
+
+		this.themeService.activeTheme$.subscribe(theme => {
+			this.renderer.removeAttribute(this.elementRef.nativeElement, 'class');
+			this.renderer.addClass(this.elementRef.nativeElement, theme);
+		});
 	}
 }

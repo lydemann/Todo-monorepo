@@ -15,7 +15,7 @@
 			"@todo-app/*": ["apps/todo-app/src/app/*", "apps/todo-app/src/*"],
 			"@todo/todo-app-lib": ["libs/todo-app-lib/src/index.ts"],
 			"@todo/shared/ui": ["libs/shared/ui/src/index.ts"],
-			"@todo/shared/ui-styles": ["libs/shared/styles/src/index.ts"],
+			"@todo/shared/ui-styles": ["libs/shared/ui/styles/src/index.ts"],
 			"@todo/shared/data-access": ["libs/shared/data-access/src/index.ts"],
 			"@todo/shared/util": ["libs/shared/util/src/index.ts"],
 			"@todo/shared/util-feature-toggle": [

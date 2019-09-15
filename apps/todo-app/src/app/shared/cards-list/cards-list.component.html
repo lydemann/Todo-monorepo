@@ -1,13 +1,13 @@
 <div class="mx-auto right mb-15">
 	<button
-		class="btn mr-10"
+		class="btn mr-10 theme-background"
 		(click)="showCards()"
 		[ngClass]="{ 'btn-info': typeToShow === 'cards' }"
 	>
 		{{ 'todo-list-section.show-cards' | translate }}
 	</button>
 	<button
-		class="btn"
+		class="btn theme-background"
 		(click)="showTable()"
 		[ngClass]="{ 'btn-info': typeToShow === 'table' }"
 	>

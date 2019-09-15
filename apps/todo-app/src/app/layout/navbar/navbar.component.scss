@@ -1,7 +1,8 @@
-.nav-active {
-	background-color: #dae0e5;
-}
+@import 'helpers';
 
+.nav-active {
+	background: get-color('selected');
+}
 a:hover {
 	background-color: #eef4f9;
 }

@@ -1,0 +1,15 @@
+@import './helpers/colors.scss';
+@import './themes/light-theme.scss';
+@import './themes/dark-theme.scss';
+
+body {
+	@include generateUnitColors();
+}
+
+.light-theme {
+	@include generate-light-theme();
+}
+
+.dark-theme {
+	@include generate-dark-theme();
+}

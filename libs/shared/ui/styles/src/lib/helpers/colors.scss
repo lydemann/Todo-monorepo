@@ -1,0 +1,41 @@
+// color scheme goes here
+
+// theme aliases, these change based on theme
+$theme-colors: (
+	'primary': --todo-primary,
+	'accent': --todo-accent,
+	'warn': --todo-warn,
+);
+
+// use case aliases, these change based on theme
+$use-case-colors: (
+	'background': --todo-background,
+	'selected': --todo-selected,
+	'hover': --todo-hover,
+);
+
+// unit aliases, these stay the same regardless of theme
+$unit-colors: (
+	'grey': --todo-grey,
+	'black': --todo-black,
+	'white': --todo-white,
+);
+
+// outside of theme colors
+
+// functions
+@mixin generateUnitColors {
+	--todo-grey: #eee;
+	--todo-black: #000;
+	--todo-white: #eee;
+}
+
+@function get-all-colors() {
+	@return map-merge(map-merge($theme-colors, $use-case-colors), $unit-colors);
+}
+
+$_color-palette: get-all-colors();
+
+@function get-color($color-name) {
+	@return var(map-get($_color-palette, $color-name));
+}

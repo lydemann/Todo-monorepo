@@ -19,7 +19,7 @@
 					"else",
 					"each",
 					"function",
-					"returns",
+					"return",
 					"extend",
 					"include",
 					"mixin"

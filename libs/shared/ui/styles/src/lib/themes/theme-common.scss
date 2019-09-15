@@ -1,0 +1,15 @@
+@mixin generate-css-vars-for-theme($theme) {
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, accent);
+	$foreground: map-get($theme, foreground);
+	$background: map-get($theme, background);
+
+	--todo-primary: #{mat-color($primary)};
+	--todo-accent: #{mat-color($accent)};
+	--todo-warn: #{mat-color($warn)};
+	--todo-foreground: #{mat-color($foreground)};
+	--todo-background: #{mat-color($background)};
+	--todo-selected: #{mat-color($primary, 600)};
+	--todo-hover: #{mat-color($accent, 600)};
+}

@@ -1,0 +1,28 @@
+// setup material theme
+@import '~@angular/material/theming';
+@import './theme-common';
+
+$todo-black-primary: mat-palette($mat-grey, 700, 300, 900);
+$todo-black-accent: mat-palette($mat-blue-grey, 400);
+$todo-black-warn: mat-palette($mat-red, 500);
+
+$todo-black-theme: mat-dark-theme(
+	$todo-black-primary,
+	$todo-black-accent,
+	$todo-black-warn
+);
+
+@mixin generate-dark-theme {
+	// the new way of theming using css vars
+	@include generate-css-vars-for-theme($todo-black-theme);
+
+	@include angular-material-theme($todo-black-theme);
+
+	// component styling - the old way of theming by including extra styling here
+	$foreground: map-get($todo-black-theme, foreground);
+	$background: map-get($todo-black-theme, background);
+	.theme-background {
+		color: mat-color($foreground, text);
+		background-color: mat-color($background, background);
+	}
+}

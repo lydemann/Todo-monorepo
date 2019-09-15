@@ -1,0 +1,41 @@
+// setup material theme
+@import '~@angular/material/theming';
+@import './theme-common';
+
+$todo-primary: mat-palette($mat-indigo, 800, 300, 900);
+$todo-accent: mat-palette($mat-light-blue);
+$todo-warn: mat-palette($mat-pink, 600);
+
+$todo-light-theme: mat-light-theme($todo-primary, $todo-accent, $todo-warn);
+
+@mixin generate-light-theme {
+	// the new way of theming using css vars
+	@include generate-css-vars-for-theme($todo-light-theme);
+
+	@include angular-material-theme($todo-light-theme);
+
+	// component styling - the old way of theming by including extra styling here
+	$foreground: map-get($todo-light-theme, foreground);
+	$background: map-get($todo-light-theme, background);
+	.theme-background {
+		color: mat-color($foreground, text);
+		background-color: mat-color($background, background);
+	}
+}
+
+// theme-common.scss
+@mixin generate-css-vars-for-theme($theme) {
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, accent);
+	$foreground: map-get($theme, foreground);
+	$background: map-get($theme, background);
+
+	--todo-primary: #{mat-color($primary)};
+	--todo-accent: #{mat-color($accent)};
+	--todo-warn: #{mat-color($warn)};
+	--todo-foreground: #{mat-color($foreground)};
+	--todo-background: #{mat-color($background)};
+	--todo-selected: #{mat-color($primary, 600)};
+	--todo-hover: #{mat-color($accent, 600)};
+}
