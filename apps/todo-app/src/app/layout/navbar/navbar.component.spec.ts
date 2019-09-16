@@ -31,6 +31,6 @@ describe('NavbarComponent', () => {
 	beforeEach(() => (spectator = createComponent()));
 
 	it('should contain nav bar items', () => {
-		expect(spectator.queryAll('.nav-item').length).toBe(3);
+		expect(spectator.queryAll('.nav-item').length).toBe(4);
 	});
 });

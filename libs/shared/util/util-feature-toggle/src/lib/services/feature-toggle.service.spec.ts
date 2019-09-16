@@ -5,8 +5,7 @@ import { first } from 'rxjs/operators';
 import { createMagicalMock, Mock } from '@todo/shared/util';
 import { FeatureToggleService } from './feature-toggle.service';
 
-// tslint:disable-next-line: no-focused-tests
-fdescribe('FeatureToggleService', () => {
+describe('FeatureToggleService', () => {
 	let service: FeatureToggleService;
 	let httpService: Mock<HttpClient>;
 
