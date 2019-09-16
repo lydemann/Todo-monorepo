@@ -10,6 +10,6 @@
 	--todo-warn: #{mat-color($warn)};
 	--todo-foreground: #{mat-color($foreground)};
 	--todo-background: #{mat-color($background)};
-	--todo-selected: #{mat-color($primary, 600)};
+	--todo-selected: #{mat-color($accent, 600)};
 	--todo-hover: #{mat-color($accent, 600)};
 }
