@@ -1,0 +1,25 @@
+{
+	"extends": "../tsconfig.json",
+	"exclude": [
+		"../apps/**/*e2e*",
+		"../apps/**/*mocks*",
+		"../apps/**/*.po.ts",
+		"../apps/**/*.spec.ts",
+
+
+		"../libs/shared/testing",
+		"../libs/**/*e2e*",
+		"../libs/**/*mocks*",
+		"../libs/**/*.po.ts",
+		"../libs/**/*.spec.ts"
+	],
+	"include": [
+		"storybook.d.ts",
+		"../apps/**/*.ts",
+		"../libs/**/*.ts",
+		"../stories/**/*.ts"
+	],
+	"compilerOptions": {
+		"types": ["node", "jasmine"]
+	}
+}

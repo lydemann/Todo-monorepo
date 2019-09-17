@@ -32,7 +32,9 @@
 		"update:check": "ng update",
 		"dep-graph": "./node_modules/.bin/nx dep-graph",
 		"workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
-		"help": "./node_modules/.bin/nx help"
+		"help": "./node_modules/.bin/nx help",
+		"start:storybook": "start-storybook -p 6006",
+		"build:storybook": "build-storybook -o dist/design-system"
 	},
 	"private": true,
 	"dependencies": {
@@ -85,6 +87,15 @@
 		"@types/jest": "^24.0.18",
 		"@types/jquery": "3.3.6",
 		"@types/node": "~8.9.4",
+		"@storybook/addon-a11y": "^5.0.8",
+		"@storybook/addon-actions": "^5.0.8",
+		"@storybook/addon-links": "^5.0.8",
+		"@storybook/addon-notes": "^5.0.8",
+		"@storybook/addon-options": "^5.0.11",
+		"@storybook/addon-viewport": "^5.0.11",
+		"@storybook/addons": "^5.0.8",
+		"@storybook/angular": "^5.0.8",
+		"@storybook/cli": "^5.0.8",
 		"babel-core": "^6.26.3",
 		"babel-jest": "^24.8.0",
 		"codelyzer": "~4.5.0",

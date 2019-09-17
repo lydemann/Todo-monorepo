@@ -17,6 +17,7 @@ $todo-light-theme: mat-light-theme($todo-primary, $todo-accent, $todo-warn);
 	// component styling - the old way of theming by including extra styling here
 	$foreground: map-get($todo-light-theme, foreground);
 	$background: map-get($todo-light-theme, background);
+
 	.theme-background {
 		color: mat-color($foreground, text);
 		background-color: mat-color($background, background);

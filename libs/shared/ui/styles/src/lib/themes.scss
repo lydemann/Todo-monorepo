@@ -6,6 +6,7 @@ body {
 	@include generateUnitColors();
 }
 
+body,
 .light-theme {
 	@include generate-light-theme();
 }

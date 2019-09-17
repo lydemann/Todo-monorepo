@@ -1,0 +1,30 @@
+@import 'helpers';
+@import 'themes';
+
+.color-reel {
+	display: inline-grid;
+	align-items: flex-start;
+	gap: 30px;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.color-reel__item {
+	width: 200px;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.color-reel__color-group {
+	padding: 1em;
+}
+
+@each $color, $colorVar in $_color-palette {
+	.color-reel__color-group--#{$color} {
+		background-color: var($colorVar);
+		color: var($colorVar + '-contrast');
+	}
+}
+
+.color-reel__color-name {
+	text-align: center;
+}
