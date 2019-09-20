@@ -26,6 +26,7 @@
 				]
 			}
 		],
+		"color-hex-length": null,
 		"max-nesting-depth": [
 			3,
 			{
