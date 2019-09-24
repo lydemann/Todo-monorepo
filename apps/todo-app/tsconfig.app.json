@@ -1,15 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/todo-app",
-    "types": [
-      "jasmine",
-      "node"
-    ]
-  },
-  "exclude": [
-    "src/test.ts",
-    "**/*.mock.ts",
-    "**/*.spec.ts"
-  ]
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc/apps/todo-app",
+		"types": ["jasmine", "node"]
+	},
+	"exclude": ["src/test.ts", "**/*.mock.ts", "**/*.spec.ts"]
 }
