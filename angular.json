@@ -424,6 +424,44 @@
 					}
 				}
 			}
+		},
+		"shared-util-i18n": {
+			"projectType": "library",
+			"root": "libs/shared/util/util-i18n",
+			"sourceRoot": "libs/shared/util/util-i18n/src",
+			"prefix": "todo",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-ng-packagr:build",
+					"options": {
+						"tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.json",
+						"project": "libs/shared/util/util-i18n/ng-package.json"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"libs/shared/util/util-i18n/tsconfig.lib.json",
+							"libs/shared/util/util-i18n/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**", "!libs/shared/util/util-i18n/**"]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/shared/util/util-i18n/jest.config.js",
+						"tsConfig": "libs/shared/util/util-i18n/tsconfig.spec.json",
+						"setupFile": "libs/shared/util/util-i18n/src/test-setup.ts"
+					}
+				}
+			},
+			"schematics": {
+				"@nrwl/angular:component": {
+					"styleext": "scss"
+				}
+			}
 		}
 	},
 	"defaultProject": "todo-app",

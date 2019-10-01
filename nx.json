@@ -37,6 +37,9 @@
 		},
 		"shared-styles": {
 			"tags": ["scope:shared"]
+		},
+		"shared-util-i18n": {
+			"tags": ["scope:shared", "type:util"]
 		}
 	}
 }
