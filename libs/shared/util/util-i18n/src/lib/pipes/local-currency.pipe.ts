@@ -24,7 +24,7 @@ export class LocalCurrencyPipe implements PipeTransform {
 			+value,
 			this.localeService.locale,
 			currencySymbol,
-			this.localeService.locale,
+			currencyCode,
 			digitsInfo,
 		);
 	}
