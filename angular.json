@@ -462,6 +462,34 @@
 					"styleext": "scss"
 				}
 			}
+		},
+		"shared-util-logging": {
+			"root": "libs/shared/util/util-logging",
+			"sourceRoot": "libs/shared/util/util-logging/src",
+			"projectType": "library",
+			"schematics": {},
+			"architect": {
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"libs/shared/util/util-logging/tsconfig.lib.json",
+							"libs/shared/util/util-logging/tsconfig.spec.json"
+						],
+						"exclude": [
+							"**/node_modules/**",
+							"!libs/shared/util/util-logging/**"
+						]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/shared/util/util-logging/jest.config.js",
+						"tsConfig": "libs/shared/util/util-logging/tsconfig.spec.json"
+					}
+				}
+			}
 		}
 	},
 	"defaultProject": "todo-app",

@@ -22,7 +22,10 @@
 			"@todo/shared/util-feature-toggle": [
 				"libs/shared/util/util-feature-toggle/src/index.ts"
 			],
-			"@todo/shared/util-i18n": ["libs/shared/util/util-i18n/src/index.ts"]
+			"@todo/shared/util-i18n": ["libs/shared/util/util-i18n/src/index.ts"],
+			"@todo/shared/util-logging": [
+				"libs/shared/util/util-logging/src/index.ts"
+			]
 		}
 	}
 }

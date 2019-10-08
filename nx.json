@@ -40,6 +40,9 @@
 		},
 		"shared-util-i18n": {
 			"tags": ["scope:shared", "type:util"]
+		},
+		"shared-util-logging": {
+			"tags": ["scope:shared", "type:util"]
 		}
 	}
 }
