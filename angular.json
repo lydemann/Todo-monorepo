@@ -495,9 +495,9 @@
         }
       }
     },
-    "shared-util-logging": {
-      "root": "libs/shared/util/util-logging",
-      "sourceRoot": "libs/shared/util/util-logging/src",
+    "shared-data-access-logging": {
+      "root": "libs/shared/util/data-access-logging",
+      "sourceRoot": "libs/shared/util/data-access-logging/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -505,20 +505,20 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/shared/util/util-logging/tsconfig.lib.json",
-              "libs/shared/util/util-logging/tsconfig.spec.json"
+              "libs/shared/util/data-access-logging/tsconfig.lib.json",
+              "libs/shared/util/data-access-logging/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/shared/util/util-logging/**"
+              "!libs/shared/util/data-access-logging/**"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/util/util-logging/jest.config.js",
-            "tsConfig": "libs/shared/util/util-logging/tsconfig.spec.json"
+            "jestConfig": "libs/shared/util/data-access-logging/jest.config.js",
+            "tsConfig": "libs/shared/util/data-access-logging/tsconfig.spec.json"
           }
         }
       }
@@ -557,7 +557,8 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "todo-service:build"
+            "buildTarget": "todo-service:build",
+            "port": 0
           }
         },
         "lint": {
@@ -616,7 +617,8 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "logging-service:build"
+            "buildTarget": "logging-service:build",
+            "port": 0
           }
         },
         "lint": {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, map, retry, shareReplay, take } from 'rxjs/operators';
 
-import { LogService } from '@todo/shared/util-logging';
+import { LogService } from '@todo/shared/data-access-logging';
 
 export const retryCount = 3;
 

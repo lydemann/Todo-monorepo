@@ -16,6 +16,7 @@ import { FooterComponent } from '@todo-app/footer/footer.component';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListModule } from '@todo-app/todo-list/todo-list.module';
 import { API_ENDPOINTS, ApiEndpoints } from '@todo/shared/data-access';
+import { LogService } from '@todo/shared/data-access-logging';
 import {
 	FeatureToggleModule,
 	FeatureToggleService,
@@ -80,6 +81,7 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 		},
 		{ provide: API_ENDPOINTS, useFactory: apiEndpointsFactory },
 		AppInitService,
+		LogService,
 	],
 	bootstrap: [AppComponent],
 })

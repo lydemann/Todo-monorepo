@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { environment } from '@todo-app/environments/environment';
+import { EndpointsService } from '@todo/shared/data-access';
+import { LogService } from '@todo/shared/data-access-logging';
 import { ThemeService } from '@todo/shared/ui-styles';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
@@ -15,6 +18,8 @@ export class AppComponent implements OnInit {
 		private themeService: ThemeService,
 		private renderer: Renderer2,
 		private elementRef: ElementRef,
+		private logService: LogService,
+		private endpointsService: EndpointsService,
 	) {
 		translate.addLangs(['en', 'da']);
 		translate.setDefaultLang('en');
@@ -23,6 +28,12 @@ export class AppComponent implements OnInit {
 		translate.use(browserLang.match(/en|da/) ? browserLang : 'en');
 	}
 	public ngOnInit(): void {
+		this.logService.initialize({
+			appName: 'todo-app',
+			logUrl: this.endpointsService.loggingService,
+			env: environment.environment,
+		});
+
 		this.todoListSandboxService.loadTodoList();
 
 		this.themeService.activeTheme$.subscribe(theme => {
