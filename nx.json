@@ -1,51 +1,90 @@
 {
-	"npmScope": "todo",
-	"implicitDependencies": {
-		"angular.json": "*",
-		"package.json": "*",
-		"tsconfig.json": "*",
-		"tslint.json": "*",
-		"nx.json": "*"
-	},
-	"projects": {
-		"todo-app": {
-			"tags": ["scope:todo-app", "type:app"]
-		},
-		"todo-service": {
-			"tags": ["scope:todo-app", "type:service"]
-		},
-		"todo-app-e2e": {
-			"tags": ["type:e2e"]
-		},
-		"todo-app-lib": {
-			"tags": ["scope:todo-app", "type:feature"]
-		},
-		"shared-ui": {
-			"tags": ["type:ui", "scope:shared"]
-		},
-		"shared-data-access": {
-			"tags": ["type:data-access", "scope:shared"]
-		},
-		"shared-util": {
-			"tags": ["type:util", "scope:shared"]
-		},
-		"util-feature-toggle": {
-			"tags": ["scope:shared", "type:util"]
-		},
-		"todo-admin": {
-			"tags": ["scope:todo-admin", "type:app"]
-		},
-		"todo-admin-e2e": {
-			"tags": ["type:e2e"]
-		},
-		"shared-styles": {
-			"tags": ["scope:shared"]
-		},
-		"shared-util-i18n": {
-			"tags": ["scope:shared", "type:util"]
-		},
-		"shared-util-logging": {
-			"tags": ["scope:shared", "type:util"]
-		}
-	}
+  "npmScope": "todo",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "todo-app": {
+      "tags": [
+        "scope:todo-app",
+        "type:app"
+      ]
+    },
+    "todo-service": {
+      "tags": [
+        "scope:todo-app",
+        "type:service"
+      ]
+    },
+    "todo-app-e2e": {
+      "tags": [
+        "type:e2e"
+      ]
+    },
+    "todo-app-lib": {
+      "tags": [
+        "scope:todo-app",
+        "type:feature"
+      ]
+    },
+    "shared-ui": {
+      "tags": [
+        "type:ui",
+        "scope:shared"
+      ]
+    },
+    "shared-data-access": {
+      "tags": [
+        "type:data-access",
+        "scope:shared"
+      ]
+    },
+    "shared-util": {
+      "tags": [
+        "type:util",
+        "scope:shared"
+      ]
+    },
+    "util-feature-toggle": {
+      "tags": [
+        "scope:shared",
+        "type:util"
+      ]
+    },
+    "todo-admin": {
+      "tags": [
+        "scope:todo-admin",
+        "type:app"
+      ]
+    },
+    "todo-admin-e2e": {
+      "tags": [
+        "type:e2e"
+      ]
+    },
+    "shared-styles": {
+      "tags": [
+        "scope:shared"
+      ]
+    },
+    "shared-util-i18n": {
+      "tags": [
+        "scope:shared",
+        "type:util"
+      ]
+    },
+    "shared-util-logging": {
+      "tags": [
+        "scope:shared",
+        "type:util"
+      ]
+    },
+    "logging-service": {
+      "tags": []
+    }
+  }
 }

@@ -581,6 +581,65 @@
           }
         }
       }
+    },
+    "logging-service": {
+      "root": "apps/logging-service",
+      "sourceRoot": "apps/logging-service/src",
+      "projectType": "application",
+      "prefix": "logging-service",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/logging-service",
+            "main": "apps/logging-service/src/main.ts",
+            "tsConfig": "apps/logging-service/tsconfig.app.json",
+            "assets": [
+              "apps/logging-service/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/logging-service/src/environments/environment.ts",
+                  "with": "apps/logging-service/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "logging-service:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/logging-service/tsconfig.app.json",
+              "apps/logging-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/logging-service/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/logging-service/jest.config.js",
+            "tsConfig": "apps/logging-service/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "defaultProject": "todo-app",
