@@ -12,7 +12,7 @@ export class AppController {
 	}
 
 	@Post()
-	public postLog() {
-		return this.appService.getData();
+	public postLog(data: any) {
+		return this.appService.postLog(data);
 	}
 }
