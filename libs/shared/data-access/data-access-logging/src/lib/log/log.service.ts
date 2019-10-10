@@ -10,7 +10,10 @@ import { SessionIdService } from './session-id.service';
 	providedIn: 'root',
 })
 export class LogService {
-	private logger: Logger;
+	private logger: Logger = {
+		// tslint:disable-next-line: no-empty
+		log: () => {},
+	} as any;
 	private userId: string;
 	private browserAndVendor = 'Unknown browser';
 	private env: string;

@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -16,7 +16,10 @@ import { FooterComponent } from '@todo-app/footer/footer.component';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListModule } from '@todo-app/todo-list/todo-list.module';
 import { API_ENDPOINTS, ApiEndpoints } from '@todo/shared/data-access';
-import { LogService } from '@todo/shared/data-access-logging';
+import {
+	GlobalErrorHandler,
+	LogService,
+} from '@todo/shared/data-access-logging';
 import {
 	FeatureToggleModule,
 	FeatureToggleService,
@@ -80,6 +83,7 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 			deps: [FeatureToggleService],
 		},
 		{ provide: API_ENDPOINTS, useFactory: apiEndpointsFactory },
+		{ provide: ErrorHandler, useClass: GlobalErrorHandler },
 		AppInitService,
 		LogService,
 	],
