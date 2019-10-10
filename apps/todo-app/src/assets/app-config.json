@@ -1,4 +1,5 @@
 {
-  "environment": "local",
-  "feServerUrl": "http://localhost:8080"
+	"environment": "local",
+	"todoServiceUrl": "http://localhost:3333",
+	"loggingServiceUrl": "http://localhost:3334"
 }

@@ -11,6 +11,9 @@
 		"todo-app": {
 			"tags": ["scope:todo-app", "type:app"]
 		},
+		"todo-service": {
+			"tags": ["scope:todo-app", "type:service"]
+		},
 		"todo-app-e2e": {
 			"tags": ["type:e2e"]
 		},

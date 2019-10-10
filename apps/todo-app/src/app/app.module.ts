@@ -15,6 +15,7 @@ import { environment } from '@todo-app/environments/environment';
 import { FooterComponent } from '@todo-app/footer/footer.component';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListModule } from '@todo-app/todo-list/todo-list.module';
+import { API_ENDPOINTS, ApiEndpoints } from '@todo/shared/data-access';
 import {
 	FeatureToggleModule,
 	FeatureToggleService,
@@ -36,10 +37,16 @@ export function preloadFeagureFlags(
 export function HttpLoaderFactory(httpClient: HttpClient) {
 	return new TranslateHttpLoader(
 		httpClient,
-		environment.feServerUrl + '/assets/i18n/',
+		environment.todoServiceUrl + '/i18n/',
 		'-lang.json',
 	);
 }
+
+const apiEndpointsFactory = (): ApiEndpoints => ({
+	todoService: environment.todoServiceUrl,
+	loggingService: environment.loggingServiceUrl,
+});
+
 @NgModule({
 	declarations: [AppComponent, FooterComponent],
 	imports: [
@@ -67,16 +74,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 	providers: [
 		{
 			provide: APP_INITIALIZER,
-			useFactory: init_app,
-			deps: [AppInitService],
-			multi: true,
-		},
-		{
-			provide: APP_INITIALIZER,
 			multi: true,
 			useFactory: preloadFeagureFlags,
 			deps: [FeatureToggleService],
 		},
+		{ provide: API_ENDPOINTS, useFactory: apiEndpointsFactory },
 		AppInitService,
 	],
 	bootstrap: [AppComponent],

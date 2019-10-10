@@ -11,8 +11,12 @@ export const environment = {
 		return window.config.environment;
 	},
 
-	get feServerUrl() {
-		return window.config.feServerUrl;
+	get todoServiceUrl() {
+		return window.config.todoServiceUrl;
+	},
+
+	get loggingServiceUrl() {
+		return window.config.loggingServiceUrl;
 	},
 };
 

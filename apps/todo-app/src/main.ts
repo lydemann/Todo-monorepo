@@ -4,11 +4,21 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-if (environment.production) {
-	enableProdMode();
-}
+const xhttp = new XMLHttpRequest();
+xhttp.open('GET', 'assets/app-config.json', true);
+xhttp.onreadystatechange = function() {
+	if (this.readyState === 4 && this.status === 200) {
+		const config = JSON.parse(this.responseText);
+		window.config = config;
 
-platformBrowserDynamic()
-	.bootstrapModule(AppModule)
-	// tslint:disable-next-line:no-console
-	.catch(err => console.log(err));
+		if (environment.production) {
+			enableProdMode();
+		}
+
+		platformBrowserDynamic()
+			.bootstrapModule(AppModule)
+			// tslint:disable-next-line: no-console
+			.catch(err => console.error(err));
+	}
+};
+xhttp.send();
