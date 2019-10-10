@@ -92,7 +92,8 @@ export class HttpService {
 					? headers.get('trace-id')
 					: 'No trace-id';
 
-			this.logService.logHttpError(error.message, url, traceId);
+			const errorMsg = `HTTP ERROR ${statusCode}: ${error.message}`;
+			this.logService.logHttpError(errorMsg, url, traceId);
 
 			this.notifyForErrors(errorResponse);
 
