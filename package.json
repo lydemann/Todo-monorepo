@@ -5,7 +5,8 @@
 		"ng": "ng",
 		"start": "ng serve",
 		"start:todo-server": "ng serve todo-service",
-		"build": "ng build --prod",
+		"build": "ng build",
+		"build:prod": "ng build --prod",
 		"start:pwa": "rimraf dist && npm run build && cd dist && http-server -p 4200",
 		"test": "ng test",
 		"test:pr": "npm run affected:test -- --base origin/master --head HEAD",
@@ -75,8 +76,8 @@
 		"zone.js": "~0.9.1"
 	},
 	"devDependencies": {
-		"@angular-devkit/build-angular": "^0.801.0",
-		"@angular-devkit/build-ng-packagr": "~0.803.3",
+		"@angular-devkit/build-angular": "^0.803.9",
+		"@angular-devkit/build-ng-packagr": "^0.803.9",
 		"@angular/cli": "^8.1.0",
 		"@angular/compiler-cli": "^8.1.0",
 		"@angular/language-service": "^8.1.0",
@@ -86,6 +87,7 @@
 		"@nestjs/testing": "^6.2.4",
 		"@ngneat/spectator": "^4.2.1",
 		"@ngrx/store-devtools": "7.2.0",
+		"@nrwl/angular": "^8.6.0",
 		"@nrwl/cypress": "^8.2.0",
 		"@nrwl/jest": "^8.2.0",
 		"@nrwl/nest": "8.4.13",
