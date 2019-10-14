@@ -1,6 +1,6 @@
 {
 	"name": "@todo/shared-util-i18n",
-	"version": "0.0.13",
+	"version": "0.0.14",
 	"peerDependencies": {
 		"@angular/common": "^8.2.4",
 		"@angular/core": "^8.2.4"
