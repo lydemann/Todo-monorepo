@@ -1,8 +1,14 @@
 {
 	"name": "@todo/shared-util-i18n",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"peerDependencies": {
 		"@angular/common": "^8.2.4",
 		"@angular/core": "^8.2.4"
+	},
+	"scripts": {
+		"lib-i18n:version:patch": "",
+		"lib-i18n:version:minor": "",
+		"lib-i18n:version:major": "",
+		"lib-i18n:changelog": "conventional-changelog --preset angular --commit-path $PWD -s -i CHANGELOG.md"
 	}
 }
