@@ -6,7 +6,6 @@
 		"@angular/core": "^8.2.4"
 	},
 	"scripts": {
-		"version": "conventional-changelog --preset angular --commit-path $PWD -s -i CHANGELOG.md && git add CHANGELOG.md",
-		"lib-i18n:changelog": "conventional-changelog --preset angular --commit-path $PWD -r -s -i CHANGELOG.md"
+		"version": "conventional-changelog --preset angular --commit-path $PWD -s -i CHANGELOG.md && git add CHANGELOG.md"
 	}
 }
