@@ -1,9 +1,7 @@
-/* tslint:disable:no-unused-variable */
-import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { PrimaryButtonComponent } from '@app/shared/buttons/square-button/primary-button/primary-button.component';
-import { SquareButtonComponent } from '@app/shared/buttons/square-button/square-button.component';
+
+import { SquareButtonComponent } from '../square-button.component';
+import { PrimaryButtonComponent } from './primary-button.component';
 
 describe('PrimaryButtonComponent', () => {
 	let component: PrimaryButtonComponent;

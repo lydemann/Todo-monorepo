@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FabComponent } from '@app/shared/buttons/round-button/fab/fab.component';
+
+import { FabComponent } from './fab.component';
 
 describe('FabComponent', () => {
 	let component: FabComponent;

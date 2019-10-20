@@ -1,12 +1,9 @@
-/* tslint:disable:no-unused-variable */
 import { CommonModule } from '@angular/common';
-import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { PrimaryButtonComponent } from '@app/shared/buttons/square-button/primary-button/primary-button.component';
-import { SecondaryButtonComponent } from '@app/shared/buttons/square-button/secondary-button/secondary-button.component';
-import { AppMaterialModule } from '@app/shared/material/material.module';
 
+import { AppMaterialModule } from '../../material/material.module';
+import { PrimaryButtonComponent } from './primary-button/primary-button.component';
+import { SecondaryButtonComponent } from './secondary-button/secondary-button.component';
 import { SquareButtonComponent } from './square-button.component';
 
 describe('SquareButtonComponent', () => {

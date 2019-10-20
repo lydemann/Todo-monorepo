@@ -1,8 +1,7 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppMaterialModule } from '@app/shared/material/material.module';
-import { ToggleComponent } from '@app/shared/toggle/toggle.component';
-import { TooltipComponent } from '@app/shared/tooltip/tooltip.component';
+
+import { AppMaterialModule } from '../material/material.module';
+import { ToggleComponent } from './toggle.component';
 
 describe('ToggleComponent', () => {
 	let component: ToggleComponent;

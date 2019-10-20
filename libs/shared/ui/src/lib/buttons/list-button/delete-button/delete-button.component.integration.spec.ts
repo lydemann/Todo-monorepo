@@ -1,10 +1,10 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IconComponent } from '@app/shared/buttons/icon/icon.component';
-import { DeleteButtonComponent } from '@app/shared/buttons/list-button/delete-button/delete-button.component';
-import { ListButtonComponent } from '@app/shared/buttons/list-button/list-button.component';
-import { SmallFabComponent } from '@app/shared/buttons/list-button/small-fab/small-fab.component';
-import { RoundButtonComponent } from '@app/shared/buttons/round-button/round-button.component';
+
+import { IconComponent } from '../../../icon';
+import { AppMaterialModule } from '../../../material/material.module';
+import { ListButtonComponent } from '../list-button.component';
+import { SmallFabComponent } from '../small-fab/small-fab.component';
+import { DeleteButtonComponent } from './delete-button.component';
 
 describe('DeleteButtonComponent', () => {
 	let component: DeleteButtonComponent;
@@ -12,6 +12,7 @@ describe('DeleteButtonComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			imports: [AppMaterialModule],
 			declarations: [DeleteButtonComponent, SmallFabComponent, IconComponent],
 			providers: [
 				{

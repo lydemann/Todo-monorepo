@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SelectOptionComponent } from '@app/shared/select/select-option/select-option.component';
+
+import { SelectOptionComponent } from './select-option.component';
 
 describe('SelectOptionComponent', () => {
 	let component: SelectOptionComponent;
