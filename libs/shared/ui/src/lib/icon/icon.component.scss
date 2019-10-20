@@ -1,0 +1,16 @@
+:host {
+	display: inline-flex;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	font-size: 1.6rem;
+
+	mat-icon {
+		height: inherit;
+		width: inherit;
+	}
+
+	&.big mat-icon {
+		transform: scale(1.3);
+	}
+}

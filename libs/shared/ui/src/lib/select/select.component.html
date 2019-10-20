@@ -1,0 +1,17 @@
+<mat-form-field>
+	<mat-select
+		[disabled]="disabled"
+		[placeholder]="placeholder"
+		(selectionChange)="onSelected($event)"
+		[(ngModel)]="selected"
+	>
+		<mat-option *ngFor="let option of options" [value]="option.value">
+			<ng-template [ngTemplateOutlet]="option?.templateRef"></ng-template>
+		</mat-option>
+		<mat-optgroup *ngFor="let group of optionsGroups" [label]="group.label">
+			<mat-option *ngFor="let option of group.options" [value]="option.value">
+				<ng-template [ngTemplateOutlet]="option?.templateRef"></ng-template>
+			</mat-option>
+		</mat-optgroup>
+	</mat-select>
+</mat-form-field>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { SpinnerOverlayWrapperComponent } from '@todo-app/shared/spinner-overlay-wrapper/spinner-overlay-wrapper.component';
-import { SpinnerModule } from '@todo/shared/ui';
+import { SpinnerModule } from '../spinner/spinner.module';
+import { SpinnerOverlayWrapperComponent } from './spinner-overlay-wrapper.component';
 
 @NgModule({
 	imports: [SpinnerModule],

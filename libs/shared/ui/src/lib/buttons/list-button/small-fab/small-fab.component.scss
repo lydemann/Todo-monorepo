@@ -1,0 +1,32 @@
+@import 'helpers.scss';
+@import '../../button.styles.scss';
+
+$round-btn-width: 30px;
+$font-size: 18px;
+
+@include disabledBtn();
+
+.round-btn {
+	width: $round-btn-width;
+	height: $round-btn-width;
+	color: get-color('grey-40');
+	background: get-color('white');
+	line-height: $font-size;
+	font-size: $font-size;
+	box-shadow: initial;
+	border: 1px solid get-color('grey');
+
+	&:hover {
+		color: get-color('white');
+		background: get-color('accent');
+	}
+
+	&::ng-deep .mat-button-wrapper {
+		line-height: $font-size;
+		font-size: $font-size !important;
+		padding: 0;
+		app-icon {
+			font-size: $font-size;
+		}
+	}
+}

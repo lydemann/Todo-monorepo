@@ -1,0 +1,37 @@
+@import 'helpers';
+
+:host {
+	display: block;
+
+	.mat-expansion-panel:not([class*='mat-elevation-z']) {
+		box-shadow: none;
+	}
+	.mat-expansion-panel-header {
+		padding: 0 1rem;
+	}
+	.mat-expansion-panel-header:not([aria-disabled='true']):hover {
+		background-color: get-color('white');
+	}
+
+	.mat-expansion-panel-header-title {
+		font-size: 1.7rem;
+		align-items: center;
+	}
+
+	.toggle-icon {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		position: relative;
+		right: -25px;
+
+		app-icon {
+			color: get-color('black');
+			font-size: 3rem;
+			transition: transform 300ms;
+			&.open {
+				transform: rotate(90deg);
+			}
+		}
+	}
+}

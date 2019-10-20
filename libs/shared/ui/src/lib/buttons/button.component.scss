@@ -1,0 +1,10 @@
+@import 'helpers';
+.mat-button,
+.mat-icon-button {
+	&:focus {
+		background-color: get-color('transparent');
+	}
+	&:hover {
+		opacity: 0.5;
+	}
+}

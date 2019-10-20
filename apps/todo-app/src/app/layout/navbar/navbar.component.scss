@@ -1,5 +1,9 @@
 @import 'helpers';
 
+.nav-item {
+	margin-left: get-size('xxs');
+}
+
 .nav-active {
 	background: get-color('selected');
 }

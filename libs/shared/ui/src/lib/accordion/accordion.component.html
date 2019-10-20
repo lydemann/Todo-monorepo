@@ -1,0 +1,20 @@
+<mat-expansion-panel hideToggle="true" [expanded]="isExpanded" #accordion>
+	<mat-expansion-panel-header>
+		<mat-panel-title>
+			<b>{{ boldTitle }}</b
+			><span>{{ normalTitle }}</span>
+		</mat-panel-title>
+		<mat-panel-description>
+			<div class="toggle-icon">
+				<app-icon
+					icon="navigate_next"
+					[ngClass]="{ open: accordion.expanded }"
+				></app-icon>
+			</div>
+		</mat-panel-description>
+	</mat-expansion-panel-header>
+
+	<ng-template matExpansionPanelContent>
+		<ng-template [ngTemplateOutlet]="templateRef"></ng-template>
+	</ng-template>
+</mat-expansion-panel>

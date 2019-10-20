@@ -1,0 +1,20 @@
+@import 'helpers';
+$font-size: 24px;
+
+:host::ng-deep button.round-btn {
+	font-size: $font-size;
+	color: get-color('accent');
+	&:hover {
+		background: get-color('accent');
+		color: get-color('white');
+	}
+	&::ng-deep .mat-button-wrapper {
+		line-height: $font-size;
+		padding: 0;
+		.app-icon {
+			font-size: $font-size;
+			padding-right: 4px;
+			padding-top: 4px;
+		}
+	}
+}

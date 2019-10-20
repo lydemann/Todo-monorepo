@@ -1,0 +1,22 @@
+<ng-container [ngSwitch]="buttonType">
+	<ng-container *ngSwitchCase="'Add'">
+		<app-add-button></app-add-button>
+	</ng-container>
+	<ng-container *ngSwitchCase="'Delete'">
+		<app-delete-button></app-delete-button>
+	</ng-container>
+	<ng-container *ngSwitchCase="'Round'">
+		<app-small-fab>
+			<ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+		</app-small-fab>
+	</ng-container>
+	<ng-container *ngSwitchDefault>
+		<app-small-fab>
+			<ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+		</app-small-fab>
+	</ng-container>
+</ng-container>
+
+<ng-template #contentTpl>
+	<ng-content></ng-content>
+</ng-template>

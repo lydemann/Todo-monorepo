@@ -1,0 +1,27 @@
+<ng-container [ngSwitch]="buttonType">
+	<ng-container *ngSwitchCase="'Primary'">
+		<app-primary-button>
+			<ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+		</app-primary-button>
+	</ng-container>
+	<ng-container *ngSwitchCase="'Secondary'">
+		<app-secondary-button>
+			<ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+		</app-secondary-button>
+	</ng-container>
+	<ng-container *ngSwitchDefault>
+		<button
+			mat-button
+			(click)="onClick()"
+			type="{{ type }}"
+			[ngStyle]="buttonStyle"
+			[ngClass]="buttonClass"
+		>
+			<ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+		</button>
+	</ng-container>
+</ng-container>
+
+<ng-template #contentTpl>
+	<ng-content></ng-content>
+</ng-template>

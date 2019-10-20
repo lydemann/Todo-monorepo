@@ -1,0 +1,12 @@
+<mat-slide-toggle
+	color="primary"
+	[disabled]="disabled"
+	[labelPosition]="labelPosition"
+	(change)="toggleChange($event)"
+	[checked]="checked"
+	[labelPosition]="labelposition"
+	[ngClass]="{ 'is-icon': isIcon }"
+>
+	<span *ngIf="checked">{{ labelTextOn }}</span>
+	<span *ngIf="!checked">{{ labelTextOff }}</span>
+</mat-slide-toggle>

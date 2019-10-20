@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="buttonType">
+	<ng-container *ngSwitchDefault>
+		<app-fab>
+			<ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+		</app-fab>
+	</ng-container>
+</ng-container>
+
+<ng-template #contentTpl>
+	<ng-content></ng-content>
+</ng-template>

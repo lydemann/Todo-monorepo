@@ -1,0 +1,16 @@
+// Override angular material style
+::ng-deep {
+	.mat-checkbox-background {
+		border-radius: 50% !important;
+	}
+	.mat-checkbox-frame {
+		border-radius: 50% !important;
+	}
+	.mat-checkbox-checked .mat-checkbox-checkmark {
+		right: 10%;
+		left: 10%;
+		top: 10%;
+		width: 80%;
+		bottom: 10%;
+	}
+}

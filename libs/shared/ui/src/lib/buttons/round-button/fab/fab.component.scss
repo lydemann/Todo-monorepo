@@ -1,0 +1,38 @@
+@import 'helpers';
+@mixin fab-size($size) {
+	width: $size;
+	height: $size;
+}
+
+:host {
+	.mat-fab {
+		transition: 0.2s ease-in-out;
+
+		::ng-deep .mat-button-wrapper {
+			padding: 0;
+		}
+		&.md {
+			@include fab-size(46px);
+		}
+		&.sm {
+			@include fab-size(40px);
+			app-icon {
+				right: 0;
+			}
+		}
+		&.lg {
+			@include fab-size(56px);
+		} // Override Materialise styling of disabled buttons (can't be set through theme: https://github.com/angular/material2/issues/11343)
+		&[disabled] {
+			background-color: get-color('grey');
+			color: get-color('white');
+		}
+		.icon {
+			font-size: 1.4rem; // position: relative;
+			// bottom: 0.3rem;
+		}
+		&:hover:enabled {
+			opacity: 0.8;
+		}
+	}
+}

@@ -1,0 +1,40 @@
+@import 'helpers';
+:host::ng-deep {
+	// Make element style-able from parent
+	.mat-slide-toggle-label {
+		color: inherit;
+		font-size: inherit;
+		.mat-slide-toggle-content {
+			font: inherit;
+		}
+	}
+
+	// We use disabled for the non-interactive icon style of the toggle
+	// However, the styling should be the same as when it is not disabled
+	// Therefore we reset the styling to the default styling
+	.is-icon.mat-disabled {
+		// Make cursor set-able
+		.mat-slide-toggle-label {
+			cursor: inherit;
+		}
+		.mat-slide-toggle-thumb-container {
+			cursor: inherit;
+		}
+
+		.mat-slide-toggle-thumb {
+			background-color: #fafafa;
+		}
+		.mat-slide-toggle-bar {
+			background-color: rgba(0, 0, 0, 0.38);
+		}
+
+		&.mat-checked {
+			.mat-slide-toggle-thumb {
+				background-color: #7da3ad;
+			}
+			.mat-slide-toggle-bar {
+				background-color: rgba(125, 163, 173, 0.5);
+			}
+		}
+	}
+}

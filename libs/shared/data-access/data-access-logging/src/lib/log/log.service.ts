@@ -82,25 +82,21 @@ export class LogService {
 		this.logger.log('Error', errorMsg, logFields);
 	}
 
-	public logError(error: Error) {
+	public logError(error: any) {
+		const message = error.message ? error.message : error.toString();
+		if (error.status || !(error instanceof Error)) {
+			error = new Error(message);
+		}
+
 		this.getStackTrace(error).then(stackString => {
-			const message = error.message ? error.message : error.toString();
 			const errorTraceStr = `Error message:\n${message}.\nStack trace: ${stackString}`;
 
-			const isWarning = this.isWarning(errorTraceStr);
+			// const isWarning = this.isWarning(errorTraceStr);
 
-			if ((error as any).status) {
-				// tslint:disable-next-line:no-console
-				console.error(error);
-
-				error = new Error(message);
-			}
-
-			if (isWarning) {
-				this.logWarningMsg(errorTraceStr);
-			} else {
-				this.logErrorMsg(errorTraceStr);
-			}
+			// if (isWarning) {
+			// 	this.logWarningMsg(errorTraceStr);
+			// }
+			this.logErrorMsg(errorTraceStr);
 		});
 	}
 

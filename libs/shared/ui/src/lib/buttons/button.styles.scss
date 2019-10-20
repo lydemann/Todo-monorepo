@@ -1,0 +1,16 @@
+@import 'helpers';
+
+@mixin disabledBtn() {
+	button[disabled] {
+		background-color: get-color('grey') !important;
+		color: get-color('white') !important;
+		border: get-color('grey') solid 1px !important;
+
+		&:hover {
+			text-decoration: none !important;
+			background-color: get-color('grey') !important;
+			color: get-color('white') !important;
+			border: get-color('grey') solid 1px !important;
+		}
+	}
+}

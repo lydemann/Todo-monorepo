@@ -9,7 +9,12 @@
 				"ignore": ["inside-function"]
 			}
 		],
-		"declaration-no-important": true,
+		"selector-pseudo-element-no-unknown": [
+			true,
+			{
+				"ignorePseudoElements": ["ng-deep"]
+			}
+		],
 		"at-rule-no-unknown": [
 			true,
 			{

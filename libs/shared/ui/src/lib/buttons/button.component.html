@@ -1,0 +1,16 @@
+<button
+	(click)="onClick()"
+	[disabled]="disabled"
+	mat-button
+	*ngIf="!iconButton"
+>
+	{{ text }}
+</button>
+<button
+	(click)="onClick()"
+	[disabled]="disabled"
+	mat-icon-button
+	*ngIf="iconButton"
+>
+	<ng-content selector="mat-icon"></ng-content>
+</button>

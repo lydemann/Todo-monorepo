@@ -1,0 +1,17 @@
+@import 'helpers';
+
+$line-height: 36px;
+
+.secondary-btn {
+	color: get-color('primary');
+	background: get-color('white');
+	border: get-color('primary') solid 2px;
+	padding: 0 1.35rem;
+	font-weight: bold;
+	font-size: 0.9rem;
+	line-height: $line-height;
+
+	&:hover {
+		background: get-color('grey');
+	}
+}

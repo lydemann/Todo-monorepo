@@ -1,0 +1,19 @@
+$font-size: 24px;
+
+@mixin listIconButton($color, $hoverColor, $hoverBgColor) {
+	font-size: $font-size;
+	color: $color;
+	&:hover {
+		background: $hoverBgColor;
+		color: $hoverColor;
+	}
+	&::ng-deep .mat-button-wrapper {
+		line-height: $font-size;
+		padding: 0;
+		.app-icon {
+			font-size: $font-size;
+			padding-right: 4px;
+			padding-top: 4px;
+		}
+	}
+}

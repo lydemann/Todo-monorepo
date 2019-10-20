@@ -1,0 +1,16 @@
+@import 'helpers';
+mat-tooltip-component {
+	.app-tooltip-message {
+		background: #323232;
+		font-size: 1rem;
+		padding: 0.8rem 0.6rem;
+		font-family: 'LFPressSans', Arial, Verdana, sans-serif;
+		&.one-line {
+			max-width: initial;
+		}
+	}
+}
+.tooltip-wrapper {
+	display: inline-block;
+	height: 100%;
+}

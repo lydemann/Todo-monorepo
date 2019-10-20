@@ -1,0 +1,11 @@
+<button
+	class="primary-btn"
+	(click)="onClick()"
+	type="{{ type }}"
+	mat-raised-button
+	[ngStyle]="buttonStyle"
+	[ngClass]="buttonClass"
+	[disabled]="disabled"
+>
+	<ng-content></ng-content>
+</button>

@@ -1,0 +1,42 @@
+@import 'helpers';
+@import '../button.styles';
+$line-height: 36px;
+:host ::ng-deep {
+	display: inline-flex;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	@include disabledBtn();
+
+	button {
+		text-transform: uppercase;
+		box-sizing: border-box;
+		padding: 0 1.35rem;
+		font-weight: bold;
+		font-size: 0.9rem;
+		line-height: $line-height;
+		text-decoration: none;
+		box-shadow: none !important; /* stylelint-disable-line */
+		&:hover {
+			text-decoration: underline;
+		} // Don't show underline under icons
+		i,
+		app-icon {
+			display: inline-block;
+			font-size: 1.4rem;
+			margin-bottom: 2px;
+			> * {
+				display: flex !important; /* stylelint-disable-line */
+				justify-content: center;
+				align-items: center;
+				align-content: center;
+			}
+		}
+	}
+
+	&.full-width {
+		button {
+			width: 100%;
+		}
+	}
+}

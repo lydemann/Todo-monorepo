@@ -1,0 +1,11 @@
+<button
+	mat-fab
+	*ngIf="!mini"
+	[color]="theme"
+	[disabled]="disabled"
+	[class.sm]="isSmall"
+	[class.md]="isMedium"
+	[class.lg]="isLarge"
+>
+	<app-icon class="icon" [icon]="icon"></app-icon>
+</button>

@@ -1,0 +1,19 @@
+/*
+  Bg: 7 100 113
+  Hover bg: 78, 128 141
+  No shadows
+*/
+
+@import 'helpers';
+:host {
+	.primary-btn {
+		color: get-color('white');
+		background: get-color('accent');
+		border: get-color('accent') solid 2px;
+		&:hover {
+			color: get-color('white');
+			background: get-color('hover');
+			border: get-color('hover') solid 2px;
+		}
+	}
+}

@@ -1,5 +1,17 @@
 // functions goes here
+@function _get-map-prop($map, $key) {
+	@if map-has-key($map, $key) {
+		@return map-get($map, $key);
+	}
+	@error 'Unknown key `#{$key}`.'; /* stylelint-disable-line */
+	@return null;
+}
 
-@function get-px-value($value) {
-	@return $value * 1px;
+@function get-size($key: 'm') {
+	$negative: str-index($key, '-') == 1;
+	@if ($negative) {
+		$key: str-slice($key, 2, -1);
+	}
+	$value: _get-map-prop($sizes, $key);
+	@return if($negative, unquote('-' + $value), $value);
 }
