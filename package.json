@@ -4,9 +4,11 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
+		"start:todo": "concurrently \"ng serve -o todo-app\" \"npm run start:todo-server\"",
 		"start:todo-server": "ng serve todo-service",
 		"build": "ng build",
 		"build:prod": "ng build --prod",
+		"build:ui-elements": "ng build designsystemdemo --output-hashing=none --single-bundle true --keep-polyfills true",
 		"start:pwa": "rimraf dist && npm run build && cd dist && http-server -p 4200",
 		"test": "ng test",
 		"test:pr": "npm run affected:test -- --base origin/master --head HEAD",
@@ -66,11 +68,12 @@
 		"@ngx-translate/http-loader": "^3.0.1",
 		"@nrwl/nx": "^7.8.7",
 		"bootstrap": "^4.0.0",
-		"core-js": "^3.3.2",
+		"core-js": "^2.5.4",
 		"cors": "^2.8.4",
 		"document-register-element": "^1.7.2",
 		"faker": "^4.1.0",
 		"hammerjs": "^2.0.8",
+		"ngx-build-plus": "^8.1.5",
 		"react": "16.9.0",
 		"react-dom": "16.9.0",
 		"react-router-dom": "5.0.1",
@@ -129,7 +132,7 @@
 		"babel-loader": "8.0.6",
 		"babel-plugin-macros": "2.6.1",
 		"codelyzer": "~4.5.0",
-		"core-js": "3.1.4",
+		"concurrently": "^5.0.0",
 		"cypress": "^3.1.0",
 		"husky": "^2.2.0",
 		"jasmine-core": "~2.99.1",
@@ -161,6 +164,7 @@
 		"tslint-config-prettier": "^1.18.0",
 		"tslint-eslint-rules": "^5.4.0",
 		"tslint-jasmine-rules": "^1.5.1",
-		"typescript": "~3.4.5"
+		"typescript": "~3.4.5",
+		"ts-jest": "24.0.0"
 	}
 }

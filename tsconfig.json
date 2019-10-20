@@ -28,7 +28,8 @@
 			"@todo/shared/util-i18n": ["libs/shared/util/util-i18n/src/index.ts"],
 			"@todo/shared/data-access-logging": [
 				"libs/shared/data-access/data-access-logging/src/index.ts"
-			]
+			],
+			"@todo/shared/util-test": ["libs/shared/util/util-test/src/index.ts"]
 		}
 	}
 }

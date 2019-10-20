@@ -1,4 +1,3 @@
-// import '@todo/shared/ui-elements';
 import React from 'react';
 import ReactDOM from 'react-dom';
 

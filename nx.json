@@ -55,6 +55,15 @@
 		},
 		"reactapp-e2e": {
 			"tags": []
+		},
+		"designsystemdemo-e2e": {
+			"tags": []
+		},
+		"designsystemdemo": {
+			"tags": []
+		},
+		"shared-util-util-test": {
+			"tags": []
 		}
 	}
 }

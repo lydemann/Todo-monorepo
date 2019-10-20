@@ -19,6 +19,7 @@ export const App = () => {
 				<h1>Welcome to reactapp!</h1>
 			</header>
 			<main>
+				<app-spinner></app-spinner>
 				<h2>Resources &amp; Tools</h2>
 				<p>Thank you for using and showing some ♥ for Nx.</p>
 				<div className="flex github-star-container">
