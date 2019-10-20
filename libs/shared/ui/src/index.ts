@@ -1,4 +1,5 @@
 export * from './lib/shared-ui.module';
+export * from './lib/shared-ui-elements.module';
 export * from './lib/accordion';
 export * from './lib/buttons/';
 export * from './lib/icon';
