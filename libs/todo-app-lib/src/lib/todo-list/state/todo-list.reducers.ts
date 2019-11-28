@@ -1,7 +1,7 @@
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { createReducer, on } from '@ngrx/store';
+
 import { ImmutableCollectionHelper } from '@todo/shared/util';
-import { GenericAction } from '../../generic-action';
-import { TodoListActions, TodoListActionTypes } from './todo-list.actions';
+import { TodoListActions } from './todo-list.actions';
 import { TodoListState } from './todo-list.model';
 
 export const todoListInitState: TodoListState = {
@@ -11,60 +11,68 @@ export const todoListInitState: TodoListState = {
 
 const todoItemsLoadFailed = (
 	lastState: TodoListState,
-	action: GenericAction<TodoListActionTypes, Error>,
+	action: ReturnType<typeof TodoListActions.getTodoListFailed>,
 ): TodoListState => {
 	return {
 		...lastState,
-		errors: action.payload,
+		errors: action.error,
 		isLoading: false,
 	};
 };
 
 const AddTodoItemSuccessReducer = (
 	lastState: TodoListState,
-	action: GenericAction<TodoListActionTypes, TODOItem>,
+	action: ReturnType<typeof TodoListActions.addTodoItemReponse>,
 ): TodoListState => {
-	const newTodos = [...lastState.todos, { ...action.payload }];
+	const newTodos = [...lastState.todos, { ...action.todoItem }];
 	return {
 		...lastState,
 		todos: newTodos,
+		isLoading: false,
 	};
 };
 const todoItemDeletedReducer = (
 	lastState: TodoListState,
-	action: GenericAction<TodoListActionTypes, string>,
+	action: ReturnType<typeof TodoListActions.deleteTodoItem>,
 ): TodoListState => {
 	const deleteIdx = lastState.todos.findIndex(
-		todo => todo.id === action.payload,
+		todo => todo.id === action.todoItemId,
 	);
 	const newTodos = ImmutableCollectionHelper.removeItem(
 		lastState.todos,
 		deleteIdx,
 	);
 
-	return { ...lastState, todos: newTodos };
+	return { ...lastState, todos: newTodos, isLoading: false };
 };
 const UpdateTodoItemReducer = (
 	lastState: TodoListState,
-	action: GenericAction<TodoListActionTypes, TODOItem>,
+	action: ReturnType<typeof TodoListActions.updateTodoItemResponse>,
 ): TodoListState => {
 	const updatedTodoIdx = lastState.todos.findIndex(
-		todo => todo.id === action.payload.id,
+		todo => todo.id === action.todoItem.id,
 	);
 
 	const newTodos = ImmutableCollectionHelper.updateObjectInArray(
 		lastState.todos,
 		updatedTodoIdx,
-		action.payload,
+		action.todoItem,
 	);
 
-	return { ...lastState, todos: newTodos, selectedTodoItemId: null };
+	return {
+		...lastState,
+		todos: newTodos,
+		selectedTodoItemId: null,
+		isLoading: false,
+	};
 };
 const toggleTodoItemReducer = (
 	lastState: TodoListState,
-	action: GenericAction<TodoListActionTypes, string>,
+	action: ReturnType<typeof TodoListActions.toggleCompleteTodoItem>,
 ): TodoListState => {
-	const index = lastState.todos.findIndex(todo => todo.id === action.payload);
+	const index = lastState.todos.findIndex(
+		todo => todo.id === action.todoItemId,
+	);
 	const oldTodo = lastState.todos[index];
 	const newTodo = {
 		...oldTodo,
@@ -76,52 +84,81 @@ const toggleTodoItemReducer = (
 		newTodo,
 	);
 
-	return { ...lastState, todos: newTodos };
+	return { ...lastState, todos: newTodos, isLoading: false };
 };
 
 const selectTodoForEditAReducer = (
 	lastState: TodoListState,
-	action: GenericAction<TodoListActionTypes, string>,
+	action: ReturnType<typeof TodoListActions.selectTodoForEdit>,
 ): TodoListState => {
-	return { ...lastState, selectedTodoItemId: action.payload };
+	return { ...lastState, selectedTodoItemId: action.todoItem.id };
 };
 
-export function todoListReducers(
-	lastState: TodoListState = todoListInitState,
-	action: TodoListActions,
-): TodoListState {
-	switch (action.type) {
-		case TodoListActionTypes.LoadTodoList: {
-			return {
-				...lastState,
-				isLoading: true,
-			};
-		}
-		case TodoListActionTypes.LoadTodoListSuccess: {
-			return {
-				...lastState,
-				todos: action.payload,
-				isLoading: false,
-			};
-		}
-		case TodoListActionTypes.LoadTodoListFailed:
-			return todoItemsLoadFailed(lastState, action);
-		case TodoListActionTypes.AddTodoItemSuccess:
-			return AddTodoItemSuccessReducer(lastState, action);
-		case TodoListActionTypes.LoadTodoListFailed:
-			return todoItemsLoadFailed(lastState, action);
-		case TodoListActionTypes.DeleteTodoItem:
-			return todoItemDeletedReducer(lastState, action);
-		case TodoListActionTypes.UpdateTodoItemSuccess:
-			return UpdateTodoItemReducer(lastState, action);
-		case TodoListActionTypes.ToggleCompleteTodoItem:
-			return toggleTodoItemReducer(lastState, action);
-		case TodoListActionTypes.SelectTodoForEdit:
-			return selectTodoForEditAReducer(lastState, action);
+export const todoListReducers = createReducer(
+	todoListInitState,
+	on(TodoListActions.getTodoListRequest, state => {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}),
+	on(TodoListActions.getTodoListResponse, (state, action) => {
+		return {
+			...state,
+			todos: action.todoList,
+			isLoading: false,
+		};
+	}),
 
-		default:
-			return lastState;
-	}
-}
+	on(TodoListActions.getTodoListFailed, (state, action) => {
+		return todoItemsLoadFailed(state, action);
+	}),
+	on(TodoListActions.addTodoItemReponse, (state, action) => {
+		return AddTodoItemSuccessReducer(state, action);
+	}),
+	on(TodoListActions.addTodoItemFailed, (state, action) => {
+		return {
+			...state,
+			isLoading: false,
+		};
+	}),
+
+	on(TodoListActions.deleteTodoItem, (state, action) => {
+		return todoItemDeletedReducer(state, action);
+	}),
+
+	on(TodoListActions.saveTodoItemRequest, (state, action) => {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}),
+
+	on(TodoListActions.updateTodoItemRequest, (state, action) => {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}),
+
+	on(TodoListActions.updateTodoItemResponse, (state, action) => {
+		return UpdateTodoItemReducer(state, action);
+	}),
+
+	on(TodoListActions.updateTodoItemFailed, (state, action) => {
+		return {
+			...state,
+			isLoading: false,
+		};
+	}),
+
+	on(TodoListActions.toggleCompleteTodoItem, (state, action) => {
+		return toggleTodoItemReducer(state, action);
+	}),
+
+	on(TodoListActions.selectTodoForEdit, (state, action) => {
+		return selectTodoForEditAReducer(state, action);
+	}),
+);
 
 // TODO: add store freeze meta reducer

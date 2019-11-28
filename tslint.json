@@ -42,6 +42,7 @@
 		"use-pipe-transform-interface": true,
 		"no-non-null-assertion": true,
 		"no-switch-case-fall-through": true,
+		"no-namespace": false,
 		"jsdoc-format": false,
 		"one-line": [true, "check-open-brace"],
 		"align": false,

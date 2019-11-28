@@ -18,11 +18,11 @@ export class TodoListResourcesService {
 		private endpointsService: EndpointsService,
 	) {}
 
-	public getTodos$() {
+	public getTodos() {
 		return this.httpClient.get<TODOItem[]>(this.todoListUrl);
 	}
 
-	public addTodo(todo: TODOItem) {
+	public addTodoItem(todo: TODOItem) {
 		const todoWithId = {
 			...todo,
 			id: Guid.newGuid(),
@@ -30,7 +30,7 @@ export class TodoListResourcesService {
 		return of(todoWithId).pipe(delay(2000));
 	}
 
-	public updateTodo(todo: TODOItem) {
+	public updateTodoItem(todo: TODOItem) {
 		return of(todo).pipe(delay(2000));
 	}
 }

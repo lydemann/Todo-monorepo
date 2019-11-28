@@ -10,4 +10,8 @@ export class TodoListCompletedComponent {
 	public completedTodos$ = this.todoListSandboxService.completedTodos$;
 
 	constructor(private todoListSandboxService: TodoListSandboxService) {}
+
+	public todoCompleteToggled(todoId: string) {
+		this.todoListSandboxService.todoCompletedToggled(todoId);
+	}
 }

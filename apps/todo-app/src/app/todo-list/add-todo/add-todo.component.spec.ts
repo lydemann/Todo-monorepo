@@ -45,7 +45,8 @@ describe('AddTodoComponent', () => {
 				description: 'Remember to work out',
 			},
 		];
-		todoListSandboxServiceMock.saveTodoItem.and.returnValue(of([]));
+
+		todoListSandboxServiceMock.saveTodoItem.and.returnValue(of());
 
 		// Act
 		component.currentTODO = todoList[0];
