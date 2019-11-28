@@ -6,6 +6,11 @@ const { constants } = require('karma');
 
 module.exports = () => {
 	return {
+		customLaunchers: {
+			ChromeHeadless: {
+				base: 'ChromeHeadless',
+			},
+		},
 		basePath: '',
 		frameworks: ['jasmine', '@angular-devkit/build-angular'],
 		plugins: [
