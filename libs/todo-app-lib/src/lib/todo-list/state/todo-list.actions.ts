@@ -1,76 +1,83 @@
-import { Action } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 
-export enum TodoListActionTypes {
-	LoadTodoList = '[TodoList] Load Todo List',
-	LoadTodoListSuccess = '[TodoList] Load Todo List Success',
-	LoadTodoListFailed = '[TodoList] Load Todo List Failed',
-	AddTodoItemSuccess = '[TodoList] Add Todo Item Success',
-	DeleteTodoItem = '[TodoList] Delete Todo Item',
-	UpdateTodoItemSuccess = '[TodoList] Update Todo Item success',
-	SaveTodoItemStarted = '[TodoList] Save Todo Item Started',
-	ToggleCompleteTodoItem = '[TodoList] Toggle Complete Todo Item',
-	SelectTodoForEdit = '[TodoList] Select Todo For Edit',
+export namespace TodoListActions {
+	export const getTodoListRequest = createAction(
+		'[TodoList] Get Todo List Request',
+	);
+
+	export const getTodoListResponse = createAction(
+		'[TodoList] Get Todo List Response',
+		props<{ todoList: TODOItem[] }>(),
+	);
+
+	export const getTodoListFailed = createAction(
+		'[TodoList] Load Todo List Failed',
+		props<{ error: Error }>(),
+	);
+
+	export const deleteTodoItem = createAction(
+		'[TodoList] Delete Todo Item',
+		props<{ todoItemId: string }>(),
+	);
+
+	export const saveTodoItemRequest = createAction(
+		'[TodoList] Save Todo Item Request',
+		props<{ todoItem: TODOItem }>(),
+	);
+
+	export const addTodoItemRequest = createAction(
+		'[TodoList] Add Todo Item Request',
+		props<{ todoItem: TODOItem }>(),
+	);
+
+	export const addTodoItemReponse = createAction(
+		'[TodoList] Add Todo Item Response',
+		props<{ todoItem: TODOItem }>(),
+	);
+
+	export const addTodoItemFailed = createAction(
+		'[TodoList] Add Todo Item Failed',
+		props<{ error: Error }>(),
+	);
+
+	export const updateTodoItemRequest = createAction(
+		'[TodoList] Update Todo Item Request',
+		props<{ todoItem: TODOItem }>(),
+	);
+
+	export const updateTodoItemResponse = createAction(
+		'[TodoList] Update Todo Item Response',
+		props<{ todoItem: TODOItem }>(),
+	);
+
+	export const updateTodoItemFailed = createAction(
+		'[TodoList] Update Todo Item Failed',
+		props<{ error: Error }>(),
+	);
+
+	export const toggleCompleteTodoItem = createAction(
+		'[TodoList] Toggle Complete Todo Item',
+		props<{ todoItemId: string }>(),
+	);
+
+	export const selectTodoForEdit = createAction(
+		'[TodoList] Select Todo For Edit',
+		props<{ todoItem: TODOItem }>(),
+	);
+
+	export const all = union({
+		getTodoListRequestAction: getTodoListRequest,
+		getTodoListResponseAction: getTodoListResponse,
+		getTodoListFailAction: getTodoListFailed,
+		addTodoItemReponseAction: addTodoItemReponse,
+		deleteTodoItemAction: deleteTodoItem,
+		saveTodoItemRequestAction: saveTodoItemRequest,
+		updateTodoItemResponseAction: updateTodoItemResponse,
+		toggleCompleteTodoItemAction: toggleCompleteTodoItem,
+		selectTodoForEditAction: selectTodoForEdit,
+	});
 }
 
-export class LoadTodoListAction implements Action {
-	public readonly type = TodoListActionTypes.LoadTodoList;
-}
-
-export class LoadTodoListSuccessAction implements Action {
-	public readonly type = TodoListActionTypes.LoadTodoListSuccess;
-
-	constructor(public payload: TODOItem[]) {}
-}
-
-export class LoadTodoListFailedAction implements Action {
-	public readonly type = TodoListActionTypes.LoadTodoListFailed;
-
-	constructor(public payload: Error) {}
-}
-
-export class AddTodoItemSuccessAction implements Action {
-	public readonly type = TodoListActionTypes.AddTodoItemSuccess;
-
-	constructor(public payload: TODOItem) {}
-}
-
-export class DeleteTodoItemAction implements Action {
-	public readonly type = TodoListActionTypes.DeleteTodoItem;
-
-	constructor(public payload: string) {}
-}
-
-export class SaveTodoItemStartedAction implements Action {
-	public readonly type = TodoListActionTypes.SaveTodoItemStarted;
-}
-
-export class UpdateTodoItemSuccessAction implements Action {
-	public readonly type = TodoListActionTypes.UpdateTodoItemSuccess;
-
-	constructor(public payload: TODOItem) {}
-}
-
-export class ToggleCompleteTodoItemAction implements Action {
-	public readonly type = TodoListActionTypes.ToggleCompleteTodoItem;
-
-	constructor(public payload: string) {}
-}
-
-export class SelectTodoForEditAction implements Action {
-	public readonly type = TodoListActionTypes.SelectTodoForEdit;
-
-	constructor(public payload: string) {}
-}
-
-export type TodoListActions =
-	| LoadTodoListAction
-	| LoadTodoListSuccessAction
-	| LoadTodoListFailedAction
-	| AddTodoItemSuccessAction
-	| DeleteTodoItemAction
-	| SaveTodoItemStartedAction
-	| UpdateTodoItemSuccessAction
-	| ToggleCompleteTodoItemAction
-	| SelectTodoForEditAction;
+export type TodoListActionsUnion = typeof TodoListActions.all;

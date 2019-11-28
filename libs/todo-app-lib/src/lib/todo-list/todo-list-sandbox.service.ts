@@ -1,18 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { first, tap } from 'rxjs/operators';
 
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { TodoListResourcesService } from './resources/todo-list-resources.service';
-import {
-	AddTodoItemSuccessAction,
-	DeleteTodoItemAction,
-	LoadTodoListAction,
-	SaveTodoItemStartedAction,
-	SelectTodoForEditAction,
-	ToggleCompleteTodoItemAction,
-	UpdateTodoItemSuccessAction,
-} from './state/todo-list.actions';
+import { TodoListActions } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
 import {
 	completedTodosSelector,
@@ -36,43 +27,35 @@ export class TodoListSandboxService {
 		private todoListResourcesService: TodoListResourcesService,
 	) {}
 	public todoCompletedToggled(todoId: string) {
-		this.store.dispatch(new ToggleCompleteTodoItemAction(todoId));
+		this.store.dispatch(
+			TodoListActions.toggleCompleteTodoItem({ todoItemId: todoId }),
+		);
 	}
 	public selectTodoForEdit(todoItem: TODOItem) {
-		this.store.dispatch(new SelectTodoForEditAction(todoItem.id));
+		this.store.dispatch(TodoListActions.selectTodoForEdit({ todoItem }));
 	}
 
 	public saveTodoItem(todoItem: TODOItem) {
-		this.store.dispatch(new SaveTodoItemStartedAction());
-
-		if (!!todoItem.id) {
-			return this.todoListResourcesService.updateTodo(todoItem).pipe(
-				first(),
-				tap(todoItm => {
-					this.store.dispatch(new UpdateTodoItemSuccessAction(todoItm));
-				}),
-			);
-		} else {
-			return this.todoListResourcesService.addTodo(todoItem).pipe(
-				first(),
-				tap(todoItm => {
-					this.store.dispatch(new AddTodoItemSuccessAction(todoItm));
-				}),
-			);
-		}
+		this.store.dispatch(
+			TodoListActions.saveTodoItemRequest({
+				todoItem: {
+					...todoItem,
+				},
+			}),
+		);
 	}
 
 	/**
 	 * loadTodoList
 	 */
 	public loadTodoList() {
-		this.store.dispatch(new LoadTodoListAction());
+		this.store.dispatch(TodoListActions.getTodoListRequest());
 	}
 
 	/**
 	 * deleteTodo
 	 */
 	public deleteTodo(id: string) {
-		this.store.dispatch(new DeleteTodoItemAction(id));
+		this.store.dispatch(TodoListActions.deleteTodoItem({ todoItemId: id }));
 	}
 }

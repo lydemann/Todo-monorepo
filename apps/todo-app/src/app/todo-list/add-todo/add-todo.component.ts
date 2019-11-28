@@ -29,8 +29,7 @@ export class AddTodoComponent {
 			console.error('Invalid form!');
 			return;
 		}
-		this.todoListSandboxService.saveTodoItem(this.currentTODO).subscribe(() => {
-			form.resetForm();
-		});
+		this.todoListSandboxService.saveTodoItem(this.currentTODO);
+		form.resetForm();
 	}
 }

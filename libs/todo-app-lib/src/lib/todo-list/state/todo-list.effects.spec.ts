@@ -6,11 +6,7 @@ import { Observable } from 'rxjs';
 import { TODOItem } from '@todo-app/shared/models/todo-item';
 import { createMagicalMock } from '@todo/shared/util';
 import { TodoListResourcesService } from '../resources/todo-list-resources.service';
-import {
-	LoadTodoListAction,
-	LoadTodoListFailedAction,
-	LoadTodoListSuccessAction,
-} from './todo-list.actions';
+import { TodoListActions } from './todo-list.actions';
 import { TodoListEffects } from './todo-list.effects';
 
 describe('TodoListEffects', () => {
@@ -34,31 +30,114 @@ describe('TodoListEffects', () => {
 		effects = TestBed.get(TodoListEffects);
 	});
 
-	describe('loadTodoList', () => {
-		it('should return a stream with todo list loaded action', () => {
+	describe('saveTodoItemRequest', () => {
+		it('should trigger add todo item request', () => {
 			const todoList: TODOItem[] = [{ title: '', id: '1', description: '' }];
-			const action = new LoadTodoListAction();
-			const outcome = new LoadTodoListSuccessAction(todoList);
+			const action = TodoListActions.getTodoListRequest();
+			const outcome = TodoListActions.getTodoListResponse({ todoList });
 
 			actions = hot('-a', { a: action });
 			const response = cold('-a|', { a: todoList });
-			todoListResourcesStub.getTodos$.and.returnValue(response);
+			todoListResourcesStub.getTodos.and.returnValue(response);
 
 			const expected = cold('--b', { b: outcome });
-			expect(effects.loadTodoList$).toBeObservable(expected);
+			expect(effects.getTodoListRequest$).toBeObservable(expected);
 		});
 
 		it('should fail and return an action with the error', () => {
-			const action = new LoadTodoListAction();
+			const action = TodoListActions.getTodoListRequest();
 			const error = new Error('some error') as any;
-			const outcome = new LoadTodoListFailedAction(error);
+			const outcome = TodoListActions.getTodoListFailed({ error });
 
 			actions = hot('-a', { a: action });
 			const response = cold('-#|', {}, error);
-			todoListResourcesStub.getTodos$.and.returnValue(response);
+			todoListResourcesStub.getTodos.and.returnValue(response);
 
-			const expected = cold('--(b|)', { b: outcome });
-			expect(effects.loadTodoList$).toBeObservable(expected);
+			const expected = cold('--b', { b: outcome });
+			expect(effects.getTodoListRequest$).toBeObservable(expected);
+		});
+	});
+
+	describe('saveTodoItemRequest$', () => {
+		it('should trigger an update todo item request', () => {
+			const todoItem: TODOItem = { title: '', id: '1', description: '' };
+
+			const action = TodoListActions.saveTodoItemRequest({ todoItem });
+			actions = hot('-a', { a: action });
+
+			const outcome = TodoListActions.updateTodoItemRequest({ todoItem });
+			const expected = cold('-b', { b: outcome });
+			expect(effects.saveTodoItemRequest$).toBeObservable(expected);
+		});
+
+		it('should trigger an add todo item request', () => {
+			const todoItem: TODOItem = { title: '', id: '', description: '' };
+
+			const action = TodoListActions.saveTodoItemRequest({ todoItem });
+			actions = hot('-a', { a: action });
+
+			const outcome = TodoListActions.addTodoItemRequest({ todoItem });
+			const expected = cold('-b', { b: outcome });
+			expect(effects.saveTodoItemRequest$).toBeObservable(expected);
+		});
+	});
+
+	describe('updateTodoItemRequest$', () => {
+		it('should return update todo list item response', () => {
+			const todoItem: TODOItem = { title: '', id: '', description: '' };
+
+			const action = TodoListActions.updateTodoItemRequest({ todoItem });
+			actions = hot('-a', { a: action });
+			const response = cold('-a|', { a: todoItem });
+			todoListResourcesStub.updateTodoItem.and.returnValue(response);
+
+			const outcome = TodoListActions.updateTodoItemResponse({ todoItem });
+			const expected = cold('--b', { b: outcome });
+			expect(effects.updateTodoItemRequest$).toBeObservable(expected);
+		});
+
+		it('should return update todo list item failed', () => {
+			const todoItem: TODOItem = { title: '', id: '', description: '' };
+
+			const action = TodoListActions.updateTodoItemRequest({ todoItem });
+			const error = new Error('some error') as any;
+			const outcome = TodoListActions.updateTodoItemFailed({ error });
+
+			actions = hot('-a', { a: action });
+			const response = cold('-#|', {}, error);
+			todoListResourcesStub.updateTodoItem.and.returnValue(response);
+
+			const expected = cold('--b', { b: outcome });
+			expect(effects.updateTodoItemRequest$).toBeObservable(expected);
+		});
+	});
+	describe('addTodoItemRequest$', () => {
+		it('should return add todo list item response', () => {
+			const todoItem: TODOItem = { title: '', id: '', description: '' };
+
+			const action = TodoListActions.addTodoItemRequest({ todoItem });
+			actions = hot('-a', { a: action });
+			const response = cold('-a', { a: todoItem });
+			todoListResourcesStub.addTodoItem.and.returnValue(response);
+
+			const outcome = TodoListActions.addTodoItemReponse({ todoItem });
+			const expected = cold('--b', { b: outcome });
+			expect(effects.addTodoItemRequest$).toBeObservable(expected);
+		});
+
+		it('should return add todo list item failed', () => {
+			const todoItem: TODOItem = { title: '', id: '', description: '' };
+
+			const action = TodoListActions.addTodoItemRequest({ todoItem });
+			const error = new Error('some error') as any;
+			const outcome = TodoListActions.addTodoItemFailed({ error });
+
+			actions = hot('-a', { a: action });
+			const response = cold('-#|', {}, error);
+			todoListResourcesStub.addTodoItem.and.returnValue(response);
+
+			const expected = cold('--b', { b: outcome });
+			expect(effects.addTodoItemRequest$).toBeObservable(expected);
 		});
 	});
 });

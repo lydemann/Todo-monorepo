@@ -9,7 +9,7 @@ import { LocaleService } from '../services/locale.service';
 export class LocalCurrencyPipe implements PipeTransform {
 	constructor(private localeService: LocaleService) {}
 
-	public transform(value: any, currencyCode: string, digitsInfo?: string) {
+	public transform(value: any, currencyCode?: string, digitsInfo?: string) {
 		if (!value) {
 			return '';
 		}
