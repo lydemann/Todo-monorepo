@@ -43,7 +43,11 @@ describe('Service: TodoListSandboxService', () => {
 
 	describe('saveTodoItem', () => {
 		it('should save todo item', () => {
-			const todoItem = new TODOItem('', '');
+			const todoItem = {
+				title: 'Some title',
+				description: 'Some description',
+				dueDate: '2020-10-10',
+			} as TODOItem;
 
 			service.saveTodoItem(todoItem);
 
