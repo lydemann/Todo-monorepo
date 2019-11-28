@@ -821,14 +821,6 @@
 						],
 						"exclude": ["**/node_modules/**", "!apps/designsystemdemo/**"]
 					}
-				},
-				"test": {
-					"builder": "ngx-build-plus:karma",
-					"options": {
-						"jestConfig": "apps/designsystemdemo/jest.config.js",
-						"tsConfig": "apps/designsystemdemo/tsconfig.spec.json",
-						"setupFile": "apps/designsystemdemo/src/test-setup.ts"
-					}
 				}
 			}
 		},
