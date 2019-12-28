@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({
@@ -27,7 +27,7 @@ export class TodoListComponent {
 		this.todoListSandboxService.deleteTodo(id);
 	}
 
-	public selectTodoForEdit(todoItem: TODOItem) {
+	public selectTodoForEdit(todoItem: TodoItem) {
 		this.todoListSandboxService.selectTodoForEdit(todoItem);
 	}
 

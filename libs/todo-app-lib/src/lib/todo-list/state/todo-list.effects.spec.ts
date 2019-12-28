@@ -3,7 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { createMagicalMock } from '@todo/shared/util';
 import { TodoListResourcesService } from '../resources/todo-list-resources.service';
 import { TodoListActions } from './todo-list.actions';
@@ -32,7 +32,7 @@ describe('TodoListEffects', () => {
 
 	describe('saveTodoItemRequest', () => {
 		it('should trigger add todo item request', () => {
-			const todoList: TODOItem[] = [{ title: '', id: '1', description: '' }];
+			const todoList: TodoItem[] = [{ title: '', id: '1', description: '' }];
 			const action = TodoListActions.getTodoListRequest();
 			const outcome = TodoListActions.getTodoListResponse({ todoList });
 
@@ -60,7 +60,7 @@ describe('TodoListEffects', () => {
 
 	describe('saveTodoItemRequest$', () => {
 		it('should trigger an update todo item request', () => {
-			const todoItem: TODOItem = { title: '', id: '1', description: '' };
+			const todoItem: TodoItem = { title: '', id: '1', description: '' };
 
 			const action = TodoListActions.saveTodoItemRequest({ todoItem });
 			actions = hot('-a', { a: action });
@@ -71,7 +71,7 @@ describe('TodoListEffects', () => {
 		});
 
 		it('should trigger an add todo item request', () => {
-			const todoItem: TODOItem = { title: '', id: '', description: '' };
+			const todoItem: TodoItem = { title: '', id: '', description: '' };
 
 			const action = TodoListActions.saveTodoItemRequest({ todoItem });
 			actions = hot('-a', { a: action });
@@ -84,7 +84,7 @@ describe('TodoListEffects', () => {
 
 	describe('updateTodoItemRequest$', () => {
 		it('should return update todo list item response', () => {
-			const todoItem: TODOItem = { title: '', id: '', description: '' };
+			const todoItem: TodoItem = { title: '', id: '', description: '' };
 
 			const action = TodoListActions.updateTodoItemRequest({ todoItem });
 			actions = hot('-a', { a: action });
@@ -97,7 +97,7 @@ describe('TodoListEffects', () => {
 		});
 
 		it('should return update todo list item failed', () => {
-			const todoItem: TODOItem = { title: '', id: '', description: '' };
+			const todoItem: TodoItem = { title: '', id: '', description: '' };
 
 			const action = TodoListActions.updateTodoItemRequest({ todoItem });
 			const error = new Error('some error') as any;
@@ -113,7 +113,7 @@ describe('TodoListEffects', () => {
 	});
 	describe('addTodoItemRequest$', () => {
 		it('should return add todo list item response', () => {
-			const todoItem: TODOItem = { title: '', id: '', description: '' };
+			const todoItem: TodoItem = { title: '', id: '', description: '' };
 
 			const action = TodoListActions.addTodoItemRequest({ todoItem });
 			actions = hot('-a', { a: action });
@@ -126,7 +126,7 @@ describe('TodoListEffects', () => {
 		});
 
 		it('should return add todo list item failed', () => {
-			const todoItem: TODOItem = { title: '', id: '', description: '' };
+			const todoItem: TodoItem = { title: '', id: '', description: '' };
 
 			const action = TodoListActions.addTodoItemRequest({ todoItem });
 			const error = new Error('some error') as any;

@@ -1,7 +1,7 @@
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 
 export interface TodoListState {
-	todos: TODOItem[];
+	todos: TodoItem[];
 	selectedTodoItemId?: string;
 	errors?: Error;
 	isLoading: boolean;

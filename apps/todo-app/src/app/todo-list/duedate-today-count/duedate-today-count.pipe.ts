@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 
 @Pipe({
 	name: 'duedateTodayCount',
 })
 export class DuedateTodayCountPipe implements PipeTransform {
-	public transform(todoItems: TODOItem[], args?: any): any {
+	public transform(todoItems: TodoItem[], args?: any): any {
 		return todoItems.filter(todo => this.isToday(new Date(todo.dueDate)))
 			.length;
 	}

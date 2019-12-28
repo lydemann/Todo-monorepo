@@ -6,10 +6,12 @@ import {
 	SkipSelf,
 } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '@todo-app/environments/environment';
+import { CustomRouterSerializer } from './router.serilization';
 import { todoAppReducers } from './todo-app.reducers';
 import { TodoListEffects } from './todo-list/state/todo-list.effects';
 
@@ -21,6 +23,9 @@ import { TodoListEffects } from './todo-list/state/todo-list.effects';
 		StoreDevtoolsModule.instrument({
 			name: 'NgRx Testing Store DevTools',
 			logOnly: environment.production,
+		}),
+		StoreRouterConnectingModule.forRoot({
+			serializer: CustomRouterSerializer,
 		}),
 	],
 	declarations: [],

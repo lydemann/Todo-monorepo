@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 
 @Component({
 	selector: 'app-todo-item-list-row',
@@ -8,7 +8,7 @@ import { TODOItem } from '@todo-app/shared/models/todo-item';
 	styleUrls: ['./todo-item-list-row.component.scss'],
 })
 export class TodoItemListRowComponent {
-	@Input() public todoItem: TODOItem;
+	@Input() public todoItem: TodoItem;
 	@Input() public readOnlyTODO: boolean;
 	@Output() public todoDelete = new EventEmitter();
 	@Output() public todoEdit = new EventEmitter();

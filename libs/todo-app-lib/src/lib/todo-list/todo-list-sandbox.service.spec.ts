@@ -4,7 +4,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { createMagicalMock } from '@todo/shared/util';
 import { TodoListResourcesService } from './resources/todo-list-resources.service';
 import { TodoListActions } from './state/todo-list.actions';
@@ -18,10 +18,10 @@ describe('Service: TodoListSandboxService', () => {
 		TodoListResourcesService,
 	);
 	todoListResourcesServiceStub.addTodoItem.and.returnValue(
-		of(new TODOItem('', '')),
+		of(new TodoItem('', '')),
 	);
 	todoListResourcesServiceStub.updateTodoItem.and.returnValue(
-		of(new TODOItem('', '')),
+		of(new TodoItem('', '')),
 	);
 
 	beforeEach(() => {
@@ -47,7 +47,7 @@ describe('Service: TodoListSandboxService', () => {
 				title: 'Some title',
 				description: 'Some description',
 				dueDate: '2020-10-10',
-			} as TODOItem;
+			} as TodoItem;
 
 			service.saveTodoItem(todoItem);
 

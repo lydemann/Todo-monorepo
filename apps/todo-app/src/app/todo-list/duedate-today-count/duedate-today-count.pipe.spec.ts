@@ -1,4 +1,4 @@
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { DuedateTodayCountPipe } from './duedate-today-count.pipe';
 
 describe('DuedateTodayCountPipe', () => {
@@ -6,9 +6,9 @@ describe('DuedateTodayCountPipe', () => {
 		it('have two task that are due today', () => {
 			const pipe = new DuedateTodayCountPipe();
 			const todos = [
-				new TODOItem('', '', new Date().toISOString().slice(0, 10)),
-				new TODOItem('', '', new Date().toISOString().slice(0, 10)),
-				new TODOItem('', ''),
+				new TodoItem('', '', new Date().toISOString().slice(0, 10)),
+				new TodoItem('', '', new Date().toISOString().slice(0, 10)),
+				new TodoItem('', ''),
 			];
 			const res = pipe.transform(todos);
 			expect(res).toBe(2);

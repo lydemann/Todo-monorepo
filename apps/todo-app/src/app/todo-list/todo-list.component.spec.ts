@@ -8,7 +8,7 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
@@ -34,9 +34,9 @@ describe('TodoListComponent', () => {
 		it('should show three todo items', async(() => {
 			const todoListSandboxService = spectator.get(TodoListSandboxService);
 			todoListSandboxService.todoList$ = of([
-				new TODOItem('1', ''),
-				new TODOItem('2', ''),
-				new TODOItem('3', ''),
+				new TodoItem('1', ''),
+				new TodoItem('2', ''),
+				new TodoItem('3', ''),
 			]);
 			spectator = createComponent();
 

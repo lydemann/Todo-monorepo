@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { EndpointsService } from '@todo/shared/data-access';
 import { Guid } from '@todo/shared/util';
 
@@ -19,10 +19,10 @@ export class TodoListResourcesService {
 	) {}
 
 	public getTodos() {
-		return this.httpClient.get<TODOItem[]>(this.todoListUrl);
+		return this.httpClient.get<TodoItem[]>(this.todoListUrl);
 	}
 
-	public addTodoItem(todo: TODOItem) {
+	public addTodoItem(todo: TodoItem) {
 		const todoWithId = {
 			...todo,
 			id: Guid.newGuid(),
@@ -30,7 +30,7 @@ export class TodoListResourcesService {
 		return of(todoWithId).pipe(delay(2000));
 	}
 
-	public updateTodoItem(todo: TODOItem) {
+	public updateTodoItem(todo: TodoItem) {
 		return of(todo).pipe(delay(2000));
 	}
 }

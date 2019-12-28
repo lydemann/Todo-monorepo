@@ -1,4 +1,4 @@
-export class TODOItem {
+export class TodoItem {
 	public id: string;
 	public title: string;
 	public description: string;

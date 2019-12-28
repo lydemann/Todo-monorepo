@@ -1,4 +1,4 @@
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { GenericAction } from '../../generic-action';
 import { TodoListActions } from './todo-list.actions';
 import { todoListInitState, todoListReducers } from './todo-list.reducers';
@@ -35,7 +35,7 @@ describe('TodoList reducer', () => {
 
 	describe('addTodoItemReponse', () => {
 		it('should add new todo to todo list', () => {
-			const newTodo = new TODOItem('new todo', 'this is new');
+			const newTodo = new TodoItem('new todo', 'this is new');
 			const addTodoItemsAction = TodoListActions.addTodoItemReponse({
 				todoItem: newTodo,
 			});
@@ -49,7 +49,7 @@ describe('TodoList reducer', () => {
 	describe('todoItemDeletedReducer', () => {
 		it('should delete todo from todo list', () => {
 			const todoToDelete = 'todoToDelete';
-			todoListInitState.todos = [new TODOItem('todoToDelete', '')];
+			todoListInitState.todos = [new TodoItem('todoToDelete', '')];
 			todoListInitState.todos[0].id = todoToDelete;
 
 			expect(todoListInitState.todos.length).toBe(1);
@@ -68,13 +68,13 @@ describe('TodoList reducer', () => {
 
 	describe('updateTodoItemResponse', () => {
 		it('should update todo item', () => {
-			const oldTodoItem = new TODOItem('todoToUpdate', '');
+			const oldTodoItem = new TodoItem('todoToUpdate', '');
 			oldTodoItem.id = 'todoToUpdate';
 			todoListInitState.todos = [oldTodoItem];
 
 			expect(todoListInitState.todos.length).toBe(1);
 
-			const updatedTodo = { ...new TODOItem('todoToUpdate', 'new msg') };
+			const updatedTodo = { ...new TodoItem('todoToUpdate', 'new msg') };
 			updatedTodo.id = oldTodoItem.id;
 			const updateTodoItemRequestAction = TodoListActions.updateTodoItemResponse(
 				{
@@ -92,7 +92,7 @@ describe('TodoList reducer', () => {
 
 	describe('todoItemCompletedReducer', () => {
 		it('should complete given todo item', () => {
-			const oldTodoItem = new TODOItem('todoToUpdate', '');
+			const oldTodoItem = new TodoItem('todoToUpdate', '');
 			oldTodoItem.id = 'todoToUpdate';
 			oldTodoItem.completed = false;
 			todoListInitState.todos = [oldTodoItem];

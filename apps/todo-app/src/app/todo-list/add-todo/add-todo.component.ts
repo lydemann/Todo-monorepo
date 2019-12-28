@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({
@@ -12,12 +12,12 @@ import { TodoListSandboxService } from '@todo/todo-app-lib';
 export class AddTodoComponent {
 	public isLoading$ = this.todoListSandboxService.isLoading$;
 
-	private _currentTODO = new TODOItem('', '');
-	public get currentTODO(): TODOItem {
+	private _currentTODO = new TodoItem('', '');
+	public get currentTODO(): TodoItem {
 		return this._currentTODO;
 	}
 	@Input()
-	public set currentTODO(todoItem: TODOItem) {
+	public set currentTODO(todoItem: TodoItem) {
 		this._currentTODO = { ...todoItem };
 	}
 

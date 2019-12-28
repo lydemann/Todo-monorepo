@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { TodoItemListRowComponent } from './todo-item-list-row.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { TodoItemListRowComponent } from './todo-item-list-row.component';
 })
 // tslint:disable-next-line:component-class-suffix
 export class TodoItemListRowComponentMock implements TodoItemListRowComponent {
-	@Input() public todoItem: TODOItem;
+	@Input() public todoItem: TodoItem;
 	@Input() public readOnlyTODO: boolean;
 	@Output() public todoDelete = new EventEmitter();
 	@Output() public todoEdit = new EventEmitter();

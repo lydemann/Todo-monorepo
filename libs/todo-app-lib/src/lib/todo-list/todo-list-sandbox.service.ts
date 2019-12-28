@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { TodoListResourcesService } from './resources/todo-list-resources.service';
 import { TodoListActions } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
@@ -31,11 +31,11 @@ export class TodoListSandboxService {
 			TodoListActions.toggleCompleteTodoItem({ todoItemId: todoId }),
 		);
 	}
-	public selectTodoForEdit(todoItem: TODOItem) {
+	public selectTodoForEdit(todoItem: TodoItem) {
 		this.store.dispatch(TodoListActions.selectTodoForEdit({ todoItem }));
 	}
 
-	public saveTodoItem(todoItem: TODOItem) {
+	public saveTodoItem(todoItem: TodoItem) {
 		this.store.dispatch(
 			TodoListActions.saveTodoItemRequest({
 				todoItem: {

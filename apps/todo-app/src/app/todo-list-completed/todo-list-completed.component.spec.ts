@@ -1,10 +1,9 @@
-/* tslint:disable:no-unused-variable */
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { completedTodoPath } from '@todo-app/app.routes';
-import { TODOItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
 import { createMagicalMock } from '@todo/shared/util';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
@@ -14,7 +13,7 @@ describe('TodoListCompletedComponent', () => {
 	let fixture: ComponentFixture<TodoListCompletedComponent>;
 	const todoListSandboxServiceStub = createMagicalMock(TodoListSandboxService);
 	const todo1 = {
-		...new TODOItem('Buy milk', 'Remember to buy milk'),
+		...new TodoItem('Buy milk', 'Remember to buy milk'),
 		completed: true,
 	};
 	const todoList = [todo1];
