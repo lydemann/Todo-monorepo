@@ -17,9 +17,6 @@ export class ErrorEffects {
 						action.showNotification,
 					);
 				}),
-				catchError(error => {
-					throw error; // TODO: not showing toast error
-				}),
 			),
 		{ dispatch: false },
 	);
