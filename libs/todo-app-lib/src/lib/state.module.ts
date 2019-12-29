@@ -14,13 +14,13 @@ import { environment } from '@todo-app/environments/environment';
 import { ErrorEffects } from '@todo/shared/data-access-logging';
 import { CustomRouterSerializer } from './router.serilization';
 import { todoAppReducers } from './todo-app.reducers';
-import { TodoListEffects } from './todo-list/state/todo-list.effects';
+import { TodoListStoreModuleModule } from './todo-list/state/todo-list-store.module';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		StoreModule.forRoot(todoAppReducers),
-		EffectsModule.forRoot([TodoListEffects, ErrorEffects]),
+		EffectsModule.forRoot([ErrorEffects]),
 		StoreDevtoolsModule.instrument({
 			name: 'NgRx Testing Store DevTools',
 			logOnly: environment.production,
@@ -28,6 +28,7 @@ import { TodoListEffects } from './todo-list/state/todo-list.effects';
 		StoreRouterConnectingModule.forRoot({
 			serializer: CustomRouterSerializer,
 		}),
+		TodoListStoreModuleModule,
 	],
 	declarations: [],
 })

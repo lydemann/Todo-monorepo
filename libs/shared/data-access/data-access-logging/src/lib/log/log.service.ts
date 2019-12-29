@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { first } from 'rxjs/operators';
 import * as StackTrace from 'stacktrace-js';
 
 import { BrowserDetectorService } from '../browser-detector/browser-detector.service';
+import { StoreAnonymizationService } from '../store/anonymizer/store-anonymization.service';
 import { LogFields } from './log-data.interface';
 import { Logger } from './logger';
 import { SessionIdService } from './session-id.service';
@@ -22,6 +24,7 @@ export class LogService {
 	constructor(
 		private browserDetectorService: BrowserDetectorService,
 		private sessionIdService: SessionIdService,
+		private storeAnonymizeService: StoreAnonymizationService<any>,
 	) {
 		this.browserAndVendor = this.browserDetectorService.getVendorAndVersion();
 	}
@@ -161,11 +164,20 @@ export class LogService {
 	}
 
 	private getStandardLogFields() {
+		let state = {};
+		this.storeAnonymizeService
+			.getAnonymizedState()
+			.pipe(first())
+			.subscribe(anonymizedState => {
+				state = anonymizedState;
+			});
+
 		return {
 			environment: this.env,
 			userId: this.userId,
 			browser: this.browserAndVendor,
 			sessionId: this.sessionIdService.sessionId,
+			state,
 		};
 	}
 }

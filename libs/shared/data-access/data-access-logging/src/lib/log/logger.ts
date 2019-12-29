@@ -95,7 +95,20 @@ export class Logger {
 			},
 		};
 
-		return JSON.stringify(index);
+		return this.safeStringify(index);
+	}
+
+	private safeStringify(value) {
+		const seen = new Set();
+		return JSON.stringify(value, (k, v) => {
+			if (seen.has(v)) {
+				return '...';
+			}
+			if (typeof v === 'object') {
+				seen.add(v);
+			}
+			return v;
+		});
 	}
 
 	private buildBodyChunk(entry: LogEntry) {
@@ -112,7 +125,7 @@ export class Logger {
 			fields,
 		};
 
-		return JSON.stringify(body);
+		return body;
 	}
 
 	private getMessageTemplate() {
@@ -140,6 +153,7 @@ export class Logger {
 			[this.ELAPSED_MS_FIELD]: data.elapsedTime,
 			[this.REQUEST_PATH_FIELD]: data.requestPath,
 			[this.URL_FIELD]: data.url,
+			[this.APP_STATE_FIELD]: data.state,
 		};
 	}
 }

@@ -7,5 +7,5 @@ export interface LogFields {
 	url?: string;
 	correlationId?: string;
 	sessionId?: string;
-	state?: string;
+	state?: {};
 }

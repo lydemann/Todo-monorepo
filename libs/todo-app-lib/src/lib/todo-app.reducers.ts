@@ -4,10 +4,8 @@ import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '@todo-app/environments/environment';
 import { AppState } from './app-state';
-import { todoListReducers } from './todo-list/state/todo-list.reducers';
 
 export const todoAppReducers: ActionReducerMap<any> = {
-	todoList: todoListReducers,
 	router: routerReducer,
 };
 
