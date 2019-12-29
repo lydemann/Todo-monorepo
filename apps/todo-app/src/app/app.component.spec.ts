@@ -1,5 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AppComponent } from '@todo-app/app.component';
@@ -24,6 +25,7 @@ describe('AppComponent', () => {
 				provideMagicalMock(TranslateService),
 				{ provide: API_ENDPOINTS, useValue: apiTendpoints },
 				provideMagicalMock(TodoListSandboxService),
+				provideMockStore({ initialState: {} }),
 			],
 		})
 			.overrideTemplate(AppComponent, '')
