@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -55,7 +55,7 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 	declarations: [AppComponent, FooterComponent],
 	imports: [
 		BrowserModule,
-		FormsModule,
+		BrowserAnimationsModule,
 		CoreModule,
 		SharedModule,
 		HttpClientModule,

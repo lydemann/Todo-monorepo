@@ -1,3 +1,7 @@
 @import './global/positioning';
 @import './global/spinner';
 @import 'themes';
+
+.danger {
+	background: get-color('warn') !important;
+}

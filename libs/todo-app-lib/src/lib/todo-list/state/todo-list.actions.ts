@@ -1,6 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props, union } from '@ngrx/store';
 
 import { TodoItem } from '@todo-app/shared/models/todo-item';
+import {
+	createErrorAction,
+	errorProps,
+} from '@todo/shared/data-access-logging';
 
 export namespace TodoListActions {
 	export const getTodoListRequest = createAction(
@@ -12,9 +17,9 @@ export namespace TodoListActions {
 		props<{ todoList: TodoItem[] }>(),
 	);
 
-	export const getTodoListFailed = createAction(
+	export const getTodoListFailed = createErrorAction(
 		'[TodoList] Load Todo List Failed',
-		props<{ error: Error }>(),
+		errorProps<{ error: Error }>(),
 	);
 
 	export const deleteTodoItem = createAction(
@@ -37,9 +42,9 @@ export namespace TodoListActions {
 		props<{ todoItem: TodoItem }>(),
 	);
 
-	export const addTodoItemFailed = createAction(
+	export const addTodoItemFailed = createErrorAction(
 		'[TodoList] Add Todo Item Failed',
-		props<{ error: Error }>(),
+		errorProps<{ error: Error }>(),
 	);
 
 	export const updateTodoItemRequest = createAction(
@@ -52,9 +57,9 @@ export namespace TodoListActions {
 		props<{ todoItem: TodoItem }>(),
 	);
 
-	export const updateTodoItemFailed = createAction(
+	export const updateTodoItemFailed = createErrorAction(
 		'[TodoList] Update Todo Item Failed',
-		props<{ error: Error }>(),
+		errorProps<{ error: Error }>(),
 	);
 
 	export const toggleCompleteTodoItem = createAction(

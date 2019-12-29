@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { createMagicalMock, Mock } from '@todo/shared/util';
+import { createMagicalMock, Mock } from '@todo/shared/util-test';
 import { FeatureToggleService } from './feature-toggle.service';
 
 describe('FeatureToggleService', () => {

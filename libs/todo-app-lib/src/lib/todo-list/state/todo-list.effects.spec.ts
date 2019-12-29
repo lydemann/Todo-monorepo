@@ -4,7 +4,7 @@ import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
 import { TodoItem } from '@todo-app/shared/models/todo-item';
-import { createMagicalMock } from '@todo/shared/util';
+import { createMagicalMock } from '@todo/shared/util-test';
 import { TodoListResourcesService } from '../resources/todo-list-resources.service';
 import { TodoListActions } from './todo-list.actions';
 import { TodoListEffects } from './todo-list.effects';

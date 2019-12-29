@@ -2,10 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { first } from 'rxjs/operators';
 
 import { TodoItem } from '@todo-app/shared/models/todo-item';
-import { createMagicalMock } from '@todo/shared/util';
+import { createMagicalMock } from '@todo/shared/util-test';
 import { TodoListResourcesService } from './resources/todo-list-resources.service';
 import { TodoListActions } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
