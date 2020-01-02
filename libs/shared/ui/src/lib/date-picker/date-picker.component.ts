@@ -3,7 +3,7 @@ import {
 	ControlValueAccessor,
 	FormControl,
 	FormGroupDirective,
-	NgControl,
+	NG_VALUE_ACCESSOR,
 	NgForm,
 } from '@angular/forms';
 import { ErrorStateMatcher, MatDatepickerInputEvent } from '@angular/material';
@@ -23,7 +23,7 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 		control: FormControl,
 		form: NgForm | FormGroupDirective,
 	): boolean {
-		const isSubmitted = form && form.submitted;
+		const isSubmitted = !form ? true : form.submitted;
 		const isFromDirtyAndSubmitted = !!(
 			control &&
 			control.invalid &&
@@ -40,6 +40,13 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 	selector: 'app-date-picker',
 	templateUrl: './date-picker.component.html',
 	styleUrls: ['./date-picker.component.scss'],
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: DatePickerComponent,
+			multi: true,
+		},
+	],
 })
 export class DatePickerComponent implements ControlValueAccessor, OnDestroy {
 	@Input()
@@ -56,8 +63,6 @@ export class DatePickerComponent implements ControlValueAccessor, OnDestroy {
 	@Input() public placeholder: string = 'Choose a date';
 	public dateChange: EventEmitter<Date> = new EventEmitter();
 	public isDisabled = false;
-	// tslint:disable-next-line: member-ordering
-	public hasError: boolean = this.ngControl.invalid;
 
 	// used to display mat error
 	public formControl = new FormControl('');
@@ -74,9 +79,6 @@ export class DatePickerComponent implements ControlValueAccessor, OnDestroy {
 	);
 	private onTouched = Function;
 
-	constructor(public ngControl: NgControl, private ngForm: NgForm) {
-		ngControl.valueAccessor = this;
-	}
 	public ngOnDestroy(): void {
 		this.destroy$.next();
 	}
