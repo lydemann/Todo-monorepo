@@ -1,0 +1,17 @@
+<mat-form-field>
+	<input
+		matInput
+		[matDatepicker]="picker"
+		[disabled]="isDisabled"
+		[value]="date"
+		[min]="minDate"
+		[max]="maxDate"
+		(dateChange)="onDateChange($event)"
+		[formControl]="formControl"
+		[errorStateMatcher]="dateErrorStateMatcher"
+		[placeholder]="placeholder"
+	/>
+	<mat-error>{{ errorMessage }}</mat-error>
+	<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+	<mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
