@@ -21,6 +21,7 @@
 		"title": "Title",
 		"description": "Description",
 		"due-date": "Due date",
-		"create": "Create"
+		"create": "Create",
+		"save": "Save"
 	}
 }

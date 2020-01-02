@@ -56,7 +56,11 @@
 				[type]="'submit'"
 				data-test="create-todo-submit"
 			>
-				{{ 'add-todo.create' | translate }}
+				{{
+					!_currentTODO.id
+						? ('add-todo.create' | translate)
+						: ('add-todo.save' | translate)
+				}}
 			</app-square-button>
 		</form>
 	</ng-template>

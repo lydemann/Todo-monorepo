@@ -21,6 +21,7 @@
 		"title": "Titel",
 		"description": "Beskrivelse",
 		"due-date": "Forfaldsdato",
-		"create": "Opret"
+		"create": "Opret",
+		"save": "Gem"
 	}
 }
