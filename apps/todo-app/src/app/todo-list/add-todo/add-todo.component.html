@@ -2,65 +2,65 @@
 	<h5>{{ 'add-todo.headline' | translate }}</h5>
 	<hr />
 
-	<div
-		*ngIf="form.submitted && form.invalid"
-		class="alert alert-danger"
-		role="alert"
-	>
-		{{ 'errors.invalid-form' | translate }}
-	</div>
-	<form #form="ngForm" (submit)="save(form)">
-		<div class="form-group">
-			<label for="todo-title">{{ 'add-todo.title' | translate }}</label>
-			<input
-				type="text"
-				required
-				name="todo-title"
-				[(ngModel)]="currentTODO.title"
-				class="form-control"
-				data-test="todo-title"
-				id="todo-title"
-				placeholder="Enter title"
-			/>
-		</div>
-		<div class="form-group">
-			<label for="todo-description">{{
-				'add-todo.description' | translate
-			}}</label>
-			<input
-				type="text"
-				required
-				name="todo-description"
-				[(ngModel)]="currentTODO.description"
-				class="form-control"
-				data-test="todo-description"
-				id="todo-description"
-				placeholder="Enter description"
-			/>
-		</div>
-		<div class="form-group">
-			<label for="todo-due-date">{{ 'add-todo.due-date' | translate }}</label>
-			<input
-				type="date"
-				name="todo-due-date"
-				placeholder="yyyy-mm-dd"
-				[appInvalidDate]="true"
-				class="form-control"
-				data-test="todo-duedate"
-				[(ngModel)]="currentTODO.dueDate"
-				id="todo-due-date"
-				placeholder="Enter due date"
-			/>
-		</div>
-		<app-square-button
-			[buttonType]="'Primary'"
-			[type]="'submit'"
-			data-test="create-todo-submit"
+	<ng-template #todoForm>
+		<div
+			*ngIf="form.submitted && form.invalid"
+			class="alert alert-danger"
+			role="alert"
 		>
-			{{ 'add-todo.create' | translate }}
-		</app-square-button>
-		<div *ngIf="isLoading$ | async" class="relative">
-			<app-spinner></app-spinner>
+			{{ 'errors.invalid-form' | translate }}
 		</div>
-	</form>
+		<form #form="ngForm" (submit)="save(form)">
+			<div class="form-group">
+				<label for="todo-title">{{ 'add-todo.title' | translate }}</label>
+				<input
+					type="text"
+					required
+					name="todo-title"
+					[(ngModel)]="currentTODO.title"
+					class="form-control"
+					data-test="todo-title"
+					id="todo-title"
+					placeholder="Enter title"
+				/>
+			</div>
+			<div class="form-group">
+				<label for="todo-description">{{
+					'add-todo.description' | translate
+				}}</label>
+				<input
+					type="text"
+					required
+					name="todo-description"
+					[(ngModel)]="currentTODO.description"
+					class="form-control"
+					data-test="todo-description"
+					id="todo-description"
+					placeholder="Enter description"
+				/>
+			</div>
+			<div class="form-group">
+				<span for="todo-due-date">{{ 'add-todo.due-date' | translate }}</span>
+				<div>
+					<app-date-picker
+						name="todo-due-date"
+						[appInvalidDate]="true"
+						data-test="todo-duedate"
+						[(ngModel)]="currentTODO.dueDate"
+						placeholder="Enter due date"
+					></app-date-picker>
+				</div>
+			</div>
+			<app-square-button
+				[buttonType]="'Primary'"
+				[type]="'submit'"
+				data-test="create-todo-submit"
+			>
+				{{ 'add-todo.create' | translate }}
+			</app-square-button>
+		</form>
+	</ng-template>
+	<div *ngIf="isSavingTodo$ | async; else todoForm" class="relative">
+		<app-spinner></app-spinner>
+	</div>
 </div>

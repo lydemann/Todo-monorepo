@@ -10,7 +10,7 @@ import { TodoListSandboxService } from '@todo/todo-app-lib';
 	styleUrls: ['add-todo.component.scss'],
 })
 export class AddTodoComponent {
-	public isLoading$ = this.todoListSandboxService.isLoading$;
+	public isSavingTodo$ = this.todoListSandboxService.isSavingTodo$;
 
 	private _currentTODO = new TodoItem('', '');
 	public get currentTODO(): TodoItem {

@@ -5,4 +5,5 @@ export interface TodoListState {
 	selectedTodoItemId?: string;
 	errors?: Error;
 	isLoading: boolean;
+	isSavingTodo: boolean;
 }

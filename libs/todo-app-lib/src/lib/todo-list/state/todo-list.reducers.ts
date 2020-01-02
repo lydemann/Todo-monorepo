@@ -7,6 +7,7 @@ import { TodoListState } from './todo-list.model';
 export const todoListInitState: TodoListState = {
 	todos: [],
 	isLoading: false,
+	isSavingTodo: false,
 };
 
 const todoItemsLoadFailed = (
@@ -20,17 +21,6 @@ const todoItemsLoadFailed = (
 	};
 };
 
-const AddTodoItemSuccessReducer = (
-	lastState: TodoListState,
-	action: ReturnType<typeof TodoListActions.addTodoItemReponse>,
-): TodoListState => {
-	const newTodos = [...lastState.todos, { ...action.todoItem }];
-	return {
-		...lastState,
-		todos: newTodos,
-		isLoading: false,
-	};
-};
 const todoItemDeletedReducer = (
 	lastState: TodoListState,
 	action: ReturnType<typeof TodoListActions.deleteTodoItem>,
@@ -63,7 +53,7 @@ const UpdateTodoItemReducer = (
 		...lastState,
 		todos: newTodos,
 		selectedTodoItemId: null,
-		isLoading: false,
+		isSavingTodo: false,
 	};
 };
 const toggleTodoItemReducer = (
@@ -114,12 +104,17 @@ export const todoListReducers = createReducer(
 		return todoItemsLoadFailed(state, action);
 	}),
 	on(TodoListActions.addTodoItemReponse, (state, action) => {
-		return AddTodoItemSuccessReducer(state, action);
+		const newTodos = [...state.todos, { ...action.todoItem }];
+		return {
+			...state,
+			todos: newTodos,
+			isSavingTodo: false,
+		};
 	}),
 	on(TodoListActions.addTodoItemFailed, (state, action) => {
 		return {
 			...state,
-			isLoading: false,
+			isSavingTodo: false,
 		};
 	}),
 
@@ -130,14 +125,13 @@ export const todoListReducers = createReducer(
 	on(TodoListActions.saveTodoItemRequest, (state, action) => {
 		return {
 			...state,
-			isLoading: true,
+			isSavingTodo: true,
 		};
 	}),
 
 	on(TodoListActions.updateTodoItemRequest, (state, action) => {
 		return {
 			...state,
-			isLoading: true,
 		};
 	}),
 
@@ -148,7 +142,7 @@ export const todoListReducers = createReducer(
 	on(TodoListActions.updateTodoItemFailed, (state, action) => {
 		return {
 			...state,
-			isLoading: false,
+			isSavingTodo: false,
 		};
 	}),
 

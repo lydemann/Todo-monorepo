@@ -9,7 +9,7 @@
 			<div *ngIf="todoItem.dueDate">
 				<small
 					>{{ 'add-todo.due-date' | translate }}:
-					<b>{{ todoItem.dueDate }}</b>
+					<b>{{ todoItem.dueDate | localDate }}</b>
 				</small>
 			</div>
 		</div>

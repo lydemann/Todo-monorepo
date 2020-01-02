@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { TodoItem } from '@todo-app/shared/models/todo-item';
-import { TodoListResourcesService } from './resources/todo-list-resources.service';
 import { TodoListActions } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
 import {
 	completedTodosSelector,
+	isAddingTodoSelector,
 	isLoadingSelector,
 	selectedTodoItemSelector,
 	todoListSelector,
@@ -19,13 +19,10 @@ export class TodoListSandboxService {
 	public isLoading$ = this.store.select(isLoadingSelector);
 	public selectedTodo$ = this.store.select(selectedTodoItemSelector);
 	public completedTodos$ = this.store.select(completedTodosSelector);
-
+	public isSavingTodo$ = this.store.select(isAddingTodoSelector);
 	public todoList$ = this.store.select(todoListSelector);
 
-	constructor(
-		private store: Store<TodoListState>,
-		private todoListResourcesService: TodoListResourcesService,
-	) {}
+	constructor(private store: Store<TodoListState>) {}
 	public todoCompletedToggled(todoId: string) {
 		this.store.dispatch(
 			TodoListActions.toggleCompleteTodoItem({ todoItemId: todoId }),

@@ -21,6 +21,11 @@ export const isLoadingSelector = createSelector(
 	todoListState => todoListState.isLoading,
 );
 
+export const isAddingTodoSelector = createSelector(
+	getTodolistState,
+	todoListState => todoListState.isSavingTodo,
+);
+
 export const selectedTodoItemSelector = createSelector(
 	getTodolistState,
 	todoListState => {

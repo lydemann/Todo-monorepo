@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AccordionModule } from './accordion/accordion.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
+import { DatePickerModule } from './date-picker/date-picker.module';
 import { IconModule } from './icon/icon.module';
 import { SpinnerOverlayWrapperModule } from './spinner-overlay-wrapper/spinner-overlay-wrapper.module';
 import { SpinnerModule } from './spinner/spinner.module';
@@ -21,6 +22,7 @@ const IMPORTS = [
 	TextareaModule,
 	ToggleModule,
 	TooltipModule,
+	DatePickerModule,
 ];
 
 @NgModule({
