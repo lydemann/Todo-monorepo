@@ -9,3 +9,4 @@ export * from './lib/spinner-overlay-wrapper';
 export * from './lib/textarea';
 export * from './lib/toggle';
 export * from './lib/tooltip';
+export * from './lib/date-picker';

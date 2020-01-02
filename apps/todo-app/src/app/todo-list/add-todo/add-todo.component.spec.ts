@@ -2,9 +2,11 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, NgForm } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
+import { DatePickerModule } from '@todo/shared/ui';
 import { provideMagicalMock } from '@todo/shared/util-test';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 import { AddTodoComponent } from './add-todo.component';
@@ -16,7 +18,12 @@ describe('AddTodoComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [AddTodoComponent],
-			imports: [FormsModule, TranslateModule.forRoot()],
+			imports: [
+				FormsModule,
+				TranslateModule.forRoot(),
+				DatePickerModule,
+				NoopAnimationsModule,
+			],
 			providers: [provideMagicalMock(TodoListSandboxService)],
 			schemas: [NO_ERRORS_SCHEMA],
 		}).compileComponents();
