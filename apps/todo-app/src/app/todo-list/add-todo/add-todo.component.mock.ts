@@ -9,7 +9,7 @@ export class AddTodoComponentMock {
 	public isLoading = false;
 
 	@Input()
-	public currentTODO;
+	public currentTodo;
 
 	// tslint:disable-next-line:no-empty
 	public save() {}

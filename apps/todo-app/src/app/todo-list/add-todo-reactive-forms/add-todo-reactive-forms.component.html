@@ -10,14 +10,13 @@
 		>
 			{{ 'errors.invalid-form' | translate }}
 		</div>
-		<form #form="ngForm" (submit)="save(form)">
+		<form [formGroup]="addTodoForm" #form="ngForm" (ngSubmit)="save(form)">
 			<div class="form-group">
 				<label for="todo-title">{{ 'add-todo.title' | translate }}</label>
 				<input
 					type="text"
-					required
+					formControlName="title"
 					name="todo-title"
-					[(ngModel)]="currentTodo.title"
 					class="form-control"
 					data-test="todo-title"
 					id="todo-title"
@@ -32,7 +31,7 @@
 					type="text"
 					required
 					name="todo-description"
-					[(ngModel)]="currentTodo.description"
+					formControlName="description"
 					class="form-control"
 					data-test="todo-description"
 					id="todo-description"
@@ -44,9 +43,8 @@
 				<div>
 					<app-date-picker
 						name="todo-due-date"
-						[appInvalidDate]="true"
+						formControlName="dueDate"
 						data-test="todo-duedate"
-						[(ngModel)]="currentTodo.dueDate"
 						placeholder="Enter due date"
 					></app-date-picker>
 				</div>

@@ -15,7 +15,9 @@
 				{{ todoList | duedateTodayCount }}
 			</div>
 			<hr />
-			<app-add-todo [currentTODO]="selectedTodo$ | async"></app-add-todo>
+			<app-add-todo-reactive-forms
+				[currentTodo]="selectedTodo$ | async"
+			></app-add-todo-reactive-forms>
 		</div>
 	</div>
 </ng-container>

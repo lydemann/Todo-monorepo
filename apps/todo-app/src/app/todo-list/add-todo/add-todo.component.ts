@@ -13,11 +13,11 @@ export class AddTodoComponent {
 	public isSavingTodo$ = this.todoListSandboxService.isSavingTodo$;
 
 	private _currentTODO = new TodoItem('', '');
-	public get currentTODO(): TodoItem {
+	public get currentTodo(): TodoItem {
 		return this._currentTODO;
 	}
 	@Input()
-	public set currentTODO(todoItem: TodoItem) {
+	public set currentTodo(todoItem: TodoItem) {
 		this._currentTODO = { ...todoItem };
 	}
 
@@ -29,7 +29,7 @@ export class AddTodoComponent {
 			console.error('Invalid form!');
 			return;
 		}
-		this.todoListSandboxService.saveTodoItem(this.currentTODO);
+		this.todoListSandboxService.saveTodoItem(this.currentTodo);
 		form.resetForm();
 	}
 }

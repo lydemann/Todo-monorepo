@@ -1,9 +1,15 @@
-import { Component, EventEmitter, Input, OnDestroy } from '@angular/core';
+import {
+	AfterViewInit,
+	Component,
+	EventEmitter,
+	Input,
+	OnDestroy,
+} from '@angular/core';
 import {
 	ControlValueAccessor,
 	FormControl,
 	FormGroupDirective,
-	NG_VALUE_ACCESSOR,
+	NgControl,
 	NgForm,
 } from '@angular/forms';
 import { ErrorStateMatcher, MatDatepickerInputEvent } from '@angular/material';
@@ -23,13 +29,14 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 		control: FormControl,
 		form: NgForm | FormGroupDirective,
 	): boolean {
-		const isSubmitted = !form ? true : form.submitted;
+		const isSubmitted = form && form.submitted;
 		const isFromDirtyAndSubmitted = !!(
 			control &&
 			control.invalid &&
-			isSubmitted &&
+			(!form || isSubmitted) &&
 			(control.dirty || control.touched)
 		);
+
 		return this.hasError !== undefined
 			? this.hasError
 			: isFromDirtyAndSubmitted;
@@ -40,15 +47,9 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 	selector: 'app-date-picker',
 	templateUrl: './date-picker.component.html',
 	styleUrls: ['./date-picker.component.scss'],
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: DatePickerComponent,
-			multi: true,
-		},
-	],
 })
-export class DatePickerComponent implements ControlValueAccessor, OnDestroy {
+export class DatePickerComponent
+	implements ControlValueAccessor, OnDestroy, AfterViewInit {
 	@Input()
 	public set showError(v: boolean) {
 		this._showErrorSubject.next(v);
@@ -63,12 +64,10 @@ export class DatePickerComponent implements ControlValueAccessor, OnDestroy {
 	@Input() public placeholder: string = 'Choose a date';
 	public dateChange: EventEmitter<Date> = new EventEmitter();
 	public isDisabled = false;
-
 	// used to display mat error
 	public formControl = new FormControl('');
-
-	private _showErrorSubject = new BehaviorSubject<boolean>(undefined);
 	private destroy$ = new Subject<void>();
+	private _showErrorSubject = new BehaviorSubject<boolean>(undefined);
 	private _showError$: Observable<
 		boolean
 	> = this._showErrorSubject.asObservable();
@@ -77,14 +76,22 @@ export class DatePickerComponent implements ControlValueAccessor, OnDestroy {
 		this._showError$,
 		this.destroy$.asObservable(),
 	);
+
 	private onTouched = Function;
+
+	constructor(public ngControl: NgControl) {
+		ngControl.valueAccessor = this;
+	}
+	public ngAfterViewInit(): void {
+		this.formControl = this.ngControl.control as FormControl;
+	}
 
 	public ngOnDestroy(): void {
 		this.destroy$.next();
 	}
 
 	public onDateChange(dateInput: MatDatepickerInputEvent<Date>) {
-		const date = dateInput.target.value;
+		const date = dateInput.value;
 		this.onChange(date);
 		this.onTouched();
 		this.dateChange.next(date);
