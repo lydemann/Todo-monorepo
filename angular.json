@@ -953,11 +953,22 @@
 					}
 				},
 				"test": {
-					"builder": "@nrwl/jest:jest",
+					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
-						"jestConfig": "apps/questionnaire-app/jest.config.js",
+						"main": "apps/questionnaire-app/src/test.ts",
+						"polyfills": "apps/questionnaire-app/src/polyfills.ts",
 						"tsConfig": "apps/questionnaire-app/tsconfig.spec.json",
-						"setupFile": "apps/questionnaire-app/src/test-setup.ts"
+						"karmaConfig": "apps/questionnaire-app/karma.conf.js",
+						"styles": ["apps/questionnaire-app/src/styles.scss"],
+						"stylePreprocessorOptions": {
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
+						},
+						"scripts": [],
+						"assets": [
+							"apps/questionnaire-app/src/favicon.ico",
+							"apps/questionnaire-app/src/assets",
+							"apps/questionnaire-app/src/manifest.json"
+						]
 					}
 				}
 			}

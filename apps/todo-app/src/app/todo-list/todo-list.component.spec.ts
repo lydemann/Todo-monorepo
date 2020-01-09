@@ -12,6 +12,7 @@ import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { AddTodoReactiveFormsModule } from './add-todo-reactive-forms/add-todo-reactive-forms.module';
 import { AddTodoComponent } from './add-todo/add-todo.component';
 import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
 
@@ -20,7 +21,12 @@ describe('TodoListComponent', () => {
 	const createComponent = createComponentFactory({
 		component: TodoListComponent,
 		declarations: [AddTodoComponent, DuedateTodayCountPipe],
-		imports: [FormsModule, TranslateModule.forRoot(), SharedModule],
+		imports: [
+			FormsModule,
+			TranslateModule.forRoot(),
+			SharedModule,
+			AddTodoReactiveFormsModule,
+		],
 		providers: [
 			mockProvider(TodoListSandboxService, {
 				todoList$: of([]),
