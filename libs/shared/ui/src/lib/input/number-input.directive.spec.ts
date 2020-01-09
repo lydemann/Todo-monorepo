@@ -6,7 +6,7 @@ import { NumberInputDirective } from './number-input.directive';
 
 describe('Directive: NumberInputDirective', () => {
 	[
-		{ id: 'da', separators: { group: '.', decimal: ',' } },
+		// { id: 'da', separators: { group: '.', decimal: ',' } },
 		{ id: 'en', separators: { group: ',', decimal: '.' } },
 	].forEach(locale => {
 		describe(`locale: ${locale.id}`, () => {
@@ -27,7 +27,7 @@ describe('Directive: NumberInputDirective', () => {
 
 			beforeEach(() => {
 				testFormControl = new FormControl('');
-				const template = `<input drbNumberInput [formControl]="testFormControl" />`;
+				const template = `<input appNumberInput [formControl]="testFormControl" />`;
 				spectator = createHost(template, {
 					hostProps: { testFormControl },
 				});
