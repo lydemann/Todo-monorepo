@@ -868,6 +868,126 @@
 					}
 				}
 			}
+		},
+		"questionnaire-app": {
+			"projectType": "application",
+			"schematics": {
+				"@nrwl/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "apps/questionnaire-app",
+			"sourceRoot": "apps/questionnaire-app/src",
+			"prefix": "todo",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/apps/questionnaire-app",
+						"index": "apps/questionnaire-app/src/index.html",
+						"main": "apps/questionnaire-app/src/main.ts",
+						"polyfills": "apps/questionnaire-app/src/polyfills.ts",
+						"tsConfig": "apps/questionnaire-app/tsconfig.app.json",
+						"assets": [
+							"apps/questionnaire-app/src/favicon.ico",
+							"apps/questionnaire-app/src/assets"
+						],
+						"styles": ["apps/questionnaire-app/src/styles.scss"],
+						"stylePreprocessorOptions": {
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
+						},
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "apps/questionnaire-app/src/environments/environment.ts",
+									"with": "apps/questionnaire-app/src/environments/environment.prod.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": true,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "questionnaire-app:build"
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "questionnaire-app:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "questionnaire-app:build"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"apps/questionnaire-app/tsconfig.app.json",
+							"apps/questionnaire-app/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**", "!apps/questionnaire-app/**"]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "apps/questionnaire-app/jest.config.js",
+						"tsConfig": "apps/questionnaire-app/tsconfig.spec.json",
+						"setupFile": "apps/questionnaire-app/src/test-setup.ts"
+					}
+				}
+			}
+		},
+		"questionnaire-app-e2e": {
+			"root": "apps/questionnaire-app-e2e",
+			"sourceRoot": "apps/questionnaire-app-e2e/src",
+			"projectType": "application",
+			"architect": {
+				"e2e": {
+					"builder": "@nrwl/cypress:cypress",
+					"options": {
+						"cypressConfig": "apps/questionnaire-app-e2e/cypress.json",
+						"tsConfig": "apps/questionnaire-app-e2e/tsconfig.e2e.json",
+						"devServerTarget": "questionnaire-app:serve"
+					},
+					"configurations": {
+						"production": {
+							"devServerTarget": "questionnaire-app:serve:production"
+						}
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": ["apps/questionnaire-app-e2e/tsconfig.e2e.json"],
+						"exclude": ["**/node_modules/**", "!apps/questionnaire-app-e2e/**"]
+					}
+				}
+			}
 		}
 	},
 	"defaultProject": "todo-app",
@@ -875,6 +995,9 @@
 		"defaultCollection": "@nrwl/schematics"
 	},
 	"schematics": {
+		"@schematics/angular:component": {
+			"changeDetection": "OnPush"
+		},
 		"@nrwl/react": {
 			"application": {
 				"babel": true,

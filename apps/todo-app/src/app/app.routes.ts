@@ -8,6 +8,7 @@ import {
 } from '@todo/shared/util-feature-toggle';
 
 export const rootPath = '';
+export const registerPath = 'register';
 export const completedTodoPath = 'completed-todos';
 
 const appRoutes: Routes = [
@@ -15,6 +16,11 @@ const appRoutes: Routes = [
 		path: rootPath,
 		component: TodoListComponent,
 		pathMatch: 'full',
+	},
+	{
+		path: registerPath,
+		loadChildren: () =>
+			import('./register/register.module').then(m => m.RegisterModule),
 	},
 	{
 		path: completedTodoPath,

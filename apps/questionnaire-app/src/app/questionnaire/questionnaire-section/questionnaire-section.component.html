@@ -1,0 +1,8 @@
+<div class="questionnaire-section">
+	Question section name: {{ section.headerText }}
+	<ng-container *ngFor="let question of sectionQuestions">
+		<app-question [question]="question" [form]="questionsForm"></app-question>
+	</ng-container>
+
+	<button (click)="saveForm()">Next section</button>
+</div>

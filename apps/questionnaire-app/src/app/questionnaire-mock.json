@@ -1,0 +1,94 @@
+{
+	"questionnaire": {
+		"questionSections": [
+			{
+				"questionSectionName": "Section1",
+				"headerText": "Section 1",
+				"subHeaderText": "",
+				"repeatable": false,
+				"questions": [
+					{
+						"externalQuestionId": "Question1",
+						"questionText": "What's your name?",
+						"helpText": "Please write your name",
+						"answerType": "FreeText",
+						"answerOptions": [],
+						"enableCriteria": [],
+						"validationRules": ["Required"]
+					},
+					{
+						"externalQuestionId": "Question2",
+						"questionText": "Where are you from?",
+						"helpText": "",
+						"answerType": "SelectOne",
+						"answerOptions": [
+							{
+								"optionText": "Denmark",
+								"optionCode": "DK"
+							},
+							{
+								"optionText": "Norway",
+								"optionCode": "NO"
+							},
+							{
+								"optionText": "USA",
+								"optionCode": "US"
+							}
+						],
+						"enableCriteria": [],
+						"validationRules": ["Required"]
+					},
+					{
+						"externalQuestionId": "Question3",
+						"questionText": "What is your gender?",
+						"helpText": "",
+						"answerType": "SelectOne",
+						"answerOptions": [
+							{
+								"optionText": "Male",
+								"optionCode": "MALE"
+							},
+							{
+								"optionText": "Female",
+								"optionCode": "FEMALE"
+							}
+						],
+						"enableCriteria": [],
+						"validationRules": ["Required"]
+					},
+					{
+						"externalQuestionId": "Question4",
+						"questionText": "Where did you hear about us?",
+						"helpText": "",
+						"answerType": "SelectMulti",
+						"answerOptions": [
+							{
+								"optionText": "Website",
+								"optionCode": "WEBSITE"
+							},
+							{
+								"optionText": "From friends",
+								"optionCode": "FRIENDS"
+							},
+							{
+								"optionText": "Other",
+								"optionCode": "OTHER"
+							}
+						],
+						"enableCriteria": [],
+						"validationRules": ["Required"]
+					},
+					{
+						"externalQuestionId": "question_monthly_salary",
+						"questionText": "What's you monthly salary (USD)?",
+						"helpText": "Please write your monthly  salary",
+						"answerType": "Number",
+						"answerOptions": [],
+						"enableCriteria": [],
+						"validationRules": ["Required"]
+					}
+				]
+			}
+		]
+	}
+}

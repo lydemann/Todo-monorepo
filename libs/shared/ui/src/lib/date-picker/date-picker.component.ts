@@ -33,8 +33,7 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 		const isFromDirtyAndSubmitted = !!(
 			control &&
 			control.invalid &&
-			(!form || isSubmitted) &&
-			(control.dirty || control.touched)
+			(!form || isSubmitted)
 		);
 
 		return this.hasError !== undefined
@@ -83,6 +82,7 @@ export class DatePickerComponent
 		ngControl.valueAccessor = this;
 	}
 	public ngAfterViewInit(): void {
+		// syncing with validators on host element
 		this.formControl = this.ngControl.control as FormControl;
 	}
 

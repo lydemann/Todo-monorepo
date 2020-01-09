@@ -16,15 +16,15 @@ export class AddTodoReactiveFormsComponent {
 		description: ['', Validators.required],
 		dueDate: ['', [Validators.required, InvalidDateValidator]],
 	});
-	public get currentTodo(): TodoItem {
-		return this._currentTODO;
-	}
 	@Input()
 	public set currentTodo(todoItem: TodoItem) {
 		this._currentTODO = { ...todoItem };
 		this.addTodoForm.patchValue({
 			...todoItem,
 		});
+	}
+	public get currentTodo(): TodoItem {
+		return this._currentTODO;
 	}
 	public isSavingTodo$ = this.todoListSandboxService.isSavingTodo$;
 

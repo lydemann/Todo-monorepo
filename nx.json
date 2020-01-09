@@ -64,6 +64,12 @@
 		},
 		"shared-util-util-test": {
 			"tags": []
+		},
+		"questionnaire-app-e2e": {
+			"tags": []
+		},
+		"questionnaire-app": {
+			"tags": []
 		}
 	}
 }

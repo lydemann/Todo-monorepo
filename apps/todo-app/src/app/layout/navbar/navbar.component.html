@@ -19,6 +19,12 @@
 			*appFeatureToggle="'completed-todos'"
 			>{{ 'completed-todos' | translate }}
 		</a>
+		<a
+			class="p-2 theme-background nav-item"
+			routerLink="/register"
+			[routerLinkActive]="['nav-active']"
+			>{{ 'register' | translate }}
+		</a>
 		<span class="nav-item theme-background">
 			<select (change)="translate.use($event.target.value)">
 				<option
