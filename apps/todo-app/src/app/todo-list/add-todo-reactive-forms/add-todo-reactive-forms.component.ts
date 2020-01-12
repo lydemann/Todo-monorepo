@@ -41,7 +41,8 @@ export class AddTodoReactiveFormsComponent {
 			console.error('Invalid form!');
 			return;
 		}
-		this.todoListSandboxService.saveTodoItem(this.currentTodo);
+
+		this.todoListSandboxService.saveTodoItem(this.addTodoForm.value);
 		form.resetForm();
 	}
 }

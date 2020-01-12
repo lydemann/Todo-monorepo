@@ -3,40 +3,33 @@
 	<hr />
 
 	<ng-template #todoForm>
-		<div
-			*ngIf="form.submitted && form.invalid"
-			class="alert alert-danger"
-			role="alert"
-		>
-			{{ 'errors.invalid-form' | translate }}
-		</div>
 		<form [formGroup]="addTodoForm" #form="ngForm" (ngSubmit)="save(form)">
-			<div class="form-group">
-				<label for="todo-title">{{ 'add-todo.title' | translate }}</label>
-				<input
-					type="text"
-					formControlName="title"
-					name="todo-title"
-					class="form-control"
-					data-test="todo-title"
-					id="todo-title"
-					placeholder="Enter title"
-				/>
+			<div>
+				<mat-form-field class="field">
+					<input
+						type="text"
+						formControlName="title"
+						matInput
+						name="todo-title"
+						data-test="todo-title"
+						id="todo-title"
+						placeholder="Enter title"
+					/>
+				</mat-form-field>
 			</div>
-			<div class="form-group">
-				<label for="todo-description">{{
-					'add-todo.description' | translate
-				}}</label>
-				<input
-					type="text"
-					required
-					name="todo-description"
-					formControlName="description"
-					class="form-control"
-					data-test="todo-description"
-					id="todo-description"
-					placeholder="Enter description"
-				/>
+			<div>
+				<mat-form-field class="field">
+					<input
+						type="text"
+						required
+						matInput
+						name="todo-description"
+						formControlName="description"
+						data-test="todo-description"
+						id="todo-description"
+						placeholder="Enter description"
+					/>
+				</mat-form-field>
 			</div>
 			<div class="form-group">
 				<span for="todo-due-date">{{ 'add-todo.due-date' | translate }}</span>

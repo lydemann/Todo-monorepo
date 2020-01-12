@@ -9,19 +9,32 @@ import { Router } from '@angular/router';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent implements OnInit {
-	public firstFormGroup: FormGroup;
-	public secondFormGroup: FormGroup;
+	public emailFormGroup: FormGroup;
+	public nameFormGroup: FormGroup;
+	public birthdayFormGroup: FormGroup;
 	public isEditable = true;
 
 	constructor(private _formBuilder: FormBuilder, private router: Router) {}
 
 	public ngOnInit() {
-		this.firstFormGroup = this._formBuilder.group({
-			firstCtrl: ['', Validators.required],
+		this.emailFormGroup = this._formBuilder.group({
+			emailCtrl: ['', [Validators.required, Validators.email]],
 		});
-		this.secondFormGroup = this._formBuilder.group({
-			secondCtrl: ['', Validators.required],
+		this.nameFormGroup = this._formBuilder.group({
+			firstNameCtrl: ['', Validators.required],
+			lastNameCtrl: ['', Validators.required],
 		});
+		this.birthdayFormGroup = this._formBuilder.group({
+			birthdateCtrl: ['', Validators.required],
+		});
+	}
+
+	public saveForm(formGroup: FormGroup) {
+		if (!formGroup.valid) {
+			return;
+		}
+
+		// send form to BE
 	}
 
 	public register() {

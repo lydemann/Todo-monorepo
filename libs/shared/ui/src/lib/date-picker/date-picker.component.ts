@@ -30,15 +30,13 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 		form: NgForm | FormGroupDirective,
 	): boolean {
 		const isSubmitted = form && form.submitted;
-		const isFromDirtyAndSubmitted = !!(
+		const isInvalidAndTouched = !!(
 			control &&
 			control.invalid &&
-			(!form || isSubmitted)
+			(!form || isSubmitted || control.touched)
 		);
 
-		return this.hasError !== undefined
-			? this.hasError
-			: isFromDirtyAndSubmitted;
+		return this.hasError !== undefined ? this.hasError : isInvalidAndTouched;
 	}
 }
 

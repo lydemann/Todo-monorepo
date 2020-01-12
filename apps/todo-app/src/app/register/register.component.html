@@ -1,35 +1,82 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
-	<mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-		<form [formGroup]="firstFormGroup">
-			<ng-template matStepLabel>Fill out your name</ng-template>
-			<mat-form-field>
-				<input
-					matInput
-					placeholder="Last name, First name"
-					formControlName="firstCtrl"
-					required
-				/>
-			</mat-form-field>
+	<mat-step [stepControl]="emailFormGroup" [editable]="isEditable">
+		<form [formGroup]="emailFormGroup">
+			<ng-template matStepLabel>Fill out your email</ng-template>
 			<div>
-				<button mat-button matStepperNext>Next</button>
+				<mat-form-field>
+					<input
+						matInput
+						placeholder="Fill out email"
+						formControlName="emailCtrl"
+						required
+					/>
+				</mat-form-field>
+			</div>
+			<div>
+				<button mat-button (click)="saveForm(emailFormGroup)" matStepperNext>
+					Next
+				</button>
 			</div>
 		</form>
 	</mat-step>
-	<mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-		<form [formGroup]="secondFormGroup">
+	<mat-step [stepControl]="nameFormGroup" [editable]="isEditable">
+		<form [formGroup]="nameFormGroup">
+			<ng-template matStepLabel>Fill out your first name</ng-template>
+			<div>
+				<mat-form-field>
+					<input
+						matInput
+						placeholder="Fill out first name"
+						formControlName="firstNameCtrl"
+						required
+					/>
+				</mat-form-field>
+			</div>
+			<ng-template matStepLabel>Fill out your last name</ng-template>
+			<div>
+				<mat-form-field>
+					<input
+						matInput
+						placeholder="Fill out last name"
+						formControlName="lastNameCtrl"
+						required
+					/>
+				</mat-form-field>
+			</div>
+			<div>
+				<button mat-button (click)="saveForm(nameFormGroup)" matStepperNext>
+					Next
+				</button>
+			</div>
+		</form>
+	</mat-step>
+	<mat-step [stepControl]="birthdayFormGroup" [editable]="isEditable">
+		<form [formGroup]="birthdayFormGroup">
 			<ng-template matStepLabel>Fill in birthdate</ng-template>
-			<app-date-picker required formControlName="secondCtrl"> </app-date-picker>
+			<app-date-picker required formControlName="birthdateCtrl">
+			</app-date-picker>
 			<div>
 				<button mat-button matStepperPrevious>Back</button>
-				<button mat-button matStepperNext (click)="register()">Next</button>
+				<button
+					mat-button
+					(click)="saveForm(birthdayFormGroup)"
+					matStepperNext
+					(click)="register()"
+				>
+					Next
+				</button>
 			</div>
 		</form>
 	</mat-step>
 	<mat-step>
-		<ng-template matStepLabel>Done</ng-template>
-		You are now reggistered.
 		<div>
-			<button mat-button (click)="continue()">Continue</button>
+			<ng-template matStepLabel>Done</ng-template>
+			<div class="mb-10">
+				You are now registered.
+			</div>
+			<div>
+				<button mat-button (click)="continue()">Continue</button>
+			</div>
 		</div>
 	</mat-step>
 </mat-horizontal-stepper>
