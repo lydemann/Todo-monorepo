@@ -13,7 +13,7 @@ import { HardcodedQuestionService as HardcodedQuestionsService } from './hardcod
 	styleUrls: ['./hardcoded-questions.component.scss'],
 })
 export class HardcodedQuestionsComponent implements AfterViewInit {
-	@ViewChild('questionToBeHardCoded', { static: false })
+	@ViewChild('questionToBeHardCoded')
 	public questionToBeHardCoded: TemplateRef<any>;
 
 	constructor(
