@@ -12,7 +12,8 @@ import {
 	NgControl,
 	NgForm,
 } from '@angular/forms';
-import { ErrorStateMatcher, MatDatepickerInputEvent } from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

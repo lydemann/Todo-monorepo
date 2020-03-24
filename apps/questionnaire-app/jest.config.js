@@ -3,7 +3,7 @@ module.exports = {
 	preset: '../../jest.config.js',
 	coverageDirectory: '../../coverage/apps/questionnaire-app',
 	snapshotSerializers: [
-		'jest-preset-angular/AngularSnapshotSerializer.js',
-		'jest-preset-angular/HTMLCommentSerializer.js',
+		'jest-preset-angular/build/AngularSnapshotSerializer.js',
+		'jest-preset-angular/build/HTMLCommentSerializer.js',
 	],
 };

@@ -10,13 +10,14 @@
 			"prefix": "app",
 			"schematics": {
 				"@schematics/angular:component": {
-					"styleext": "scss"
+					"style": "scss"
 				}
 			},
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
+            "aot": true,
 						"outputPath": "dist/apps/todo-app",
 						"index": "apps/todo-app/src/index.html",
 						"main": "apps/todo-app/src/main.ts",
@@ -59,7 +60,11 @@
 									"type": "initial",
 									"maximumWarning": "2mb",
 									"maximumError": "5mb"
-								}
+								},
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
 							],
 							"serviceWorker": true
 						}
@@ -314,6 +319,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
+            "aot": true,
 						"outputPath": "dist/apps/todo-admin",
 						"index": "apps/todo-admin/src/index.html",
 						"main": "apps/todo-admin/src/main.ts",
@@ -348,7 +354,11 @@
 									"type": "initial",
 									"maximumWarning": "2mb",
 									"maximumError": "5mb"
-								}
+								},
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
 							]
 						}
 					}
@@ -474,7 +484,12 @@
 						"tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.json",
 						"project": "libs/shared/util/util-i18n/ng-package.json"
 					}
-				},
+				,          "configurations": {
+            "production": {
+              "tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.prod.json"
+            }
+          }
+},
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
@@ -883,6 +898,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
+            "aot": true,
 						"outputPath": "dist/apps/questionnaire-app",
 						"index": "apps/questionnaire-app/src/index.html",
 						"main": "apps/questionnaire-app/src/main.ts",
@@ -920,7 +936,11 @@
 									"type": "initial",
 									"maximumWarning": "2mb",
 									"maximumError": "5mb"
-								}
+								},
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
 							]
 						}
 					}

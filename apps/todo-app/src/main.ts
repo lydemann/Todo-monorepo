@@ -4,6 +4,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+declare global {
+	interface Window {
+		config: any;
+	}
+}
+
 const xhttp = new XMLHttpRequest();
 xhttp.open('GET', 'assets/app-config.json', true);
 xhttp.onreadystatechange = function() {
