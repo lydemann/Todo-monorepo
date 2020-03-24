@@ -115,6 +115,7 @@ export const todoListReducers = createReducer(
 		return {
 			...state,
 			isSavingTodo: false,
+			errors: action.error,
 		};
 	}),
 
