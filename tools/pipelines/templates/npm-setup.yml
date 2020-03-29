@@ -1,0 +1,11 @@
+parameters:
+  installCypress: 0
+
+steps:
+  - task: NodeTool@0
+    displayName: Install NodeJS LTS
+    inputs:
+      versionSpec: '10.x'
+
+  - script: CYPRESS_INSTALL_BINARY=${{ parameters.installCypress }} npm ci
+    displayName: NPM Install

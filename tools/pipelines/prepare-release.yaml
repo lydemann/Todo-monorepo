@@ -1,0 +1,47 @@
+name: $(Date:yyyyMMdd).$(Rev:.r)
+trigger:
+  - master
+pr: none
+jobs:
+  - job: PrepareAppRelease
+    steps:
+      - script: mkdir $(System.ArtifactsDirectory)/monorepopackage
+        displayName: CreateDownloadOutputDirectory
+
+      - task: DownloadBuildArtifacts@0
+        displayName: 'Download Build Artifacts'
+        inputs:
+          buildType: specific
+          project: 'b26a9432-b0c0-4cc6-9e7c-65bd13f3e8cd'
+          pipeline: 84
+          tags: '$(Build.SourceVersion)'
+          downloadType: single
+          artifactName: drop
+          downloadPath: '$(System.ArtifactsDirectory)/monorepopackage'
+
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: '$(System.ArtifactsDirectory)/monorepopackage/*.zip'
+          destinationFolder: $(System.DefaultWorkingDirectory)/dist
+          cleanDestinationFolder: true
+
+      - task: PowerShell@2
+        displayName: Read and tag affected apps in artifact
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+          GITHUB_TOKEN: $(GithubToken)
+        inputs:
+          targetType: 'filePath'
+          filePath: 'tools/pipelines/scripts/read-and-tag-affected-apps-in-artifact.ps1'
+          pwsh: true
+
+      - template: templates/publish-artifacts.yml
+
+      - task: PowerShell@2
+        displayName: Trigger Node apps build if affected
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+        inputs:
+          targetType: 'filePath'
+          filePath: 'tools/pipelines/scripts/trigger-node-apps-master.ps1'
+          pwsh: true

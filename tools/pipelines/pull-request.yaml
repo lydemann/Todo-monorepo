@@ -1,0 +1,89 @@
+name: $(Date:yyyyMMdd).$(Rev:.r)
+trigger: none
+stages:
+  - stage: Prepare
+    jobs:
+      - job: MasterCatchup
+        steps:
+          - task: PowerShell@2
+            displayName: Master Catchup
+            env:
+              GITHUB_KEY: '$(GithubKey)'
+              GITHUB_SECRET: '$(GithubSecret)'
+              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+            inputs:
+              targetType: 'filePath'
+              filePath: 'tools/pipelines/scripts/master-catchup.ps1'
+              pwsh: true
+
+  - stage: BuildAndTestAffected
+    jobs:
+      - job: BuildAffected
+        steps:
+          - template: templates/npm-setup.yml
+
+          - script: npm run affected:build -s -- --base=origin/master --head=HEAD --prod
+            displayName: Build Affected
+
+          - task: PowerShell@2
+            displayName: Create affected-apps.txt
+            inputs:
+              targetType: 'filePath'
+              filePath: 'tools/pipelines/scripts/create-affected-apps-txt.ps1'
+              pwsh: true
+
+          - template: templates/publish-artifacts.yml
+
+      - job: TestAffected
+        steps:
+          - template: templates/npm-setup.yml
+
+          - script: npm run affected:test -s -- --base=origin/master --head=HEAD
+            displayName: Test Affected
+
+          - script: npm run codecov -- $(CodeCovToken) --disable=gcov
+            displayName: Send to Codecov
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/TEST*.xml'
+              searchFolder: '$(System.DefaultWorkingDirectory)/junit'
+              mergeTestResults: true
+              failTaskOnFailedTests: true
+              publishRunAttachments: true
+
+      - job: E2ETestAffected
+        steps:
+          - template: templates/npm-setup.yml
+            parameters:
+              installCypress: 3.3.1
+
+          - script: npm run affected:e2e -- --base=origin/master --head=HEAD --headless
+            displayName: E2E Affected
+
+          - template: templates/publish-artifacts.yml
+            parameters:
+              artifactName: 'e2e-drop'
+
+      - job: PrepareForOtherPipelines
+        steps:
+          - template: templates/npm-setup.yml
+
+          - task: PowerShell@2
+            displayName: Tags for Affected Apps
+            env:
+              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+            inputs:
+              targetType: 'filePath'
+              filePath: 'tools/pipelines/scripts/tags-for-affected-apps.ps1'
+              pwsh: true
+
+          - task: PowerShell@2
+            displayName: Trigger Node apps build if affected
+            env:
+              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+            inputs:
+              targetType: 'filePath'
+              filePath: 'tools/pipelines/scripts/trigger-node-apps.ps1'
+              pwsh: true
