@@ -1,4 +1,5 @@
 # Finds last git hash with tag. The param Tag just has to match some part of the tag
+# TODO: use this to find last successful master build, if running this on master
 function FindLastGithashWithTag {
     param (
         $Tag
@@ -51,26 +52,25 @@ $errorDetail
 
 ########## Main flow
 
-$AffectedAppsObj = npm run affected:apps -- --base=origin/master --head=HEAD;
+$AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD --plain';
 $AffectedAppsString = $AffectedAppsObj[4];
 
 $sourceVersion = $env:BUILD_SOURCEVERSION;
 Write-Host "Tagging git hash in artifact";
 addTagToBuildArtifact -tag $sourceVersion;
 
-if ($AffectedAppsString -eq "") {
+if (!$AffectedAppsString -and $AffectedAppsString -eq "") {
     Write-Host "No affected apps";
+    return;
 }
-else {
     
-    $branchname = $env:BUILD_SOURCEBRANCHNAME;
-    Write-Host "Branch is $branchname";
+$branchname = $env:BUILD_SOURCEBRANCHNAME;
+Write-Host "Branch is $branchname";
     
-    $AffectedApps = $AffectedAppsString.Split(" ");
-    Write-Host "Affected apps: " $AffectedApps;
+$AffectedApps = $AffectedAppsString.Split(" ");
+Write-Host "Affected apps: " $AffectedApps;
 
-    $AffectedApps | ForEach-Object {
-        $AffectedAppName = $_;
-        addTagToBuildArtifact -tag $AffectedAppName;
-    }
+$AffectedApps | ForEach-Object {
+    $AffectedAppName = $_;
+    addTagToBuildArtifact -tag $AffectedAppName;
 }

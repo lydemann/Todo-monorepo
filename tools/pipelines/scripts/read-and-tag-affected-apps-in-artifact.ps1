@@ -83,6 +83,7 @@ Write-Host "Reading and setting affected apps variable";
 
 Write-Host "Working dir is $($env:SYSTEM_DEFAULTWORKINGDIRECTORY)";
 
+# TODO: delete this and just get from previous master commit
 $AffectedAppsString = Get-Content -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)/dist/affected-apps.txt";
 
 Write-Host "Affected apps to tag $AffectedAppsString";

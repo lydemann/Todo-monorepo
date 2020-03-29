@@ -1,21 +1,6 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger: none
 stages:
-  - stage: Prepare
-    jobs:
-      - job: MasterCatchup
-        steps:
-          - task: PowerShell@2
-            displayName: Master Catchup
-            env:
-              GITHUB_KEY: '$(GithubKey)'
-              GITHUB_SECRET: '$(GithubSecret)'
-              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-            inputs:
-              targetType: 'filePath'
-              filePath: 'tools/pipelines/scripts/master-catchup.ps1'
-              pwsh: true
-
   - stage: BuildAndTestAffected
     jobs:
       - job: BuildAffected
