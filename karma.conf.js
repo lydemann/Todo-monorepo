@@ -4,13 +4,10 @@
 const { join } = require('path');
 const { constants } = require('karma');
 
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+
 module.exports = () => {
 	return {
-		customLaunchers: {
-			ChromeHeadless: {
-				base: 'ChromeHeadless',
-			},
-		},
 		basePath: '',
 		frameworks: ['jasmine', '@angular-devkit/build-angular'],
 		plugins: [
@@ -43,7 +40,13 @@ module.exports = () => {
 		colors: true,
 		logLevel: constants.LOG_INFO,
 		autoWatch: true,
-		browsers: ['Chrome'],
+		browsers: ['ChromeHeadless_without_sandbox'],
+		customLaunchers: {
+			ChromeHeadless_without_sandbox: {
+				base: 'ChromeHeadless',
+				flags: ['--no-sandbox', '--disable-setuid-sandbox'],
+			},
+		},
 		singleRun: true,
 	};
 };

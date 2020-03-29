@@ -7,7 +7,7 @@ stages:
         steps:
           - template: templates/npm-setup.yml
 
-          - script: npm run affected:build -s -- --base=origin/master --head=HEAD --prod
+          - script: npm run affected:build -- --base=origin/master --head=HEAD --prod
             displayName: Build Affected
 
           - task: PowerShell@2
@@ -23,7 +23,7 @@ stages:
         steps:
           - template: templates/npm-setup.yml
 
-          - script: npm run affected:test -s -- --base=origin/master --head=HEAD
+          - script: npm run affected:test -- --base=origin/master --head=HEAD
             displayName: Test Affected
 
           - script: npm run codecov -- $(CodeCovToken) --disable=gcov
