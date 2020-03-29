@@ -23,18 +23,3 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
-declare global {
-	namespace Cypress {
-		interface Chainable {
-			setupAppGlobalRoutes: () => void;
-		}
-	}
-}
-
-export const setupAppGlobalRoutes = () => {
-	cy.server();
-	cy.route('/api/todo-list', 'fixture:todo-list.json');
-	cy.route('/i18n/en-lang.json', 'fixture:en-lang.json');
-};
-Cypress.Commands.add('setupAppGlobalRoutes', setupAppGlobalRoutes);
