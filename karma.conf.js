@@ -22,7 +22,7 @@ module.exports = () => {
 		},
 		coverageIstanbulReporter: {
 			dir: join(__dirname, '../coverage'),
-			reports: ['html', 'lcovonly'],
+			reports: ['html', 'lcovonly', 'json', 'text-summary'],
 			fixWebpackSourcePaths: true,
 		},
 		thresholds: {
@@ -35,7 +35,7 @@ module.exports = () => {
 				functions: 80,
 			},
 		},
-		reporters: ['progress', 'kjhtml'],
+		reporters: ['progress', 'kjhtml', 'mocha', 'junit'],
 		port: 9876,
 		colors: true,
 		logLevel: constants.LOG_INFO,
