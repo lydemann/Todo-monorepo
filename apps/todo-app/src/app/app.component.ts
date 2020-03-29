@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 		translate.use(browserLang.match(/en|da/) ? browserLang : 'en');
 	}
 	public ngOnInit(): void {
+		// app init code coes here
 		this.logService.initialize({
 			appName: 'todo-app',
 			logUrl: this.endpointsService.loggingService,
