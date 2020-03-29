@@ -23,7 +23,7 @@
 		"affected:build": "./node_modules/.bin/nx affected:build --parallel",
 		"affected:e2e": "./node_modules/.bin/nx affected:e2e",
 		"affected:e2e:pr": "start-server-and-test start:todo-server http-get://localhost:3333/api/todo-list 'npm run affected:e2e -- --base origin/master --head HEAD --headless'",
-		"affected:test": "./node_modules/.bin/nx affected:test --parallel",
+		"affected:test": "./node_modules/.bin/nx affected:test",
 		"affected:lint": "./node_modules/.bin/nx affected:lint --parallel",
 		"postinstall": "npx ngcc",
 		"affected:dep-graph": "./node_modules/.bin/nx affected:dep-graph",
