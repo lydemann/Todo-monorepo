@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-            "aot": true,
+						"aot": true,
 						"outputPath": "dist/apps/todo-app",
 						"index": "apps/todo-app/src/index.html",
 						"main": "apps/todo-app/src/main.ts",
@@ -61,10 +61,10 @@
 									"maximumWarning": "2mb",
 									"maximumError": "5mb"
 								},
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
 							],
 							"serviceWorker": true
 						}
@@ -183,38 +183,6 @@
 			"projectType": "library",
 			"prefix": "todo",
 			"architect": {
-				"build": {
-					"builder": "ngx-build-plus:browser",
-					"options": {
-						"outputPath": "dist/libs/shared-ui-elements",
-						"index": "libs/shared/ui/src/index.html",
-						"main": "libs/shared/ui/src/main.ts",
-						"tsConfig": "libs/shared/ui/tsconfig.lib.json",
-						"stylePreprocessorOptions": {
-							"includePaths": ["libs/shared/ui/styles/src/lib"]
-						}
-					},
-					"configurations": {
-						"production": {
-							"optimization": true,
-							"outputHashing": "all",
-							"sourceMap": false,
-							"extractCss": true,
-							"namedChunks": false,
-							"aot": true,
-							"extractLicenses": true,
-							"vendorChunk": false,
-							"buildOptimizer": true,
-							"budgets": [
-								{
-									"type": "initial",
-									"maximumWarning": "2mb",
-									"maximumError": "5mb"
-								}
-							]
-						}
-					}
-				},
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
@@ -319,7 +287,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-            "aot": true,
+						"aot": true,
 						"outputPath": "dist/apps/todo-admin",
 						"index": "apps/todo-admin/src/index.html",
 						"main": "apps/todo-admin/src/main.ts",
@@ -355,10 +323,10 @@
 									"maximumWarning": "2mb",
 									"maximumError": "5mb"
 								},
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
 							]
 						}
 					}
@@ -483,13 +451,13 @@
 					"options": {
 						"tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.json",
 						"project": "libs/shared/util/util-i18n/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.prod.json"
+						}
 					}
-				,          "configurations": {
-            "production": {
-              "tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.prod.json"
-            }
-          }
-},
+				},
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
@@ -670,7 +638,7 @@
 							"apps/reactapp/src/assets/polyfills-es2015.js",
 							"apps/reactapp/src/assets/main-es2015.js"
 						],
-						"webpackConfig": "@nrwl/react/plugins/babel"
+						"webpackConfig": "@nrwl/react/plugins/webpack"
 					},
 					"configurations": {
 						"production": {
@@ -898,7 +866,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-            "aot": true,
+						"aot": true,
 						"outputPath": "dist/apps/questionnaire-app",
 						"index": "apps/questionnaire-app/src/index.html",
 						"main": "apps/questionnaire-app/src/main.ts",
@@ -937,10 +905,10 @@
 									"maximumWarning": "2mb",
 									"maximumError": "5mb"
 								},
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
 							]
 						}
 					}
