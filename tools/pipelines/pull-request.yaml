@@ -42,7 +42,7 @@ stages:
         steps:
           - template: templates/npm-setup.yml
             parameters:
-              installCypress: 3.3.1
+              installCypress: 4.2.0
 
           - script: npm run affected:e2e -- --base=origin/master --head=HEAD --headless
             displayName: E2E Affected
