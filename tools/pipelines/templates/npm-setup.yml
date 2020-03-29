@@ -6,7 +6,7 @@ steps:
     inputs:
       keyfile: '**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock'
       targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-      vstsFeed: 'nx_azure_node_modules_cache_feed'
+      vstsFeed: '$(ArtifactFeed)'
   - script: |
       CYPRESS_INSTALL_BINARY=${{ parameters.installCypress }} yarn install --ignore-engines --frozen-lockfile
     displayName: Install dependencies only if there is no cache available
