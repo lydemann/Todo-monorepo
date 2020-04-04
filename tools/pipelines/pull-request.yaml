@@ -39,6 +39,8 @@ stages:
               publishRunAttachments: true
 
       - job: E2ETestAffected
+        variables:
+          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
         steps:
           - task: Cache@2
             inputs:
