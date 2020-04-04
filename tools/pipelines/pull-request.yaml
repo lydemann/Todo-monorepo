@@ -40,9 +40,29 @@ stages:
 
       - job: E2ETestAffected
         steps:
-          - template: templates/npm-setup.yml
-            parameters:
-              installCypress: 4.2.0
+          - task: Cache@2
+            inputs:
+              key: yarn | $(Agent.OS) | yarn.lock
+              restoreKeys: |
+                yarn | "$(Agent.OS)"
+              path: $(YARN_CACHE_FOLDER)
+            displayName: Cache Yarn packages
+          - task: Cache@2
+            inputs:
+              key: cypress | $(Agent.OS) | yarn.lock
+              path: /home/vsts/.cache/Cypress
+              restoreKeys: cypress | $(Agent.OS) | yarn.lock
+            displayName: Cache Cypress binary
+
+          # Install Node dependencies
+          - script: yarn --frozen-lockfile
+            displayName: 'Install NPM dependencies'
+
+          - script: npx cypress verify
+            displayName: 'Cypress verify'
+
+          - script: npx cypress info
+            displayName: 'Cypress info'
 
           - script: npm run affected:e2e -- --base=origin/master --head=HEAD --headless
             displayName: E2E Affected
