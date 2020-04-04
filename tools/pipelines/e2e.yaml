@@ -1,0 +1,25 @@
+name: $(Date:yyyyMMdd).$(Rev:.r)
+trigger: none
+schedules:
+  - cron: '0 0 * * *'
+    displayName: Daily midnight build
+    branches:
+      include:
+        - master
+    always: true
+  - cron: '0 12 * * *'
+    displayName: Daily midday build
+    branches:
+      include:
+        - master
+    always: true
+pr: none
+steps:
+  - template: templates/npm-setup.yml
+    parameters:
+      installCypress: 4.2.0
+
+  - script: npm run affected:e2e -- --headless
+    displayName: E2E Affected
+
+  - template: templates/publish-artifacts.yml

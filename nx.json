@@ -48,10 +48,10 @@
 			"tags": ["scope:shared", "type:data-access"]
 		},
 		"logging-service": {
-			"tags": []
+			"tags": ["type:app"]
 		},
 		"reactapp": {
-			"tags": []
+			"tags": ["type:app"]
 		},
 		"reactapp-e2e": {
 			"tags": []
@@ -60,7 +60,7 @@
 			"tags": []
 		},
 		"designsystemdemo": {
-			"tags": []
+			"tags": ["type:app"]
 		},
 		"shared-util-util-test": {
 			"tags": []
@@ -69,7 +69,7 @@
 			"tags": []
 		},
 		"questionnaire-app": {
-			"tags": []
+			"tags": ["type:app"]
 		}
 	}
 }

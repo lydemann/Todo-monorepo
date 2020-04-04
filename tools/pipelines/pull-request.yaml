@@ -1,0 +1,87 @@
+name: $(Date:yyyyMMdd).$(Rev:.r)
+trigger: none
+stages:
+  - stage: BuildAndTestAffected
+    jobs:
+      - job: BuildAffected
+        steps:
+          - template: templates/npm-setup.yml
+
+          - script: npm run affected:build -- --base=origin/master --head=HEAD --prod
+            displayName: Build Affected
+
+          - task: PowerShell@2
+            displayName: Create affected-apps.txt
+            inputs:
+              targetType: 'filePath'
+              filePath: 'tools/pipelines/scripts/create-affected-apps-txt.ps1'
+              pwsh: true
+
+          - template: templates/publish-artifacts.yml
+
+      - job: TestAffected
+        steps:
+          - template: templates/npm-setup.yml
+
+          - script: npm run affected:test -- --base=origin/master --head=HEAD
+            displayName: Test Affected
+
+          - script: npm run codecov -- $(CodeCovToken) --disable=gcov
+            displayName: Send to Codecov
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/TEST*.xml'
+              searchFolder: '$(System.DefaultWorkingDirectory)/junit'
+              mergeTestResults: true
+              failTaskOnFailedTests: true
+              publishRunAttachments: true
+
+      - job: E2ETestAffected
+        variables:
+          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+        steps:
+          - task: Cache@2
+            inputs:
+              key: yarn | $(Agent.OS) | yarn.lock
+              restoreKeys: |
+                yarn | "$(Agent.OS)"
+              path: $(YARN_CACHE_FOLDER)
+            displayName: Cache Yarn packages
+          - task: Cache@2
+            inputs:
+              key: cypress | $(Agent.OS) | yarn.lock
+              path: /home/vsts/.cache/Cypress
+              restoreKeys: cypress | $(Agent.OS) | yarn.lock
+            displayName: Cache Cypress binary
+
+          # Install Node dependencies
+          - script: yarn --frozen-lockfile
+            displayName: 'Install NPM dependencies'
+
+          - script: npx cypress verify
+            displayName: 'Cypress verify'
+
+          - script: npx cypress info
+            displayName: 'Cypress info'
+
+          - script: npm run affected:e2e -- --base=origin/master --head=HEAD --headless
+            displayName: E2E Affected
+
+          - template: templates/publish-artifacts.yml
+            parameters:
+              artifactName: 'e2e-drop'
+
+      - job: PrepareForOtherPipelines
+        steps:
+          - template: templates/npm-setup.yml
+
+          - task: PowerShell@2
+            displayName: Tags for Affected Apps
+            env:
+              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+            inputs:
+              targetType: 'filePath'
+              filePath: 'tools/pipelines/scripts/tags-for-affected-apps.ps1'
+              pwsh: true

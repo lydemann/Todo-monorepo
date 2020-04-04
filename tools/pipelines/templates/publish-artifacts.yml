@@ -1,0 +1,20 @@
+parameters:
+  appToPublish: ''
+  artifactName: 'drop'
+
+steps:
+  - task: ArchiveFiles@2
+    displayName: Archive Build Artifacts
+    condition: always()
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/${{ parameters.appToPublish }}'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Build Artifacts
+    condition: always()
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
+      artifactName: ${{ parameters.artifactName }}

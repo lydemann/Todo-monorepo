@@ -2,6 +2,7 @@ import { TodoPage } from '../support/todo.po';
 
 describe('Todo', () => {
 	beforeEach(() => {
+		cy.setupAppGlobalRoutes();
 		TodoPage.goToPage();
 	});
 

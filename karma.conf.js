@@ -4,13 +4,10 @@
 const { join } = require('path');
 const { constants } = require('karma');
 
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+
 module.exports = () => {
 	return {
-		customLaunchers: {
-			ChromeHeadless: {
-				base: 'ChromeHeadless',
-			},
-		},
 		basePath: '',
 		frameworks: ['jasmine', '@angular-devkit/build-angular'],
 		plugins: [
@@ -18,14 +15,16 @@ module.exports = () => {
 			require('karma-chrome-launcher'),
 			require('karma-jasmine-html-reporter'),
 			require('karma-coverage-istanbul-reporter'),
+			require('karma-mocha-reporter'),
+			require('karma-junit-reporter'),
 			require('@angular-devkit/build-angular/plugins/karma'),
 		],
 		client: {
 			clearContext: false, // leave Jasmine Spec Runner output visible in browser
 		},
 		coverageIstanbulReporter: {
-			dir: join(__dirname, '../coverage'),
-			reports: ['html', 'lcovonly'],
+			dir: join(__dirname, 'coverage'),
+			reports: ['html', 'lcovonly', 'json', 'text-summary'],
 			fixWebpackSourcePaths: true,
 		},
 		thresholds: {
@@ -38,12 +37,21 @@ module.exports = () => {
 				functions: 80,
 			},
 		},
-		reporters: ['progress', 'kjhtml'],
+		junitReporter: {
+			outputDir: join(__dirname, 'junit'),
+		},
+		reporters: ['progress', 'kjhtml', 'mocha', 'junit'],
 		port: 9876,
 		colors: true,
 		logLevel: constants.LOG_INFO,
 		autoWatch: true,
-		browsers: ['Chrome'],
+		browsers: ['ChromeHeadless_without_sandbox'],
+		customLaunchers: {
+			ChromeHeadless_without_sandbox: {
+				base: 'ChromeHeadless',
+				flags: ['--no-sandbox', '--disable-setuid-sandbox'],
+			},
+		},
 		singleRun: true,
 	};
 };
