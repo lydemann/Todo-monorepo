@@ -85,12 +85,3 @@ stages:
               targetType: 'filePath'
               filePath: 'tools/pipelines/scripts/tags-for-affected-apps.ps1'
               pwsh: true
-
-          - task: PowerShell@2
-            displayName: Trigger Node apps build if affected
-            env:
-              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-            inputs:
-              targetType: 'filePath'
-              filePath: 'tools/pipelines/scripts/trigger-node-apps.ps1'
-              pwsh: true

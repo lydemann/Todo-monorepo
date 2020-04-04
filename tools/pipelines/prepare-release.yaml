@@ -36,12 +36,3 @@ jobs:
           pwsh: true
 
       - template: templates/publish-artifacts.yml
-
-      - task: PowerShell@2
-        displayName: Trigger Node apps build if affected
-        env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-        inputs:
-          targetType: 'filePath'
-          filePath: 'tools/pipelines/scripts/trigger-node-apps-master.ps1'
-          pwsh: true
