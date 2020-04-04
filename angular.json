@@ -27,7 +27,7 @@
 							"apps/todo-app/src/favicon.ico",
 							"apps/todo-app/src/assets",
 							"apps/todo-app/src/manifest.json",
-							"apps/private-profile/private-profile/src/web.config"
+							"apps/todo-app/src/web.config"
 						],
 						"styles": ["apps/todo-app/src/styles.scss"],
 						"stylePreprocessorOptions": {
