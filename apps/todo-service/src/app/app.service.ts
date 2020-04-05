@@ -4,7 +4,7 @@ import faker from 'faker';
 @Injectable()
 export class AppService {
 	public getData(): { message: string } {
-		return { message: 'Welcome to todo-service!' };
+		return { message: 'Welcome to todo-service' };
 	}
 
 	public getTodoList(): any[] {
