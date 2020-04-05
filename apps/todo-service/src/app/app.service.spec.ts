@@ -14,7 +14,7 @@ describe('AppService', () => {
 	});
 
 	describe('getData', () => {
-		it('should return "Welcome to todo-service!"', () => {
+		it('should return "Welcome to todo-service"', () => {
 			expect(service.getData()).toEqual({
 				message: 'Welcome to todo-service!',
 			});

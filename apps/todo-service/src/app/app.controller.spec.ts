@@ -14,7 +14,7 @@ describe('AppController', () => {
 	});
 
 	describe('getData', () => {
-		it('should return "Welcome to todo-service!"', () => {
+		it('should return "Welcome to todo-service"', () => {
 			const appController = app.get<AppController>(AppController);
 			expect(appController.getData()).toEqual({
 				message: 'Welcome to todo-service!',
