@@ -9,7 +9,7 @@ jobs:
     steps:
       - template: templates/npm-setup.yml
 
-      - script: node tools/pipelines/scripts/set-last-merged-pr-commit-sha.js
+      - script: node tools/pipelines/scripts/set-last-merged-pr-commit-sha.js $(GITHUB_TOKEN)
         displayName: 'Set last merged pr commit SHA'
 
       - script: mkdir $(System.ArtifactsDirectory)/monorepopackage
