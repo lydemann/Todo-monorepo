@@ -1,4 +1,4 @@
-$AffectedAppsObj = npm run affected:apps -- --base=origin/master --head=HEAD;
+$AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD --plain';
 $AffectedAppsString = $AffectedAppsObj[4];
 
 if ($AffectedAppsString -eq "") {
