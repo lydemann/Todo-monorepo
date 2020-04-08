@@ -1,13 +1,21 @@
 parameters:
   installCypress: 0
 
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+
 steps:
-  - task: 1ESLighthouseEng.PipelineArtifactCaching.RestoreAndSaveCacheV1.RestoreAndSaveCache@1
+  - task: Cache@2
     inputs:
-      keyfile: '**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock'
-      targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-      vstsFeed: '$(ArtifactFeed)'
+      key: yarn | $(Agent.OS) | yarn.lock
+      path: $(YARN_CACHE_FOLDER)
+      cacheHitVar: CACHE_RESTORED
+      restoreKeys: |
+        yarn | $(Agent.OS)
+        yarn
+    displayName: Cache Yarn packages
+
   - script: |
-      CYPRESS_INSTALL_BINARY=${{ parameters.installCypress }} yarn install --ignore-engines --frozen-lockfile
+      yarn --frozen-lockfile
     displayName: Install dependencies only if there is no cache available
-    condition: ne(variables['CacheRestored'], 'true')
+    condition: ne(variables.CACHE_RESTORED, 'true')
