@@ -7,24 +7,8 @@ jobs:
     variables:
       TAGS: '$(Build.SourceVersion)'
     steps:
-      - task: Cache@2
-        inputs:
-          key: yarn | $(Agent.OS) | yarn.lock
-          restoreKeys: |
-            yarn | "$(Agent.OS)"
-          path: $(Pipeline.Workspace)/.yarn
-        displayName: Cache Yarn packages
-
-      - task: Cache@2
-        inputs:
-          key: cypress | $(Agent.OS) | yarn.lock
-          path: /home/vsts/.cache/Cypress
-          restoreKeys: cypress | $(Agent.OS) | yarn.lock
-        displayName: Cache Cypress binary
-
       # Install Node dependencies
-      # TODO: support no cypress install and ignore scripts --ignore-scripts
-      - script: yarn --frozen-lockfile --ignore-scripts
+      - script: yarn add @octokit/rest --ignore-scripts
         displayName: 'Install NPM dependencies'
 
       - script: node tools/pipelines/scripts/set-last-merged-pr-commit-sha.js $(GITHUB_TOKEN)
