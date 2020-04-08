@@ -1,7 +1,6 @@
 parameters:
   installCypress: 0
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn # TODO: use this parameter
-
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 steps:
   - task: Cache@2
     inputs:
