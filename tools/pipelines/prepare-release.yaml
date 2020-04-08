@@ -4,6 +4,8 @@ trigger:
 pr: none
 jobs:
   - job: PrepareAppRelease
+    variables:
+      TAGS: '$(Build.SourceVersion)'
     steps:
       - script: mkdir $(System.ArtifactsDirectory)/monorepopackage
         displayName: CreateDownloadOutputDirectory
@@ -12,9 +14,9 @@ jobs:
         displayName: 'Download Build Artifacts'
         inputs:
           buildType: specific
-          project: 'b26a9432-b0c0-4cc6-9e7c-65bd13f3e8cd'
-          pipeline: 84
-          tags: '$(Build.SourceVersion)'
+          project: 'f6995a74-0552-4d3b-b372-a80af3d9b89a'
+          pipeline: 4
+          tags: '$(TAGS)'
           downloadType: single
           artifactName: drop
           downloadPath: '$(System.ArtifactsDirectory)/monorepopackage'
