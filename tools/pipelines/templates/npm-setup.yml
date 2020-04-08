@@ -15,5 +15,4 @@ steps:
 
   - script: |
       yarn --frozen-lockfile
-    displayName: Install dependencies only if there is no cache available
-    condition: ne(variables.CACHE_RESTORED, 'true')
+    displayName: Install dependencies
