@@ -19,5 +19,6 @@ steps:
     displayName: Cache Cypress binary
 
   # Install Node dependencies
+  # TODO: support no cypress install and ignore scripts --ignore-scripts
   - script: yarn --frozen-lockfile
     displayName: 'Install NPM dependencies'
