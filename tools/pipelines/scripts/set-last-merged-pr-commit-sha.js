@@ -49,9 +49,7 @@ async function run() {
 
 	console.log(`Found commitSha: ${commitSha}`);
 
-	console.log(
-		`##vso[task.setvariable variable=LAST_PR_SHA;isOutput=true]${commitSha}`,
-	);
+	console.log(`##vso[task.setvariable variable=LAST_PR_SHA]${commitSha}`);
 }
 
 run();
