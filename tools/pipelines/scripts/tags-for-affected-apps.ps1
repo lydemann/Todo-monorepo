@@ -55,8 +55,9 @@ $errorDetail
 $AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD --plain';
 $AffectedAppsString = $AffectedAppsObj[4];
 
-$sourceVersion = $env:BUILD_SOURCEVERSION;
-Write-Host "Tagging git hash in artifact";
+$sourceVersion = $env:SYSTEM_PULLREQUEST_SOURCECOMMITID;
+
+Write-Host "Tagging git hash in artifact: $($sourceVersion)";
 addTagToBuildArtifact -tag $sourceVersion;
 
 if (!$AffectedAppsString -and $AffectedAppsString -eq "") {

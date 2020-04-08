@@ -7,6 +7,7 @@ export class AppService {
 		return { message: 'Welcome to todo-service' };
 	}
 
+	// get todolist with faked data
 	public getTodoList(): any[] {
 		const todoList = [];
 
