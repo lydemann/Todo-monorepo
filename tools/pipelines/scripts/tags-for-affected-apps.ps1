@@ -55,9 +55,10 @@ $errorDetail
 $AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD --plain';
 $AffectedAppsString = $AffectedAppsObj[4];
 
-$SourceBranch = 'task/get-same-commit-build-on-release';
-Write-Host "Finding source version for $SourceBranch)";
+$SourceBranch = $env:SYSTEM_PULLREQUEST_SOURCEBRANCH;
+Write-Host "Finding source version for $SourceBranch";
 
+Invoke-Expression "git fetch";
 $sourceVersion = Invoke-Expression "git rev-parse $($SourceBranch)";
 
 Write-Host "Tagging git hash in artifact: $($sourceVersion)";
