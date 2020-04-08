@@ -10,6 +10,7 @@ jobs:
       - template: templates/npm-setup.yml
 
       - script: node scripts/set-last-merged-pr-commit-sha.js
+        displayName: 'Set last merged pr commit SHA'
 
       - script: mkdir $(System.ArtifactsDirectory)/monorepopackage
         displayName: CreateDownloadOutputDirectory
