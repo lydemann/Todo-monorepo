@@ -35,8 +35,7 @@ async function lastMergedPRCommitSha(octokit) {
 }
 
 async function run() {
-	const token =
-		process.env.GITHUB_TOKEN || '856a34abd5236b21a7ada7273f0701c729175f35';
+	const token = process.env.GITHUB_TOKEN;
 	if (!token) {
 		console.log(`'env.GITHUB_TOKEN' not found - exiting...`);
 		return;
