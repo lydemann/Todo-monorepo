@@ -1,7 +1,5 @@
 parameters:
   installCypress: 0
-
-variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 steps:
