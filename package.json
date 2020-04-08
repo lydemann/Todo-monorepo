@@ -107,6 +107,7 @@
     "@nrwl/schematics": "^8.12.10",
     "@nrwl/web": "^9.1.2",
     "@nrwl/workspace": "^9.1.2",
+    "@octokit/rest": "^17.2.0",
     "@storybook/addon-a11y": "^5.0.8",
     "@storybook/addon-actions": "^5.0.8",
     "@storybook/addon-links": "^5.0.8",
