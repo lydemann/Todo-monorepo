@@ -515,6 +515,8 @@
 				"build": {
 					"builder": "@nrwl/node:build",
 					"options": {
+						"webpackConfig": "webpack.node.config.js",
+						"buildLibsFromSource": true,
 						"outputPath": "dist/apps/todo-service",
 						"main": "apps/todo-service/src/main.ts",
 						"tsConfig": "apps/todo-service/tsconfig.app.json",
