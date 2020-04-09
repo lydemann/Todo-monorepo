@@ -65,7 +65,7 @@ if (!$AffectedAppsString -and $AffectedAppsString -eq "") {
     return;
 }
     
-$branchname = $env:BUILD_SOURCEBRANCHNAME;
+$branchname = $env:SYSTEM_PULLREQUEST_SOURCEBRANCHNAME;
 Write-Host "Branch is $branchname";
     
 $AffectedApps = $AffectedAppsString.Split(" ");

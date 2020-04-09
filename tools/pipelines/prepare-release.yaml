@@ -7,6 +7,13 @@ jobs:
     variables:
       TAGS: '$(Build.SourceVersion)'
     steps:
+      # Install Node dependencies
+      - script: yarn add @octokit/rest --ignore-scripts
+        displayName: 'Install NPM dependencies'
+
+      - script: node tools/pipelines/scripts/set-last-merged-pr-commit-sha.js $(GITHUB_TOKEN)
+        displayName: 'Set last merged pr commit SHA'
+
       - script: mkdir $(System.ArtifactsDirectory)/monorepopackage
         displayName: CreateDownloadOutputDirectory
 
@@ -16,7 +23,7 @@ jobs:
           buildType: specific
           project: 'f6995a74-0552-4d3b-b372-a80af3d9b89a'
           pipeline: 4
-          tags: '$(TAGS)'
+          tags: '$(LAST_PR_SHA)'
           downloadType: single
           artifactName: drop
           downloadPath: '$(System.ArtifactsDirectory)/monorepopackage'
