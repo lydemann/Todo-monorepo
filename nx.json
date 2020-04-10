@@ -12,7 +12,7 @@
 			"tags": ["scope:todo-app", "type:app"]
 		},
 		"todo-service": {
-			"tags": ["scope:todo-app", "type:service"]
+			"tags": ["scope:todo-service", "type:service"]
 		},
 		"todo-app-e2e": {
 			"tags": ["type:e2e"]
