@@ -5,6 +5,7 @@ import { resolve } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+// Bootstrapping the service
 @Module({
 	imports: [
 		ServeStaticModule.forRoot({
