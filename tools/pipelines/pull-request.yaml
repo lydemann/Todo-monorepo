@@ -41,7 +41,7 @@ stages:
           - task: PublishCodeCoverageResults@1
             inputs:
               codeCoverageTool: 'cobertura'
-              reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/**/*xml'
               failIfCoverageEmpty: false
 
       - job: E2ETestAffected
