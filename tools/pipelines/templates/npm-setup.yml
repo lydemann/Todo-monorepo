@@ -4,7 +4,7 @@ parameters:
     type: boolean
 
   - name: 'NODE_MODULES'
-    default: $(Pipeline.Workspace)/node_modules
+    default: '**/node_modules, !**/node_modules/**/node_modules'
     type: string
 steps:
   - task: Cache@2
@@ -22,13 +22,13 @@ steps:
       path: /home/vsts/.cache/Cypress
       restoreKeys: cypress | $(Agent.OS) | yarn.lock
     displayName: Cache Cypress binary
-    condition: eq('${{ parameters.installCypress }}', true)
+    condition: eq('${{ parameters.installCypress }}', 'true')
 
   # Install Node dependencies
   - script: yarn --frozen-lockfile
-    condition: eq('${{ parameters.installCypress }}', true))
+    condition: eq('${{ parameters.installCypress }}', 'true'))
     displayName: 'Install NPM dependencies'
 
   - script: yarn --frozen-lockfile
-    condition: and(ne(variables.CACHE_RESTORED, 'true'), eq('${{ parameters.installCypress }}', false))
+    condition: and(ne(variables.CACHE_RESTORED, 'true'), eq('${{ parameters.installCypress }}', 'false'))
     displayName: 'Install NPM dependencies'
