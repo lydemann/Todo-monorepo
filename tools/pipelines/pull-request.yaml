@@ -1,5 +1,9 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger: none
+
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+
 stages:
   - stage: BuildAndTestAffected
     jobs:

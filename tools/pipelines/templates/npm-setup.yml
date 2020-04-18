@@ -3,9 +3,6 @@ parameters:
     default: false
     type: boolean
 
-  - name: 'YARN_CACHE_FOLDER'
-    default: $(Pipeline.Workspace)/.yarn
-    type: string
 steps:
   - task: Cache@2
     inputs:
@@ -13,7 +10,7 @@ steps:
       restoreKeys: |
         yarn | "$(Agent.OS)"
         yarn
-      path: ${{ parameters.YARN_CACHE_FOLDER }}
+      path: $(YARN_CACHE_FOLDER)
     displayName: Cache Yarn packages
 
   - task: Cache@2
