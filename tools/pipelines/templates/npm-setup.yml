@@ -22,7 +22,7 @@ steps:
       path: /home/vsts/.cache/Cypress
       restoreKeys: cypress | $(Agent.OS) | yarn.lock
     displayName: Cache Cypress binary
-    condition: eq('${{ parameters.installCypress }}', 'true'
+    condition: eq('${{ parameters.installCypress }}', 'true')
 
   # Install Node dependencies
   - script: yarn --frozen-lockfile
