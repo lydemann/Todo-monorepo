@@ -13,7 +13,7 @@ steps:
       restoreKeys: |
         yarn | "$(Agent.OS)"
         yarn
-      path: '${{ parameters.installCypress }}'
+      path: '${{ parameters.YARN_CACHE_FOLDER }}'
     displayName: Cache Yarn packages
 
   - task: Cache@2
