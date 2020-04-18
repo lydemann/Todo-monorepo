@@ -10,7 +10,10 @@ module.exports = function(config) {
 		...baseConfig,
 		coverageIstanbulReporter: {
 			...baseConfig.coverageIstanbulReporter,
-			dir: join(__dirname, '../../coverage/apps/questionnaire-app/'),
+			dir: join(__dirname, '../../coverage/apps/questionnaire-app'),
+		},
+		junitReporter: {
+			outputDir: join(__dirname, '../../junit/apps/questionnaire-app'),
 		},
 	});
 };

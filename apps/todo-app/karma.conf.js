@@ -10,7 +10,10 @@ module.exports = function(config) {
 		...baseConfig,
 		coverageIstanbulReporter: {
 			...baseConfig.coverageIstanbulReporter,
-			dir: join(__dirname, '../../coverage/apps/todo-app/'),
+			dir: join(__dirname, '../../coverage/apps/todo-app'),
+		},
+		junitReporter: {
+			outputDir: join(__dirname, '../../junit/apps/todo-app'),
 		},
 	});
 };

@@ -4,8 +4,6 @@ stages:
   - stage: BuildAndTestAffected
     jobs:
       - job: BuildAffected
-        variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
         steps:
           - template: templates/npm-setup.yml
 
@@ -22,8 +20,6 @@ stages:
           - template: templates/publish-artifacts.yml
 
       - job: TestAffected
-        variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
         steps:
           - template: templates/npm-setup.yml
 
@@ -36,17 +32,23 @@ stages:
           - task: PublishTestResults@2
             inputs:
               testResultsFormat: 'JUnit'
-              testResultsFiles: '**/TEST*.xml'
+              testResultsFiles: '**/*.xml'
               searchFolder: '$(System.DefaultWorkingDirectory)/junit'
               mergeTestResults: true
               failTaskOnFailedTests: true
               publishRunAttachments: true
 
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'cobertura'
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/**/*xml'
+              failIfCoverageEmpty: false
+
       - job: E2ETestAffected
-        variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
         steps:
           - template: templates/npm-setup.yml
+            parameters:
+              installCypress: true
 
           - script: npx cypress verify
             displayName: 'Cypress verify'
@@ -62,8 +64,6 @@ stages:
               artifactName: 'e2e-drop'
 
       - job: PrepareForOtherPipelines
-        variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
         steps:
           - template: templates/npm-setup.yml
 
