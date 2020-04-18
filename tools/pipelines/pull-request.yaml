@@ -5,7 +5,7 @@ stages:
     jobs:
       - job: BuildAffected
         variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
         steps:
           - template: templates/npm-setup.yml
 
@@ -23,7 +23,7 @@ stages:
 
       - job: TestAffected
         variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
         steps:
           - template: templates/npm-setup.yml
 
@@ -44,7 +44,7 @@ stages:
 
       - job: E2ETestAffected
         variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
         steps:
           - template: templates/npm-setup.yml
 
@@ -63,7 +63,7 @@ stages:
 
       - job: PrepareForOtherPipelines
         variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
         steps:
           - template: templates/npm-setup.yml
 

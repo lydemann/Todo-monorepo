@@ -1,6 +1,6 @@
 parameters:
   installCypress: 0
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
 steps:
   - task: Cache@2
     inputs:
@@ -21,4 +21,5 @@ steps:
   # Install Node dependencies
   # TODO: support no cypress install and ignore scripts --ignore-scripts
   - script: yarn --frozen-lockfile
+    condition: ne(installCypress, 0)
     displayName: 'Install NPM dependencies'
