@@ -8,6 +8,6 @@ module.exports = {
 	coverageDirectory: '../../coverage/apps/reactapp',
 	reporters: [
 		'default',
-		['jest-junit', { outputDirectory: './junit/libs/shared/pipes' }],
+		['jest-junit', { outputDirectory: './junit/apps/reactapp' }],
 	],
 };
