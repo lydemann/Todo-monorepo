@@ -14,8 +14,8 @@ steps:
         yarn | "$(Agent.OS)"
         yarn
       path: '**/node_modules, !**/node_modules/**/node_modules'
+      cacheHitVar: CACHE_RESTORED
     displayName: Cache Yarn packages
-    cacheHitVar: CACHE_RESTORED
 
   - task: Cache@2
     inputs:
