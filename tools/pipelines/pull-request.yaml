@@ -23,7 +23,7 @@ stages:
         steps:
           - template: templates/npm-setup.yml
 
-          - script: npm run affected:test -- --base=origin/master --head=HEAD
+          - script: npm run affected:test
             displayName: Test Affected
 
           - script: npm run codecov -- $(CodeCovToken) --disable=gcov
@@ -32,11 +32,17 @@ stages:
           - task: PublishTestResults@2
             inputs:
               testResultsFormat: 'JUnit'
-              testResultsFiles: '**/TEST*.xml'
+              testResultsFiles: '**/*.xml'
               searchFolder: '$(System.DefaultWorkingDirectory)/junit'
               mergeTestResults: true
               failTaskOnFailedTests: true
               publishRunAttachments: true
+
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'cobertura'
+              reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+              failIfCoverageEmpty: false
 
       - job: E2ETestAffected
         steps:

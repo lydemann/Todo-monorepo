@@ -24,7 +24,7 @@ module.exports = () => {
 		},
 		coverageIstanbulReporter: {
 			dir: join(__dirname, 'coverage'),
-			reports: ['html', 'lcovonly', 'json', 'text-summary'],
+			reports: ['html', 'lcovonly', 'json', 'text-summary', 'cobertura'],
 			fixWebpackSourcePaths: true,
 		},
 		thresholds: {

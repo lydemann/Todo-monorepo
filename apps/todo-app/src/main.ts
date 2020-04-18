@@ -10,6 +10,7 @@ declare global {
 	}
 }
 
+// load app config
 const xhttp = new XMLHttpRequest();
 xhttp.open('GET', 'assets/app-config.json', true);
 xhttp.onreadystatechange = function() {
