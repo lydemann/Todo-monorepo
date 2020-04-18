@@ -8,6 +8,6 @@ module.exports = {
 	],
 	reporters: [
 		'default',
-		['jest-junit', { outputDirectory: './junit/apps/designsystemdemo' }],
+		['jest-junit', { outputDirectory: './junit/apps/questionnaire-service' }],
 	],
 };

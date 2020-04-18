@@ -4,6 +4,6 @@ module.exports = {
 	coverageDirectory: '../../coverage/apps/logging-service',
 	reporters: [
 		'default',
-		['jest-junit', { outputDirectory: './junit/apps/designsystemdemo' }],
+		['jest-junit', { outputDirectory: './junit/apps/logging-service' }],
 	],
 };
