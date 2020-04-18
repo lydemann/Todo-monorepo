@@ -2,6 +2,7 @@ parameters:
   - name: 'installCypress'
     default: false
     type: boolean
+
   - name: 'YARN_CACHE_FOLDER'
     default: $(Pipeline.Workspace)/node_modules
     type: string
@@ -21,10 +22,10 @@ steps:
       path: /home/vsts/.cache/Cypress
       restoreKeys: cypress | $(Agent.OS) | yarn.lock
     displayName: Cache Cypress binary
-    condition: eq(parameters.installCypress, true)
+    condition: eq('${{ parameters.installCypress }}', true)
 
   # Install Node dependencies
   # TODO: support no cypress install and ignore scripts --ignore-scripts
   - script: yarn --frozen-lockfile
-    condition: eq(parameters.installCypress, true)
+    condition: eq('${{ parameters.installCypress }}', true)
     displayName: 'Install NPM dependencies'
