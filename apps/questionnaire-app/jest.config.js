@@ -6,4 +6,8 @@ module.exports = {
 		'jest-preset-angular/build/AngularSnapshotSerializer.js',
 		'jest-preset-angular/build/HTMLCommentSerializer.js',
 	],
+	reporters: [
+		'default',
+		['jest-junit', { outputDirectory: './junit/apps/questionnaire-service' }],
+	],
 };
