@@ -4,8 +4,6 @@ stages:
   - stage: BuildAndTestAffected
     jobs:
       - job: BuildAffected
-        variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
         steps:
           - template: templates/npm-setup.yml
 
@@ -22,8 +20,6 @@ stages:
           - template: templates/publish-artifacts.yml
 
       - job: TestAffected
-        variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
         steps:
           - template: templates/npm-setup.yml
 
@@ -43,10 +39,10 @@ stages:
               publishRunAttachments: true
 
       - job: E2ETestAffected
-        variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
         steps:
           - template: templates/npm-setup.yml
+            parameters:
+              installCypress: true
 
           - script: npx cypress verify
             displayName: 'Cypress verify'
@@ -62,8 +58,6 @@ stages:
               artifactName: 'e2e-drop'
 
       - job: PrepareForOtherPipelines
-        variables:
-          YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
         steps:
           - template: templates/npm-setup.yml
 
