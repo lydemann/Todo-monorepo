@@ -26,7 +26,7 @@ steps:
 
   # Install Node dependencies
   - script: yarn --frozen-lockfile
-    condition: eq('${{ parameters.installCypress }}', 'true'))
+    condition: eq('${{ parameters.installCypress }}', 'true')
     displayName: 'Install NPM dependencies'
 
   - script: yarn --frozen-lockfile
