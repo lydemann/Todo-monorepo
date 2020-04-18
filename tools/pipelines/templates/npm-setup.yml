@@ -3,7 +3,7 @@ parameters:
     default: false
     type: boolean
 
-  - name: 'YARN_CACHE_FOLDER'
+  - name: 'NODE_MODULES'
     default: $(Pipeline.Workspace)/node_modules
     type: string
 steps:
@@ -13,7 +13,7 @@ steps:
       restoreKeys: |
         yarn | "$(Agent.OS)"
         yarn
-      path: $(parameters.YARN_CACHE_FOLDER)
+      path: '**/node_modules, !**/node_modules/**/node_modules'
     displayName: Cache Yarn packages
 
   - task: Cache@2
@@ -25,7 +25,10 @@ steps:
     condition: eq('${{ parameters.installCypress }}', true)
 
   # Install Node dependencies
-  # TODO: support no cypress install and ignore scripts --ignore-scripts
   - script: yarn --frozen-lockfile
-    condition: eq('${{ parameters.installCypress }}', true)
+    condition: eq('${{ parameters.installCypress }}', true))
+    displayName: 'Install NPM dependencies'
+
+  - script: yarn --frozen-lockfile
+    condition: and(ne(variables.CACHE_RESTORED, 'true'), eq('${{ parameters.installCypress }}', false))
     displayName: 'Install NPM dependencies'
