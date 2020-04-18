@@ -15,6 +15,7 @@ steps:
         yarn
       path: '**/node_modules, !**/node_modules/**/node_modules'
     displayName: Cache Yarn packages
+    cacheHitVar: CACHE_RESTORED
 
   - task: Cache@2
     inputs:
