@@ -25,10 +25,3 @@ steps:
       codeCoverageTool: 'cobertura'
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/**/*xml'
       failIfCoverageEmpty: false
-
-  - script: npm run build:storybook
-    displayName: Build Storybook
-
-  - template: templates/publish-artifacts.yml
-    parameters:
-      appToPublish: 'design-system'
