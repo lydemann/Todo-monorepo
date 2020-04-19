@@ -2,6 +2,9 @@ name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger:
   - master
 pr: none
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+
 steps:
   - template: templates/npm-setup.yml
 
