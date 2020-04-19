@@ -1,5 +1,6 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
-trigger: none
+trigger:
+  - master
 pr: none
 steps:
   - template: templates/npm-setup.yml
