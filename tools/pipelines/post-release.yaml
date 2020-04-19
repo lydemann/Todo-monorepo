@@ -1,0 +1,34 @@
+name: $(Date:yyyyMMdd).$(Rev:.r)
+trigger:
+  - master
+pr: none
+steps:
+  - template: templates/npm-setup.yml
+
+  - script: npm run affected:test -- --base=origin/master~1 --head=origin/master
+    displayName: Test Affected
+
+  - script: npm run codecov -- $(CodeCovToken) --disable=gcov
+    displayName: Send to Codecov
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/*.xml'
+      searchFolder: '$(System.DefaultWorkingDirectory)/junit'
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      publishRunAttachments: true
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: 'cobertura'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/**/*xml'
+      failIfCoverageEmpty: false
+
+  - script: npm run build:storybook
+    displayName: Build Storybook
+
+  - template: templates/publish-artifacts.yml
+    parameters:
+      appToPublish: 'design-system'
