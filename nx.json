@@ -70,6 +70,9 @@
 		},
 		"questionnaire-app": {
 			"tags": ["type:app"]
+		},
+		"shared-interfaces-todo-interfaces": {
+			"tags": ["type:interface", "scope:shared"]
 		}
 	}
 }

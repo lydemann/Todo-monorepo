@@ -1,4 +1,4 @@
-import { TodoItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { GenericAction } from '../../generic-action';
 import { TodoListActions } from './todo-list.actions';
 import { TodoListState } from './todo-list.model';

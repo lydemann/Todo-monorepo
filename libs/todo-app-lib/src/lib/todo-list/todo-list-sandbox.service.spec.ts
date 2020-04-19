@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { createSpyObject } from '@ngneat/spectator';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
-import { TodoItem } from '@todo-app/shared/models/todo-item';
-import { createMagicalMock } from '@todo/shared/util-test';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListResourcesService } from './resources/todo-list-resources.service';
 import { TodoListActions } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
@@ -13,7 +13,7 @@ import { TodoListSandboxService } from './todo-list-sandbox.service';
 describe('Service: TodoListSandboxService', () => {
 	let service: TodoListSandboxService;
 	let store: Store<TodoListState>;
-	const todoListResourcesServiceStub = createMagicalMock(
+	const todoListResourcesServiceStub = createSpyObject(
 		TodoListResourcesService,
 	);
 	todoListResourcesServiceStub.addTodoItem.and.returnValue(

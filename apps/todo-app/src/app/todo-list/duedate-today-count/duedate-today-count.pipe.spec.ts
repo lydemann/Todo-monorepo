@@ -1,4 +1,4 @@
-import { TodoItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { DuedateTodayCountPipe } from './duedate-today-count.pipe';
 
 describe('DuedateTodayCountPipe', () => {

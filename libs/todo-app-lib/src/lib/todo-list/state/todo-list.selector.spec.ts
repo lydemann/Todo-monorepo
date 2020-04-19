@@ -1,4 +1,4 @@
-import { TodoItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListState } from './todo-list.model';
 import { todoListSelector } from './todo-list.selector';
 

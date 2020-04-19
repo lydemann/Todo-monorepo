@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { EndpointsService } from '@todo/shared/data-access';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { Guid } from '@todo/shared/util';
 
 @Injectable({

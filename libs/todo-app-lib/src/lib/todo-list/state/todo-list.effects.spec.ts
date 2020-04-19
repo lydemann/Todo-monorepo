@@ -3,7 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
-import { TodoItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { createMagicalMock } from '@todo/shared/util-test';
 import { TodoListResourcesService } from '../resources/todo-list-resources.service';
 import { TodoListActions } from './todo-list.actions';
