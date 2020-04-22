@@ -7,9 +7,10 @@ import { TodoListState } from './todo-list.model';
 export const todoListInitState: TodoListState = {
 	todos: [],
 	isLoading: false,
-	isSavingTodo: false,
+	isAddingTodo: false,
 };
 
+// TODO: migrate to NgRx entity
 const todoItemsLoadFailed = (
 	lastState: TodoListState,
 	action: ReturnType<typeof TodoListActions.getTodoListFailed>,
@@ -53,7 +54,7 @@ const UpdateTodoItemReducer = (
 		...lastState,
 		todos: newTodos,
 		selectedTodoItemId: null,
-		isSavingTodo: false,
+		isAddingTodo: false,
 	};
 };
 const toggleTodoItemReducer = (
@@ -114,7 +115,7 @@ export const todoListReducers = createReducer(
 	on(TodoListActions.addTodoItemFailed, (state, action) => {
 		return {
 			...state,
-			isSavingTodo: false,
+			isAddingTodo: false,
 			errors: action.error,
 		};
 	}),
@@ -126,7 +127,7 @@ export const todoListReducers = createReducer(
 	on(TodoListActions.saveTodoItemRequest, (state, action) => {
 		return {
 			...state,
-			isSavingTodo: true,
+			isAddingTodo: true,
 		};
 	}),
 
@@ -143,7 +144,7 @@ export const todoListReducers = createReducer(
 	on(TodoListActions.updateTodoItemFailed, (state, action) => {
 		return {
 			...state,
-			isSavingTodo: false,
+			isAddingTodo: false,
 		};
 	}),
 

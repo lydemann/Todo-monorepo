@@ -2917,16 +2917,15 @@
   resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-6.0.2.tgz#ed8d4e04f21885fb18dc2523c4f2111f50ee99b2"
   integrity sha512-8+Dz8GN15zneIA4+mQ7b1j5O+oHsFdhTYQVDGk6eAazHeqrFD0+o8N+pLZL2PZlf98WcHFmXIOqKXrBD8iLl1g==
 
-"@ngneat/spectator@^4.2.1":
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/@ngneat/spectator/-/spectator-4.4.2.tgz#e17165a6a4adfae082b5e4c5430a0f707e8b57ee"
-  integrity sha512-XBBHf+MPCGxQ19TyQEZDP/OSsTs3/qNvgDIVG1paFOzzIMIXRYWGsqancXf1kWkbngfsfyFW5pNlKn5pk2GSLA==
+"@ngneat/spectator@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/spectator/-/spectator-5.5.0.tgz#8a27ce1a727b1527fc226f9b88cfb041ffa883d1"
+  integrity sha512-BRVyH0m+OO+FFlvjnBd57dM+C2XNJiTMZ69VhluiqqnK71wiL/ECEOY1YcRU3vCCF1TG356yCELwss/VzFmx/A==
   dependencies:
     "@testing-library/dom" "6.1.0"
     jquery "3.4.1"
     replace-in-file "^4.1.3"
     schematics-utilities "^1.1.1"
-    tslib "^1.9.0"
 
 "@ngrx/effects@^9.0.0":
   version "9.0.0"
@@ -14867,6 +14866,11 @@ next-tick@1, next-tick@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
+
+ng-mocks@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/ng-mocks/-/ng-mocks-9.2.0.tgz#693fda98b8b6c59a92d95cb72422ddaf22f7e46d"
+  integrity sha512-k2/FoYDW2Izjsl7LKz3L9obfJUvLb7dG5B5p7Bgtqt6mM76lJ8wpPxC5GuINdoI6wGbDfcF+va5kE3clLlSVpA==
 
 ng-packagr@^9.0.0:
   version "9.0.3"

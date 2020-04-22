@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props, union } from '@ngrx/store';
 
-import { TodoItem } from '@todo-app/shared/models/todo-item';
 import {
 	createErrorAction,
 	errorProps,
 } from '@todo/shared/data-access-logging';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 
 export namespace TodoListActions {
 	export const getTodoListRequest = createAction(

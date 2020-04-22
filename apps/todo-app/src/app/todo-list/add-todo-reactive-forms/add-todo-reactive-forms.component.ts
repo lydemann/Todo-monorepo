@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 
 import { InvalidDateValidator } from '@todo-app/shared/invalid-date.directive';
-import { TodoItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({

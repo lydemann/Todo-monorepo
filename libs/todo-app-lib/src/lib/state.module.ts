@@ -10,8 +10,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { environment } from '@todo-app/environments/environment';
 import { ErrorEffects } from '@todo/shared/data-access-logging';
+import { environment } from '../environments/environment';
 import { CustomRouterSerializer } from './router.serilization';
 import { todoAppReducers } from './todo-app.reducers';
 import { TodoListStoreModuleModule } from './todo-list/state/todo-list-store.module';

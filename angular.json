@@ -43,8 +43,8 @@
 						"production": {
 							"fileReplacements": [
 								{
-									"replace": "apps/todo-app/src/environments/environment.ts",
-									"with": "apps/todo-app/src/environments/environment.prod.ts"
+									"replace": "libs/todo-app-lib/src/environments/environment.ts",
+									"with": "libs/todo-app-lib/src/environments/environment.prod.ts"
 								}
 							],
 							"optimization": true,
@@ -987,6 +987,35 @@
 					"options": {
 						"tsConfig": ["apps/questionnaire-app-e2e/tsconfig.e2e.json"],
 						"exclude": ["**/node_modules/**", "!apps/questionnaire-app-e2e/**"]
+					}
+				}
+			}
+		},
+		"shared-interfaces-todo-interfaces": {
+			"root": "libs/shared/interfaces/todo-interfaces",
+			"sourceRoot": "libs/shared/interfaces/todo-interfaces/src",
+			"projectType": "library",
+			"schematics": {},
+			"architect": {
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"libs/shared/interfaces/todo-interfaces/tsconfig.lib.json",
+							"libs/shared/interfaces/todo-interfaces/tsconfig.spec.json"
+						],
+						"exclude": [
+							"**/node_modules/**",
+							"!libs/shared/interfaces/todo-interfaces/**"
+						]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/shared/interfaces/todo-interfaces/jest.config.js",
+						"tsConfig": "libs/shared/interfaces/todo-interfaces/tsconfig.spec.json",
+						"passWithNoTests": true
 					}
 				}
 			}

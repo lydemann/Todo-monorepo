@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { TodoItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 
 @Pipe({
 	name: 'duedateTodayCount',

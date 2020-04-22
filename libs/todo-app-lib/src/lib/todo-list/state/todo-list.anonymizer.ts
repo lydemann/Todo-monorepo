@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { TodoItem } from '@todo-app/shared/models/todo-item';
 import { FeatureStoreAnonymizer } from '@todo/shared/data-access-logging';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { AppState } from '../../app-state';
 import { TodoListState } from './todo-list.model';
 

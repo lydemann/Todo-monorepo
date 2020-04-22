@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { TodoItem } from '@todo-app/shared/models/todo-item';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListActions } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
 import {
-	completedTodosSelector,
-	isAddingTodoSelector,
-	isLoadingSelector,
-	selectedTodoItemSelector,
-	todoListSelector,
+	selectCompletedTodos,
+	selectIsAddingTodo,
+	selectIsLoading,
+	selectSelectedTodoItem,
+	selectTodoList,
 } from './state/todo-list.selector';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class TodoListSandboxService {
-	public isLoading$ = this.store.select(isLoadingSelector);
-	public selectedTodo$ = this.store.select(selectedTodoItemSelector);
-	public completedTodos$ = this.store.select(completedTodosSelector);
-	public isSavingTodo$ = this.store.select(isAddingTodoSelector);
-	public todoList$ = this.store.select(todoListSelector);
+	public isLoading$ = this.store.select(selectIsLoading);
+	public selectedTodo$ = this.store.select(selectSelectedTodoItem);
+	public completedTodos$ = this.store.select(selectCompletedTodos);
+	public isSavingTodo$ = this.store.select(selectIsAddingTodo);
+	public todoList$ = this.store.select(selectTodoList);
 
 	constructor(private store: Store<TodoListState>) {}
 	public todoCompletedToggled(todoId: string) {

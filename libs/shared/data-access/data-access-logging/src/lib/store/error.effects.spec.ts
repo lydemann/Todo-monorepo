@@ -24,8 +24,8 @@ describe('ErrorEffects', () => {
 
 	beforeEach(() => {
 		spectator = createEffects();
-		effects = spectator.get(ErrorEffects);
-		globalErrorHandler = spectator.get(GlobalErrorHandler);
+		effects = spectator.inject(ErrorEffects);
+		globalErrorHandler = spectator.inject(GlobalErrorHandler);
 	});
 
 	describe('handleError$', () => {

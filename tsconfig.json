@@ -30,7 +30,10 @@
 			"@todo/shared/data-access-logging": [
 				"libs/shared/data-access/data-access-logging/src/index.ts"
 			],
-			"@todo/shared/util-test": ["libs/shared/util/util-test/src/index.ts"]
+			"@todo/shared/util-test": ["libs/shared/util/util-test/src/index.ts"],
+			"@todo/shared/todo-interfaces": [
+				"libs/shared/interfaces/todo-interfaces/src/index.ts"
+			]
 		}
 	}
 }

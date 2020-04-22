@@ -2,32 +2,32 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { TodoListState } from './todo-list.model';
 
-export const getTodolistState = createFeatureSelector<TodoListState>(
+export const selectTodolistState = createFeatureSelector<TodoListState>(
 	'todoList',
 );
 
-export const todoListSelector = createSelector(
-	getTodolistState,
+export const selectTodoList = createSelector(
+	selectTodolistState,
 	todoListState => todoListState.todos,
 );
 
-export const completedTodosSelector = createSelector(
-	todoListSelector,
+export const selectCompletedTodos = createSelector(
+	selectTodoList,
 	todos => todos.filter(todo => todo.completed),
 );
 
-export const isLoadingSelector = createSelector(
-	getTodolistState,
+export const selectIsLoading = createSelector(
+	selectTodolistState,
 	todoListState => todoListState.isLoading,
 );
 
-export const isAddingTodoSelector = createSelector(
-	getTodolistState,
-	todoListState => todoListState.isSavingTodo,
+export const selectIsAddingTodo = createSelector(
+	selectTodolistState,
+	todoListState => todoListState.isAddingTodo,
 );
 
-export const selectedTodoItemSelector = createSelector(
-	getTodolistState,
+export const selectSelectedTodoItem = createSelector(
+	selectTodolistState,
 	todoListState => {
 		return todoListState.todos.find(
 			todoItem => todoItem.id === todoListState.selectedTodoItemId,
