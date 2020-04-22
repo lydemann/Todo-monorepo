@@ -1,16 +1,14 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { mockProvider, SpyObject } from '@ngneat/spectator';
-import { TranslateDirective } from '@ngx-translate/core';
-import { MockDirective } from 'ng-mocks';
 import { of } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { completedTodoPath } from '@todo-app/app.routes';
 import { TodoItemListRowComponent } from '@todo-app/shared/todo-item-list-row/todo-item-list-row.component';
+import { TestingModule } from '@todo-app/testing.module';
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
 import { TodoItem } from '@todo/shared/todo-interfaces';
-import { TestingModule } from '@todo/shared/util-test';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 describe('TodoListCompletedComponent', () => {

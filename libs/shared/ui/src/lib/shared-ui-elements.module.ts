@@ -40,20 +40,6 @@ const IMPORTS = [
 
 @NgModule({
 	imports: [BrowserModule, ...IMPORTS],
-	entryComponents: [
-		SpinnerComponent,
-		SpinnerOverlayWrapperComponent,
-		CheckboxComponent,
-		IconComponent,
-		ButtonComponent,
-		SquareButtonComponent,
-		RoundButtonComponent,
-		ListButtonComponent,
-		AccordionComponent,
-		TextareaComponent,
-		ToggleComponent,
-		TooltipComponent,
-	],
 	declarations: [],
 	exports: [...IMPORTS],
 })

@@ -5,10 +5,13 @@ import {
 	TranslatePipe,
 	TranslateService,
 } from '@ngx-translate/core';
-import { MockDirective, MockPipe } from 'ng-mocks';
+import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
 import { of } from 'rxjs';
 
+import { TextareaComponent } from '@todo/shared/ui';
+
 const declarations = [
+	MockComponent(TextareaComponent),
 	MockDirective(TranslateDirective),
 	MockPipe(TranslatePipe, () => 'translated text'),
 ];
