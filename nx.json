@@ -63,7 +63,7 @@
 			"tags": ["type:app"]
 		},
 		"shared-util-util-test": {
-			"tags": []
+			"tags": ["scope:shared", "type:util"]
 		},
 		"questionnaire-app-e2e": {
 			"tags": []

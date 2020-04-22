@@ -11,6 +11,7 @@ import { of } from 'rxjs';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
 import { TodoItem } from '@todo/shared/todo-interfaces';
+import { TestingModule } from '@todo/shared/util-test';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 import { AddTodoReactiveFormsModule } from './add-todo-reactive-forms/add-todo-reactive-forms.module';
 import { AddTodoComponent } from './add-todo/add-todo.component';
@@ -26,6 +27,7 @@ describe('TodoListComponent', () => {
 			TranslateModule.forRoot(),
 			SharedModule,
 			AddTodoReactiveFormsModule,
+			TestingModule,
 		],
 		providers: [
 			mockProvider(TodoListSandboxService, {
@@ -38,7 +40,7 @@ describe('TodoListComponent', () => {
 
 	describe('get todo list', () => {
 		it('should show three todo items', async(() => {
-			const todoListSandboxService = spectator.get(TodoListSandboxService);
+			const todoListSandboxService = spectator.inject(TodoListSandboxService);
 			todoListSandboxService.todoList$ = of([
 				new TodoItem('1', ''),
 				new TodoItem('2', ''),
