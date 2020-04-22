@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { createSpyObject } from '@ngneat/spectator';
+import { createSpyObject, mockProvider, SpyObject } from '@ngneat/spectator';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
@@ -13,21 +13,21 @@ describe('TodoListEffects', () => {
 	let actions: Observable<any>;
 
 	let effects: TodoListEffects;
-	const todoListResourcesStub = createSpyObject(TodoListResourcesService);
+	let todoListResourcesStub: SpyObject<TodoListResourcesService>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			providers: [
 				TodoListEffects,
 				provideMockActions(() => actions),
-				{
-					provide: TodoListResourcesService,
-					useValue: todoListResourcesStub,
-				},
+				mockProvider(TodoListResourcesService),
 			],
 		});
 
-		effects = TestBed.get(TodoListEffects);
+		effects = TestBed.inject(TodoListEffects);
+		todoListResourcesStub = TestBed.inject(
+			TodoListResourcesService,
+		) as SpyObject<TodoListResourcesService>;
 	});
 
 	describe('saveTodoItemRequest', () => {
