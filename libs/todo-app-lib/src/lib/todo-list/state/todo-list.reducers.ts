@@ -1,13 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { TodoListActions } from './todo-list.actions';
+import { TodoListActions, TodoListActionsUnion } from './todo-list.actions';
 import {
 	todoListAdapter,
 	todoListInitState,
 	TodoListState,
 } from './todo-list.model';
 
-export const todoListReducer = createReducer<TodoListState>(
+export const todoListReducer = createReducer<
+	TodoListState,
+	TodoListActionsUnion
+>(
 	todoListInitState,
 	on(TodoListActions.getTodoListRequest, state => {
 		return {
@@ -29,22 +32,41 @@ export const todoListReducer = createReducer<TodoListState>(
 			isLoading: false,
 		};
 	}),
+	on(TodoListActions.updateTodoItemRequest, state => {
+		return {
+			...state,
+			isAddingTodo: true,
+		};
+	}),
 	on(TodoListActions.updateTodoItemResponse, (state, { todoItem }) => {
 		return {
 			...todoListAdapter.upsertOne(todoItem, state),
-			isLoading: false,
+			isAddingTodo: false,
+		};
+	}),
+	on(TodoListActions.updateTodoItemFailed, (state, { error }) => {
+		return {
+			...state,
+			error,
+			isAddingTodo: false,
+		};
+	}),
+	on(TodoListActions.addTodoItemRequest, state => {
+		return {
+			...state,
+			isAddingTodo: true,
 		};
 	}),
 	on(TodoListActions.addTodoItemReponse, (state, { todoItem }) => {
 		return {
 			...todoListAdapter.upsertOne(todoItem, state),
-			isLoading: false,
+			isAddingTodo: false,
 		};
 	}),
 	on(TodoListActions.deleteTodoItem, (state, { todoItemId }) => {
 		return {
 			...todoListAdapter.removeOne(todoItemId, state),
-			isLoading: false,
+			isAddingTodo: false,
 		};
 	}),
 	on(TodoListActions.toggleCompleteTodoItem, (state, action) => {
