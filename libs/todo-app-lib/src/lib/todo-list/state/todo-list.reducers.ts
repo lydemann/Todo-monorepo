@@ -1,91 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { ImmutableCollectionHelper } from '@todo/shared/util';
 import { TodoListActions } from './todo-list.actions';
-import { TodoListState } from './todo-list.model';
+import {
+	todoListAdapter,
+	todoListInitState,
+	TodoListState,
+} from './todo-list.model';
 
-export const todoListInitState: TodoListState = {
-	todos: [],
-	isLoading: false,
-	isAddingTodo: false,
-};
-
-// TODO: migrate to NgRx entity
-const todoItemsLoadFailed = (
-	lastState: TodoListState,
-	action: ReturnType<typeof TodoListActions.getTodoListFailed>,
-): TodoListState => {
-	return {
-		...lastState,
-		errors: action.error,
-		isLoading: false,
-	};
-};
-
-const todoItemDeletedReducer = (
-	lastState: TodoListState,
-	action: ReturnType<typeof TodoListActions.deleteTodoItem>,
-): TodoListState => {
-	const deleteIdx = lastState.todos.findIndex(
-		todo => todo.id === action.todoItemId,
-	);
-	const newTodos = ImmutableCollectionHelper.removeItem(
-		lastState.todos,
-		deleteIdx,
-	);
-
-	return { ...lastState, todos: newTodos, isLoading: false };
-};
-const UpdateTodoItemReducer = (
-	lastState: TodoListState,
-	action: ReturnType<typeof TodoListActions.updateTodoItemResponse>,
-): TodoListState => {
-	const updatedTodoIdx = lastState.todos.findIndex(
-		todo => todo.id === action.todoItem.id,
-	);
-
-	const newTodos = ImmutableCollectionHelper.updateObjectInArray(
-		lastState.todos,
-		updatedTodoIdx,
-		action.todoItem,
-	);
-
-	return {
-		...lastState,
-		todos: newTodos,
-		selectedTodoItemId: null,
-		isAddingTodo: false,
-	};
-};
-const toggleTodoItemReducer = (
-	lastState: TodoListState,
-	action: ReturnType<typeof TodoListActions.toggleCompleteTodoItem>,
-): TodoListState => {
-	const index = lastState.todos.findIndex(
-		todo => todo.id === action.todoItemId,
-	);
-	const oldTodo = lastState.todos[index];
-	const newTodo = {
-		...oldTodo,
-		completed: !oldTodo.completed,
-	};
-	const newTodos = ImmutableCollectionHelper.updateObjectInArray(
-		lastState.todos,
-		index,
-		newTodo,
-	);
-
-	return { ...lastState, todos: newTodos, isLoading: false };
-};
-
-const selectTodoForEditAReducer = (
-	lastState: TodoListState,
-	action: ReturnType<typeof TodoListActions.selectTodoForEdit>,
-): TodoListState => {
-	return { ...lastState, selectedTodoItemId: action.todoItem.id };
-};
-
-export const todoListReducers = createReducer(
+export const todoListReducer = createReducer<TodoListState>(
 	todoListInitState,
 	on(TodoListActions.getTodoListRequest, state => {
 		return {
@@ -93,68 +15,48 @@ export const todoListReducers = createReducer(
 			isLoading: true,
 		};
 	}),
-	on(TodoListActions.getTodoListResponse, (state, action) => {
+	on(TodoListActions.getTodoListResponse, (state, { todoList }) => {
 		return {
-			...state,
-			todos: action.todoList,
+			...todoListAdapter.setAll(todoList, state),
 			isLoading: false,
 		};
 	}),
 
-	on(TodoListActions.getTodoListFailed, (state, action) => {
-		return todoItemsLoadFailed(state, action);
-	}),
-	on(TodoListActions.addTodoItemReponse, (state, action) => {
-		const newTodos = [...state.todos, { ...action.todoItem }];
+	on(TodoListActions.getTodoListFailed, (state, { error }) => {
 		return {
 			...state,
-			todos: newTodos,
-			isSavingTodo: false,
+			error,
+			isLoading: false,
 		};
 	}),
-	on(TodoListActions.addTodoItemFailed, (state, action) => {
+	on(TodoListActions.updateTodoItemResponse, (state, { todoItem }) => {
 		return {
-			...state,
-			isAddingTodo: false,
-			errors: action.error,
+			...todoListAdapter.upsertOne(todoItem, state),
+			isLoading: false,
 		};
 	}),
-
-	on(TodoListActions.deleteTodoItem, (state, action) => {
-		return todoItemDeletedReducer(state, action);
-	}),
-
-	on(TodoListActions.saveTodoItemRequest, (state, action) => {
+	on(TodoListActions.addTodoItemReponse, (state, { todoItem }) => {
 		return {
-			...state,
-			isAddingTodo: true,
+			...todoListAdapter.upsertOne(todoItem, state),
+			isLoading: false,
 		};
 	}),
-
-	on(TodoListActions.updateTodoItemRequest, (state, action) => {
+	on(TodoListActions.deleteTodoItem, (state, { todoItemId }) => {
 		return {
-			...state,
+			...todoListAdapter.removeOne(todoItemId, state),
+			isLoading: false,
 		};
 	}),
-
-	on(TodoListActions.updateTodoItemResponse, (state, action) => {
-		return UpdateTodoItemReducer(state, action);
-	}),
-
-	on(TodoListActions.updateTodoItemFailed, (state, action) => {
-		return {
-			...state,
-			isAddingTodo: false,
-		};
-	}),
-
 	on(TodoListActions.toggleCompleteTodoItem, (state, action) => {
-		return toggleTodoItemReducer(state, action);
+		const oldTodo = state.entities[action.todoItemId];
+		const newTodoState = todoListAdapter.updateOne(
+			{ id: action.todoItemId, changes: { completed: !oldTodo?.completed } },
+			state,
+		);
+		return { ...newTodoState, isLoading: false };
 	}),
 
 	on(TodoListActions.selectTodoForEdit, (state, action) => {
-		return selectTodoForEditAReducer(state, action);
+		return { ...state, selectedTodoItemId: action.todoItem.id };
 	}),
 );
-
-// TODO: add store freeze meta reducer

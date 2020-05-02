@@ -157,7 +157,7 @@
 		"nodemon": "^1.17.1",
 		"npx": "^10.2.2",
 		"post-npm-install": "^2.0.0",
-		"prettier": "^1.16.4",
+		"prettier": "^2.0.5",
 		"protractor": "~5.4.0",
 		"puppeteer": "^2.1.1",
 		"regenerator-runtime": "0.13.3",
@@ -172,6 +172,6 @@
 		"tslint-config-prettier": "^1.18.0",
 		"tslint-eslint-rules": "^5.4.0",
 		"tslint-jasmine-rules": "^1.5.1",
-		"typescript": "~3.8.3"
+		"typescript": "^3.8.3"
 	}
 }
