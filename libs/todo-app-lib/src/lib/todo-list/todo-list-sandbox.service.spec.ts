@@ -35,8 +35,8 @@ describe('Service: TodoListSandboxService', () => {
 			],
 		});
 
-		service = TestBed.get(TodoListSandboxService);
-		store = TestBed.get(Store);
+		service = TestBed.inject(TodoListSandboxService);
+		store = TestBed.inject(Store);
 		spyOn(store, 'dispatch');
 	});
 

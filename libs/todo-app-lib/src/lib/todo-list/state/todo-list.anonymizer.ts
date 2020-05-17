@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { FeatureStoreAnonymizer } from '@todo/shared/data-access-logging';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { AppState } from '../../app-state';
-import { TodoListState } from './todo-list.model';
+import { todoListAdapter, TodoListState } from './todo-list.model';
+import { selectTodoList } from './todo-list.selector';
 
 @Injectable()
 export class TodoListAnonymizer extends FeatureStoreAnonymizer<
@@ -15,8 +16,13 @@ export class TodoListAnonymizer extends FeatureStoreAnonymizer<
 	}
 
 	public anonymizeFeatureState(featureState: TodoListState) {
-		featureState.todos = featureState.todos.map(
+		const todos = selectTodoList.projector(featureState);
+		const anonymizedState = todoListAdapter.map(
 			todo => ({ ...todo, title: '', description: '' } as TodoItem),
+			featureState,
 		);
+
+		featureState.entities = anonymizedState.entities;
+		featureState.ids = anonymizedState.ids;
 	}
 }

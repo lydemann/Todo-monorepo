@@ -1,8 +1,12 @@
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { GenericAction } from '../../generic-action';
 import { TodoListActions } from './todo-list.actions';
-import { TodoListState } from './todo-list.model';
-import { todoListInitState, todoListReducers } from './todo-list.reducers';
+import {
+	todoListAdapter,
+	todoListInitState,
+	TodoListState,
+} from './todo-list.model';
+import { todoListReducer } from './todo-list.reducer';
 
 describe('TodoList reducer', () => {
 	let state: TodoListState;
@@ -16,7 +20,7 @@ describe('TodoList reducer', () => {
 	describe('default', () => {
 		it('should return init state', () => {
 			const noopAction = new GenericAction('noop' as any);
-			const newState = todoListReducers(undefined, noopAction);
+			const newState = todoListReducer(undefined, noopAction);
 
 			expect(newState).toEqual(state);
 		});
@@ -25,7 +29,7 @@ describe('TodoList reducer', () => {
 	describe('getTodoListRequest', () => {
 		it('should return isLoading true', () => {
 			const loadTodoItemsAction = TodoListActions.getTodoListRequest();
-			const newState = todoListReducers(state, loadTodoItemsAction);
+			const newState = todoListReducer(state, loadTodoItemsAction);
 
 			expect(newState.isLoading).toBe(true);
 		});
@@ -35,10 +39,10 @@ describe('TodoList reducer', () => {
 		it('should return isLoading false and error', () => {
 			const error = new Error('http error');
 			const loadTodoItemsAction = TodoListActions.getTodoListFailed({ error });
-			const newState = todoListReducers(state, loadTodoItemsAction);
+			const newState = todoListReducer(state, loadTodoItemsAction);
 
 			expect(newState.isLoading).toBe(false);
-			expect(newState.errors).toBe(error);
+			expect(newState.error).toEqual(error);
 		});
 	});
 
@@ -48,27 +52,30 @@ describe('TodoList reducer', () => {
 			const addTodoItemsAction = TodoListActions.addTodoItemReponse({
 				todoItem: newTodo,
 			});
-			const newState = todoListReducers(state, addTodoItemsAction);
+			const newState = todoListReducer(state, addTodoItemsAction);
 
-			expect(newState.todos.length).toBe(1);
-			expect(newState.todos[0]).toEqual({ ...newTodo });
+			expect(newState.ids.length).toBe(1);
+			expect(newState.entities[newTodo.id]).toEqual(newTodo);
 		});
 	});
 
 	describe('todoItemDeletedReducer', () => {
 		it('should delete todo from todo list', () => {
 			const todoToDelete = 'todoToDelete';
-			state.todos = [new TodoItem('todoToDelete', '')];
-			state.todos[0].id = todoToDelete;
+			const todoItemToDelete = {
+				...new TodoItem('todoToDelete', ''),
+				id: todoToDelete,
+			} as TodoItem;
+			state = todoListAdapter.setAll([todoItemToDelete], state);
 
-			expect(state.todos.length).toBe(1);
+			expect(state.ids.length).toBe(1);
 
 			const deleteTodoItemAction = TodoListActions.deleteTodoItem({
 				todoItemId: todoToDelete,
 			});
-			const newState = todoListReducers(state, deleteTodoItemAction);
+			const newState = todoListReducer(state, deleteTodoItemAction);
 
-			expect(newState.todos.length).toBe(0);
+			expect(newState.ids.length).toBe(0);
 		});
 	});
 
@@ -76,9 +83,9 @@ describe('TodoList reducer', () => {
 		it('should update todo item', () => {
 			const oldTodoItem = new TodoItem('todoToUpdate', '');
 			oldTodoItem.id = 'todoToUpdate';
-			state.todos = [oldTodoItem];
+			state = todoListAdapter.setAll([oldTodoItem], state);
 
-			expect(state.todos.length).toBe(1);
+			expect(state.ids.length).toBe(1);
 
 			const updatedTodo = { ...new TodoItem('todoToUpdate', 'new msg') };
 			updatedTodo.id = oldTodoItem.id;
@@ -87,9 +94,9 @@ describe('TodoList reducer', () => {
 					todoItem: updatedTodo,
 				},
 			);
-			const newState = todoListReducers(state, updateTodoItemRequestAction);
+			const newState = todoListReducer(state, updateTodoItemRequestAction);
 
-			expect(newState.todos[0]).toEqual(updatedTodo);
+			expect(newState.entities[updatedTodo.id]).toEqual(updatedTodo);
 		});
 	});
 
@@ -98,17 +105,17 @@ describe('TodoList reducer', () => {
 			const oldTodoItem = new TodoItem('todoToUpdate', '');
 			oldTodoItem.id = 'todoToUpdate';
 			oldTodoItem.completed = false;
-			state.todos = [oldTodoItem];
+			state = todoListAdapter.setAll([oldTodoItem], state);
 
-			expect(state.todos.length).toBe(1);
-			expect(state.todos[0].completed).toBe(false);
+			expect(state.ids.length).toBe(1);
+			expect(state.entities[oldTodoItem.id].completed).toBe(false);
 
 			const loadTodoItemsAction = TodoListActions.toggleCompleteTodoItem({
 				todoItemId: oldTodoItem.id,
 			});
-			const newState = todoListReducers(state, loadTodoItemsAction);
+			const newState = todoListReducer(state, loadTodoItemsAction);
 
-			expect(newState.todos[0].completed).toBe(true);
+			expect(newState.entities[oldTodoItem.id].completed).toBe(true);
 		});
 	});
 });
