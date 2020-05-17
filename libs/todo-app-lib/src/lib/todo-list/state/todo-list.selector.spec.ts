@@ -1,5 +1,9 @@
 import { TodoItem } from '@todo/shared/todo-interfaces';
-import { todoListInitState, TodoListState } from './todo-list.model';
+import {
+	todoListAdapter,
+	todoListInitState,
+	TodoListState,
+} from './todo-list.model';
 import {
 	selectCompletedTodos,
 	selectIsAddingTodo,
@@ -13,10 +17,11 @@ describe('Todo list selectors', () => {
 		it('should return the todoList', () => {
 			const todos = [new TodoItem('todo1', 'todo1')];
 
-			const todoListState = {
-				todos,
+			let todoListState = {
 				isLoading: true,
 			} as TodoListState;
+
+			todoListState = todoListAdapter.setAll(todos, todoListState);
 
 			expect(selectTodoList.projector(todoListState)).toEqual(todos);
 		});
