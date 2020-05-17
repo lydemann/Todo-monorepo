@@ -1,5 +1,5 @@
 import { TodoItem } from '@todo/shared/todo-interfaces';
-import { TodoListState } from './todo-list.model';
+import { todoListInitState, TodoListState } from './todo-list.model';
 import {
 	selectCompletedTodos,
 	selectIsAddingTodo,
@@ -56,6 +56,7 @@ describe('Todo list selectors', () => {
 				{ ...new TodoItem('todo2', 'todo2'), completed: false } as TodoItem,
 			];
 			const todoListState = {
+				...todoListInitState,
 				todos,
 				selectedTodoItemId: todos[0].id,
 			} as TodoListState;
