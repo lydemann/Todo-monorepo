@@ -6,7 +6,7 @@ import {
 	todoListInitState,
 	TodoListState,
 } from './todo-list.model';
-import { todoListReducer } from './todo-list.reducers';
+import { todoListReducer } from './todo-list.reducer';
 
 describe('TodoList reducer', () => {
 	let state: TodoListState;
@@ -42,7 +42,7 @@ describe('TodoList reducer', () => {
 			const newState = todoListReducer(state, loadTodoItemsAction);
 
 			expect(newState.isLoading).toBe(false);
-			expect(newState.errors).toBe(error);
+			expect(newState.error).toEqual(error);
 		});
 	});
 
@@ -55,7 +55,7 @@ describe('TodoList reducer', () => {
 			const newState = todoListReducer(state, addTodoItemsAction);
 
 			expect(newState.ids.length).toBe(1);
-			expect(newState.entities[newTodo.id]).toEqual({ ...newTodo });
+			expect(newState.entities[newTodo.id]).toEqual(newTodo);
 		});
 	});
 

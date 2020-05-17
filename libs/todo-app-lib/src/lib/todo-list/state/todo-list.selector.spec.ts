@@ -18,11 +18,11 @@ describe('Todo list selectors', () => {
 			const todos = [new TodoItem('todo1', 'todo1')];
 
 			let todoListState = {
+				...todoListInitState,
 				isLoading: true,
 			} as TodoListState;
 
 			todoListState = todoListAdapter.setAll(todos, todoListState);
-
 			expect(selectTodoList.projector(todoListState)).toEqual(todos);
 		});
 	});
@@ -60,11 +60,11 @@ describe('Todo list selectors', () => {
 				{ ...new TodoItem('todo1', 'todo1'), completed: true } as TodoItem,
 				{ ...new TodoItem('todo2', 'todo2'), completed: false } as TodoItem,
 			];
-			const todoListState = {
+			let todoListState = {
 				...todoListInitState,
-				todos,
 				selectedTodoItemId: todos[0].id,
 			} as TodoListState;
+			todoListState = todoListAdapter.setAll(todos, todoListState);
 
 			expect(selectSelectedTodoItem.projector(todoListState)).toBe(todos[0]);
 		});

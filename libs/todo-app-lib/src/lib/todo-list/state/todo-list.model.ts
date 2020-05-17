@@ -10,7 +10,7 @@ export const todoListAdapter: EntityAdapter<TodoItem> = createEntityAdapter<
 
 export interface TodoListState extends EntityState<TodoItem> {
 	selectedTodoItemId: string;
-	errors: Error;
+	error: Error;
 	isLoading: boolean;
 	isAddingTodo: boolean;
 }
@@ -19,7 +19,7 @@ export const todoListInitState = todoListAdapter.getInitialState<TodoListState>(
 	{
 		entities: {},
 		ids: [],
-		errors: null,
+		error: null,
 		selectedTodoItemId: null,
 		isLoading: false,
 		isAddingTodo: false,
