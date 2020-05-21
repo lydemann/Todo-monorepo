@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 
 import { InvalidDateValidator } from '@todo-app/shared/invalid-date.directive';
@@ -11,11 +11,6 @@ import { TodoListSandboxService } from '@todo/todo-app-lib';
 	styleUrls: ['./add-todo-reactive-forms.component.scss'],
 })
 export class AddTodoReactiveFormsComponent {
-	public addTodoForm = this.formBuilder.group({
-		title: ['', Validators.required],
-		description: ['', Validators.required],
-		dueDate: ['', [Validators.required, InvalidDateValidator]],
-	});
 	@Input()
 	public set currentTodo(todoItem: TodoItem) {
 		this._currentTODO = { ...todoItem };
@@ -26,14 +21,18 @@ export class AddTodoReactiveFormsComponent {
 	public get currentTodo(): TodoItem {
 		return this._currentTODO;
 	}
-	public isSavingTodo$ = this.todoListSandboxService.isSavingTodo$;
+	public addTodoForm = this.formBuilder.group({
+		title: ['', Validators.required],
+		description: ['', Validators.required],
+		dueDate: ['', [Validators.required, InvalidDateValidator]],
+	});
+	@Input()
+	public isSavingTodo: boolean;
+	@Output() public saveTodo = new EventEmitter<TodoItem>();
 
 	private _currentTODO = new TodoItem('', '');
 
-	constructor(
-		private todoListSandboxService: TodoListSandboxService,
-		private formBuilder: FormBuilder,
-	) {}
+	constructor(private formBuilder: FormBuilder) {}
 
 	public save(form: NgForm) {
 		if (!form.valid) {
@@ -42,7 +41,7 @@ export class AddTodoReactiveFormsComponent {
 			return;
 		}
 
-		this.todoListSandboxService.saveTodoItem(this.addTodoForm.value);
+		this.saveTodo.next(this.addTodoForm.value);
 		form.resetForm();
 	}
 }

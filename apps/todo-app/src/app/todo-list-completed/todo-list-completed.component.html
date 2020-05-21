@@ -3,12 +3,12 @@
 		<h5>{{ 'completed-todo-list' | translate }}</h5>
 		<hr />
 		<ul class="list-group mb-3">
-			<app-todo-item-list-row
+			<app-crud-item
 				*ngFor="let todo of completedTodos$ | async"
 				(todoCompleteToggled)="todoCompleteToggled($event)"
 				[todoItem]="todo"
 				[readOnlyTODO]="true"
-			></app-todo-item-list-row>
+			></app-crud-item>
 		</ul>
 	</div>
 	<hr />

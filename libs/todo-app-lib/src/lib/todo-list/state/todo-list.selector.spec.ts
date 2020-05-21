@@ -6,8 +6,8 @@ import {
 } from './todo-list.model';
 import {
 	selectCompletedTodos,
-	selectIsAddingTodo,
 	selectIsLoading,
+	selectIsSavingTodo,
 	selectSelectedTodoItem,
 	selectTodoList,
 } from './todo-list.selector';
@@ -47,10 +47,10 @@ describe('Todo list selectors', () => {
 		});
 	});
 
-	describe('selectIsAddingTodo', () => {
+	describe('selectIsSavingTodo', () => {
 		it('should select is adding todo', () => {
 			const state = { isAddingTodo: true } as TodoListState;
-			expect(selectIsAddingTodo.projector(state)).toBe(state.isAddingTodo);
+			expect(selectIsSavingTodo.projector(state)).toBe(state.isAddingTodo);
 		});
 	});
 

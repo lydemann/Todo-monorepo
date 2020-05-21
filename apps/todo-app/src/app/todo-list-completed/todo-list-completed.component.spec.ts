@@ -5,10 +5,10 @@ import { of } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { completedTodoPath } from '@todo-app/app.routes';
-import { TodoItemListRowComponent } from '@todo-app/shared/todo-item-list-row/todo-item-list-row.component';
 import { TestingModule } from '@todo-app/testing.module';
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
 import { TodoItem } from '@todo/shared/todo-interfaces';
+import { CrudItemComponent } from '@todo/shared/ui';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 describe('TodoListCompletedComponent', () => {
@@ -23,7 +23,7 @@ describe('TodoListCompletedComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [TodoListCompletedComponent, TodoItemListRowComponent],
+			declarations: [TodoListCompletedComponent, CrudItemComponent],
 			imports: [TestingModule],
 			providers: [
 				{ provide: APP_BASE_HREF, useValue: completedTodoPath },

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AccordionModule } from './accordion/accordion.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
+import { CrudItemModule } from './crud-item/crud-item.module';
 import { DatePickerModule } from './date-picker/date-picker.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
@@ -25,6 +26,7 @@ const IMPORTS = [
 	TooltipModule,
 	DatePickerModule,
 	InputModule,
+	CrudItemModule,
 ];
 
 @NgModule({

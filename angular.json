@@ -634,13 +634,14 @@
 						"tsConfig": "apps/reactapp/tsconfig.app.json",
 						"assets": [
 							"apps/reactapp/src/favicon.ico",
-							"apps/reactapp/src/assets"
+							"apps/reactapp/src/assets",
+							{
+								"glob": "**/*",
+								"input": "dist/apps/designsystemdemo",
+								"output": "./assets/ui-lib/"
+							}
 						],
 						"styles": ["apps/reactapp/src/styles.scss"],
-						"scripts": [
-							"apps/reactapp/src/assets/polyfills-es2015.js",
-							"apps/reactapp/src/assets/main-es2015.js"
-						],
 						"webpackConfig": "@nrwl/react/plugins/webpack"
 					},
 					"configurations": {
@@ -752,7 +753,8 @@
 							"apps/designsystemdemo/src/assets"
 						],
 						"styles": ["apps/designsystemdemo/src/styles.scss"],
-						"scripts": []
+						"scripts": [],
+						"singleBundle": true
 					},
 					"configurations": {
 						"production": {

@@ -11,3 +11,4 @@ export * from './lib/toggle';
 export * from './lib/tooltip';
 export * from './lib/date-picker';
 export * from './lib/input';
+export * from './lib/crud-item';

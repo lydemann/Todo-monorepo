@@ -1,18 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { Injector, NgModule, Type } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AccordionComponent } from './accordion/accordion.component';
 import { AccordionModule } from './accordion/accordion.module';
-import { ButtonComponent } from './buttons';
 import { ButtonsModule } from './buttons/buttons.module';
 import { buttonElements } from './buttons/elements.config';
-import { ListButtonComponent } from './buttons/list-button/list-button.component';
-import { RoundButtonComponent } from './buttons/round-button/round-button.component';
-import { SquareButtonComponent } from './buttons/square-button/square-button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CheckboxModule } from './checkbox/checkbox.module';
+import { CrudItemComponent } from './crud-item/crud-item.component';
+import { CrudItemModule } from './crud-item/crud-item.module';
 import { IconComponent } from './icon/icon.component';
 import { IconModule } from './icon/icon.module';
 import { SpinnerOverlayWrapperComponent } from './spinner-overlay-wrapper/spinner-overlay-wrapper.component';
@@ -36,6 +33,7 @@ const IMPORTS = [
 	TextareaModule,
 	ToggleModule,
 	TooltipModule,
+	CrudItemModule,
 ];
 
 @NgModule({
@@ -57,6 +55,7 @@ export class SharedUiElementsModule {
 			[TextareaComponent, 'app-textarea'],
 			[ToggleComponent, 'app-toggle'],
 			[TooltipComponent, 'app-tooltip'],
+			[CrudItemComponent, 'app-crud-item'],
 		];
 
 		for (const [component, name] of elements) {

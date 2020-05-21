@@ -10,7 +10,6 @@ import { SharedUtilUtilI18nModule } from '@todo/shared/util-i18n';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { CardListModule } from './cards-list/cards-list.module';
 import { TodoItemCardComponent } from './todo-item-card/todo-item-card.component';
-import { TodoItemListRowComponent } from './todo-item-list-row/todo-item-list-row.component';
 
 @NgModule({
 	imports: [
@@ -23,17 +22,12 @@ import { TodoItemListRowComponent } from './todo-item-list-row/todo-item-list-ro
 		SharedUtilUtilI18nModule,
 		SharedUiModule,
 	],
-	declarations: [
-		InvalidDateValidatorDirective,
-		TodoItemListRowComponent,
-		TodoItemCardComponent,
-	],
+	declarations: [InvalidDateValidatorDirective, TodoItemCardComponent],
 	exports: [
 		InvalidDateValidatorDirective,
 		RouterModule,
 		TranslateModule,
 		CardListModule,
-		TodoItemListRowComponent,
 		TodoItemCardComponent,
 		AppMaterialModule,
 		FeatureToggleModule,

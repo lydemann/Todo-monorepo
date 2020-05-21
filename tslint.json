@@ -128,6 +128,10 @@
 						"onlyDependOnLibsWithTags": ["scope:todo-app", "scope:shared"]
 					},
 					{
+						"sourceTag": "type:app",
+						"onlyDependOnLibsWithTags": ["scope:shared"]
+					},
+					{
 						"sourceTag": "scope:todo-admin",
 						"onlyDependOnLibsWithTags": ["scope:todo-admin", "scope:shared"]
 					},
