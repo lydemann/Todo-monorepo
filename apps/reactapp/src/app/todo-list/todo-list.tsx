@@ -15,6 +15,7 @@ export const TodoList = () => {
 	const saveTodo = (savedTodoItem: TodoItem) => {
 		setIsSavingTodo(true);
 
+		savedTodoItem.id = faker.random.uuid();
 		setTimeout(() => {
 			const existingTodoItemIdx = todoList.findIndex(
 				todoItm => todoItm.id === savedTodoItem.id,
@@ -63,7 +64,7 @@ export const TodoList = () => {
 				);
 			});
 		};
-	});
+	}, [todoList]);
 
 	return (
 		<div className='todo-list'>
