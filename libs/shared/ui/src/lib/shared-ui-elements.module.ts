@@ -1,6 +1,7 @@
 import { Injector, NgModule, Type } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AccordionComponent } from './accordion/accordion.component';
@@ -41,7 +42,12 @@ const IMPORTS = [
 ];
 
 @NgModule({
-	imports: [BrowserModule, ...IMPORTS, TranslateModule.forRoot()],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		...IMPORTS,
+		TranslateModule.forRoot(),
+	],
 	declarations: [],
 	exports: [...IMPORTS],
 })
@@ -61,7 +67,7 @@ export class SharedUiElementsModule {
 			[ToggleComponent, 'app-toggle'],
 			[TooltipComponent, 'app-tooltip'],
 			[CrudItemComponent, 'app-crud-item'],
-			[AddTodoReactiveFormsComponent, 'app-add-todo'],
+			[AddTodoReactiveFormsComponent, 'app-todo-form'],
 		];
 
 		for (const [component, name] of elements) {

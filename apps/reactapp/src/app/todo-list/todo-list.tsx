@@ -2,11 +2,35 @@ import faker from 'faker';
 import React, { useEffect, useState } from 'react';
 
 import { TodoItem } from '@todo/shared/todo-interfaces';
+import { CrudItemComponent } from '@todo/shared/ui';
+import TodoForm from '../shared/components/todo-form/todo-form';
+import { AngularElementsEvent } from '../shared/models/angular-elements-output';
 import './todo-list.scss';
 
 export const TodoList = () => {
 	const [todoList, setTodoList] = useState(getTodoList());
+	const [isSavingTodo, setIsSavingTodo] = useState(false);
+	const [currentTodo, setCurrentTodo] = useState(null);
 
+	const saveTodo = (savedTodoItem: TodoItem) => {
+		setIsSavingTodo(true);
+
+		setTimeout(() => {
+			const existingTodoItemIdx = todoList.findIndex(
+				todoItm => todoItm.id === savedTodoItem.id,
+			);
+
+			if (existingTodoItemIdx !== -1) {
+				const updatedTodoList = todoList.map((todoItm, idx) =>
+					idx === existingTodoItemIdx ? savedTodoItem : todoItm,
+				);
+				setTodoList(updatedTodoList);
+			} else {
+				setTodoList([...todoList, savedTodoItem]);
+			}
+			setIsSavingTodo(false);
+		}, 2000);
+	};
 	const toggleTodoCompleted = (todoItemId: string) => {
 		const updatedTodoList = todoList.map(todoItm =>
 			todoItm.id === todoItemId
@@ -17,20 +41,22 @@ export const TodoList = () => {
 		setTodoList(updatedTodoList);
 	};
 
-	const handleTodoCompleteToggle = (data: any) => {
+	const handleTodoCompleteToggle = (data: AngularElementsEvent) => {
 		toggleTodoCompleted(data.detail);
 	};
 
 	useEffect(() => {
-		const todoItemsElms = document.querySelectorAll('app-crud-item');
+		const todoItemsElms = document.querySelectorAll<
+			Element & CrudItemComponent
+		>('app-crud-item');
 
 		todoItemsElms.forEach((item, idx) => {
-			(item as any).todoItem = todoList[idx];
+			item.todoItem = todoList[idx];
 			item.addEventListener('todoCompleteToggled', handleTodoCompleteToggle);
 		});
 
 		return () => {
-			todoItemsElms.forEach((item, idx) => {
+			todoItemsElms.forEach(item => {
 				item.removeEventListener(
 					'todoCompleteToggled',
 					handleTodoCompleteToggle,
@@ -48,6 +74,12 @@ export const TodoList = () => {
 					complete-btn-text='Complete'
 				></app-crud-item>
 			))}
+
+			<TodoForm
+				todoItem={null}
+				isSavingTodo={isSavingTodo}
+				saveTodo={saveTodo}
+			/>
 		</div>
 	);
 };

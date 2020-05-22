@@ -14,7 +14,6 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 	selector: 'app-add-todo-reactive-forms',
 	templateUrl: './add-todo-reactive-forms.component.html',
 	styleUrls: ['./add-todo-reactive-forms.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTodoReactiveFormsComponent {
 	@Input() public headlineText = 'add-todo.headline';
