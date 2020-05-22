@@ -9,7 +9,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 })
 export class CrudItemComponent {
 	@Input() public todoItem: TodoItem;
-	@Input() public readOnlyTODO: boolean;
+	@Input() public isReadOnly: boolean;
 	@Input() public dueDateText: string = 'add-todo.due-date';
 	@Input() public completeBtnText: string = 'todo-item.complete';
 	@Input() public editBtnText: string = 'todo-item.edit';

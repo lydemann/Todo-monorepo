@@ -24,7 +24,7 @@
 				{{ completeBtnText | translate }}
 			</button>
 			<button
-				*ngIf="!readOnlyTODO"
+				*ngIf="!isReadOnly"
 				(click)="editClick()"
 				type="button"
 				class="btn btn-info"
@@ -33,7 +33,7 @@
 				{{ editBtnText | translate }}
 			</button>
 			<button
-				*ngIf="!readOnlyTODO"
+				*ngIf="!isReadOnly"
 				(click)="deleteClick()"
 				type="button"
 				class="btn btn-danger"

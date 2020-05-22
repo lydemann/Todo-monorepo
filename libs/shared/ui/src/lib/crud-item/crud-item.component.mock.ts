@@ -10,7 +10,7 @@ import { CrudItemComponent } from './crud-item.component';
 // tslint:disable-next-line:component-class-suffix
 export class CrudItemComponentMock implements CrudItemComponent {
 	@Input() public todoItem: TodoItem;
-	@Input() public readOnlyTODO: boolean;
+	@Input() public isReadOnly: boolean;
 	@Output() public todoDelete = new EventEmitter();
 	@Output() public todoEdit = new EventEmitter();
 	@Output() public todoCompleteToggled: EventEmitter<string>;

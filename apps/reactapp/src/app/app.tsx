@@ -6,17 +6,11 @@ import TodoList from './todo-list/todo-list';
 
 export const App = () => {
 	return (
-		<div className="app">
-			<header className="flex">
-				<img
-					alt=""
-					width="75"
-					src="https://nx.dev/assets/images/nx-logo-white.svg"
-				/>
-				<h1>Welcome to reactapp!</h1>
+		<div className='app'>
+			<header className='flex'>
+				<h1>Welcome to React Todo App</h1>
 			</header>
 			<main>
-				<app-spinner></app-spinner>
 				<TodoList />
 			</main>
 		</div>

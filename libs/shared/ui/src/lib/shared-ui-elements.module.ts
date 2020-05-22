@@ -1,6 +1,7 @@
 import { Injector, NgModule, Type } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AccordionComponent } from './accordion/accordion.component';
 import { AccordionModule } from './accordion/accordion.module';
@@ -37,7 +38,7 @@ const IMPORTS = [
 ];
 
 @NgModule({
-	imports: [BrowserModule, ...IMPORTS],
+	imports: [BrowserModule, ...IMPORTS, TranslateModule.forRoot()],
 	declarations: [],
 	exports: [...IMPORTS],
 })
@@ -45,7 +46,8 @@ export class SharedUiElementsModule {
 	constructor(private injector: Injector) {}
 
 	public ngDoBootstrap() {
-		const elements: Array<[Type<any>, string]> = [
+		const elements: [Type<any>, string][] = [
+			// UI lib components go here
 			[SpinnerComponent, 'app-spinner'],
 			[SpinnerOverlayWrapperComponent, 'app-spinner-overlay-wrapper'],
 			[CheckboxComponent, 'app-checkbox'],

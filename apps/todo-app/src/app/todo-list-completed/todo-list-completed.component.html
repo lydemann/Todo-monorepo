@@ -7,7 +7,7 @@
 				*ngFor="let todo of completedTodos$ | async"
 				(todoCompleteToggled)="todoCompleteToggled($event)"
 				[todoItem]="todo"
-				[readOnlyTODO]="true"
+				[isReadOnly]="true"
 			></app-crud-item>
 		</ul>
 	</div>
