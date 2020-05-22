@@ -1,8 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { TodoItem } from '@todo/shared/todo-interfaces';
-import { TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({
 	selector: 'app-add-todo',
@@ -10,9 +9,12 @@ import { TodoListSandboxService } from '@todo/todo-app-lib';
 	styleUrls: ['add-todo.component.scss'],
 })
 export class AddTodoComponent {
-	public isSavingTodo$ = this.todoListSandboxService.isSavingTodo$;
+	@Input() public isSavingTodo: boolean;
+
+	@Output() public saveTodoItem = new EventEmitter<TodoItem>();
 
 	private _currentTODO = new TodoItem('', '');
+
 	public get currentTodo(): TodoItem {
 		return this._currentTODO;
 	}
@@ -21,15 +23,13 @@ export class AddTodoComponent {
 		this._currentTODO = { ...todoItem };
 	}
 
-	constructor(private todoListSandboxService: TodoListSandboxService) {}
-
 	public save(form: NgForm) {
 		if (!form.valid) {
 			// tslint:disable-next-line: no-console
 			console.error('Invalid form!');
 			return;
 		}
-		this.todoListSandboxService.saveTodoItem(this.currentTodo);
+		this.saveTodoItem.next(this.currentTodo);
 		form.resetForm();
 	}
 }

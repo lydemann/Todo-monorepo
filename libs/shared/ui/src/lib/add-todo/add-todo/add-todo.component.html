@@ -64,7 +64,7 @@
 			</app-square-button>
 		</form>
 	</ng-template>
-	<div *ngIf="isSavingTodo$ | async; else todoForm" class="relative">
+	<div *ngIf="isSavingTodo; else todoForm" class="relative">
 		<app-spinner></app-spinner>
 	</div>
 </div>

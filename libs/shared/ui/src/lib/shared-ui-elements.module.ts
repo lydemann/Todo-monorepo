@@ -5,6 +5,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AccordionComponent } from './accordion/accordion.component';
 import { AccordionModule } from './accordion/accordion.module';
+import { AddTodoReactiveFormsComponent } from './add-todo/add-todo-reactive-forms/add-todo-reactive-forms.component';
+import { AddTodoReactiveFormsModule } from './add-todo/add-todo-reactive-forms/add-todo-reactive-forms.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { buttonElements } from './buttons/elements.config';
 import { CheckboxComponent } from './checkbox/checkbox.component';
@@ -35,6 +37,7 @@ const IMPORTS = [
 	ToggleModule,
 	TooltipModule,
 	CrudItemModule,
+	AddTodoReactiveFormsModule,
 ];
 
 @NgModule({
@@ -58,6 +61,7 @@ export class SharedUiElementsModule {
 			[ToggleComponent, 'app-toggle'],
 			[TooltipComponent, 'app-tooltip'],
 			[CrudItemComponent, 'app-crud-item'],
+			[AddTodoReactiveFormsComponent, 'app-add-todo'],
 		];
 
 		for (const [component, name] of elements) {
