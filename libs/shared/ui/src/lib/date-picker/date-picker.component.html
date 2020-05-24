@@ -12,6 +12,10 @@
 		[placeholder]="placeholder"
 	/>
 	<mat-error>{{ errorMessage }}</mat-error>
-	<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+	<mat-datepicker-toggle
+		matSuffix
+		[for]="picker"
+		(click)="runCD()"
+	></mat-datepicker-toggle>
 	<mat-datepicker #picker></mat-datepicker>
 </mat-form-field>

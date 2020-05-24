@@ -10,6 +10,7 @@
 						type="text"
 						formControlName="title"
 						matInput
+						appCDTrigger
 						name="todo-title"
 						data-test="todo-title"
 						id="todo-title"
@@ -22,6 +23,7 @@
 					<input
 						type="text"
 						required
+						appCDTrigger
 						matInput
 						name="todo-description"
 						formControlName="description"
@@ -37,6 +39,7 @@
 					<app-date-picker
 						name="todo-due-date"
 						formControlName="dueDate"
+						appCDTrigger
 						data-test="todo-duedate"
 						placeholder="Enter due date"
 					></app-date-picker>
@@ -46,6 +49,7 @@
 				[buttonType]="'Primary'"
 				[type]="'submit'"
 				data-test="create-todo-submit"
+				appCDTrigger
 			>
 				{{
 					!_currentTODO.id ? (createText | translate) : (saveText | translate)

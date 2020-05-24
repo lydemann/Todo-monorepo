@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { ButtonsModule } from '../../buttons';
 import { DatePickerModule } from '../../date-picker';
+import { ElementsHelpersModule } from '../../elements-helpers/elements-helpers.module';
 import { SpinnerModule } from '../../spinner';
 import { AddTodoReactiveFormsComponent } from './add-todo-reactive-forms.component';
 
@@ -18,6 +19,7 @@ import { AddTodoReactiveFormsComponent } from './add-todo-reactive-forms.compone
 		TranslateModule,
 		ButtonsModule,
 		SpinnerModule,
+		ElementsHelpersModule,
 	],
 	declarations: [AddTodoReactiveFormsComponent],
 	exports: [AddTodoReactiveFormsComponent],

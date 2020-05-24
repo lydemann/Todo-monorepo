@@ -1,7 +1,9 @@
 import {
+	ApplicationRef,
 	ChangeDetectorRef,
 	Component,
 	EventEmitter,
+	HostListener,
 	Input,
 	OnChanges,
 	Output,
@@ -36,8 +38,10 @@ export class AddTodoReactiveFormsComponent implements OnChanges {
 
 	constructor(
 		private formBuilder: FormBuilder,
-		private cdRef: ChangeDetectorRef,
+		private changeDetectionRef: ChangeDetectorRef,
+		private applicationRef: ApplicationRef,
 	) {}
+
 	@Input()
 	public set currentTodo(todoItem: TodoItem) {
 		this._currentTODO = { ...todoItem };
@@ -58,10 +62,18 @@ export class AddTodoReactiveFormsComponent implements OnChanges {
 
 		this.saveTodo.next(this.addTodoForm.value);
 		form.resetForm();
-		this.cdRef.detectChanges();
+		this.changeDetectionRef.detectChanges();
 	}
 
 	public ngOnChanges(changes: SimpleChanges): void {
-		this.cdRef.detectChanges();
+		this.changeDetectionRef.detectChanges();
+	}
+
+	@HostListener('keyup', ['$event'])
+	@HostListener('click', ['$event'])
+	@HostListener('change', ['$event'])
+	private runCD() {
+		this.applicationRef.tick();
+		this.changeDetectionRef.detectChanges();
 	}
 }
