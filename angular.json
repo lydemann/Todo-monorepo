@@ -653,7 +653,7 @@
 							"apps/reactapp/src/assets",
 							{
 								"glob": "**/*",
-								"input": "dist/apps/designsystemdemo",
+								"input": "dist/libs/shared/ui",
 								"output": "./assets/ui-lib/"
 							}
 						],

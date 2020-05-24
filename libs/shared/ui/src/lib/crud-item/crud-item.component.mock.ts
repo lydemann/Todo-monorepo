@@ -8,7 +8,11 @@ import { CrudItemComponent } from './crud-item.component';
 	template: '',
 })
 // tslint:disable-next-line:component-class-suffix
-export class CrudItemComponentMock implements CrudItemComponent {
+export class CrudItemComponentMock {
+	@Input() public dueDateText: string;
+	@Input() public completeBtnText: string;
+	@Input() public editBtnText: string;
+	@Input() public deleteBtnText: string;
 	@Input() public todoItem: TodoItem;
 	@Input() public isReadOnly: boolean;
 	@Output() public todoDelete = new EventEmitter();
