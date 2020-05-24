@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { ButtonsModule } from '../../buttons';
 import { DatePickerModule } from '../../date-picker';
+import { FormValidationModule } from '../../form-validation/form-validation.module';
 import { SpinnerModule } from '../../spinner';
 import { AddTodoComponent } from './add-todo.component';
 
@@ -18,6 +19,7 @@ import { AddTodoComponent } from './add-todo.component';
 		TranslateModule,
 		ButtonsModule,
 		SpinnerModule,
+		FormValidationModule,
 	],
 	declarations: [AddTodoComponent],
 	exports: [AddTodoComponent],

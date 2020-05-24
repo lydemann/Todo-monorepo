@@ -1,6 +1,4 @@
 import {
-	ApplicationRef,
-	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
 	EventEmitter,
@@ -11,8 +9,8 @@ import {
 } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 
-import { InvalidDateValidator } from '@todo-app/shared/invalid-date.directive';
 import { TodoItem } from '@todo/shared/todo-interfaces';
+import { InvalidDateValidator } from '../../form-validation/invalid-date.directive';
 
 @Component({
 	selector: 'app-add-todo-reactive-forms',

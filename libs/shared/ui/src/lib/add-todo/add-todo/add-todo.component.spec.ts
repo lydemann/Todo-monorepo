@@ -32,7 +32,7 @@ describe('AddTodoComponent', () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(AddTodoComponent);
 		component = fixture.componentInstance;
-		spyOn(component, 'saveTodoItem');
+		spyOn(component.saveTodoItem, 'next');
 		fixture.detectChanges();
 	});
 
@@ -57,7 +57,9 @@ describe('AddTodoComponent', () => {
 		component.save(form);
 
 		// Assert
-		expect(component.saveTodoItem).toHaveBeenCalledWith(component.currentTodo);
+		expect(component.saveTodoItem.next).toHaveBeenCalledWith(
+			component.currentTodo,
+		);
 	});
 
 	it('should add new todo item when todo item is not in todo list', () => {
@@ -76,6 +78,6 @@ describe('AddTodoComponent', () => {
 		component.save(form);
 
 		// Assert
-		expect(component.saveTodoItem).toHaveBeenCalledWith(newTodo);
+		expect(component.saveTodoItem.next).toHaveBeenCalledWith(newTodo);
 	});
 });

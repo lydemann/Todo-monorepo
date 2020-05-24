@@ -9,9 +9,6 @@ import { SharedUiElementsModule } from './lib/shared-ui-elements.module';
 
 platformBrowserDynamic()
 	// No ZoneJS because web components should be used without
-	.bootstrapModule(
-		SharedUiElementsModule,
-		// { ngZone: 'noop' }
-	)
+	.bootstrapModule(SharedUiElementsModule, { ngZone: 'noop' })
 	// tslint:disable-next-line: no-console
 	.catch(err => console.error(err));
