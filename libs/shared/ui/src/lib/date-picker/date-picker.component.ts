@@ -49,10 +49,6 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 export class DatePickerComponent
 	implements ControlValueAccessor, OnDestroy, AfterViewInit {
 	@Input()
-	public set showError(v: boolean) {
-		this._showErrorSubject.next(v);
-	}
-	@Input()
 	public date: Date;
 
 	@Input() public minDate: Date;
@@ -79,6 +75,10 @@ export class DatePickerComponent
 
 	constructor(public ngControl: NgControl) {
 		ngControl.valueAccessor = this;
+	}
+	@Input()
+	public set showError(v: boolean) {
+		this._showErrorSubject.next(v);
 	}
 	public ngAfterViewInit(): void {
 		// syncing with validators on host element

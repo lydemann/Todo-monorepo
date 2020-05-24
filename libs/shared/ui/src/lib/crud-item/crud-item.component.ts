@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+	ApplicationRef,
+	Component,
+	EventEmitter,
+	Input,
+	OnChanges,
+	Output,
+	SimpleChanges,
+	ViewEncapsulation,
+} from '@angular/core';
 
 import { TodoItem } from '@todo/shared/todo-interfaces';
 
@@ -6,6 +15,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 	selector: 'app-crud-item',
 	templateUrl: './crud-item.component.html',
 	styleUrls: ['./crud-item.component.scss'],
+	encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class CrudItemComponent {
 	@Input() public todoItem: TodoItem;
@@ -18,6 +28,8 @@ export class CrudItemComponent {
 	@Output() public todoDelete = new EventEmitter();
 	@Output() public todoEdit = new EventEmitter();
 	@Output() public todoCompleteToggled = new EventEmitter<string>();
+
+	constructor(private applicationRef: ApplicationRef) {}
 
 	public completeClick() {
 		this.todoCompleteToggled.emit(this.todoItem.id);

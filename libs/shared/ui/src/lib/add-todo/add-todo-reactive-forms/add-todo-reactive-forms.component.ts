@@ -1,9 +1,13 @@
 import {
+	ApplicationRef,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	EventEmitter,
 	Input,
+	OnChanges,
 	Output,
+	SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 
@@ -15,7 +19,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 	templateUrl: './add-todo-reactive-forms.component.html',
 	styleUrls: ['./add-todo-reactive-forms.component.scss'],
 })
-export class AddTodoReactiveFormsComponent {
+export class AddTodoReactiveFormsComponent implements OnChanges {
 	@Input() public headlineText = 'add-todo.headline';
 	@Input() public dueDateText = 'add-todo.due-date';
 	@Input() public createText = 'add-todo.create';
@@ -32,7 +36,10 @@ export class AddTodoReactiveFormsComponent {
 
 	private _currentTODO = new TodoItem('', '');
 
-	constructor(private formBuilder: FormBuilder) {}
+	constructor(
+		private formBuilder: FormBuilder,
+		private cdRef: ChangeDetectorRef,
+	) {}
 	@Input()
 	public set currentTodo(todoItem: TodoItem) {
 		this._currentTODO = { ...todoItem };
@@ -53,5 +60,10 @@ export class AddTodoReactiveFormsComponent {
 
 		this.saveTodo.next(this.addTodoForm.value);
 		form.resetForm();
+		this.cdRef.detectChanges();
+	}
+
+	public ngOnChanges(changes: SimpleChanges): void {
+		this.cdRef.detectChanges();
 	}
 }

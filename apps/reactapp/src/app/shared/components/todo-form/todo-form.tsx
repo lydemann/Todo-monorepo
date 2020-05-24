@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { AddTodoReactiveFormsComponent } from '@todo/shared/ui';
 import { AngularElementsEvent } from '../../models/angular-elements-output';
 
-export const TodoForm = ({ todoItem, isSavingTodo, saveTodo }) => {
+export const TodoForm = ({ todoItem, saveTodo }) => {
 	const onSaveTodo = (event: AngularElementsEvent<TodoItem>) =>
 		saveTodo(event.detail);
 
@@ -13,13 +13,12 @@ export const TodoForm = ({ todoItem, isSavingTodo, saveTodo }) => {
 			Element & AddTodoReactiveFormsComponent
 		>('app-todo-form');
 		addTodoFormElm.currentTodo = todoItem;
-		addTodoFormElm.isSavingTodo = isSavingTodo;
 		addTodoFormElm.addEventListener('saveTodo', onSaveTodo);
 
 		return () => {
 			addTodoFormElm.removeEventListener('saveTodo', onSaveTodo);
 		};
-	}, [todoItem, isSavingTodo]);
+	}, [todoItem]);
 
 	return (
 		<React.Fragment>

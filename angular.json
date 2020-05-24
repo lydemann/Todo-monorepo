@@ -184,6 +184,22 @@
 			"projectType": "library",
 			"prefix": "todo",
 			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/libs/shared/ui",
+						"index": "libs/shared/ui/src/index.html",
+						"main": "libs/shared/ui/src/main.ts",
+						"polyfills": "libs/shared/ui/src/polyfills.ts",
+						"tsConfig": "libs/shared/ui/tsconfig.lib.json",
+						"stylePreprocessorOptions": {
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
+						},
+						"styles": ["apps/libs/shared/ui/styles.scss"],
+						"scripts": [],
+						"singleBundle": true
+					}
+				},
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
@@ -672,7 +688,8 @@
 				"serve": {
 					"builder": "@nrwl/web:dev-server",
 					"options": {
-						"buildTarget": "reactapp:build"
+						"buildTarget": "reactapp:build",
+						"port": 4201
 					},
 					"configurations": {
 						"production": {

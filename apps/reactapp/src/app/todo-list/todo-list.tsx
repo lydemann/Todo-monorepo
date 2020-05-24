@@ -9,18 +9,14 @@ import './todo-list.scss';
 
 export const TodoList = () => {
 	const [todoList, setTodoList] = useState(getTodoList());
-	const [isSavingTodo, setIsSavingTodo] = useState(false);
 	const [currentTodo, setCurrentTodo] = useState(null);
 
 	const saveTodo = (savedTodoItem: TodoItem) => {
-		setIsSavingTodo(true);
-
 		savedTodoItem.id = faker.random.uuid();
 		setTimeout(() => {
 			const existingTodoItemIdx = todoList.findIndex(
 				todoItm => todoItm.id === savedTodoItem.id,
 			);
-
 			if (existingTodoItemIdx !== -1) {
 				const updatedTodoList = todoList.map((todoItm, idx) =>
 					idx === existingTodoItemIdx ? savedTodoItem : todoItm,
@@ -29,7 +25,6 @@ export const TodoList = () => {
 			} else {
 				setTodoList([...todoList, savedTodoItem]);
 			}
-			setIsSavingTodo(false);
 		}, 2000);
 	};
 	const toggleTodoCompleted = (todoItemId: string) => {
@@ -67,21 +62,18 @@ export const TodoList = () => {
 	}, [todoList]);
 
 	return (
-		<div className='todo-list'>
-			{todoList.map((todoItem, i) => (
-				<app-crud-item
-					key={i}
-					is-read-only={true}
-					complete-btn-text='Complete'
-				></app-crud-item>
-			))}
-
-			<TodoForm
-				todoItem={null}
-				isSavingTodo={isSavingTodo}
-				saveTodo={saveTodo}
-			/>
-		</div>
+		<React.Fragment>
+			<div className='todo-list'>
+				{todoList.map((todoItem, i) => (
+					<app-crud-item
+						key={i}
+						is-read-only={true}
+						complete-btn-text='Complete'
+					></app-crud-item>
+				))}
+			</div>
+			<TodoForm todoItem={null} saveTodo={saveTodo} />
+		</React.Fragment>
 	);
 };
 

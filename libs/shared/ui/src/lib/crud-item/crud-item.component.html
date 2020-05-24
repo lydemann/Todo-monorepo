@@ -3,15 +3,18 @@
 		class="list-group-item d-flex justify-content-between lh-condensed theme-background"
 		[ngClass]="todoItem.completed ? 'bg-completed' : ''"
 	>
-		<div>
-			<h6 class="my-0">{{ todoItem.title }}</h6>
-			<small class="text-muted">{{ todoItem.description }}</small>
-			<div *ngIf="todoItem.dueDate">
-				<small
-					>{{ dueDateText | translate }}:
-					<b>{{ todoItem.dueDate | localDate }}</b>
-				</small>
-			</div>
+		<div class="item-content">
+			<slot #projectedContent></slot>
+			<ng-container *ngIf="!projectedContent.innerHTML.trim()">
+				<h6 class="my-0">{{ todoItem.title }}</h6>
+				<small class="text-muted">{{ todoItem.description }}</small>
+				<div *ngIf="todoItem.dueDate">
+					<small
+						>{{ dueDateText | translate }}:
+						<b>{{ todoItem.dueDate | localDate }}</b>
+					</small>
+				</div>
+			</ng-container>
 		</div>
 
 		<div class="align-right btn-group-vertical">
