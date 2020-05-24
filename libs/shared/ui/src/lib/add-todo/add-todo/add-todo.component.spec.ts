@@ -29,12 +29,10 @@ describe('AddTodoComponent', () => {
 		}).compileComponents();
 	}));
 
-	let todoListSandboxServiceMock: jasmine.SpyObj<TodoListSandboxService>;
 	beforeEach(() => {
-		todoListSandboxServiceMock = TestBed.get(TodoListSandboxService);
-
 		fixture = TestBed.createComponent(AddTodoComponent);
 		component = fixture.componentInstance;
+		spyOn(component, 'saveTodoItem');
 		fixture.detectChanges();
 	});
 
@@ -53,17 +51,13 @@ describe('AddTodoComponent', () => {
 			},
 		];
 
-		todoListSandboxServiceMock.saveTodoItem.and.returnValue(of());
-
 		// Act
 		component.currentTodo = todoList[0];
 		const form = new NgForm([], []);
 		component.save(form);
 
 		// Assert
-		expect(todoListSandboxServiceMock.saveTodoItem).toHaveBeenCalledWith(
-			component.currentTodo,
-		);
+		expect(component.saveTodoItem).toHaveBeenCalledWith(component.currentTodo);
 	});
 
 	it('should add new todo item when todo item is not in todo list', () => {
@@ -74,22 +68,6 @@ describe('AddTodoComponent', () => {
 			description: 'Remember to buy milk',
 		};
 
-		const todoList = [
-			{
-				id: 'task1',
-				title: 'Buy Milk',
-				description: 'Remember to buy milk',
-				completed: false,
-			},
-			{
-				id: 'task2',
-				title: 'Go to the gym',
-				description: 'Remember to work out',
-				completed: false,
-			},
-		];
-		(todoListSandboxServiceMock as any).todoList = todoList;
-		todoListSandboxServiceMock.saveTodoItem.and.returnValue(of([]));
 		component.currentTodo = newTodo;
 		const form = new NgForm([], []);
 
@@ -98,8 +76,6 @@ describe('AddTodoComponent', () => {
 		component.save(form);
 
 		// Assert
-		expect(todoListSandboxServiceMock.saveTodoItem).toHaveBeenCalledWith(
-			newTodo,
-		);
+		expect(component.saveTodoItem).toHaveBeenCalledWith(newTodo);
 	});
 });
