@@ -47,7 +47,7 @@ describe('TodoListComponent', () => {
 			]);
 			spectator = createComponent();
 
-			expect(spectator.queryAll('app-todo-item-list-row').length).toBe(3);
+			expect(spectator.queryAll('data-test=todo-item]').length).toBe(3);
 		}));
 	});
 });
