@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { InvalidDateValidatorDirective } from '@todo-app/shared/invalid-date.directive';
 import { SharedUiModule } from '@todo/shared/ui';
 import { FeatureToggleModule } from '@todo/shared/util-feature-toggle';
 import { SharedUtilUtilI18nModule } from '@todo/shared/util-i18n';
@@ -22,9 +21,8 @@ import { TodoItemCardComponent } from './todo-item-card/todo-item-card.component
 		SharedUtilUtilI18nModule,
 		SharedUiModule,
 	],
-	declarations: [InvalidDateValidatorDirective, TodoItemCardComponent],
+	declarations: [TodoItemCardComponent],
 	exports: [
-		InvalidDateValidatorDirective,
 		RouterModule,
 		TranslateModule,
 		CardListModule,
