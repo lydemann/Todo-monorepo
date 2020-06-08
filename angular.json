@@ -184,6 +184,22 @@
 			"projectType": "library",
 			"prefix": "todo",
 			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/libs/shared/ui",
+						"index": "libs/shared/ui/src/index.html",
+						"main": "libs/shared/ui/src/main.ts",
+						"polyfills": "libs/shared/ui/src/polyfills.ts",
+						"tsConfig": "libs/shared/ui/tsconfig.lib.json",
+						"stylePreprocessorOptions": {
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
+						},
+						"styles": ["apps/libs/shared/ui/styles.scss"],
+						"scripts": [],
+						"singleBundle": true
+					}
+				},
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
@@ -634,13 +650,14 @@
 						"tsConfig": "apps/reactapp/tsconfig.app.json",
 						"assets": [
 							"apps/reactapp/src/favicon.ico",
-							"apps/reactapp/src/assets"
+							"apps/reactapp/src/assets",
+							{
+								"glob": "**/*",
+								"input": "dist/libs/shared/ui",
+								"output": "./assets/ui-lib/"
+							}
 						],
 						"styles": ["apps/reactapp/src/styles.scss"],
-						"scripts": [
-							"apps/reactapp/src/assets/polyfills-es2015.js",
-							"apps/reactapp/src/assets/main-es2015.js"
-						],
 						"webpackConfig": "@nrwl/react/plugins/webpack"
 					},
 					"configurations": {
@@ -671,7 +688,8 @@
 				"serve": {
 					"builder": "@nrwl/web:dev-server",
 					"options": {
-						"buildTarget": "reactapp:build"
+						"buildTarget": "reactapp:build",
+						"port": 4201
 					},
 					"configurations": {
 						"production": {
@@ -752,7 +770,8 @@
 							"apps/designsystemdemo/src/assets"
 						],
 						"styles": ["apps/designsystemdemo/src/styles.scss"],
-						"scripts": []
+						"scripts": [],
+						"singleBundle": true
 					},
 					"configurations": {
 						"production": {

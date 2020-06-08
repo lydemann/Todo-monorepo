@@ -12,9 +12,8 @@ import { SharedModule } from '@todo-app/shared/shared.module';
 import { TestingModule } from '@todo-app/testing.module';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
 import { TodoItem } from '@todo/shared/todo-interfaces';
+import { AddTodoComponent, AddTodoReactiveFormsModule } from '@todo/shared/ui';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
-import { AddTodoReactiveFormsModule } from './add-todo-reactive-forms/add-todo-reactive-forms.module';
-import { AddTodoComponent } from './add-todo/add-todo.component';
 import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
 
 describe('TodoListComponent', () => {
@@ -48,7 +47,7 @@ describe('TodoListComponent', () => {
 			]);
 			spectator = createComponent();
 
-			expect(spectator.queryAll('app-todo-item-list-row').length).toBe(3);
+			expect(spectator.queryAll('[data-test=todo-item]').length).toBe(3);
 		}));
 	});
 });

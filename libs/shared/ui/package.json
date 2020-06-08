@@ -1,0 +1,11 @@
+{
+	"name": "@todo/shared-ui",
+	"version": "0.0.1",
+	"peerDependencies": {
+		"@angular/common": "^9.1.0",
+		"@angular/core": "^9.1.0"
+	},
+	"scripts": {
+		"version": "conventional-changelog --preset angular --commit-path $PWD -s -i CHANGELOG.md && git add CHANGELOG.md"
+	}
+}

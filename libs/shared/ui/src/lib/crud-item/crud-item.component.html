@@ -1,0 +1,49 @@
+<div class="todo-item" *ngIf="todoItem">
+	<li
+		class="list-group-item d-flex justify-content-between lh-condensed theme-background"
+		[ngClass]="todoItem.completed ? 'bg-completed' : ''"
+	>
+		<div class="item-content">
+			<slot #projectedContent></slot>
+			<ng-container *ngIf="!projectedContent.innerHTML.trim()">
+				<h6 class="my-0">{{ todoItem.title }}</h6>
+				<small class="text-muted">{{ todoItem.description }}</small>
+				<div *ngIf="todoItem.dueDate">
+					<small
+						>{{ dueDateText | translate }}:
+						<b>{{ todoItem.dueDate | localDate }}</b>
+					</small>
+				</div>
+			</ng-container>
+		</div>
+
+		<div class="align-right btn-group-vertical">
+			<button
+				(click)="completeClick()"
+				type="button"
+				class="btn btn-success"
+				aria-label="Edit"
+			>
+				{{ completeBtnText | translate }}
+			</button>
+			<button
+				*ngIf="!isReadOnly"
+				(click)="editClick()"
+				type="button"
+				class="btn btn-info"
+				aria-label="Edit"
+			>
+				{{ editBtnText | translate }}
+			</button>
+			<button
+				*ngIf="!isReadOnly"
+				(click)="deleteClick()"
+				type="button"
+				class="btn btn-danger"
+				aria-label="Delete"
+			>
+				{{ deleteBtnText | translate }}
+			</button>
+		</div>
+	</li>
+</div>

@@ -12,6 +12,7 @@ export class TodoListComponent {
 	public selectedTodo$ = this.todoListSandboxService.selectedTodo$;
 	public todoList$ = this.todoListSandboxService.todoList$;
 	public isLoading$ = this.todoListSandboxService.isLoading$;
+	public isSavingTodo$ = this.todoListSandboxService.isSavingTodo$;
 	public duedateTodayCount$ = this.todoList$.pipe(
 		map(
 			todoList =>
@@ -29,6 +30,10 @@ export class TodoListComponent {
 
 	public selectTodoForEdit(todoItem: TodoItem) {
 		this.todoListSandboxService.selectTodoForEdit(todoItem);
+	}
+
+	public onSaveTodo(todoItem: TodoItem) {
+		this.todoListSandboxService.saveTodoItem(todoItem);
 	}
 
 	public todoCompleteToggled(todoId: string) {

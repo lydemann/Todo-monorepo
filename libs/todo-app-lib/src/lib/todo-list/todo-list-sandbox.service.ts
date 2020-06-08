@@ -6,8 +6,8 @@ import { TodoListActions } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
 import {
 	selectCompletedTodos,
-	selectIsAddingTodo,
 	selectIsLoading,
+	selectIsSavingTodo,
 	selectSelectedTodoItem,
 	selectTodoList,
 } from './state/todo-list.selector';
@@ -19,7 +19,7 @@ export class TodoListSandboxService {
 	public isLoading$ = this.store.select(selectIsLoading);
 	public selectedTodo$ = this.store.select(selectSelectedTodoItem);
 	public completedTodos$ = this.store.select(selectCompletedTodos);
-	public isSavingTodo$ = this.store.select(selectIsAddingTodo);
+	public isSavingTodo$ = this.store.select(selectIsSavingTodo);
 	public todoList$ = this.store.select(selectTodoList);
 
 	constructor(private store: Store<TodoListState>) {}
