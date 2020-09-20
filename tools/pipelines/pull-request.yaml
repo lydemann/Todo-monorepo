@@ -11,8 +11,12 @@ stages:
         steps:
           - template: templates/npm-setup.yml
 
-          - script: npm run affected:build -- --base=origin/master --head=HEAD --prod
+          - task: PowerShell@2
             displayName: Build Affected
+            inputs:
+              targetType: 'filePath'
+              filePath: 'tools/pipelines/scripts/build-affected.ps1'
+              pwsh: true
 
           - task: PowerShell@2
             displayName: Create affected-apps.txt
