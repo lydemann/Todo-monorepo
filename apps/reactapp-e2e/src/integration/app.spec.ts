@@ -4,6 +4,6 @@ describe('reactapp', () => {
 	beforeEach(() => cy.visit('/'));
 
 	it('should display welcome message', () => {
-		getGreeting().contains('Welcome to reactapp!');
+		getGreeting().contains('Welcome to React Todo App');
 	});
 });

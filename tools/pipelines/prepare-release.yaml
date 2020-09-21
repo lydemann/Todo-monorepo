@@ -22,7 +22,7 @@ jobs:
         inputs:
           buildType: specific
           project: 'f6995a74-0552-4d3b-b372-a80af3d9b89a'
-          pipeline: 4
+          pipeline: 6
           tags: '$(LAST_PR_SHA)'
           downloadType: single
           artifactName: drop

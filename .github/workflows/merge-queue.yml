@@ -1,16 +1,13 @@
 name: Merge Queue
-
 on:
   push:
     branches: master
   pull_request:
-    branches: master
-    types: [labeled, unlabeled]
+    types: [labeled, unlabeled, synchronize]
   pull_request_review:
-    branches: master
     types: submitted
   check_suite:
-    types: completed
+    types: [completed, rerequested]
 jobs:
   automerge:
     runs-on: ubuntu-latest
@@ -25,13 +22,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.AUTOMERGE_GITHUB_TOKEN }}
       - run: "echo 'PR ready for automerge: ${{ steps.automerge_labeler.outputs.pull_request }}'"
-      - name: Automerge
-        if: steps.automerge_labeler.outputs.pull_request != null
-        uses: 'pascalgn/automerge-action@v0.8.0'
-        env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          MERGE_LABELS: '!automerge,merge:ready'
-          UPDATE_LABELS: 'automerge,merge:ready'
-          UPDATE_METHOD: 'merge'
-          MERGE_RETRIES: 6
-          MERGE_RETRY_SLEEP: 10000 # sets the time to sleep between retries, in milliseconds

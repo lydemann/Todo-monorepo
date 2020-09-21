@@ -38,7 +38,7 @@ function addTagToBuildArtifact {
         Write-Host "Tag= $($tag| ConvertTo-Json -Depth 3)";
     }
     Catch {
-        $error = $_.Exception.Message
+        $_ERROR = $_.Exception.Message
         $errorDetail = $_
         $errorMessage = @"
 Failed to tag build.
@@ -51,26 +51,27 @@ $errorDetail
 }
 
 ########## Main flow
-
-$AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD --plain';
-$AffectedAppsString = $AffectedAppsObj[4];
-
 $sourceVersion = $env:SYSTEM_PULLREQUEST_SOURCECOMMITID;
 
 Write-Host "Tagging git hash in artifact: $($sourceVersion)";
 addTagToBuildArtifact -tag $sourceVersion;
 
+
+$AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD --plain';
+$AffectedAppsString = $AffectedAppsObj[4];
+
 if (!$AffectedAppsString -and $AffectedAppsString -eq "") {
-    Write-Host "No affected apps";
-    return;
+    Write-Host "No affected apps. Tagging with all apps.";
+    $AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --all --plain';
+    $AffectedAppsString = $AffectedAppsObj[4];
 }
-    
-$branchname = $env:SYSTEM_PULLREQUEST_SOURCEBRANCHNAME;
-Write-Host "Branch is $branchname";
-    
+
 $AffectedApps = $AffectedAppsString.Split(" ");
 Write-Host "Affected apps: " $AffectedApps;
 
+$branchname = $env:SYSTEM_PULLREQUEST_SOURCEBRANCHNAME;
+Write-Host "Branch is $branchname";
+    
 $AffectedApps | ForEach-Object {
     $AffectedAppName = $_;
     addTagToBuildArtifact -tag $AffectedAppName;

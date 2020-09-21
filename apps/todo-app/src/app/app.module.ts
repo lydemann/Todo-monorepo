@@ -14,7 +14,7 @@ import { CoreModule } from '@todo-app/core/core.module';
 import { FooterComponent } from '@todo-app/footer/footer.component';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListModule } from '@todo-app/todo-list/todo-list.module';
-import { API_ENDPOINTS, ApiEndpoints } from '@todo/shared/data-access';
+import { ApiEndpoints, API_ENDPOINTS } from '@todo/shared/data-access';
 import {
 	GlobalErrorHandler,
 	LogService,
