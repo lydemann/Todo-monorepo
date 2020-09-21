@@ -31,5 +31,5 @@ jobs:
           MERGE_METHOD: 'squash'
           UPDATE_LABELS: 'automerge,merge:ready'
           UPDATE_METHOD: 'merge'
-          MERGE_RETRIES: 6
+          MERGE_RETRIES: 200
           MERGE_RETRY_SLEEP: 10000 # sets the time to sleep between retries, in milliseconds
