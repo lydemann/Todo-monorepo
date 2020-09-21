@@ -30,7 +30,7 @@ jobs:
 
       - task: ExtractFiles@1
         inputs:
-          archiveFilePatterns: '$(System.ArtifactsDirectory)/monorepopackage/**/*.zip'
+          archiveFilePatterns: '$(System.ArtifactsDirectory)/monorepopackage/drop/*.zip'
           destinationFolder: $(System.DefaultWorkingDirectory)/dist
           cleanDestinationFolder: true
 
