@@ -1,7 +1,10 @@
 import {
 	AfterViewInit,
+	ApplicationRef,
+	ChangeDetectorRef,
 	Component,
 	EventEmitter,
+	HostListener,
 	Input,
 	OnDestroy,
 } from '@angular/core';
@@ -49,10 +52,6 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 export class DatePickerComponent
 	implements ControlValueAccessor, OnDestroy, AfterViewInit {
 	@Input()
-	public set showError(v: boolean) {
-		this._showErrorSubject.next(v);
-	}
-	@Input()
 	public date: Date;
 
 	@Input() public minDate: Date;
@@ -77,8 +76,16 @@ export class DatePickerComponent
 
 	private onTouched = Function;
 
-	constructor(public ngControl: NgControl) {
+	constructor(
+		public ngControl: NgControl,
+		private changeDetectionRef: ChangeDetectorRef,
+		private applicationRef: ApplicationRef,
+	) {
 		ngControl.valueAccessor = this;
+	}
+	@Input()
+	public set showError(v: boolean) {
+		this._showErrorSubject.next(v);
 	}
 	public ngAfterViewInit(): void {
 		// syncing with validators on host element
@@ -107,6 +114,14 @@ export class DatePickerComponent
 	}
 	public setDisabledState?(isDisabled: boolean): void {
 		this.isDisabled = isDisabled;
+	}
+
+	@HostListener('keyup', ['$event'])
+	@HostListener('click', ['$event'])
+	@HostListener('change', ['$event'])
+	public runCD() {
+		this.applicationRef.tick();
+		this.changeDetectionRef.detectChanges();
 	}
 
 	// tslint:disable-next-line: no-empty

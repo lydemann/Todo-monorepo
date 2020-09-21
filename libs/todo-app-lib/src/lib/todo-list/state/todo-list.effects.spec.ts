@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { createSpyObject, mockProvider, SpyObject } from '@ngneat/spectator';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
-import { TodoItem } from '@todo-app/shared/models/todo-item';
-import { createMagicalMock } from '@todo/shared/util-test';
+import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListResourcesService } from '../resources/todo-list-resources.service';
 import { TodoListActions } from './todo-list.actions';
 import { TodoListEffects } from './todo-list.effects';
@@ -13,21 +13,21 @@ describe('TodoListEffects', () => {
 	let actions: Observable<any>;
 
 	let effects: TodoListEffects;
-	const todoListResourcesStub = createMagicalMock(TodoListResourcesService);
+	let todoListResourcesStub: SpyObject<TodoListResourcesService>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			providers: [
 				TodoListEffects,
 				provideMockActions(() => actions),
-				{
-					provide: TodoListResourcesService,
-					useValue: todoListResourcesStub,
-				},
+				mockProvider(TodoListResourcesService),
 			],
 		});
 
-		effects = TestBed.get(TodoListEffects);
+		effects = TestBed.inject(TodoListEffects);
+		todoListResourcesStub = TestBed.inject(
+			TodoListResourcesService,
+		) as SpyObject<TodoListResourcesService>;
 	});
 
 	describe('saveTodoItemRequest', () => {

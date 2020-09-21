@@ -17,6 +17,8 @@
 			<hr />
 			<app-add-todo-reactive-forms
 				[currentTodo]="selectedTodo$ | async"
+				[isSavingTodo]="isSavingTodo$ | async"
+				(saveTodo)="onSaveTodo($event)"
 			></app-add-todo-reactive-forms>
 		</div>
 	</div>
@@ -37,13 +39,13 @@
 
 <ng-template #todoListRef let-todos="data">
 	<ul class="list-group mb-3">
-		<app-todo-item-list-row
+		<app-crud-item
 			*ngFor="let todo of todos"
 			[todoItem]="todo"
 			data-test="todo-item"
 			(todoDelete)="deleteTodo($event)"
 			(todoEdit)="selectTodoForEdit($event)"
 			(todoCompleteToggled)="todoCompleteToggled($event)"
-		></app-todo-item-list-row>
+		></app-crud-item>
 	</ul>
 </ng-template>

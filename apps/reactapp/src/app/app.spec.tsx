@@ -15,6 +15,6 @@ describe('App', () => {
 	it('should have a greeting as the title', () => {
 		const { getByText } = render(<App />);
 
-		expect(getByText('Welcome to reactapp!')).toBeTruthy();
+		expect(getByText('Welcome to React Todo App')).toBeTruthy();
 	});
 });

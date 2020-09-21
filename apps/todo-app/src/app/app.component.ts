@@ -1,11 +1,10 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '@todo-app/environments/environment';
 import { EndpointsService } from '@todo/shared/data-access';
 import { LogService } from '@todo/shared/data-access-logging';
 import { ThemeService } from '@todo/shared/ui-styles';
-import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { environment, TodoListSandboxService } from '@todo/todo-app-lib';
 
 @Component({
 	selector: 'app-root',

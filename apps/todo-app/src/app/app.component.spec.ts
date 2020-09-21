@@ -1,11 +1,11 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { async, TestBed } from '@angular/core/testing';
+import { mockProvider } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AppComponent } from '@todo-app/app.component';
 import { API_ENDPOINTS } from '@todo/shared/data-access';
-import { provideMagicalMock } from '@todo/shared/util-test';
 import { TodoListSandboxService } from '@todo/todo-app-lib';
 import { FooterComponentMock } from './footer/footer.component.mock';
 import { NavbarComponentMock } from './layout/navbar/navbar.component.mock';
@@ -22,9 +22,9 @@ describe('AppComponent', () => {
 			imports: [],
 			providers: [
 				{ provide: APP_BASE_HREF, useValue: '/' },
-				provideMagicalMock(TranslateService),
+				mockProvider(TranslateService),
 				{ provide: API_ENDPOINTS, useValue: apiTendpoints },
-				provideMagicalMock(TodoListSandboxService),
+				mockProvider(TodoListSandboxService),
 				provideMockStore({ initialState: {} }),
 			],
 		})

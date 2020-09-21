@@ -1,0 +1,63 @@
+<div class="mx-auto col-10">
+	<h5>{{ headlineText | translate }}</h5>
+	<hr />
+
+	<ng-template #todoForm>
+		<form [formGroup]="addTodoForm" #form="ngForm" (ngSubmit)="save(form)">
+			<div>
+				<mat-form-field class="field">
+					<input
+						type="text"
+						formControlName="title"
+						matInput
+						appCDTrigger
+						name="todo-title"
+						data-test="todo-title"
+						id="todo-title"
+						placeholder="Enter title"
+					/>
+				</mat-form-field>
+			</div>
+			<div>
+				<mat-form-field class="field">
+					<input
+						type="text"
+						required
+						appCDTrigger
+						matInput
+						name="todo-description"
+						formControlName="description"
+						data-test="todo-description"
+						id="todo-description"
+						placeholder="Enter description"
+					/>
+				</mat-form-field>
+			</div>
+			<div class="form-group">
+				<span for="todo-due-date">{{ dueDateText | translate }}</span>
+				<div>
+					<app-date-picker
+						name="todo-due-date"
+						formControlName="dueDate"
+						appCDTrigger
+						data-test="todo-duedate"
+						placeholder="Enter due date"
+					></app-date-picker>
+				</div>
+			</div>
+			<app-square-button
+				[buttonType]="'Primary'"
+				[type]="'submit'"
+				data-test="create-todo-submit"
+				appCDTrigger
+			>
+				{{
+					!_currentTODO.id ? (createText | translate) : (saveText | translate)
+				}}
+			</app-square-button>
+		</form>
+	</ng-template>
+	<div *ngIf="isSavingTodo; else todoForm" class="relative">
+		<app-spinner></app-spinner>
+	</div>
+</div>

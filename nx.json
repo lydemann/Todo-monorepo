@@ -63,13 +63,16 @@
 			"tags": ["type:app"]
 		},
 		"shared-util-util-test": {
-			"tags": []
+			"tags": ["scope:shared", "type:util"]
 		},
 		"questionnaire-app-e2e": {
 			"tags": []
 		},
 		"questionnaire-app": {
 			"tags": ["type:app"]
+		},
+		"shared-interfaces-todo-interfaces": {
+			"tags": ["type:interface", "scope:shared"]
 		}
 	}
 }

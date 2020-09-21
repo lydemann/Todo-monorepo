@@ -1,9 +1,27 @@
-import { TodoItem } from '@todo-app/shared/models/todo-item';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-export interface TodoListState {
-	todos: TodoItem[];
-	selectedTodoItemId?: string;
-	errors?: Error;
+import { TodoItem } from '@todo/shared/todo-interfaces';
+
+export const todoListAdapter: EntityAdapter<TodoItem> = createEntityAdapter<
+	TodoItem
+>({
+	selectId: state => state.id,
+});
+
+export interface TodoListState extends EntityState<TodoItem> {
+	selectedTodoItemId: string;
+	error: Error;
 	isLoading: boolean;
-	isSavingTodo: boolean;
+	isAddingTodo: boolean;
 }
+
+export const todoListInitState = todoListAdapter.getInitialState<TodoListState>(
+	{
+		entities: {},
+		ids: [],
+		error: null,
+		selectedTodoItemId: null,
+		isLoading: false,
+		isAddingTodo: false,
+	},
+);

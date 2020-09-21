@@ -11,7 +11,6 @@ import { AppInitService } from '@todo-app/app-init.service';
 import { AppComponent } from '@todo-app/app.component';
 import { appRouterModule } from '@todo-app/app.routes';
 import { CoreModule } from '@todo-app/core/core.module';
-import { environment } from '@todo-app/environments/environment';
 import { FooterComponent } from '@todo-app/footer/footer.component';
 import { SharedModule } from '@todo-app/shared/shared.module';
 import { TodoListModule } from '@todo-app/todo-list/todo-list.module';
@@ -24,6 +23,7 @@ import {
 	FeatureToggleModule,
 	FeatureToggleService,
 } from '@todo/shared/util-feature-toggle';
+import { environment } from '@todo/todo-app-lib';
 import { LayoutModule } from './layout/layout.module';
 
 export function init_app(appLoadService: AppInitService) {

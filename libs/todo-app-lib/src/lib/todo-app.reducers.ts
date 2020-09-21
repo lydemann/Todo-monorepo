@@ -2,7 +2,7 @@ import { routerReducer } from '@ngrx/router-store';
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
 
-import { environment } from '@todo-app/environments/environment';
+import { environment } from '../environments/environment';
 import { AppState } from './app-state';
 
 export const todoAppReducers: ActionReducerMap<any> = {

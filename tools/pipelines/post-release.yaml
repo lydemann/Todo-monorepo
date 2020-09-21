@@ -1,0 +1,30 @@
+name: $(Date:yyyyMMdd).$(Rev:.r)
+trigger:
+  - master
+pr: none
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+
+steps:
+  - template: templates/npm-setup.yml
+
+  - script: npm run affected:test -- --base=origin/master~1 --head=origin/master
+    displayName: Test Affected
+
+  - script: npm run codecov -- $(CodeCovToken) --disable=gcov
+    displayName: Send to Codecov
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/*.xml'
+      searchFolder: '$(System.DefaultWorkingDirectory)/junit'
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      publishRunAttachments: true
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: 'cobertura'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/**/*xml'
+      failIfCoverageEmpty: false
