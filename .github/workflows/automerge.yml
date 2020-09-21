@@ -24,13 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Automerge
-        uses: "pascalgn/automerge-action@v0.9.0"
+        uses: 'pascalgn/automerge-action@v0.9.0'
         env:
-          GITHUB_TOKEN: "${{ secrets.AUTOMERGE_GITHUB_TOKEN }}"
-          MERGE_LABELS: "automerge"
-          MERGE_METHOD: "squash"
-          UPDATE_LABELS: "automerge,merge:ready"
-          MERGE_REMOVE_LABELS: "automerge,merge:ready"
-          UPDATE_METHOD: "merge" 
+          GITHUB_TOKEN: '${{ secrets.AUTOMERGE_GITHUB_TOKEN }}'
+          MERGE_LABELS: 'automerge'
+          MERGE_METHOD: 'squash'
+          UPDATE_LABELS: 'automerge,merge:ready'
+          UPDATE_METHOD: 'merge'
           MERGE_RETRIES: 6
           MERGE_RETRY_SLEEP: 10000 # sets the time to sleep between retries, in milliseconds
