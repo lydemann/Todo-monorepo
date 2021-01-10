@@ -1,0 +1,14 @@
+{
+	"$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+	"schematics": {
+		"todo-app-schematics": {
+			"description": "A blank schematic.",
+			"factory": "./todo-app-schematics/index#todoAppSchematics"
+		},
+		"resource-service": {
+			"description": "A blank schematic.",
+			"factory": "./resource-service/index#resourceService",
+			"schema": "./resource-service/schema.json"
+		}
+	}
+}
