@@ -15,7 +15,7 @@ import {
 @Injectable({
 	providedIn: 'root',
 })
-export class TodoListSandboxService {
+export class TodoListFacadeService {
 	public isLoading$ = this.store.select(selectIsLoading);
 	public selectedTodo$ = this.store.select(selectSelectedTodoItem);
 	public completedTodos$ = this.store.select(selectCompletedTodos);

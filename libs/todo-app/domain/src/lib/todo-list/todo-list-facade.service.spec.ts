@@ -8,10 +8,10 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListResourcesService } from './resources/todo-list-resources.service';
 import { TodoListActions } from './state/todo-list.actions';
 import { TodoListState } from './state/todo-list.model';
-import { TodoListSandboxService } from './todo-list-sandbox.service';
+import { TodoListFacadeService } from './todo-list-facade.service';
 
-describe('Service: TodoListSandboxService', () => {
-	let service: TodoListSandboxService;
+describe('Service: TodoListFacadeService', () => {
+	let service: TodoListFacadeService;
 	let store: Store<TodoListState>;
 	const todoListResourcesServiceStub = createSpyObject(
 		TodoListResourcesService,
@@ -26,7 +26,7 @@ describe('Service: TodoListSandboxService', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			providers: [
-				TodoListSandboxService,
+				TodoListFacadeService,
 				{
 					provide: TodoListResourcesService,
 					useValue: todoListResourcesServiceStub,
@@ -35,7 +35,7 @@ describe('Service: TodoListSandboxService', () => {
 			],
 		});
 
-		service = TestBed.inject(TodoListSandboxService);
+		service = TestBed.inject(TodoListFacadeService);
 		store = TestBed.inject(Store);
 		spyOn(store, 'dispatch');
 	});

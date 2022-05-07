@@ -23,7 +23,7 @@ import {
 	FeatureToggleModule,
 	FeatureToggleService,
 } from '@todo/shared/util-feature-toggle';
-import { environment } from '@todo/todo-app-lib';
+import { environment } from '@todo/todo-app/domain';
 import { LayoutModule } from './layout/layout.module';
 
 export function init_app(appLoadService: AppInitService) {

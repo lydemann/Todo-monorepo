@@ -89,11 +89,10 @@ describe('TodoList reducer', () => {
 
 			const updatedTodo = { ...new TodoItem('todoToUpdate', 'new msg') };
 			updatedTodo.id = oldTodoItem.id;
-			const updateTodoItemRequestAction = TodoListActions.updateTodoItemResponse(
-				{
+			const updateTodoItemRequestAction =
+				TodoListActions.updateTodoItemResponse({
 					todoItem: updatedTodo,
-				},
-			);
+				});
 			const newState = todoListReducer(state, updateTodoItemRequestAction);
 
 			expect(newState.entities[updatedTodo.id]).toEqual(updatedTodo);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { TodoListFacadeService } from '@todo/todo-app/domain';
 
 @Component({
 	selector: 'app-todo-list-completed',
@@ -9,13 +9,13 @@ import { TodoListSandboxService } from '@todo/todo-app-lib';
 export class TodoListCompletedComponent implements OnInit {
 	public completedTodos$;
 
-	constructor(private todoListSandboxService: TodoListSandboxService) {}
+	constructor(private todoListFacadeService: TodoListFacadeService) {}
 
 	public ngOnInit() {
-		this.completedTodos$ = this.todoListSandboxService.completedTodos$;
+		this.completedTodos$ = this.todoListFacadeService.completedTodos$;
 	}
 
 	public todoCompleteToggled(todoId: string) {
-		this.todoListSandboxService.todoCompletedToggled(todoId);
+		this.todoListFacadeService.todoCompletedToggled(todoId);
 	}
 }

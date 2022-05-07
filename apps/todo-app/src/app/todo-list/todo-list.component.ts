@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { TodoItem } from '@todo/shared/todo-interfaces';
-import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { TodoListFacadeService } from '@todo/todo-app/domain';
 
 @Component({
 	selector: 'app-todo-list',
@@ -22,7 +22,7 @@ export class TodoListComponent {
 		),
 	);
 
-	constructor(private todoListSandboxService: TodoListSandboxService) {}
+	constructor(private todoListSandboxService: TodoListFacadeService) {}
 
 	public deleteTodo(id: string) {
 		this.todoListSandboxService.deleteTodo(id);

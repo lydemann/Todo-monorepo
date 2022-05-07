@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { AppComponent } from '@todo-app/app.component';
 import { API_ENDPOINTS } from '@todo/shared/data-access';
-import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { FooterComponentMock } from './footer/footer.component.mock';
 import { NavbarComponentMock } from './layout/navbar/navbar.component.mock';
 
@@ -24,7 +24,7 @@ describe('AppComponent', () => {
 				{ provide: APP_BASE_HREF, useValue: '/' },
 				mockProvider(TranslateService),
 				{ provide: API_ENDPOINTS, useValue: apiTendpoints },
-				mockProvider(TodoListSandboxService),
+				mockProvider(TodoListFacadeService),
 				provideMockStore({ initialState: {} }),
 			],
 		})

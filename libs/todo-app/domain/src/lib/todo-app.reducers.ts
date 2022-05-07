@@ -9,7 +9,7 @@ export const todoAppReducers: ActionReducerMap<any> = {
 	router: routerReducer,
 };
 
-export function getMetaReducers(): Array<MetaReducer<AppState>> {
+export function getMetaReducers(): MetaReducer<AppState>[] {
 	if (!environment.production) {
 		// tslint:disable-next-line: no-console
 		console.log('Store freeze is enabled');

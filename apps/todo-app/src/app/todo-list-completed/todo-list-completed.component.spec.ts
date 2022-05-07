@@ -9,7 +9,7 @@ import { TestingModule } from '@todo-app/testing.module';
 import { TodoListCompletedComponent } from '@todo-app/todo-list-completed/todo-list-completed.component';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { CrudItemComponent } from '@todo/shared/ui';
-import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { TodoListFacadeService } from '@todo/todo-app/domain';
 
 describe('TodoListCompletedComponent', () => {
 	let component: TodoListCompletedComponent;
@@ -19,7 +19,7 @@ describe('TodoListCompletedComponent', () => {
 		completed: true,
 	};
 	const todoList = [todo1];
-	let todoListSandboxServiceStub: SpyObject<TodoListSandboxService>;
+	let todoListSandboxServiceStub: SpyObject<TodoListFacadeService>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
@@ -27,7 +27,7 @@ describe('TodoListCompletedComponent', () => {
 			imports: [TestingModule],
 			providers: [
 				{ provide: APP_BASE_HREF, useValue: completedTodoPath },
-				mockProvider(TodoListSandboxService, { completedTodos$: of(todoList) }),
+				mockProvider(TodoListFacadeService, { completedTodos$: of(todoList) }),
 			],
 		}).compileComponents();
 	}));
@@ -36,8 +36,8 @@ describe('TodoListCompletedComponent', () => {
 		fixture = TestBed.createComponent(TodoListCompletedComponent);
 		component = fixture.componentInstance;
 		todoListSandboxServiceStub = TestBed.inject(
-			TodoListSandboxService,
-		) as SpyObject<TodoListSandboxService>;
+			TodoListFacadeService,
+		) as SpyObject<TodoListFacadeService>;
 
 		fixture.detectChanges();
 	});

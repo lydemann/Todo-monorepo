@@ -2,9 +2,8 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { todoListAdapter, TodoListState } from './todo-list.model';
 
-export const selectTodolistState = createFeatureSelector<TodoListState>(
-	'todoList',
-);
+export const selectTodolistState =
+	createFeatureSelector<TodoListState>('todoList');
 
 const { selectAll } = todoListAdapter.getSelectors();
 

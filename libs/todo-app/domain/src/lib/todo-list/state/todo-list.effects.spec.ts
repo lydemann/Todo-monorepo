@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { createSpyObject, mockProvider, SpyObject } from '@ngneat/spectator';
+import { mockProvider, SpyObject } from '@ngneat/spectator/jest';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';

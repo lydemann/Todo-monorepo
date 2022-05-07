@@ -13,7 +13,7 @@ import { TestingModule } from '@todo-app/testing.module';
 import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { AddTodoComponent, AddTodoReactiveFormsModule } from '@todo/shared/ui';
-import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
 
 describe('TodoListComponent', () => {
@@ -29,7 +29,7 @@ describe('TodoListComponent', () => {
 			TestingModule,
 		],
 		providers: [
-			mockProvider(TodoListSandboxService, {
+			mockProvider(TodoListFacadeService, {
 				todoList$: of([]),
 			}),
 		],
@@ -39,7 +39,7 @@ describe('TodoListComponent', () => {
 
 	describe('get todo list', () => {
 		it('should show three todo items', async(() => {
-			const todoListSandboxService = spectator.inject(TodoListSandboxService);
+			const todoListSandboxService = spectator.inject(TodoListFacadeService);
 			todoListSandboxService.todoList$ = of([
 				new TodoItem('1', ''),
 				new TodoItem('2', ''),
