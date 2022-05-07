@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { API_ENDPOINTS } from './endpoints.config';\nimport { EndpointsService } from './endpoints.service';\nexport const getEndpointMock = () => [EndpointsService, {\n  provide: API_ENDPOINTS,\n  useValue: {\n    todoService: 'https://todoservice',\n    loggingService: 'https://loggingservice'\n  }\n}];","map":null,"metadata":{},"sourceType":"module"}

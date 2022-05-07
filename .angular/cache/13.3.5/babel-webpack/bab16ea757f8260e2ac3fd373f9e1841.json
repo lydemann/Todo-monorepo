@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { Guid } from '@todo/shared/util';\nexport class TodoItem {\n  constructor(title, description, dueDate = null) {\n    this.id = Guid.newGuid();\n    this.title = title;\n    this.description = description;\n    this.dueDate = dueDate;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

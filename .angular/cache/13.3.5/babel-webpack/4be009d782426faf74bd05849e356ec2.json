@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from './crud-item.component';\nexport * from './crud-item.module';","map":null,"metadata":{},"sourceType":"module"}

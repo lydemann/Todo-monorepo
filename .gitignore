@@ -6,6 +6,8 @@
 /out-tsc
 /junit
 
+/.angular
+
 # dependencies
 /node_modules
 
