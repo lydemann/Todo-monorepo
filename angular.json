@@ -906,14 +906,14 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
-						"tsConfig": [
-							"apps/todo-app/tsconfig.app.json",
-							"apps/todo-app/tsconfig.spec.json"
+						"lintFilePatterns": [
+						  "apps/todo-app/src/**/*.ts",
+						  "apps/todo-app/src/**/*.html"
 						],
-						"exclude": ["**/node_modules/**"]
-					}
+						"maxWarnings": 0
+					  }
 				}
 			}
 		},
@@ -962,7 +962,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": "apps/todo-app-e2e/tsconfig.e2e.json",
 						"exclude": ["**/node_modules/**"]
@@ -1004,7 +1004,7 @@
 			"prefix": "todo",
 			"architect": {
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/todo-app-lib/tsconfig.lib.json",
