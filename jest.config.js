@@ -8,5 +8,5 @@ module.exports = {
 	moduleFileExtensions: ['ts', 'js', 'html'],
 	collectCoverage: true,
 	coverageReporters: ['html', 'lcov', 'json', 'text'],
-	projects: '<rootDir>/libs/todo-app/domain',
+	projects: '<rootDir>/libs/todo-app/feature',
 };

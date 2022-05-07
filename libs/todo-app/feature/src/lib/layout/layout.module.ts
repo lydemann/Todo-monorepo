@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
+import { FooterComponent } from './footer/footer.component';
 
-import { SharedModule } from '@todo-app/shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-	declarations: [NavbarComponent],
+	declarations: [NavbarComponent, FooterComponent],
 	imports: [CommonModule, SharedModule],
-	exports: [NavbarComponent],
+	exports: [NavbarComponent, FooterComponent],
 	providers: [],
 })
 export class LayoutModule {}

@@ -31,8 +31,9 @@
 					*ngFor="let lang of translate.getLangs()"
 					[value]="lang"
 					[selected]="lang === translate.currentLang"
-					>{{ lang }}</option
 				>
+					{{ lang }}
+				</option>
 			</select>
 		</span>
 		<span
@@ -44,8 +45,9 @@
 					*ngFor="let theme of themes"
 					[value]="theme"
 					[selected]="theme === activeTheme"
-					>{{ theme }}</option
 				>
+					{{ theme }}
+				</option>
 			</select>
 		</span>
 	</nav>

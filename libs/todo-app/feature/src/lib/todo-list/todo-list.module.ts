@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
-import { SharedModule } from '@todo-app/shared/shared.module';
-import { TodoListComponent } from '@todo-app/todo-list/todo-list.component';
 import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
+import { TodoListComponent } from './todo-list.component';
 
 @NgModule({
 	imports: [FormsModule, CommonModule, SharedModule],

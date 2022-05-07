@@ -1,131 +1,7 @@
 {
 	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
 	"version": 1,
-	"defaultProject": "todo-app",
 	"projects": {
-		"todo-app": {
-			"root": "apps/todo-app",
-			"sourceRoot": "apps/todo-app/src",
-			"projectType": "application",
-			"prefix": "app",
-			"schematics": {
-				"@schematics/angular:component": {
-					"style": "scss"
-				}
-			},
-			"architect": {
-				"build": {
-					"builder": "@angular-devkit/build-angular:browser",
-					"options": {
-						"aot": true,
-						"buildOptimizer": false,
-						"optimization": false,
-						"vendorChunk": true,
-						"extractLicenses": false,
-						"sourceMap": true,
-						"namedChunks": true,
-						"outputPath": "dist/apps/todo-app",
-						"index": "apps/todo-app/src/index.html",
-						"main": "apps/todo-app/src/main.ts",
-						"polyfills": "apps/todo-app/src/polyfills.ts",
-						"tsConfig": "apps/todo-app/tsconfig.app.json",
-						"assets": [
-							"apps/todo-app/src/favicon.ico",
-							"apps/todo-app/src/assets",
-							"apps/todo-app/src/manifest.json",
-							"apps/todo-app/src/web.config"
-						],
-						"styles": ["apps/todo-app/src/styles.scss"],
-						"stylePreprocessorOptions": {
-							"includePaths": ["libs/shared/ui/styles/src/lib"]
-						},
-						"scripts": [
-							{
-								"input": "node_modules/document-register-element/build/document-register-element.js"
-							}
-						]
-					},
-					"configurations": {
-						"production": {
-							"fileReplacements": [
-								{
-									"replace": "libs/todo-app-lib/src/environments/environment.ts",
-									"with": "libs/todo-app-lib/src/environments/environment.prod.ts"
-								}
-							],
-							"optimization": true,
-							"outputHashing": "all",
-							"sourceMap": false,
-							"extractCss": true,
-							"namedChunks": false,
-							"aot": true,
-							"extractLicenses": true,
-							"vendorChunk": false,
-							"buildOptimizer": true,
-							"budgets": [
-								{
-									"type": "initial",
-									"maximumWarning": "2mb",
-									"maximumError": "5mb"
-								},
-								{
-									"type": "anyComponentStyle",
-									"maximumWarning": "6kb"
-								}
-							],
-							"serviceWorker": true
-						}
-					}
-				},
-				"serve": {
-					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"browserTarget": "todo-app:build",
-						"proxyConfig": "apps/todo-app/proxy.conf.json"
-					},
-					"configurations": {
-						"production": {
-							"browserTarget": "todo-app:build:production"
-						}
-					}
-				},
-				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "todo-app:build"
-					}
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "apps/todo-app/src/test.ts",
-						"polyfills": "apps/todo-app/src/polyfills.ts",
-						"tsConfig": "apps/todo-app/tsconfig.spec.json",
-						"karmaConfig": "apps/todo-app/karma.conf.js",
-						"styles": ["apps/todo-app/src/styles.scss"],
-						"stylePreprocessorOptions": {
-							"includePaths": ["libs/shared/ui/styles/src/lib"]
-						},
-						"scripts": [],
-						"assets": [
-							"apps/todo-app/src/favicon.ico",
-							"apps/todo-app/src/assets",
-							"apps/todo-app/src/manifest.json"
-						]
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"apps/todo-app/tsconfig.app.json",
-							"apps/todo-app/tsconfig.spec.json"
-						],
-						"exclude": ["**/node_modules/**"]
-					}
-				}
-			}
-		},
 		"designsystemdemo": {
 			"projectType": "application",
 			"schematics": {
@@ -918,6 +794,129 @@
 			},
 			"tags": ["type:e2e"]
 		},
+		"todo-app": {
+			"root": "apps/todo-app",
+			"sourceRoot": "apps/todo-app/src",
+			"projectType": "application",
+			"prefix": "app",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"aot": true,
+						"buildOptimizer": false,
+						"optimization": false,
+						"vendorChunk": true,
+						"extractLicenses": false,
+						"sourceMap": true,
+						"namedChunks": true,
+						"outputPath": "dist/apps/todo-app",
+						"index": "apps/todo-app/src/index.html",
+						"main": "apps/todo-app/src/main.ts",
+						"polyfills": "apps/todo-app/src/polyfills.ts",
+						"tsConfig": "apps/todo-app/tsconfig.app.json",
+						"assets": [
+							"apps/todo-app/src/favicon.ico",
+							"apps/todo-app/src/assets",
+							"apps/todo-app/src/manifest.json",
+							"apps/todo-app/src/web.config"
+						],
+						"styles": ["apps/todo-app/src/styles.scss"],
+						"stylePreprocessorOptions": {
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
+						},
+						"scripts": [
+							{
+								"input": "node_modules/document-register-element/build/document-register-element.js"
+							}
+						]
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "libs/todo-app-lib/src/environments/environment.ts",
+									"with": "libs/todo-app-lib/src/environments/environment.prod.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": true,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
+							"serviceWorker": true
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "todo-app:build",
+						"proxyConfig": "apps/todo-app/proxy.conf.json"
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "todo-app:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "todo-app:build"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "apps/todo-app/src/test.ts",
+						"polyfills": "apps/todo-app/src/polyfills.ts",
+						"tsConfig": "apps/todo-app/tsconfig.spec.json",
+						"karmaConfig": "apps/todo-app/karma.conf.js",
+						"styles": ["apps/todo-app/src/styles.scss"],
+						"stylePreprocessorOptions": {
+							"includePaths": ["libs/shared/ui/styles/src/lib"]
+						},
+						"scripts": [],
+						"assets": [
+							"apps/todo-app/src/favicon.ico",
+							"apps/todo-app/src/assets",
+							"apps/todo-app/src/manifest.json"
+						]
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"apps/todo-app/tsconfig.app.json",
+							"apps/todo-app/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**"]
+					}
+				}
+			}
+		},
 		"todo-app-domain": {
 			"projectType": "library",
 			"root": "libs/todo-app/domain",
@@ -971,6 +970,32 @@
 				}
 			},
 			"tags": ["type:e2e"]
+		},
+		"todo-app-feature": {
+			"projectType": "library",
+			"root": "libs/todo-app/feature",
+			"sourceRoot": "libs/todo-app/feature/src",
+			"prefix": "todo",
+			"architect": {
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"outputs": ["coverage/libs/todo-app/feature"],
+					"options": {
+						"jestConfig": "libs/todo-app/feature/jest.config.ts",
+						"passWithNoTests": true
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/todo-app/feature/**/*.ts",
+							"libs/todo-app/feature/**/*.html"
+						]
+					}
+				}
+			},
+			"tags": ["scope:todo-app", "type:feature"]
 		},
 		"todo-app-lib": {
 			"root": "libs/todo-app-lib",
