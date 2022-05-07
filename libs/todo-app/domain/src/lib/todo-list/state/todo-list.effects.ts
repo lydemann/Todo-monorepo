@@ -26,7 +26,7 @@ export class TodoListEffects {
 		this.actions$.pipe(
 			ofType(TodoListActions.saveTodoItemRequest),
 			map(action => {
-				if (!!action.todoItem.id) {
+				if (action.todoItem.id) {
 					return TodoListActions.updateTodoItemRequest({
 						todoItem: action.todoItem,
 					});

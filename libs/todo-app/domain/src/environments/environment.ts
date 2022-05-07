@@ -1,4 +1,4 @@
-declare var window: any;
+declare let window: any;
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.

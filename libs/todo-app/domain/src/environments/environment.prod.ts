@@ -1,4 +1,4 @@
-declare var window: any;
+declare let window: any;
 
 export const environment = {
 	production: true,
