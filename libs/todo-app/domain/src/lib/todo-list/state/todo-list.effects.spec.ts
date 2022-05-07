@@ -38,7 +38,7 @@ describe('TodoListEffects', () => {
 
 			actions = hot('-a', { a: action });
 			const response = cold('-a|', { a: todoList });
-			todoListResourcesStub.getTodos.and.returnValue(response);
+			todoListResourcesStub.getTodos.andReturn(response);
 
 			const expected = cold('--b', { b: outcome });
 			expect(effects.getTodoListRequest$).toBeObservable(expected);
@@ -51,7 +51,7 @@ describe('TodoListEffects', () => {
 
 			actions = hot('-a', { a: action });
 			const response = cold('-#|', {}, error);
-			todoListResourcesStub.getTodos.and.returnValue(response);
+			todoListResourcesStub.getTodos.andReturn(response);
 
 			const expected = cold('--b', { b: outcome });
 			expect(effects.getTodoListRequest$).toBeObservable(expected);
@@ -89,7 +89,7 @@ describe('TodoListEffects', () => {
 			const action = TodoListActions.updateTodoItemRequest({ todoItem });
 			actions = hot('-a', { a: action });
 			const response = cold('-a|', { a: todoItem });
-			todoListResourcesStub.updateTodoItem.and.returnValue(response);
+			todoListResourcesStub.updateTodoItem.andReturn(response);
 
 			const outcome = TodoListActions.updateTodoItemResponse({ todoItem });
 			const expected = cold('--b', { b: outcome });
@@ -105,7 +105,7 @@ describe('TodoListEffects', () => {
 
 			actions = hot('-a', { a: action });
 			const response = cold('-#|', {}, error);
-			todoListResourcesStub.updateTodoItem.and.returnValue(response);
+			todoListResourcesStub.updateTodoItem.andReturn(response);
 
 			const expected = cold('--b', { b: outcome });
 			expect(effects.updateTodoItemRequest$).toBeObservable(expected);
@@ -118,7 +118,7 @@ describe('TodoListEffects', () => {
 			const action = TodoListActions.addTodoItemRequest({ todoItem });
 			actions = hot('-a', { a: action });
 			const response = cold('-a', { a: todoItem });
-			todoListResourcesStub.addTodoItem.and.returnValue(response);
+			todoListResourcesStub.addTodoItem.andReturn(response);
 
 			const outcome = TodoListActions.addTodoItemReponse({ todoItem });
 			const expected = cold('--b', { b: outcome });
@@ -134,7 +134,7 @@ describe('TodoListEffects', () => {
 
 			actions = hot('-a', { a: action });
 			const response = cold('-#|', {}, error);
-			todoListResourcesStub.addTodoItem.and.returnValue(response);
+			todoListResourcesStub.addTodoItem.andReturn(response);
 
 			const expected = cold('--b', { b: outcome });
 			expect(effects.addTodoItemRequest$).toBeObservable(expected);

@@ -1,9 +1,9 @@
 import {
 	createHttpFactory,
-	HTTPMethod,
+	HttpMethod,
 	mockProvider,
 	SpectatorHttp,
-} from '@ngneat/spectator';
+} from '@ngneat/spectator/jest';
 
 import { EndpointsService } from '@todo/shared/data-access';
 import { TodoListResourcesService } from './todo-list-resources.service';
@@ -22,7 +22,7 @@ describe('TodoListResourcesService', () => {
 	describe('getTodos', () => {
 		it('should call GET todos', () => {
 			spectator.service.getTodos().subscribe();
-			spectator.expectOne('todo-service-url/api/todo-list', HTTPMethod.GET);
+			spectator.expectOne('todo-service-url/api/todo-list', HttpMethod.GET);
 		});
 	});
 });

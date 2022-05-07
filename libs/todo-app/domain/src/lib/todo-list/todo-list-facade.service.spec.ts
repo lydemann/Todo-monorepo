@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { createSpyObject } from '@ngneat/spectator';
+import { createSpyObject } from '@ngneat/spectator/jest';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
@@ -16,10 +16,8 @@ describe('Service: TodoListFacadeService', () => {
 	const todoListResourcesServiceStub = createSpyObject(
 		TodoListResourcesService,
 	);
-	todoListResourcesServiceStub.addTodoItem.and.returnValue(
-		of(new TodoItem('', '')),
-	);
-	todoListResourcesServiceStub.updateTodoItem.and.returnValue(
+	todoListResourcesServiceStub.addTodoItem.andReturn(of(new TodoItem('', '')));
+	todoListResourcesServiceStub.updateTodoItem.andReturn(
 		of(new TodoItem('', '')),
 	);
 
@@ -37,7 +35,7 @@ describe('Service: TodoListFacadeService', () => {
 
 		service = TestBed.inject(TodoListFacadeService);
 		store = TestBed.inject(Store);
-		spyOn(store, 'dispatch');
+		jest.spyOn(store, 'dispatch');
 	});
 
 	describe('saveTodoItem', () => {

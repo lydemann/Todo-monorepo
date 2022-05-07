@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props, union } from '@ngrx/store';
 
 import {
@@ -7,6 +6,7 @@ import {
 } from '@todo/shared/data-access-logging';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace TodoListActions {
 	export const getTodoListRequest = createAction(
 		'[TodoList] Get Todo List Request',
