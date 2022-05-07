@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './lib/shared-util-i18n.module';\nexport * from './lib/services/locale.service';\nexport * from './lib/pipes/local-currency.pipe';\nexport * from './lib/pipes/local-date.pipe';\nexport * from './lib/pipes/local-number.pipe';","map":null,"metadata":{},"sourceType":"module"}

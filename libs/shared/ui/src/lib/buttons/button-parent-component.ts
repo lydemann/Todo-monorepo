@@ -1,5 +1,8 @@
-import { EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+@Component({
+	template: '',
+})
 export abstract class ButtonParentComponent<ButtonTypes = any> {
 	@Input() public type: 'button' | 'submit' = 'button';
 	@Input() public buttonType: ButtonTypes;

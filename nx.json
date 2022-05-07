@@ -7,72 +7,45 @@
 		"tslint.json": "*",
 		"nx.json": "*"
 	},
-	"projects": {
-		"todo-app": {
-			"tags": ["scope:todo-app", "type:app"]
+	"targetDependencies": {
+		"build": [
+			{
+				"target": "build",
+				"projects": "dependencies"
+			}
+		]
+	},
+	"cli": {
+		"defaultCollection": "@nrwl/schematics"
+	},
+	"defaultProject": "todo-app",
+	"generators": {
+		"@schematics/angular:component": {
+			"changeDetection": "OnPush"
 		},
-		"todo-service": {
-			"tags": ["scope:todo-service", "type:service"]
+		"@nrwl/react": {
+			"application": {
+				"babel": true,
+				"style": "scss",
+				"linter": "tslint"
+			},
+			"component": {
+				"style": "scss"
+			},
+			"library": {
+				"style": "scss",
+				"linter": "tslint"
+			}
 		},
-		"todo-app-e2e": {
-			"tags": ["type:e2e"]
+		"@nrwl/angular:application": {
+			"unitTestRunner": "jest",
+			"e2eTestRunner": "cypress"
 		},
-		"todo-app-lib": {
-			"tags": ["scope:todo-app", "type:feature"]
-		},
-		"shared-ui": {
-			"tags": ["type:ui", "scope:shared"]
-		},
-		"shared-data-access": {
-			"tags": ["type:data-access", "scope:shared"]
-		},
-		"shared-util": {
-			"tags": ["type:util", "scope:shared"]
-		},
-		"util-feature-toggle": {
-			"tags": ["scope:shared", "type:util"]
-		},
-		"todo-admin": {
-			"tags": ["scope:todo-admin", "type:app"]
-		},
-		"todo-admin-e2e": {
-			"tags": ["type:e2e"]
-		},
-		"shared-styles": {
-			"tags": ["scope:shared"]
-		},
-		"shared-util-i18n": {
-			"tags": ["scope:shared", "type:util"]
-		},
-		"shared-data-access-logging": {
-			"tags": ["scope:shared", "type:data-access"]
-		},
-		"logging-service": {
-			"tags": ["type:app"]
-		},
-		"reactapp": {
-			"tags": ["type:app"]
-		},
-		"reactapp-e2e": {
-			"tags": []
-		},
-		"designsystemdemo-e2e": {
-			"tags": []
-		},
-		"designsystemdemo": {
-			"tags": ["type:app"]
-		},
-		"shared-util-util-test": {
-			"tags": ["scope:shared", "type:util"]
-		},
-		"questionnaire-app-e2e": {
-			"tags": []
-		},
-		"questionnaire-app": {
-			"tags": ["type:app"]
-		},
-		"shared-interfaces-todo-interfaces": {
-			"tags": ["type:interface", "scope:shared"]
+		"@nrwl/angular:library": {
+			"unitTestRunner": "jest"
 		}
+	},
+	"affected": {
+		"defaultBase": "master"
 	}
 }

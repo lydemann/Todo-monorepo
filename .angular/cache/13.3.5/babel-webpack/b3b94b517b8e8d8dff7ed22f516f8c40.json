@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './lib/shared-data-access.module';\nexport * from './lib/endpoints/endpoints.service';\nexport * from './lib/endpoints/endpoints.config';\nexport * from './lib/endpoints/endpoints.mock';","map":null,"metadata":{},"sourceType":"module"}

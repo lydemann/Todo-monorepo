@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { InjectionToken } from '@angular/core';\nexport const API_ENDPOINTS = new InjectionToken('todo.shared.data-access.api-endpoints');","map":null,"metadata":{},"sourceType":"module"}

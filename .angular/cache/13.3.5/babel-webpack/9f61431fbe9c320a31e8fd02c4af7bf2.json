@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { trim } from 'lodash';\nexport class StringHelpers {\n  static isNullOrEmpty(str) {\n    return !str || trim(str) === '';\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
