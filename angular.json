@@ -941,7 +941,7 @@
 					}
 				}
 			},
-			"tags": ["type:business-logic", "scope:todo-app"]
+			"tags": ["type:domain", "scope:todo-app"]
 		},
 		"todo-app-e2e": {
 			"root": "apps/todo-app-e2e",

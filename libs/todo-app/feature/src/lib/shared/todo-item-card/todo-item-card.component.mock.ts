@@ -8,6 +8,7 @@ import { TodoItemCardComponent } from './todo-item-card.component';
 	template: '',
 })
 // tslint:disable-next-line:component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class TodoItemCardComponentMock implements TodoItemCardComponent {
 	public todoCompleteToggled: EventEmitter<string>;
 	@Input() public todoItem: TodoItem;

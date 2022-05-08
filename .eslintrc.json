@@ -1,0 +1,82 @@
+{
+	"root": true,
+	"ignorePatterns": ["**/*"],
+	"plugins": ["@nrwl/nx"],
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"rules": {
+				"@nrwl/nx/enforce-module-boundaries": [
+					"error",
+					{
+						"enforceBuildableLibDependency": true,
+						"allow": [],
+						"depConstraints": [
+							{
+								"sourceTag": "scope:shared",
+								"onlyDependOnLibsWithTags": ["scope:shared"]
+							},
+							{
+								"sourceTag": "scope:todo-app",
+								"onlyDependOnLibsWithTags": ["scope:todo-app", "scope:shared"]
+							},
+							{
+								"sourceTag": "scope:todo-admin",
+								"onlyDependOnLibsWithTags": ["scope:todo-admin", "scope:shared"]
+							},
+							{
+								"sourceTag": "type:app",
+								"onlyDependOnLibsWithTags": [
+									"type:feature",
+									"type:shell",
+									"type:api",
+									"scope:shared"
+								]
+							},
+							{
+								"sourceTag": "type:feature",
+								"onlyDependOnLibsWithTags": [
+									"type:ui",
+									"type:domain",
+									"type:util",
+									"type:api",
+									"scope:shared"
+								]
+							},
+							{
+								"sourceTag": "type:api",
+								"onlyDependOnLibsWithTags": [
+									"type:ui",
+									"type:domain",
+									"type:util"
+								]
+							},
+							{
+								"sourceTag": "type:ui",
+								"onlyDependOnLibsWithTags": ["type:domain", "type:util"]
+							},
+							{
+								"sourceTag": "type:domain",
+								"onlyDependOnLibsWithTags": ["type:domain", "type:util"]
+							},
+							{
+								"sourceTag": "type:util",
+								"onlyDependOnLibsWithTags": ["type:util"]
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"files": ["*.ts", "*.tsx"],
+			"extends": ["plugin:@nrwl/nx/typescript"],
+			"rules": {}
+		},
+		{
+			"files": ["*.js", "*.jsx"],
+			"extends": ["plugin:@nrwl/nx/javascript"],
+			"rules": {}
+		}
+	]
+}
