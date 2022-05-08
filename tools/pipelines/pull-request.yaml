@@ -1,5 +1,7 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger: none
+pool:
+  vmImage: ubuntu-latest
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
@@ -31,7 +33,7 @@ stages:
         steps:
           - template: templates/npm-setup.yml
 
-          - script: npm run affected:test -- --base=origin/master --head=HEAD
+          - script: npm run affected:test -- --base=origin/master --head=HEAD --ci
             displayName: Test Affected
 
           - script: npm run codecov -- $(CodeCovToken) --disable=gcov
