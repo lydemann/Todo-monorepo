@@ -15,6 +15,7 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@test-setup-base": ["test-setup.base.ts"],
 			"@questionnaire-app/*": ["apps/questionnaire-app/src/app/*"],
 			"@todo-app/*": ["apps/todo-app/src/app/*", "apps/todo-app/src/*"],
 			"@todo/shared/data-access": ["libs/shared/data-access/src/index.ts"],
@@ -36,7 +37,8 @@
 			"@todo/shared/util-i18n": ["libs/shared/util/util-i18n/src/index.ts"],
 			"@todo/shared/util-test": ["libs/shared/util/util-test/src/index.ts"],
 			"@todo/todo-app/domain": ["libs/todo-app/domain/src/index.ts"],
-			"@todo/todo-app/feature": ["libs/todo-app/feature/src/index.ts"]
+			"@todo/todo-app/feature": ["libs/todo-app/feature/src/index.ts"],
+			"@todo/todo-app/testing-util": ["libs/todo-app/testing-util/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

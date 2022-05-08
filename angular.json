@@ -77,7 +77,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"apps/designsystemdemo/tsconfig.app.json",
@@ -108,7 +108,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": ["apps/designsystemdemo-e2e/tsconfig.e2e.json"],
 						"exclude": ["**/node_modules/**", "!apps/designsystemdemo-e2e/**"]
@@ -154,7 +154,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"apps/logging-service/tsconfig.app.json",
@@ -252,7 +252,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"apps/questionnaire-app/tsconfig.app.json",
@@ -302,7 +302,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": ["apps/questionnaire-app-e2e/tsconfig.e2e.json"],
 						"exclude": ["**/node_modules/**", "!apps/questionnaire-app-e2e/**"]
@@ -376,7 +376,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"apps/reactapp/tsconfig.app.json",
@@ -414,7 +414,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": ["apps/reactapp-e2e/tsconfig.e2e.json"],
 						"exclude": ["**/node_modules/**", "!apps/reactapp-e2e/**"]
@@ -430,7 +430,7 @@
 			"prefix": "todo",
 			"architect": {
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/shared/data-access/tsconfig.lib.json",
@@ -462,7 +462,7 @@
 			"schematics": {},
 			"architect": {
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/shared/data-access/data-access-logging/tsconfig.lib.json",
@@ -484,7 +484,7 @@
 			"schematics": {},
 			"architect": {
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/shared/interfaces/todo-interfaces/tsconfig.lib.json",
@@ -543,7 +543,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/shared/ui/tsconfig.lib.json",
@@ -578,7 +578,7 @@
 			"prefix": "todo",
 			"architect": {
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/shared/util/tsconfig.lib.json",
@@ -622,7 +622,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/shared/util/util-i18n/tsconfig.lib.json",
@@ -654,7 +654,7 @@
 			"schematics": {},
 			"architect": {
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/shared/util/util-test/tsconfig.lib.json",
@@ -742,7 +742,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"apps/todo-admin/tsconfig.app.json",
@@ -785,7 +785,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": "apps/todo-admin-e2e/tsconfig.e2e.json",
 						"exclude": ["**/node_modules/**"]
@@ -909,11 +909,11 @@
 					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"lintFilePatterns": [
-						  "apps/todo-app/src/**/*.ts",
-						  "apps/todo-app/src/**/*.html"
+							"apps/todo-app/src/**/*.ts",
+							"apps/todo-app/src/**/*.html"
 						],
 						"maxWarnings": 0
-					  }
+					}
 				}
 			}
 		},
@@ -1029,6 +1029,32 @@
 			},
 			"tags": ["scope:todo-app", "type:feature"]
 		},
+		"todo-app-testing-util": {
+			"projectType": "library",
+			"root": "libs/todo-app/testing-util",
+			"sourceRoot": "libs/todo-app/testing-util/src",
+			"prefix": "todo",
+			"architect": {
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"outputs": ["coverage/libs/todo-app/testing-util"],
+					"options": {
+						"jestConfig": "libs/todo-app/testing-util/jest.config.ts",
+						"passWithNoTests": true
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/todo-app/testing-util/**/*.ts",
+							"libs/todo-app/testing-util/**/*.html"
+						]
+					}
+				}
+			},
+			"tags": ["scope:todo-app", "type:util"]
+		},
 		"todo-service": {
 			"root": "apps/todo-service",
 			"sourceRoot": "apps/todo-service/src",
@@ -1068,7 +1094,7 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"apps/todo-service/tsconfig.app.json",
@@ -1094,7 +1120,7 @@
 			"schematics": {},
 			"architect": {
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
 						"tsConfig": [
 							"libs/shared/util/util-feature-toggle/tsconfig.lib.json",

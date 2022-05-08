@@ -3,7 +3,7 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { inject, TestBed } from '@angular/core/testing';
 
-import { SpinnerOverlayService } from '@todo-app/core/spinner-overlay/spinner-overlay.service';
+import { SpinnerOverlayService } from './spinner-overlay.service';
 
 describe('Service: SpinnerOverlay', () => {
 	beforeEach(() => {

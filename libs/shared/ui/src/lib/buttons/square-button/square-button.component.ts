@@ -9,10 +9,8 @@ export type SquareButtonTypes = 'Primary' | 'Secondary';
 	templateUrl: './square-button.component.html',
 	styleUrls: ['./square-button.component.scss'],
 })
-export class SquareButtonComponent extends ButtonParentComponent<
-	SquareButtonTypes
-> {
-	@Input() public buttonType: SquareButtonTypes;
+export class SquareButtonComponent extends ButtonParentComponent<SquareButtonTypes> {
+	@Input() public override buttonType: SquareButtonTypes;
 
 	constructor() {
 		super();

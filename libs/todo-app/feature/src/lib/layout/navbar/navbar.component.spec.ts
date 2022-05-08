@@ -1,26 +1,22 @@
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import {
-	createComponentFactory,
+	createRoutingFactory,
 	mockProvider,
-	Spectator,
-} from '@ngneat/spectator';
+	SpectatorRouting,
+} from '@ngneat/spectator/jest';
 import { TranslateModule } from '@ngx-translate/core';
-
-import { NavbarComponent } from '@todo-app/layout/navbar/navbar.component';
-import { SharedModule } from '@todo-app/shared/shared.module';
 import { FeatureToggleService } from '@todo/shared/util-feature-toggle';
+import { SharedModule } from '../../shared/shared.module';
+import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
-	let spectator: Spectator<NavbarComponent>;
-	const createComponent = createComponentFactory({
+	let spectator: SpectatorRouting<NavbarComponent>;
+	const createComponent = createRoutingFactory({
 		component: NavbarComponent,
-		imports: [
-			FormsModule,
-			RouterModule.forRoot([]),
-			TranslateModule.forRoot(),
-			SharedModule,
-		],
+		data: {},
+		params: {},
+		queryParams: {},
+		imports: [FormsModule, TranslateModule.forRoot(), SharedModule],
 		providers: [
 			mockProvider(FeatureToggleService, {
 				hasFlags: () => true,

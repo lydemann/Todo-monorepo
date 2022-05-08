@@ -10,8 +10,8 @@ export class FeatureTogglePreloadingStrategy implements PreloadingStrategy {
 
 	public preload(route: Route, load: () => Observable<any>): Observable<any> {
 		return !route.data ||
-			!route.data.flags ||
-			this.featureToggleService.hasFlags(route.data.flags)
+			!route.data['flags'] ||
+			this.featureToggleService.hasFlags(route.data['flags'])
 			? load()
 			: of(false);
 	}

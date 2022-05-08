@@ -1,14 +1,13 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
-
-import { SpinnerOverlayComponent } from '@todo-app/core/spinner-overlay/spinner-overlay.component';
+import { SpinnerOverlayComponent } from './spinner-overlay.component';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class SpinnerOverlayService {
-	private overlayRef: OverlayRef = null;
+	private overlayRef!: OverlayRef;
 
 	constructor(private overlay: Overlay) {}
 
@@ -32,7 +31,7 @@ export class SpinnerOverlayService {
 	}
 
 	public hide() {
-		if (!!this.overlayRef) {
+		if (this.overlayRef) {
 			this.overlayRef.detach();
 		}
 	}

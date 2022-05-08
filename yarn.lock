@@ -16694,10 +16694,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.1.tgz#26c8a3cee6cc05fbcf1e333cd2fc3e003326c0b5"
   integrity sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==
 
-ng-mocks@^9.2.0:
-  version "9.6.4"
-  resolved "https://registry.yarnpkg.com/ng-mocks/-/ng-mocks-9.6.4.tgz#ebb0d4ee6e06886f831ed130d6984b9d851e1ae0"
-  integrity sha512-hyhTVoy4RUi3bufOmxnx1VMIN5c1fnJFnN94mPv8+e1jjwdVQlX0CXkLnkgFJWfL1XV/Eogj19OzqBhyrmF4fw==
+ng-mocks@^13.5.1:
+  version "13.5.1"
+  resolved "https://registry.yarnpkg.com/ng-mocks/-/ng-mocks-13.5.1.tgz#42a18806b0006fcb41f41d7490cefe445510ed09"
+  integrity sha512-EmxaosD5esrZZO05fis/cevryakuA4/SerrTFsJzL/UehqTPrHl5oQzKbvTbPrJYFMQ8LOzIMfmQFGkC7dk7Lw==
 
 ng-packagr@13.3.1:
   version "13.3.1"

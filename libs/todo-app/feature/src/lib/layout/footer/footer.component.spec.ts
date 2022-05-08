@@ -1,7 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { FooterComponent } from '@todo-app/footer/footer.component';
+import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
 	let component: FooterComponent;

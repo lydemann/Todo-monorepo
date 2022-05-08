@@ -1,18 +1,18 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { NgModule } from '@angular/core';
-import { mockProvider } from '@ngneat/spectator';
+import { mockProvider } from '@ngneat/spectator/jest';
 import {
 	TranslateDirective,
 	TranslatePipe,
 	TranslateService,
 } from '@ngx-translate/core';
-import { MockComponent, MockDirective, MockPipe } from 'ng-mocks';
-import { of } from 'rxjs';
-
 import { TextareaComponent } from '@todo/shared/ui';
+import { MockComponent, MockDirectives, MockPipe } from 'ng-mocks';
+import { of } from 'rxjs';
 
 const declarations = [
 	MockComponent(TextareaComponent),
-	MockDirective(TranslateDirective),
+	MockDirectives(TranslateDirective),
 	MockPipe(TranslatePipe, () => 'translated text'),
 ];
 

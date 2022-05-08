@@ -8,6 +8,6 @@ export class FeatureToggleCanLoadGuard implements CanLoad {
 	constructor(private featureToggleService: FeatureToggleService) {}
 
 	public canLoad(route: Route): boolean {
-		return this.featureToggleService.hasFlags(route.data.flags);
+		return this.featureToggleService.hasFlags(route.data['flags']);
 	}
 }
