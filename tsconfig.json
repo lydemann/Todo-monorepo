@@ -15,8 +15,8 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@test-setup-base": ["test-setup.base.ts"],
 			"@questionnaire-app/*": ["apps/questionnaire-app/src/app/*"],
+			"@test-setup-base": ["test-setup.base.ts"],
 			"@todo-app/*": ["apps/todo-app/src/app/*", "apps/todo-app/src/*"],
 			"@todo/shared/data-access": ["libs/shared/data-access/src/index.ts"],
 			"@todo/shared/data-access-logging": [

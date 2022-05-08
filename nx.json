@@ -5,6 +5,7 @@
 		"package.json": "*",
 		"tsconfig.json": "*",
 		"tslint.json": "*",
+		".eslintrc.json": "*",
 		"nx.json": "*"
 	},
 	"targetDependencies": {
@@ -34,16 +35,16 @@
 		},
 		"@nrwl/react": {
 			"application": {
-				"babel": true,
 				"style": "scss",
-				"linter": "tslint"
+				"linter": "eslint",
+				"babel": true
 			},
 			"component": {
 				"style": "scss"
 			},
 			"library": {
 				"style": "scss",
-				"linter": "tslint"
+				"linter": "eslint"
 			}
 		},
 		"@nrwl/angular:application": {

@@ -125,7 +125,7 @@
 			"schematics": {},
 			"architect": {
 				"build": {
-					"builder": "@nrwl/node:build",
+					"builder": "@nrwl/node:webpack",
 					"options": {
 						"outputPath": "dist/apps/logging-service",
 						"main": "apps/logging-service/src/main.ts",
@@ -299,27 +299,32 @@
 			"schematics": {},
 			"architect": {
 				"build": {
-					"builder": "@nrwl/web:build",
+					"builder": "@nrwl/web:webpack",
+					"outputs": ["{options.outputPath}"],
+					"defaultConfiguration": "production",
 					"options": {
-						"differentialLoading": false,
+						"compiler": "babel",
 						"outputPath": "dist/apps/reactapp",
 						"index": "apps/reactapp/src/index.html",
+						"baseHref": "/",
 						"main": "apps/reactapp/src/main.tsx",
 						"polyfills": "apps/reactapp/src/polyfills.ts",
 						"tsConfig": "apps/reactapp/tsconfig.app.json",
 						"assets": [
 							"apps/reactapp/src/favicon.ico",
-							"apps/reactapp/src/assets",
-							{
-								"glob": "**/*",
-								"input": "dist/libs/shared/ui",
-								"output": "./assets/ui-lib/"
-							}
+							"apps/reactapp/src/assets"
 						],
 						"styles": ["apps/reactapp/src/styles.scss"],
+						"scripts": [],
 						"webpackConfig": "@nrwl/react/plugins/webpack"
 					},
 					"configurations": {
+						"development": {
+							"extractLicenses": false,
+							"optimization": false,
+							"sourceMap": true,
+							"vendorChunk": true
+						},
 						"production": {
 							"fileReplacements": [
 								{
@@ -330,17 +335,9 @@
 							"optimization": true,
 							"outputHashing": "all",
 							"sourceMap": false,
-							"extractCss": true,
 							"namedChunks": false,
 							"extractLicenses": true,
-							"vendorChunk": false,
-							"budgets": [
-								{
-									"type": "initial",
-									"maximumWarning": "2mb",
-									"maximumError": "5mb"
-								}
-							]
+							"vendorChunk": false
 						}
 					}
 				},
