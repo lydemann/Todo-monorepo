@@ -8,13 +8,13 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
-import { TodoListComponent } from './todo-list.component';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { AddTodoComponent, AddTodoReactiveFormsModule } from '@todo/shared/ui';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
-import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
-import { SharedModule } from '../shared/shared.module';
 import { TestingModule } from '@todo/todo-app/testing-util';
+import { SharedModule } from '../shared/shared.module';
+import { TodoListComponent } from './todo-list.component';
+import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
 
 describe('TodoListComponent', () => {
 	let spectator: Spectator<TodoListComponent>;

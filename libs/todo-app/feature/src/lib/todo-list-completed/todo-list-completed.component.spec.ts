@@ -7,8 +7,8 @@ import { first } from 'rxjs/operators';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { CrudItemComponent } from '@todo/shared/ui';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
-import { TodoListCompletedComponent } from './todo-list-completed.component';
 import { TestingModule } from '@todo/todo-app/testing-util';
+import { TodoListCompletedComponent } from './todo-list-completed.component';
 import { completedTodoPath } from './todo-list-completed.constants';
 
 describe('TodoListCompletedComponent', () => {

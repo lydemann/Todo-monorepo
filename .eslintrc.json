@@ -74,6 +74,19 @@
 			"rules": {}
 		},
 		{
+			"files": ["*.ts", "*.tsx"],
+			"extends": [
+				"plugin:@nrwl/nx/typescript",
+				"plugin:@nrwl/nx/angular",
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"prettier"
+			],
+			"rules": {
+				"import/order": "error"
+			},
+			"plugins": ["eslint-plugin-import"]
+		},
+		{
 			"files": ["*.js", "*.jsx"],
 			"extends": ["plugin:@nrwl/nx/javascript"],
 			"rules": {}
