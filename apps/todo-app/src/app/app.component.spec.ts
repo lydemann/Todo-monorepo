@@ -7,8 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from '@todo-app/app.component';
 import { API_ENDPOINTS } from '@todo/shared/data-access';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
-import { FooterComponentMock } from './footer/footer.component.mock';
-import { NavbarComponentMock } from './layout/navbar/navbar.component.mock';
+import { FooterComponent } from '@todo/todo-app/feature';
+import { NavbarComponentMock } from 'libs/todo-app/feature/src/lib/layout/navbar/navbar.component.mock';
+import { MockComponent } from 'ng-mocks';
 
 const apiTendpoints = {
 	todoService: 'todoService',
@@ -18,7 +19,11 @@ const apiTendpoints = {
 describe('AppComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [AppComponent, NavbarComponentMock, FooterComponentMock],
+			declarations: [
+				AppComponent,
+				NavbarComponentMock,
+				MockComponent(FooterComponent),
+			],
 			imports: [],
 			providers: [
 				{ provide: APP_BASE_HREF, useValue: '/' },

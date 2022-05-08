@@ -112,6 +112,7 @@
 		"@nrwl/linter": "14.1.0-beta.2",
 		"@nrwl/nest": "14.1.0-beta.2",
 		"@nrwl/node": "14.1.0-beta.2",
+		"@nrwl/nx-cloud": "^14.0.3",
 		"@nrwl/react": "14.1.0-beta.2",
 		"@nrwl/schematics": "^8.12.10",
 		"@nrwl/web": "14.1.0-beta.2",

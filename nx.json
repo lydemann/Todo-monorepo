@@ -18,6 +18,15 @@
 	"cli": {
 		"defaultCollection": "@nrwl/schematics"
 	},
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "@nrwl/nx-cloud",
+			"options": {
+				"cacheableOperations": ["build", "lint", "test", "e2e"],
+				"accessToken": "NmIzZjQyNTUtNzExZC00NTA0LWExMWEtNzdlYjVkOTRhYTg0fHJlYWQtd3JpdGU="
+			}
+		}
+	},
 	"defaultProject": "todo-app",
 	"generators": {
 		"@schematics/angular:component": {

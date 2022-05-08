@@ -1,1 +1,1 @@
-import 'jest-preset-angular';
+import '@test-setup-base';
