@@ -31,7 +31,7 @@ jobs:
     steps:
       - script: npm ci
 
-      - script: npx nx affected --base=$(BASE_SHA) --target=test --parallel=3 --ci --code-coverage
+      - script: npx nx affected --base=$(BASE_SHA) --target=test --parallel=3 --code-coverage
   - job: Build
     pool:
       vmImage: 'ubuntu-latest'
