@@ -10,10 +10,6 @@ import { NxModule } from '@nrwl/nx';
 import { AppInitService } from '@todo-app/app-init.service';
 import { AppComponent } from '@todo-app/app.component';
 import { appRouterModule } from '@todo-app/app.routes';
-import { CoreModule } from '@todo-app/core/core.module';
-import { FooterComponent } from '@todo-app/footer/footer.component';
-import { SharedModule } from '@todo-app/shared/shared.module';
-import { TodoListModule } from '@todo-app/todo-list/todo-list.module';
 import { ApiEndpoints, API_ENDPOINTS } from '@todo/shared/data-access';
 import {
 	GlobalErrorHandler,
@@ -23,8 +19,12 @@ import {
 	FeatureToggleModule,
 	FeatureToggleService,
 } from '@todo/shared/util-feature-toggle';
-import { environment } from '@todo/todo-app-lib';
-import { LayoutModule } from './layout/layout.module';
+import { environment } from '@todo/todo-app/domain';
+import {
+	LayoutModule,
+	CoreModule,
+	TodoListModule,
+} from '@todo/todo-app/feature';
 
 export function init_app(appLoadService: AppInitService) {
 	return () => appLoadService.init();
@@ -52,12 +52,11 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 });
 
 @NgModule({
-	declarations: [AppComponent, FooterComponent],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		CoreModule,
-		SharedModule,
 		HttpClientModule,
 		TodoListModule,
 		appRouterModule,

@@ -6,6 +6,7 @@ steps:
   - task: ArchiveFiles@2
     displayName: Archive Build Artifacts
     condition: always()
+    continueOnError: true
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/${{ parameters.appToPublish }}'
       includeRootFolder: false
@@ -15,6 +16,7 @@ steps:
   - task: PublishBuildArtifacts@1
     displayName: Publish Build Artifacts
     condition: always()
+    continueOnError: true
     inputs:
       pathtoPublish: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
       artifactName: ${{ parameters.artifactName }}

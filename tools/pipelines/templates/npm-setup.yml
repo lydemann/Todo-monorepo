@@ -22,10 +22,10 @@ steps:
     condition: eq('${{ parameters.installCypress }}', 'true')
 
   # Install Node dependencies
-  - script: yarn --frozen-lockfile
+  - script: yarn --frozen-lockfile --ignore-engines
     condition: eq('${{ parameters.installCypress }}', 'true')
     displayName: 'Install NPM dependencies'
 
-  - script: CYPRESS_INSTALL_BINARY=0 yarn --frozen-lockfile
+  - script: CYPRESS_INSTALL_BINARY=0 yarn --frozen-lockfile --ignore-engines
     condition: eq('${{ parameters.installCypress }}', 'false')
     displayName: 'Install NPM dependencies'

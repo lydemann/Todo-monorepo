@@ -5,74 +5,63 @@
 		"package.json": "*",
 		"tsconfig.json": "*",
 		"tslint.json": "*",
+		".eslintrc.json": "*",
 		"nx.json": "*"
 	},
-	"projects": {
-		"todo-app": {
-			"tags": ["scope:todo-app", "type:app"]
-		},
-		"todo-service": {
-			"tags": ["scope:todo-service", "type:service"]
-		},
-		"todo-app-e2e": {
-			"tags": ["type:e2e"]
-		},
-		"todo-app-lib": {
-			"tags": ["scope:todo-app", "type:feature"]
-		},
-		"shared-ui": {
-			"tags": ["type:ui", "scope:shared"]
-		},
-		"shared-data-access": {
-			"tags": ["type:data-access", "scope:shared"]
-		},
-		"shared-util": {
-			"tags": ["type:util", "scope:shared"]
-		},
-		"util-feature-toggle": {
-			"tags": ["scope:shared", "type:util"]
-		},
-		"todo-admin": {
-			"tags": ["scope:todo-admin", "type:app"]
-		},
-		"todo-admin-e2e": {
-			"tags": ["type:e2e"]
-		},
-		"shared-styles": {
-			"tags": ["scope:shared"]
-		},
-		"shared-util-i18n": {
-			"tags": ["scope:shared", "type:util"]
-		},
-		"shared-data-access-logging": {
-			"tags": ["scope:shared", "type:data-access"]
-		},
-		"logging-service": {
-			"tags": ["type:app"]
-		},
-		"reactapp": {
-			"tags": ["type:app"]
-		},
-		"reactapp-e2e": {
-			"tags": []
-		},
-		"designsystemdemo-e2e": {
-			"tags": []
-		},
-		"designsystemdemo": {
-			"tags": ["type:app"]
-		},
-		"shared-util-util-test": {
-			"tags": ["scope:shared", "type:util"]
-		},
-		"questionnaire-app-e2e": {
-			"tags": []
-		},
-		"questionnaire-app": {
-			"tags": ["type:app"]
-		},
-		"shared-interfaces-todo-interfaces": {
-			"tags": ["type:interface", "scope:shared"]
+	"targetDependencies": {
+		"build": [
+			{
+				"target": "build",
+				"projects": "dependencies"
+			}
+		]
+	},
+	"cli": {
+		"defaultCollection": "@nrwl/schematics"
+	},
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "@nrwl/nx-cloud",
+			"options": {
+				"cacheableOperations": ["build", "lint", "test", "e2e"],
+				"accessToken": "NmIzZjQyNTUtNzExZC00NTA0LWExMWEtNzdlYjVkOTRhYTg0fHJlYWQtd3JpdGU="
+			}
 		}
+	},
+	"defaultProject": "todo-app",
+	"generators": {
+		"@schematics/angular:component": {
+			"changeDetection": "OnPush"
+		},
+		"@nrwl/react": {
+			"application": {
+				"style": "scss",
+				"linter": "eslint",
+				"babel": true
+			},
+			"component": {
+				"style": "scss"
+			},
+			"library": {
+				"style": "scss",
+				"linter": "eslint"
+			}
+		},
+		"@nrwl/angular:application": {
+			"style": "css",
+			"linter": "eslint",
+			"unitTestRunner": "jest",
+			"e2eTestRunner": "cypress"
+		},
+		"@nrwl/angular:library": {
+			"linter": "eslint",
+			"unitTestRunner": "jest"
+		},
+		"@nrwl/angular:component": {
+			"style": "css"
+		}
+	},
+	"affected": {
+		"defaultBase": "master"
 	}
 }

@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 
 import { DatePickerModule } from '@todo/shared/ui';
 import { provideMagicalMock } from '@todo/shared/util-test';
-import { TodoListSandboxService } from '@todo/todo-app-lib';
+import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { AddTodoComponent } from './add-todo.component';
 
 describe('AddTodoComponent', () => {
@@ -24,7 +24,7 @@ describe('AddTodoComponent', () => {
 				DatePickerModule,
 				NoopAnimationsModule,
 			],
-			providers: [provideMagicalMock(TodoListSandboxService)],
+			providers: [provideMagicalMock(TodoListFacadeService)],
 			schemas: [NO_ERRORS_SCHEMA],
 		}).compileComponents();
 	}));

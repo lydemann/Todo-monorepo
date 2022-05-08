@@ -11,7 +11,7 @@ export class GlobalErrorHandler extends ErrorHandler {
 		super();
 	}
 
-	public handleError(error, showNotification: boolean = true) {
+	public override handleError(error, showNotification: boolean = true) {
 		try {
 			const logService: LogService = this.injector.get(LogService);
 			if (showNotification) {

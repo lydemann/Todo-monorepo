@@ -31,11 +31,11 @@ import { SelectOption } from './select-option/select-option.interface';
 	],
 })
 export class SelectComponent
-	implements OnChanges, AfterContentInit, ControlValueAccessor {
+	implements OnChanges, AfterContentInit, ControlValueAccessor
+{
 	@Input() public placeholder: string;
-	@ContentChildren(SelectOptionComponent) public selectOptions: QueryList<
-		SelectOptionComponent
-	>;
+	@ContentChildren(SelectOptionComponent)
+	public selectOptions: QueryList<SelectOptionComponent>;
 	@ContentChildren(SelectOptionGroupComponent)
 	public selectOptionGroups: QueryList<SelectOptionGroupComponent>;
 	@Output() public valueChange = new EventEmitter();
@@ -60,11 +60,11 @@ export class SelectComponent
 	}
 
 	public ngOnChanges(change: SimpleChanges) {
-		if (change.options) {
-			if (change.options.isFirstChange()) {
+		if (change['options']) {
+			if (change['options'].isFirstChange()) {
 				return;
 			}
-			if (change.options.currentValue !== change.options.previousValue) {
+			if (change['options'].currentValue !== change['options'].previousValue) {
 				this.selected = null; // Resetting the model to show placeholder
 				this.onChange(null);
 			}

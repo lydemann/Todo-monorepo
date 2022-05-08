@@ -8,6 +8,6 @@ export class FeatureToggleCanActivateGuard implements CanActivate {
 	constructor(private featureToggleService: FeatureToggleService) {}
 
 	public canActivate(route: ActivatedRouteSnapshot): boolean {
-		return this.featureToggleService.hasFlags(route.data.flags);
+		return this.featureToggleService.hasFlags(route.data['flags']);
 	}
 }

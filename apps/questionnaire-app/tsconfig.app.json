@@ -3,7 +3,9 @@
 	"compilerOptions": {
 		"outDir": "../../dist/out-tsc",
 		"types": [],
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true
 	},
 	"files": ["src/main.ts", "src/polyfills.ts"],
 	"include": ["**/*.d.ts"]

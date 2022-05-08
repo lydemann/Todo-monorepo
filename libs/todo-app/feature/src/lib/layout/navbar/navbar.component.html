@@ -1,0 +1,54 @@
+<div
+	class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 theme-background border-bottom box-shadow"
+>
+	<h5 class="my-0 mr-md-auto font-weight-normal">
+		{{ 'app-title' | translate }}
+	</h5>
+	<nav class="my-2 my-md-0 mr-md-3">
+		<a
+			class="p-2 theme-background nav-item"
+			routerLink="/"
+			[routerLinkActiveOptions]="{ exact: true }"
+			[routerLinkActive]="['nav-active']"
+			>{{ 'todo-list' | translate }}</a
+		>
+		<a
+			class="p-2 theme-background nav-item"
+			routerLink="/completed-todos"
+			[routerLinkActive]="['nav-active']"
+			*appFeatureToggle="'completed-todos'"
+			>{{ 'completed-todos' | translate }}
+		</a>
+		<a
+			class="p-2 theme-background nav-item"
+			routerLink="/register"
+			[routerLinkActive]="['nav-active']"
+			>{{ 'register' | translate }}
+		</a>
+		<span class="nav-item theme-background">
+			<select (change)="translate.use($event.target.value)">
+				<option
+					*ngFor="let lang of translate.getLangs()"
+					[value]="lang"
+					[selected]="lang === translate.currentLang"
+				>
+					{{ lang }}
+				</option>
+			</select>
+		</span>
+		<span
+			class="nav-item theme-background"
+			*ngIf="activeTheme$ | async as activeTheme"
+		>
+			<select (change)="setTheme($event.target.value)">
+				<option
+					*ngFor="let theme of themes"
+					[value]="theme"
+					[selected]="theme === activeTheme"
+				>
+					{{ theme }}
+				</option>
+			</select>
+		</span>
+	</nav>
+</div>

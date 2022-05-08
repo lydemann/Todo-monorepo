@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { EndpointsService } from '@todo/shared/data-access';
 import { LogService } from '@todo/shared/data-access-logging';
 import { ThemeService } from '@todo/shared/ui-styles';
-import { environment, TodoListSandboxService } from '@todo/todo-app-lib';
+import { environment, TodoListFacadeService } from '@todo/todo-app/domain';
 
 @Component({
 	selector: 'app-root',
@@ -13,7 +13,7 @@ import { environment, TodoListSandboxService } from '@todo/todo-app-lib';
 export class AppComponent implements OnInit {
 	constructor(
 		translate: TranslateService,
-		private todoListSandboxService: TodoListSandboxService,
+		private todoListSandboxService: TodoListFacadeService,
 		private themeService: ThemeService,
 		private renderer: Renderer2,
 		private elementRef: ElementRef,

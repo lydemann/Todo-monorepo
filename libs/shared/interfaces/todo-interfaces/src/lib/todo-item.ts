@@ -6,7 +6,7 @@ export class TodoItem {
 	public description: string;
 	public dueDate?: string;
 	public completed?: boolean;
-	constructor(title: string, description: string, dueDate: string = null) {
+	constructor(title: string, description: string, dueDate?: string) {
 		this.id = Guid.newGuid();
 		this.title = title;
 		this.description = description;

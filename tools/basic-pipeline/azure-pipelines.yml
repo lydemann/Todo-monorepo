@@ -1,0 +1,52 @@
+trigger:
+  - main
+pr:
+  - main
+
+variables:
+  ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+    NX_BRANCH: $(System.PullRequest.PullRequestNumber)
+    TARGET_BRANCH: $[replace(variables['System.PullRequest.TargetBranch'],'refs/heads/','origin/')]
+    BASE_SHA: $(git merge-base $(TARGET_BRANCH) HEAD)
+    AFFECTED_APPS: $(npx nx affected:apps --base=$(BASE_SHA) --plain)
+  ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+    NX_BRANCH: $(Build.SourceBranchName)
+    BASE_SHA: $(git rev-parse HEAD~1)
+    HEAD_SHA: $(git rev-parse HEAD)
+    AFFECTED_APPS: if [ -z $(npx nx affected:apps --base=$(BASE_SHA) ]; then echo $(npx nx affected:apps --all --plain); else echo $(npx nx affected:apps --base=$(BASE_SHA) --plain); fi;
+jobs:
+  - job: Lint
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - script: npm ci
+
+      - script: npx nx workspace-lint
+      - script: npx nx format:check --base=$(BASE_SHA)
+
+      - script: npx nx affected --base=$(BASE_SHA) --target=lint --parallel=3
+  - job: Test
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - script: npm ci
+
+      - script: npx nx affected --base=$(BASE_SHA) --target=test --parallel=3 --code-coverage
+  - job: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - script: npm ci
+
+      - script: npx nx affected --target=build --base=$(BASE_SHA) --parallel=3
+
+      - task: PowerShell@2
+        displayName: Tags build artifact for affected apps
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+        inputs:
+          targetType: 'filePath'
+          filePath: 'tools/pipelines/scripts/tags-for-affected-apps.ps1'
+          pwsh: true
+
+      - template: templates/publish-artifacts.yml

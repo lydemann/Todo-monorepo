@@ -1,39 +1,45 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-		"outDir": "./dist/out-tsc",
-		"baseUrl": ".",
+		"rootDir": ".",
 		"sourceMap": true,
 		"declaration": false,
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
+		"importHelpers": true,
 		"target": "es2015",
 		"module": "esnext",
-		"typeRoots": ["node_modules/@types"],
-		"lib": ["es2018", "dom"],
+		"lib": ["es2017", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
 		"paths": {
-			"@todo-app/*": ["apps/todo-app/src/app/*", "apps/todo-app/src/*"],
 			"@questionnaire-app/*": ["apps/questionnaire-app/src/app/*"],
-			"@todo/todo-app-lib": ["libs/todo-app-lib/src/index.ts"],
+			"@test-setup-base": ["test-setup.base.ts"],
+			"@todo-app/*": ["apps/todo-app/src/app/*", "apps/todo-app/src/*"],
+			"@todo/shared/data-access": ["libs/shared/data-access/src/index.ts"],
+			"@todo/shared/data-access-logging": [
+				"libs/shared/data-access/data-access-logging/src/index.ts"
+			],
+			"@todo/shared/todo-interfaces": [
+				"libs/shared/interfaces/todo-interfaces/src/index.ts"
+			],
 			"@todo/shared/ui": ["libs/shared/ui/src/index.ts"],
 			"@todo/shared/ui-elements": [
 				"libs/shared/ui/src/lib/shared-ui-elements.module.ts"
 			],
 			"@todo/shared/ui-styles": ["libs/shared/ui/styles/src/index.ts"],
-			"@todo/shared/data-access": ["libs/shared/data-access/src/index.ts"],
 			"@todo/shared/util": ["libs/shared/util/src/index.ts"],
 			"@todo/shared/util-feature-toggle": [
 				"libs/shared/util/util-feature-toggle/src/index.ts"
 			],
 			"@todo/shared/util-i18n": ["libs/shared/util/util-i18n/src/index.ts"],
-			"@todo/shared/data-access-logging": [
-				"libs/shared/data-access/data-access-logging/src/index.ts"
-			],
 			"@todo/shared/util-test": ["libs/shared/util/util-test/src/index.ts"],
-			"@todo/shared/todo-interfaces": [
-				"libs/shared/interfaces/todo-interfaces/src/index.ts"
-			]
+			"@todo/todo-app/domain": ["libs/todo-app/domain/src/index.ts"],
+			"@todo/todo-app/feature": ["libs/todo-app/feature/src/index.ts"],
+			"@todo/todo-app/testing-util": ["libs/todo-app/testing-util/src/index.ts"]
 		}
-	}
+	},
+	"exclude": ["node_modules", "tmp"]
 }

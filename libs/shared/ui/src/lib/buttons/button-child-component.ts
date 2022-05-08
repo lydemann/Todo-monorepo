@@ -1,7 +1,10 @@
-import { Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ButtonParentComponent } from './button-parent-component';
 
+@Component({
+	template: '',
+})
 export abstract class ButtonChildComponent<ButtonTypes = any> {
 	@Input() public parent: ButtonParentComponent<ButtonTypes>;
 

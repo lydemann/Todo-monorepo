@@ -1,5 +1,7 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger: none
+pool:
+  vmImage: ubuntu-latest
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
@@ -51,25 +53,6 @@ stages:
               codeCoverageTool: 'cobertura'
               summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/**/*xml'
               failIfCoverageEmpty: false
-
-      - job: E2ETestAffected
-        steps:
-          - template: templates/npm-setup.yml
-            parameters:
-              installCypress: true
-
-          - script: npx cypress verify
-            displayName: 'Cypress verify'
-
-          - script: npx cypress info
-            displayName: 'Cypress info'
-
-          - script: npm run affected:e2e -- --base=origin/master --head=HEAD --headless
-            displayName: E2E Affected
-
-          - template: templates/publish-artifacts.yml
-            parameters:
-              artifactName: 'e2e-drop'
 
       - job: PrepareForOtherPipelines
         steps:
