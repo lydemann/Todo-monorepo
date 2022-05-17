@@ -24,7 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+import { todoList } from '../fixtures/todo-list';
+
 declare global {
+	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace Cypress {
 		interface Chainable {
 			setupAppGlobalRoutes: () => void;
@@ -33,8 +36,7 @@ declare global {
 }
 
 export const setupAppGlobalRoutes = () => {
-	cy.server();
-	cy.route('/api/todo-list', 'fixture:todo-list.json');
-	cy.route('/i18n/en-lang.json', 'fixture:en-lang.json');
+	cy.intercept('/api/todo-list', todoList);
+	cy.intercept('/i18n/en-lang.json', { fixture: 'en-lang.json' });
 };
 Cypress.Commands.add('setupAppGlobalRoutes', setupAppGlobalRoutes);

@@ -22,10 +22,7 @@
 	"tasksRunnerOptions": {
 		"default": {
 			"runner": "@nrwl/nx-cloud",
-			"options": {
-				"cacheableOperations": ["build", "lint", "test", "e2e"],
-				"accessToken": "NmIzZjQyNTUtNzExZC00NTA0LWExMWEtNzdlYjVkOTRhYTg0fHJlYWQtd3JpdGU="
-			}
+			"options": {}
 		}
 	},
 	"defaultProject": "todo-app",
