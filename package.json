@@ -160,7 +160,7 @@
 		"eslint-plugin-react": "7.29.4",
 		"eslint-plugin-react-hooks": "4.5.0",
 		"generate-package-json-webpack-plugin": "^1.0.1",
-		"husky": "^2.2.0",
+		"husky": "^8.0.1",
 		"jasmine-core": "3.10.1",
 		"jasmine-marbles": "0.8.4",
 		"jasmine-spec-reporter": "5.0.2",
