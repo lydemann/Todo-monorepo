@@ -38,7 +38,14 @@ jobs:
     steps:
       - script: npm ci
 
-      - script: npx nx affected --target=build --base=$(BASE_SHA) --parallel=3
+      - task: PowerShell@2
+        displayName: Build
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+        inputs:
+          targetType: 'filePath'
+          filePath: 'tools/pipelines/scripts/build-affected.ps1'
+          pwsh: true
 
       - task: PowerShell@2
         displayName: Tags build artifact for affected apps
