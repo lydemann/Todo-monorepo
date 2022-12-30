@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
 	name: 'logging-service',
-	preset: '../../jest.config.js',
+	preset: '../../jest.preset.js',
 	coverageDirectory: '../../coverage/apps/logging-service',
 	reporters: [
 		'default',

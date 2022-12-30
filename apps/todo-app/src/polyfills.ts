@@ -1,4 +1,4 @@
-// tslint:disable-next-line:jsdoc-format
+// eslint-disable-next-line jsdoc/check-alignment, jsdoc/check-indentation, jsdoc/newline-after-description
 
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.

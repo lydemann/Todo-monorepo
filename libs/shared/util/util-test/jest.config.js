@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'shared-util-util-test',
-	preset: '../../../../jest.config.js',
+	preset: '../../../../jest.preset.js',
 	transform: {
 		'^.+\\.[tj]sx?$': 'ts-jest',
 	},

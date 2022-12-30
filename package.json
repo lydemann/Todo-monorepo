@@ -145,7 +145,6 @@
 		"babel-loader": "8.0.6",
 		"babel-plugin-macros": "2.6.1",
 		"codecov": "^3.6.5",
-		"codelyzer": "6.0.2",
 		"concurrently": "^5.0.0",
 		"copy-webpack-plugin": "^5.1.1",
 		"css-loader": "^6.4.0",

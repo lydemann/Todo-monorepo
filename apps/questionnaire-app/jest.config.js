@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'questionnaire-app',
-	preset: '../../jest.config.js',
+	preset: '../../jest.preset.js',
 	coverageDirectory: '../../coverage/apps/questionnaire-app',
 	snapshotSerializers: [
 		'jest-preset-angular/build/AngularSnapshotSerializer.js',

@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
 	name: 'todo-service',
-	preset: '../../jest.config.js',
+	preset: '../../jest.preset.js',
 	coverageDirectory: '../../coverage/apps/todo-service',
 	reporters: [
 		'default',
