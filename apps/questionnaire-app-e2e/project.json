@@ -19,9 +19,12 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": ["apps/questionnaire-app-e2e/tsconfig.e2e.json"],
-				"exclude": ["**/node_modules/**", "!apps/questionnaire-app-e2e/**"]
+				"lintFilePatterns": [
+					"apps/questionnaire-app-e2e/**/*.ts",
+					"apps/questionnaire-app-e2e/**/*.html"
+				]
 			}
 		}
 	},

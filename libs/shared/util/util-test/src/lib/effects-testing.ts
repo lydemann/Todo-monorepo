@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 export const runEffect = (effect: Observable<any>) => {
 	const scheduler = getTestScheduler();
 	scheduler.schedule(() => {
-		// tslint:disable-next-line: no-empty
+		// eslint-disable-next-line no-empty, no-empty-function, @typescript-eslint/no-empty-function
 		effect.pipe(first()).subscribe(() => {});
 	});
 	scheduler.flush();

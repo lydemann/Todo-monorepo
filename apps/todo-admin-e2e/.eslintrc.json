@@ -1,18 +1,18 @@
 {
-	"extends": ["../../../../.eslintrc.json"],
+	"extends": ["../../.eslintrc.json"],
 	"ignorePatterns": ["!**/*"],
 	"overrides": [
 		{
 			"files": ["*.ts"],
 			"parserOptions": {
-				"project": ["libs/shared/util/util-i18n/tsconfig.*?.json"]
+				"project": ["apps/todo-admin-e2e/tsconfig.*?.json"]
 			},
 			"rules": {
 				"@angular-eslint/directive-selector": [
 					"error",
 					{
 						"type": "attribute",
-						"prefix": "todo",
+						"prefix": "app",
 						"style": "camelCase"
 					}
 				],
@@ -20,7 +20,7 @@
 					"error",
 					{
 						"type": "element",
-						"prefix": "todo",
+						"prefix": "app",
 						"style": "kebab-case"
 					}
 				]

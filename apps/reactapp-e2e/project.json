@@ -19,9 +19,12 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": ["apps/reactapp-e2e/tsconfig.e2e.json"],
-				"exclude": ["**/node_modules/**", "!apps/reactapp-e2e/**"]
+				"lintFilePatterns": [
+					"apps/reactapp-e2e/**/*.ts",
+					"apps/reactapp-e2e/**/*.html"
+				]
 			}
 		}
 	},

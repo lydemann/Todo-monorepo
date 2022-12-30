@@ -11,7 +11,7 @@ export function createMagicalMock<T>(type: Type<T>): Mock<T> {
 		}
 
 		for (const key of Object.getOwnPropertyNames(proto)) {
-			// tslint:disable-next-line: no-non-null-assertion
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			const descriptor = Object.getOwnPropertyDescriptor(proto, key)!;
 
 			if (typeof descriptor.value === 'function' && key !== 'constructor') {
