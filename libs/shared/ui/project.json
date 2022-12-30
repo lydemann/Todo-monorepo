@@ -1,0 +1,52 @@
+{
+	"name": "shared-ui",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/shared/ui/src",
+	"projectType": "library",
+	"prefix": "todo",
+	"targets": {
+		"build": {
+			"executor": "ngx-build-plus:browser",
+			"options": {
+				"outputPath": "dist/libs/shared/ui",
+				"index": "libs/shared/ui/src/index.html",
+				"main": "libs/shared/ui/src/main.ts",
+				"polyfills": "libs/shared/ui/src/polyfills.ts",
+				"tsConfig": "libs/shared/ui/tsconfig.lib.json",
+				"stylePreprocessorOptions": {
+					"includePaths": ["libs/shared/ui/styles/src/lib"]
+				},
+				"styles": ["libs/shared/ui/src/styles.scss"],
+				"scripts": [],
+				"singleBundle": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"libs/shared/ui/tsconfig.lib.json",
+					"libs/shared/ui/tsconfig.spec.json"
+				],
+				"exclude": ["**/node_modules/**"]
+			}
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "libs/shared/ui/src/test.ts",
+				"tsConfig": "libs/shared/ui/tsconfig.spec.json",
+				"karmaConfig": "libs/shared/ui/karma.conf.js",
+				"stylePreprocessorOptions": {
+					"includePaths": ["libs/shared/ui/styles/src/lib"]
+				}
+			}
+		}
+	},
+	"generators": {
+		"@nrwl/schematics:component": {
+			"styleext": "scss"
+		}
+	},
+	"tags": ["type:ui", "scope:shared"]
+}

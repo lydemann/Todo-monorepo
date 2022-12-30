@@ -1,0 +1,14 @@
+{
+	"name": "shared-styles",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/shared/ui/styles/src",
+	"projectType": "library",
+	"prefix": "todo",
+	"targets": {},
+	"generators": {
+		"@nrwl/schematics:component": {
+			"styleext": "scss"
+		}
+	},
+	"tags": ["scope:shared"]
+}

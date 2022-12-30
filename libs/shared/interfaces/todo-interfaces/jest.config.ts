@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
 	name: 'shared-interfaces-todo-interfaces',
 	preset: '../../../../jest.config.js',
 	transform: {

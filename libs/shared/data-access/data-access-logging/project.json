@@ -1,0 +1,23 @@
+{
+	"name": "shared-data-access-logging",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/shared/data-access/data-access-logging/src",
+	"projectType": "library",
+	"generators": {},
+	"targets": {
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"libs/shared/data-access/data-access-logging/tsconfig.lib.json",
+					"libs/shared/data-access/data-access-logging/tsconfig.spec.json"
+				],
+				"exclude": [
+					"**/node_modules/**",
+					"!libs/shared/data-access/data-access-logging/**"
+				]
+			}
+		}
+	},
+	"tags": ["scope:shared", "type:data-access"]
+}

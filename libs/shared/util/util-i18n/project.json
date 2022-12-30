@@ -1,0 +1,45 @@
+{
+	"name": "shared-util-i18n",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "library",
+	"sourceRoot": "libs/shared/util/util-i18n/src",
+	"prefix": "todo",
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-ng-packagr:build",
+			"options": {
+				"tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.json",
+				"project": "libs/shared/util/util-i18n/ng-package.json"
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.prod.json"
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"libs/shared/util/util-i18n/tsconfig.lib.json",
+					"libs/shared/util/util-i18n/tsconfig.spec.json"
+				],
+				"exclude": ["**/node_modules/**", "!libs/shared/util/util-i18n/**"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"options": {
+				"jestConfig": "libs/shared/util/util-i18n/jest.config.ts",
+				"tsConfig": "libs/shared/util/util-i18n/tsconfig.spec.json",
+				"setupFile": "libs/shared/util/util-i18n/src/test-setup.ts"
+			}
+		}
+	},
+	"generators": {
+		"@nrwl/angular:component": {
+			"styleext": "scss"
+		}
+	},
+	"tags": ["scope:shared", "type:util"]
+}

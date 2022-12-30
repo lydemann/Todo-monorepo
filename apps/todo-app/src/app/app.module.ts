@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NxModule } from '@nrwl/nx';
 
 import { AppInitService } from '@todo-app/app-init.service';
 import { AppComponent } from '@todo-app/app.component';
@@ -70,7 +69,6 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 		ServiceWorkerModule.register('ngsw-worker.js', {
 			enabled: environment.production,
 		}),
-		NxModule.forRoot(),
 		LayoutModule,
 		FeatureToggleModule,
 	],

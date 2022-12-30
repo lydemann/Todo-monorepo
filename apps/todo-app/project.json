@@ -1,16 +1,17 @@
 {
-	"root": "apps/todo-app",
+	"name": "todo-app",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "apps/todo-app/src",
 	"projectType": "application",
 	"prefix": "app",
-	"schematics": {
+	"generators": {
 		"@schematics/angular:component": {
 			"style": "scss"
 		}
 	},
-	"architect": {
+	"targets": {
 		"build": {
-			"builder": "@angular-devkit/build-angular:browser",
+			"executor": "@angular-devkit/build-angular:browser",
 			"options": {
 				"aot": true,
 				"buildOptimizer": false,
@@ -81,7 +82,7 @@
 			}
 		},
 		"serve": {
-			"builder": "@angular-devkit/build-angular:dev-server",
+			"executor": "@angular-devkit/build-angular:dev-server",
 			"options": {
 				"browserTarget": "todo-app:build",
 				"proxyConfig": "apps/todo-app/proxy.conf.json"
@@ -96,13 +97,13 @@
 			}
 		},
 		"extract-i18n": {
-			"builder": "@angular-devkit/build-angular:extract-i18n",
+			"executor": "@angular-devkit/build-angular:extract-i18n",
 			"options": {
 				"browserTarget": "todo-app:build"
 			}
 		},
 		"test": {
-			"builder": "@angular-devkit/build-angular:karma",
+			"executor": "@angular-devkit/build-angular:karma",
 			"options": {
 				"main": "apps/todo-app/src/test.ts",
 				"polyfills": "apps/todo-app/src/polyfills.ts",
@@ -121,7 +122,7 @@
 			}
 		},
 		"lint": {
-			"builder": "@nrwl/linter:eslint",
+			"executor": "@nrwl/linter:eslint",
 			"options": {
 				"lintFilePatterns": [
 					"apps/todo-app/src/**/*.ts",

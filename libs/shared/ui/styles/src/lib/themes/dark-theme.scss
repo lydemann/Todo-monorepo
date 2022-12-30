@@ -1,5 +1,5 @@
 // setup material theme
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 @import './theme-common';
 
 $todo-black-primary: mat-palette($mat-grey, 700, 300, 900);

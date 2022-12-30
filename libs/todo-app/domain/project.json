@@ -1,0 +1,27 @@
+{
+	"name": "todo-app-domain",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "library",
+	"sourceRoot": "libs/todo-app/domain/src",
+	"prefix": "todo",
+	"targets": {
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/libs/todo-app/domain"],
+			"options": {
+				"jestConfig": "libs/todo-app/domain/jest.config.ts",
+				"passWithNoTests": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"lintFilePatterns": [
+					"libs/todo-app/domain/**/*.ts",
+					"libs/todo-app/domain/**/*.html"
+				]
+			}
+		}
+	},
+	"tags": ["type:domain", "scope:todo-app"]
+}

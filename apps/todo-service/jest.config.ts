@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
 	name: 'todo-service',
 	preset: '../../jest.config.js',
 	coverageDirectory: '../../coverage/apps/todo-service',

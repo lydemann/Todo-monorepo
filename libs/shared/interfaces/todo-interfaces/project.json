@@ -1,0 +1,30 @@
+{
+	"name": "shared-interfaces-todo-interfaces",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/shared/interfaces/todo-interfaces/src",
+	"projectType": "library",
+	"generators": {},
+	"targets": {
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"libs/shared/interfaces/todo-interfaces/tsconfig.lib.json",
+					"libs/shared/interfaces/todo-interfaces/tsconfig.spec.json"
+				],
+				"exclude": [
+					"**/node_modules/**",
+					"!libs/shared/interfaces/todo-interfaces/**"
+				]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"options": {
+				"jestConfig": "libs/shared/interfaces/todo-interfaces/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	},
+	"tags": ["type:interface", "scope:shared"]
+}
