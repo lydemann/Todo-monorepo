@@ -68,5 +68,5 @@
 			}
 		}
 	},
-	"tags": ["type:app"]
+	"tags": ["scope:reactapp", "type:app"]
 }

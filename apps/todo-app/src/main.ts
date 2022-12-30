@@ -1,7 +1,7 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
 import { environment } from '@todo/todo-app/domain';
+
 import { AppModule } from './app/app.module';
 
 declare global {

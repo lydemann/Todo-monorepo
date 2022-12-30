@@ -4,12 +4,13 @@ import { mockProvider } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AppComponent } from '@todo-app/app.component';
 import { API_ENDPOINTS } from '@todo/shared/data-access';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { FooterComponent } from '@todo/todo-app/feature';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { NavbarComponentMock } from 'libs/todo-app/feature/src/lib/layout/navbar/navbar.component.mock';
 import { MockComponent } from 'ng-mocks';
+import { AppComponent } from './app.component';
 
 const apiTendpoints = {
 	todoService: 'todoService',

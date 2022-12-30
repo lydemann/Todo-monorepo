@@ -128,5 +128,6 @@
 				"lintFilePatterns": ["apps/todo-app/**/*.ts", "apps/todo-app/**/*.html"]
 			}
 		}
-	}
+	},
+	"tags": ["scope:todo-app", "type:app"]
 }

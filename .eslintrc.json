@@ -29,6 +29,7 @@
 								"onlyDependOnLibsWithTags": [
 									"type:feature",
 									"type:shell",
+									"type:domain",
 									"type:api",
 									"scope:shared"
 								]
