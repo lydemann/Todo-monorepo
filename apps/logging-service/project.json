@@ -1,0 +1,59 @@
+{
+	"name": "logging-service",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/logging-service/src",
+	"projectType": "application",
+	"prefix": "logging-service",
+	"generators": {},
+	"targets": {
+		"build": {
+			"executor": "@nrwl/webpack:webpack",
+			"options": {
+				"outputPath": "dist/apps/logging-service",
+				"main": "apps/logging-service/src/main.ts",
+				"tsConfig": "apps/logging-service/tsconfig.app.json",
+				"assets": ["apps/logging-service/src/assets"],
+				"target": "node",
+				"compiler": "tsc"
+			},
+			"configurations": {
+				"production": {
+					"optimization": true,
+					"extractLicenses": true,
+					"inspect": false,
+					"fileReplacements": [
+						{
+							"replace": "apps/logging-service/src/environments/environment.ts",
+							"with": "apps/logging-service/src/environments/environment.prod.ts"
+						}
+					]
+				}
+			}
+		},
+		"serve": {
+			"executor": "@nrwl/node:execute",
+			"options": {
+				"buildTarget": "logging-service:build",
+				"port": 0
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"apps/logging-service/tsconfig.app.json",
+					"apps/logging-service/tsconfig.spec.json"
+				],
+				"exclude": ["**/node_modules/**", "!apps/logging-service/**"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"options": {
+				"jestConfig": "apps/logging-service/jest.config.ts",
+				"tsConfig": "apps/logging-service/tsconfig.spec.json"
+			}
+		}
+	},
+	"tags": ["type:app"]
+}

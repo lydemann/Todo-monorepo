@@ -5,7 +5,9 @@
 		"types": [],
 		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"target": "ES2022",
+		"useDefineForClassFields": false
 	},
 	"files": ["src/main.ts", "src/polyfills.ts"],
 	"include": ["**/*.d.ts"]

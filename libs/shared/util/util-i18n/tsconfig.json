@@ -1,7 +1,9 @@
 {
 	"extends": "../../../../tsconfig.json",
 	"compilerOptions": {
-		"types": ["node", "jest"]
+		"types": ["node", "jest"],
+		"target": "es2020"
 	},
-	"include": ["**/*.ts"]
+	"include": ["**/*.ts"],
+	"exclude": ["jest.config.ts"]
 }

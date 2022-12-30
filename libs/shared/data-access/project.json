@@ -1,0 +1,33 @@
+{
+	"name": "shared-data-access",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/shared/data-access/src",
+	"projectType": "library",
+	"prefix": "todo",
+	"targets": {
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"libs/shared/data-access/tsconfig.lib.json",
+					"libs/shared/data-access/tsconfig.spec.json"
+				],
+				"exclude": ["**/node_modules/**"]
+			}
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "libs/shared/data-access/src/test.ts",
+				"tsConfig": "libs/shared/data-access/tsconfig.spec.json",
+				"karmaConfig": "libs/shared/data-access/karma.conf.js"
+			}
+		}
+	},
+	"generators": {
+		"@nrwl/schematics:component": {
+			"styleext": "scss"
+		}
+	},
+	"tags": ["type:data-access", "scope:shared"]
+}

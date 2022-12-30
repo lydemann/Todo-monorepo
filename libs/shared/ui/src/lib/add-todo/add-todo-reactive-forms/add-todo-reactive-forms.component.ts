@@ -60,7 +60,10 @@ export class AddTodoReactiveFormsComponent implements OnChanges {
 			return;
 		}
 
-		this.saveTodo.next({ ...this.addTodoForm.value, id: this._currentTODO.id });
+		this.saveTodo.next({
+			...this.addTodoForm.value,
+			id: this._currentTODO.id,
+		} as TodoItem);
 		form.resetForm();
 		this.changeDetectionRef.detectChanges();
 	}

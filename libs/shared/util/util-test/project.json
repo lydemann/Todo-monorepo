@@ -1,0 +1,20 @@
+{
+	"name": "shared-util-util-test",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/shared/util/util-test/src",
+	"projectType": "library",
+	"generators": {},
+	"targets": {
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"libs/shared/util/util-test/tsconfig.lib.json",
+					"libs/shared/util/util-test/tsconfig.spec.json"
+				],
+				"exclude": ["**/node_modules/**", "!libs/shared/util/util-test/**"]
+			}
+		}
+	},
+	"tags": ["scope:shared", "type:util"]
+}

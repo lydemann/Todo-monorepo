@@ -6,7 +6,7 @@ export const FEATURE_STORE_ANONYMIZER = new InjectionToken<
 
 export abstract class FeatureStoreAnonymizer<
 	FeatureStoreState,
-	RootState = any
+	RootState = any,
 > {
 	public abstract getFeatureStateName(): keyof RootState;
 
@@ -22,7 +22,9 @@ export abstract class FeatureStoreAnonymizer<
 			this.anonymizeFeatureState(featureState as FeatureStoreState, injector);
 		} else {
 			throw new Error(
-				`Unable to find feature state at key "${featureStateName}" on RootState`,
+				`Unable to find feature state at key "${String(
+					featureStateName,
+				)}" on RootState`,
 			);
 		}
 	}

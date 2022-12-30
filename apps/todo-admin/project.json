@@ -1,0 +1,100 @@
+{
+	"name": "todo-admin",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/todo-admin/src",
+	"projectType": "application",
+	"prefix": "todo",
+	"generators": {
+		"@nrwl/schematics:component": {
+			"styleext": "scss"
+		}
+	},
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:browser",
+			"options": {
+				"aot": true,
+				"outputPath": "dist/apps/todo-admin",
+				"index": "apps/todo-admin/src/index.html",
+				"main": "apps/todo-admin/src/main.ts",
+				"polyfills": "apps/todo-admin/src/polyfills.ts",
+				"tsConfig": "apps/todo-admin/tsconfig.app.json",
+				"assets": [
+					"apps/todo-admin/src/favicon.ico",
+					"apps/todo-admin/src/assets"
+				],
+				"styles": ["apps/todo-admin/src/styles.scss"],
+				"scripts": []
+			},
+			"configurations": {
+				"production": {
+					"fileReplacements": [
+						{
+							"replace": "apps/todo-admin/src/environments/environment.ts",
+							"with": "apps/todo-admin/src/environments/environment.prod.ts"
+						}
+					],
+					"optimization": true,
+					"outputHashing": "all",
+					"sourceMap": false,
+					"namedChunks": false,
+					"aot": true,
+					"extractLicenses": true,
+					"vendorChunk": false,
+					"buildOptimizer": true,
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "2mb",
+							"maximumError": "5mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "6kb"
+						}
+					]
+				}
+			}
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"options": {
+				"browserTarget": "todo-admin:build"
+			},
+			"configurations": {
+				"production": {
+					"browserTarget": "todo-admin:build:production"
+				}
+			}
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"browserTarget": "todo-admin:build"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"apps/todo-admin/tsconfig.app.json",
+					"apps/todo-admin/tsconfig.spec.json"
+				],
+				"exclude": ["**/node_modules/**"]
+			}
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "apps/todo-admin/src/test.ts",
+				"tsConfig": "apps/todo-admin/tsconfig.spec.json",
+				"karmaConfig": "apps/todo-admin/karma.conf.js",
+				"polyfills": "apps/todo-admin/src/polyfills.ts",
+				"styles": [],
+				"scripts": [],
+				"assets": []
+			}
+		}
+	},
+	"tags": ["scope:todo-admin", "type:app"]
+}

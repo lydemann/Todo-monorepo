@@ -1,0 +1,29 @@
+{
+	"name": "reactapp-e2e",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/reactapp-e2e/src",
+	"projectType": "application",
+	"targets": {
+		"e2e": {
+			"executor": "@nrwl/cypress:cypress",
+			"options": {
+				"cypressConfig": "apps/reactapp-e2e/cypress.json",
+				"tsConfig": "apps/reactapp-e2e/tsconfig.e2e.json",
+				"devServerTarget": "reactapp:serve"
+			},
+			"configurations": {
+				"production": {
+					"devServerTarget": "reactapp:serve:production"
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": ["apps/reactapp-e2e/tsconfig.e2e.json"],
+				"exclude": ["**/node_modules/**", "!apps/reactapp-e2e/**"]
+			}
+		}
+	},
+	"tags": []
+}

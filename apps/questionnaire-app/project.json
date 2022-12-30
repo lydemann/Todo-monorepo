@@ -1,0 +1,91 @@
+{
+	"name": "questionnaire-app",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "application",
+	"generators": {
+		"@nrwl/angular:component": {
+			"style": "scss"
+		}
+	},
+	"sourceRoot": "apps/questionnaire-app/src",
+	"prefix": "todo",
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:browser",
+			"options": {
+				"aot": true,
+				"outputPath": "dist/apps/questionnaire-app",
+				"index": "apps/questionnaire-app/src/index.html",
+				"main": "apps/questionnaire-app/src/main.ts",
+				"polyfills": "apps/questionnaire-app/src/polyfills.ts",
+				"tsConfig": "apps/questionnaire-app/tsconfig.app.json",
+				"assets": [
+					"apps/questionnaire-app/src/favicon.ico",
+					"apps/questionnaire-app/src/assets"
+				],
+				"styles": ["apps/questionnaire-app/src/styles.scss"],
+				"stylePreprocessorOptions": {
+					"includePaths": ["libs/shared/ui/styles/src/lib"]
+				},
+				"scripts": []
+			},
+			"configurations": {
+				"production": {
+					"fileReplacements": [
+						{
+							"replace": "apps/questionnaire-app/src/environments/environment.ts",
+							"with": "apps/questionnaire-app/src/environments/environment.prod.ts"
+						}
+					],
+					"optimization": true,
+					"outputHashing": "all",
+					"sourceMap": false,
+					"namedChunks": false,
+					"aot": true,
+					"extractLicenses": true,
+					"vendorChunk": false,
+					"buildOptimizer": true,
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "2mb",
+							"maximumError": "5mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "6kb"
+						}
+					]
+				}
+			}
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"options": {
+				"browserTarget": "questionnaire-app:build"
+			},
+			"configurations": {
+				"production": {
+					"browserTarget": "questionnaire-app:build:production"
+				}
+			}
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"browserTarget": "questionnaire-app:build"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"apps/questionnaire-app/tsconfig.app.json",
+					"apps/questionnaire-app/tsconfig.spec.json"
+				],
+				"exclude": ["**/node_modules/**", "!apps/questionnaire-app/**"]
+			}
+		}
+	},
+	"tags": ["type:app"]
+}

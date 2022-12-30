@@ -1,0 +1,33 @@
+{
+	"name": "shared-util",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/shared/util/src",
+	"projectType": "library",
+	"prefix": "todo",
+	"targets": {
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"options": {
+				"tsConfig": [
+					"libs/shared/util/tsconfig.lib.json",
+					"libs/shared/util/tsconfig.spec.json"
+				],
+				"exclude": ["**/node_modules/**"]
+			}
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "libs/shared/util/src/test.ts",
+				"tsConfig": "libs/shared/util/tsconfig.spec.json",
+				"karmaConfig": "libs/shared/util/karma.conf.js"
+			}
+		}
+	},
+	"generators": {
+		"@nrwl/schematics:component": {
+			"styleext": "scss"
+		}
+	},
+	"tags": ["type:util", "scope:shared"]
+}

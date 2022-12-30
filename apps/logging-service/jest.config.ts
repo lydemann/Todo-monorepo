@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
 	name: 'logging-service',
 	preset: '../../jest.config.js',
 	coverageDirectory: '../../coverage/apps/logging-service',
