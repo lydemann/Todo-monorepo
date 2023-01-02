@@ -1,4 +1,4 @@
-$AffectedAppsObj = Invoke-Expression "npm run affected:apps -- --base=$($env:BASE_SHA) --plain";
+$AffectedAppsObj = Invoke-Expression "npm run affected:apps -- --base=origin/$($env:BASE_SHA) --plain";
 $AffectedAppsString = $AffectedAppsObj[4];
 
 if (!$AffectedAppsString -and $AffectedAppsString -eq "") {
