@@ -6,7 +6,7 @@
 	"prefix": "todo",
 	"targets": {
 		"build": {
-			"executor": "@angular-devkit/build-ng-packagr:build",
+			"executor": "@angular-devkit/build-angular:ng-packagr",
 			"options": {
 				"tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.json",
 				"project": "libs/shared/util/util-i18n/ng-package.json"
