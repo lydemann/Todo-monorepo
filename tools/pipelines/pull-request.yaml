@@ -33,7 +33,7 @@ stages:
         steps:
           - template: templates/npm-setup.yml
 
-          - script: npm run affected:test -- --base=origin/master --head=HEAD --ci
+          - script: npm run affected:test -- --base=origin/master --head=HEAD
             displayName: Test Affected
 
           - script: npm run codecov -- $(CodeCovToken) --disable=gcov
