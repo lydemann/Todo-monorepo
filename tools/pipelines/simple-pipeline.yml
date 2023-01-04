@@ -22,30 +22,23 @@ jobs:
       - script: npm ci
 
       - script: npx nx workspace-lint
-      - script: npx nx format:check --base=origin/$(BASE_SHA)
+      - script: npx nx format:check --base=$(BASE_SHA)
 
-      - script: npx nx affected --base=origin/$(BASE_SHA) --target=lint --parallel=3
+      - script: npx nx affected --base=$(BASE_SHA) --target=lint --parallel=3
   - job: Test
     pool:
       vmImage: 'ubuntu-latest'
     steps:
       - script: npm ci
 
-      - script: npx nx affected --base=origin/$(BASE_SHA) --target=test --parallel=3 --code-coverage
+      - script: npx nx affected --base=$(BASE_SHA) --target=test --parallel=3 --code-coverage
   - job: Build
     pool:
       vmImage: 'ubuntu-latest'
     steps:
       - script: npm ci
 
-      - task: PowerShell@2
-        displayName: Build
-        env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-        inputs:
-          targetType: 'filePath'
-          filePath: 'tools/pipelines/scripts/build-affected.ps1'
-          pwsh: true
+      - script: npm run affected:apps -- --base=$(BASE_SHA) --plain
 
       - task: PowerShell@2
         displayName: Tags build artifact for affected apps
