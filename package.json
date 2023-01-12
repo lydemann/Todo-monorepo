@@ -60,7 +60,6 @@
 		"@nestjs/core": "9.2.1",
 		"@nestjs/platform-express": "9.2.1",
 		"@nestjs/serve-static": "3.0.0",
-		"@ng-bootstrap/ng-bootstrap": "14.0.0",
 		"@ngrx/effects": "15.0.0",
 		"@ngrx/entity": "15.0.0",
 		"@ngrx/router-store": "15.0.0",
