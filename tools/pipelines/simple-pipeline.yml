@@ -36,7 +36,7 @@ jobs:
     steps:
       - script: npm ci
 
-      - script: npm run affected:apps -- --base=$(BASE_SHA) --plain
+      - script: npx nx affected --target=build --base=$(BASE_SHA) --parallel=3
 
       - task: PowerShell@2
         displayName: Tags build artifact for affected apps
