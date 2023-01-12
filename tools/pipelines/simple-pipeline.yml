@@ -19,7 +19,7 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: npm ci
+      - script: yarn install --frozen-lockfile
 
       - script: npx nx workspace-lint
       - script: npx nx format:check
