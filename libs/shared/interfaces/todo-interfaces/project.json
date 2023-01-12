@@ -7,14 +7,11 @@
 	"targets": {
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"libs/shared/interfaces/todo-interfaces/tsconfig.lib.json",
-					"libs/shared/interfaces/todo-interfaces/tsconfig.spec.json"
-				],
-				"exclude": [
-					"**/node_modules/**",
-					"!libs/shared/interfaces/todo-interfaces/**"
+				"lintFilePatterns": [
+					"libs/shared/interfaces/todo-interfaces/**/*.ts",
+					"libs/shared/interfaces/todo-interfaces/**/*.html"
 				]
 			}
 		},

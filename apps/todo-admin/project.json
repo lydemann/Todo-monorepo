@@ -75,12 +75,12 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"apps/todo-admin/tsconfig.app.json",
-					"apps/todo-admin/tsconfig.spec.json"
-				],
-				"exclude": ["**/node_modules/**"]
+				"lintFilePatterns": [
+					"apps/todo-admin/**/*.ts",
+					"apps/todo-admin/**/*.html"
+				]
 			}
 		},
 		"test": {

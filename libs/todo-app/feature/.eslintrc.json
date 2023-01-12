@@ -12,7 +12,7 @@
 					"error",
 					{
 						"type": "attribute",
-						"prefix": "todo",
+						"prefix": "app",
 						"style": "camelCase"
 					}
 				],
@@ -20,7 +20,7 @@
 					"error",
 					{
 						"type": "element",
-						"prefix": "todo",
+						"prefix": "app",
 						"style": "kebab-case"
 					}
 				]

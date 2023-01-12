@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -40,6 +41,7 @@ export class TextareaComponent implements ControlValueAccessor {
 		this.propagateChange = fn;
 	}
 	public registerOnTouched(fn: any): void {
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
 		const self = this;
 		this.onTouched = (arg: any) => {
 			self.touched = true;

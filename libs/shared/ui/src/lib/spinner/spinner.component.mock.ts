@@ -7,6 +7,6 @@ import { SpinnerComponent } from './spinner.component';
 	template: '',
 })
 // tslint:disable-next-line:component-class-suffix
-export class SpinnerComponentMock implements SpinnerComponent {
+export class MockSpinnerComponent implements SpinnerComponent {
 	@Input() public message = '';
 }

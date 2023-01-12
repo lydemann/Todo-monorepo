@@ -78,12 +78,12 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"apps/questionnaire-app/tsconfig.app.json",
-					"apps/questionnaire-app/tsconfig.spec.json"
-				],
-				"exclude": ["**/node_modules/**", "!apps/questionnaire-app/**"]
+				"lintFilePatterns": [
+					"apps/questionnaire-app/**/*.ts",
+					"apps/questionnaire-app/**/*.html"
+				]
 			}
 		}
 	},

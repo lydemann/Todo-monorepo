@@ -94,6 +94,7 @@ describe('StoreAnonymizationService', () => {
 	});
 });
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace StoreAnonymizationTestHelpers {
 	export function expectDifferent<T>(
 		expected: T,

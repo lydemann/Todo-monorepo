@@ -75,14 +75,14 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"apps/designsystemdemo/tsconfig.app.json",
-					"apps/designsystemdemo/tsconfig.spec.json"
-				],
-				"exclude": ["**/node_modules/**", "!apps/designsystemdemo/**"]
+				"lintFilePatterns": [
+					"apps/designsystemdemo/**/*.ts",
+					"apps/designsystemdemo/**/*.html"
+				]
 			}
 		}
 	},
-	"tags": ["type:app"]
+	"tags": ["scope:designsystemdemo", "type:app"]
 }

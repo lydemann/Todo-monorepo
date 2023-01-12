@@ -33,6 +33,5 @@
 			"extends": ["plugin:@nrwl/nx/angular-template"],
 			"rules": {}
 		}
-	],
-	"tags": ["scope:designsystemdemo", "type:app"]
+	]
 }

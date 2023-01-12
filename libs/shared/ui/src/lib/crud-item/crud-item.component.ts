@@ -20,10 +20,10 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 export class CrudItemComponent {
 	@Input() public todoItem: TodoItem;
 	@Input() public isReadOnly: boolean;
-	@Input() public dueDateText: string = 'add-todo.due-date';
-	@Input() public completeBtnText: string = 'todo-item.complete';
-	@Input() public editBtnText: string = 'todo-item.edit';
-	@Input() public deleteBtnText: string = 'todo-item.delete';
+	@Input() public dueDateText = 'add-todo.due-date';
+	@Input() public completeBtnText = 'todo-item.complete';
+	@Input() public editBtnText = 'todo-item.edit';
+	@Input() public deleteBtnText = 'todo-item.delete';
 
 	@Output() public todoDelete = new EventEmitter();
 	@Output() public todoEdit = new EventEmitter();

@@ -50,7 +50,7 @@ export class SelectComponent
 		/*Empty*/
 	};
 
-	// tslint:disable-next-line: no-empty
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	public onTouched: any = _ => {};
 
 	public onSelected($event) {
@@ -100,6 +100,7 @@ export class SelectComponent
 	}
 
 	public registerOnTouched(fn: any): void {
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
 		const self = this;
 		this.onTouched = (arg: any) => {
 			self.touched = true;

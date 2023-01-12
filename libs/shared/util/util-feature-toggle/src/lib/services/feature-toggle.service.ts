@@ -38,7 +38,7 @@ export class FeatureToggleService {
 	private getEnabledFlags(features: { [key: string]: boolean }) {
 		const enabledFeatures = [];
 		for (const key in features) {
-			if (features.hasOwnProperty(key)) {
+			if (Object.prototype.hasOwnProperty.call(features, key)) {
 				const isEnabled = features[key];
 				if (isEnabled) {
 					enabledFeatures.push(key);
