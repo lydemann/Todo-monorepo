@@ -19,9 +19,12 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": ["apps/designsystemdemo-e2e/tsconfig.e2e.json"],
-				"exclude": ["**/node_modules/**", "!apps/designsystemdemo-e2e/**"]
+				"lintFilePatterns": [
+					"apps/designsystemdemo-e2e/**/*.ts",
+					"apps/designsystemdemo-e2e/**/*.html"
+				]
 			}
 		}
 	},

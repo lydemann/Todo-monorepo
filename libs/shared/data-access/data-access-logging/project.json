@@ -7,14 +7,11 @@
 	"targets": {
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"libs/shared/data-access/data-access-logging/tsconfig.lib.json",
-					"libs/shared/data-access/data-access-logging/tsconfig.spec.json"
-				],
-				"exclude": [
-					"**/node_modules/**",
-					"!libs/shared/data-access/data-access-logging/**"
+				"lintFilePatterns": [
+					"libs/shared/data-access/data-access-logging/**/*.ts",
+					"libs/shared/data-access/data-access-logging/**/*.html"
 				]
 			}
 		}

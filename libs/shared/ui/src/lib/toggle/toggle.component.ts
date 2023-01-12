@@ -20,11 +20,11 @@ export class ToggleComponent {
 	@Input() public labelTextOff: string;
 	@Input() public disabled = false;
 	@Input() public checked = false;
-	@Output() public change = new EventEmitter<boolean>();
+	@Output() public toggleChange = new EventEmitter<boolean>();
 	private _isIcon = false; // Disable interaction but keep style
 
-	public toggleChange(event: MatSlideToggleChange) {
+	public onToggleChange(event: MatSlideToggleChange) {
 		this.checked = event.checked;
-		this.change.emit(event.checked);
+		this.toggleChange.emit(event.checked);
 	}
 }

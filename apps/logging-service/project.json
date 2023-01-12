@@ -39,12 +39,12 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"apps/logging-service/tsconfig.app.json",
-					"apps/logging-service/tsconfig.spec.json"
-				],
-				"exclude": ["**/node_modules/**", "!apps/logging-service/**"]
+				"lintFilePatterns": [
+					"apps/logging-service/**/*.ts",
+					"apps/logging-service/**/*.html"
+				]
 			}
 		},
 		"test": {

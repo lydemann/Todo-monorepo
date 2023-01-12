@@ -23,12 +23,12 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"libs/shared/ui/tsconfig.lib.json",
-					"libs/shared/ui/tsconfig.spec.json"
-				],
-				"exclude": ["**/node_modules/**"]
+				"lintFilePatterns": [
+					"libs/shared/ui/**/*.ts",
+					"libs/shared/ui/**/*.html"
+				]
 			}
 		},
 		"test": {

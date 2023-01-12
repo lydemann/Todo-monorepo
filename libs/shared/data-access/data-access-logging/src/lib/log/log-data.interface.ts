@@ -7,5 +7,6 @@ export interface LogFields {
 	url?: string;
 	correlationId?: string;
 	sessionId?: string;
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	state?: {};
 }

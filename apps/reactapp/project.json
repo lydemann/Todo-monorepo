@@ -59,14 +59,11 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"apps/reactapp/tsconfig.app.json",
-					"apps/reactapp/tsconfig.spec.json"
-				],
-				"exclude": ["**/node_modules/**", "!apps/reactapp/**"]
+				"lintFilePatterns": ["apps/reactapp/**/*.tsx"]
 			}
 		}
 	},
-	"tags": ["type:app"]
+	"tags": ["scope:reactapp", "type:app"]
 }

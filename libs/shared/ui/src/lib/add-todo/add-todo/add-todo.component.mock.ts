@@ -4,13 +4,12 @@ import { Component, Input } from '@angular/core';
 	selector: 'app-add-todo',
 	template: '',
 })
-// tslint:disable-next-line:component-class-suffix
-export class AddTodoComponentMock {
+export class MockAddTodoComponent {
 	public isLoading = false;
 
 	@Input()
 	public currentTodo;
 
-	// tslint:disable-next-line:no-empty
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	public save() {}
 }

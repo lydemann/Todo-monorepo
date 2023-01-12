@@ -123,13 +123,11 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"lintFilePatterns": [
-					"apps/todo-app/src/**/*.ts",
-					"apps/todo-app/src/**/*.html"
-				],
-				"maxWarnings": 0
+				"lintFilePatterns": ["apps/todo-app/**/*.ts", "apps/todo-app/**/*.html"]
 			}
 		}
-	}
+	},
+	"tags": ["scope:todo-app", "type:app"]
 }

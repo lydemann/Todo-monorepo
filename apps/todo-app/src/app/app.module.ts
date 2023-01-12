@@ -6,9 +6,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { AppInitService } from '@todo-app/app-init.service';
-import { AppComponent } from '@todo-app/app.component';
-import { appRouterModule } from '@todo-app/app.routes';
 import { ApiEndpoints, API_ENDPOINTS } from '@todo/shared/data-access';
 import {
 	GlobalErrorHandler,
@@ -24,6 +21,9 @@ import {
 	CoreModule,
 	TodoListModule,
 } from '@todo/todo-app/feature';
+import { AppInitService } from './app-init.service';
+import { AppComponent } from './app.component';
+import { appRouterModule } from './app.routes';
 
 export function init_app(appLoadService: AppInitService) {
 	return () => appLoadService.init();

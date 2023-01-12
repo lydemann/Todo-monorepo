@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
-declare var window: any;
+declare let window: any;
 
 @Injectable()
 export class AppInitService {

@@ -7,12 +7,12 @@
 	"targets": {
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"libs/shared/util/util-test/tsconfig.lib.json",
-					"libs/shared/util/util-test/tsconfig.spec.json"
-				],
-				"exclude": ["**/node_modules/**", "!libs/shared/util/util-test/**"]
+				"lintFilePatterns": [
+					"libs/shared/util/util-test/**/*.ts",
+					"libs/shared/util/util-test/**/*.html"
+				]
 			}
 		}
 	},

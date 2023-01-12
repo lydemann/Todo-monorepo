@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
 	name: 'shared-interfaces-todo-interfaces',
-	preset: '../../../../jest.config.js',
+	preset: '../../../../jest.preset.js',
 	transform: {
 		'^.+\\.[tj]sx?$': 'ts-jest',
 	},

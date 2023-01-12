@@ -50,24 +50,24 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 	styleUrls: ['./date-picker.component.scss'],
 })
 export class DatePickerComponent
-	implements ControlValueAccessor, OnDestroy, AfterViewInit {
+	implements ControlValueAccessor, OnDestroy, AfterViewInit
+{
 	@Input()
 	public date: Date;
 
 	@Input() public minDate: Date;
 	@Input() public maxDate: Date;
 
-	@Input() public errorMessage: string = 'Invalid input';
-	@Input() public placeholder: string = 'Choose a date';
+	@Input() public errorMessage = 'Invalid input';
+	@Input() public placeholder = 'Choose a date';
 	public dateChange: EventEmitter<Date> = new EventEmitter();
 	public isDisabled = false;
 	// used to display mat error
 	public formControl = new FormControl('');
 	private destroy$ = new Subject<void>();
 	private _showErrorSubject = new BehaviorSubject<boolean>(undefined);
-	private _showError$: Observable<
-		boolean
-	> = this._showErrorSubject.asObservable();
+	private _showError$: Observable<boolean> =
+		this._showErrorSubject.asObservable();
 	// tslint:disable-next-line: member-ordering
 	public dateErrorStateMatcher = new DateErrorStateMatcher(
 		this._showError$,
@@ -124,6 +124,6 @@ export class DatePickerComponent
 		this.changeDetectionRef.detectChanges();
 	}
 
-	// tslint:disable-next-line: no-empty
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	private onChange = (date: Date) => {};
 }

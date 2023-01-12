@@ -14,8 +14,7 @@ import { StringHelpers } from '@todo/shared/util';
 	// `tooltip-custom-class-example.css` will not be scoped to this component's view.
 	encapsulation: ViewEncapsulation.None,
 })
-// tslint:disable-next-line:component-class-suffix
-export class TooltipComponentMock implements AfterViewInit {
+export class MockTooltipComponent implements AfterViewInit {
 	@Input() public tooltipText: string;
 	@Input() public position:
 		| 'after'

@@ -14,6 +14,7 @@ import { SessionIdService } from './session-id.service';
 export class LogService {
 	private logger: Logger = {
 		// tslint:disable-next-line: no-empty
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
 		log: () => {},
 	} as any;
 	private userId: string;

@@ -6,7 +6,7 @@
 	"prefix": "todo",
 	"targets": {
 		"build": {
-			"executor": "@angular-devkit/build-ng-packagr:build",
+			"executor": "@angular-devkit/build-angular:ng-packagr",
 			"options": {
 				"tsConfig": "libs/shared/util/util-i18n/tsconfig.lib.json",
 				"project": "libs/shared/util/util-i18n/ng-package.json"
@@ -19,12 +19,12 @@
 		},
 		"lint": {
 			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
 			"options": {
-				"tsConfig": [
-					"libs/shared/util/util-i18n/tsconfig.lib.json",
-					"libs/shared/util/util-i18n/tsconfig.spec.json"
-				],
-				"exclude": ["**/node_modules/**", "!libs/shared/util/util-i18n/**"]
+				"lintFilePatterns": [
+					"libs/shared/util/util-i18n/**/*.ts",
+					"libs/shared/util/util-i18n/**/*.html"
+				]
 			}
 		},
 		"test": {
