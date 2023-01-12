@@ -22,7 +22,7 @@ jobs:
       - script: yarn install --frozen-lockfile
 
       - script: npx nx workspace-lint
-      - script: npx nx format:check
+      - script: npx nx format:check --base=$(BASE_SHA)
 
       - script: npx nx affected --base=$(BASE_SHA) --target=lint --parallel=3
       - script: npx nx affected --base=$(BASE_SHA) --target=test --parallel=3 --ci --code-coverage
