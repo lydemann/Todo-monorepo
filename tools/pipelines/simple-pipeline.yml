@@ -29,7 +29,7 @@ jobs:
     steps:
       - script: npm ci
 
-      - script: npx nx affected --base=$(BASE_SHA) --target=test --code-coverage
+      - script: npx nx affected --base=$(BASE_SHA) --target=test --parallel=1 --code-coverage
   - job: Build
     pool:
       vmImage: "ubuntu-latest"
