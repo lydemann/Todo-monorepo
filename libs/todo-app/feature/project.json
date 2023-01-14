@@ -22,6 +22,16 @@
 					"libs/todo-app/feature/**/*.html"
 				]
 			}
+		},
+		"component-test": {
+			"executor": "@nrwl/cypress:cypress",
+			"options": {
+				"cypressConfig": "libs/todo-app/feature/cypress.config.ts",
+				"testingType": "component",
+				"devServerTarget": "todo-app:build",
+				"tsConfig": "libs/todo-app/feature/tsconfig.cy.json",
+				"skipServe": true
+			}
 		}
 	},
 	"tags": ["scope:todo-app", "type:feature"]

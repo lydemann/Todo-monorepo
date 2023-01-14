@@ -10,7 +10,7 @@ import { completedTodoPath, TodoListComponent } from '@todo/todo-app/feature';
 export const rootPath = '';
 export const registerPath = 'register';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
 	{
 		path: rootPath,
 		component: TodoListComponent,
