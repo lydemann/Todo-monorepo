@@ -4,6 +4,7 @@
 	"projectType": "library",
 	"sourceRoot": "libs/todo-app/feature/src",
 	"prefix": "todo",
+	"implicitDependencies": ["!todo-app"],
 	"targets": {
 		"test": {
 			"executor": "@nrwl/jest:jest",

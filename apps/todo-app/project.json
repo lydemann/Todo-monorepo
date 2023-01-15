@@ -1,158 +1,142 @@
 {
-  "name": "todo-app",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/todo-app/src",
-  "projectType": "application",
-  "prefix": "app",
-  "generators": {
-    "@schematics/angular:component": {
-      "style": "scss"
-    }
-  },
-  "targets": {
-    "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "options": {
-        "aot": true,
-        "buildOptimizer": false,
-        "optimization": false,
-        "vendorChunk": true,
-        "extractLicenses": false,
-        "sourceMap": true,
-        "namedChunks": true,
-        "outputPath": "dist/apps/todo-app",
-        "index": "apps/todo-app/src/index.html",
-        "main": "apps/todo-app/src/main.ts",
-        "polyfills": "apps/todo-app/src/polyfills.ts",
-        "tsConfig": "apps/todo-app/tsconfig.app.json",
-        "assets": [
-          "apps/todo-app/src/favicon.ico",
-          "apps/todo-app/src/assets",
-          "apps/todo-app/src/manifest.json",
-          "apps/todo-app/src/web.config"
-        ],
-        "styles": [
-          "apps/todo-app/src/styles.scss"
-        ],
-        "stylePreprocessorOptions": {
-          "includePaths": [
-            "libs/shared/ui/styles/src/lib"
-          ]
-        },
-        "scripts": [
-          {
-            "input": "node_modules/document-register-element/build/document-register-element.js"
-          }
-        ]
-      },
-      "configurations": {
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "libs/todo-app/domain/src/environments/environment.ts",
-              "with": "libs/todo-app/domain/src/environments/environment.prod.ts"
-            }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "aot": true,
-          "extractLicenses": true,
-          "vendorChunk": false,
-          "buildOptimizer": true,
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb"
-            }
-          ],
-          "serviceWorker": true
-        },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        },
-        "defaultConfiguration": "production"
-      }
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "options": {
-        "browserTarget": "todo-app:build",
-        "proxyConfig": "apps/todo-app/proxy.conf.json"
-      },
-      "configurations": {
-        "production": {
-          "browserTarget": "todo-app:build:production"
-        },
-        "development": {
-          "browserTarget": "todo-app:build:development"
-        }
-      }
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "todo-app:build"
-      }
-    },
-    "test": {
-      "executor": "@angular-devkit/build-angular:karma",
-      "options": {
-        "main": "apps/todo-app/src/test.ts",
-        "polyfills": "apps/todo-app/src/polyfills.ts",
-        "tsConfig": "apps/todo-app/tsconfig.spec.json",
-        "karmaConfig": "apps/todo-app/karma.conf.js",
-        "styles": [
-          "apps/todo-app/src/styles.scss"
-        ],
-        "stylePreprocessorOptions": {
-          "includePaths": [
-            "libs/shared/ui/styles/src/lib"
-          ]
-        },
-        "scripts": [],
-        "assets": [
-          "apps/todo-app/src/favicon.ico",
-          "apps/todo-app/src/assets",
-          "apps/todo-app/src/manifest.json"
-        ]
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "apps/todo-app/**/*.ts",
-          "apps/todo-app/**/*.html"
-        ]
-      }
-    },
-    "component-test": {
-      "executor": "@nrwl/cypress:cypress",
-      "options": {
-        "cypressConfig": "apps/todo-app/cypress.config.ts",
-        "testingType": "component",
-        "skipServe": true,
-        "devServerTarget": "todo-app:build"
-      }
-    }
-  },
-  "tags": [
-    "scope:todo-app",
-    "type:app"
-  ]
+	"name": "todo-app",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/todo-app/src",
+	"projectType": "application",
+	"prefix": "app",
+	"generators": {
+		"@schematics/angular:component": {
+			"style": "scss"
+		}
+	},
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:browser",
+			"options": {
+				"aot": true,
+				"buildOptimizer": false,
+				"optimization": false,
+				"vendorChunk": true,
+				"extractLicenses": false,
+				"sourceMap": true,
+				"namedChunks": true,
+				"outputPath": "dist/apps/todo-app",
+				"index": "apps/todo-app/src/index.html",
+				"main": "apps/todo-app/src/main.ts",
+				"polyfills": "apps/todo-app/src/polyfills.ts",
+				"tsConfig": "apps/todo-app/tsconfig.app.json",
+				"assets": [
+					"apps/todo-app/src/favicon.ico",
+					"apps/todo-app/src/assets",
+					"apps/todo-app/src/manifest.json",
+					"apps/todo-app/src/web.config"
+				],
+				"styles": ["apps/todo-app/src/styles.scss"],
+				"stylePreprocessorOptions": {
+					"includePaths": ["libs/shared/ui/styles/src/lib"]
+				},
+				"scripts": [
+					{
+						"input": "node_modules/document-register-element/build/document-register-element.js"
+					}
+				]
+			},
+			"configurations": {
+				"production": {
+					"fileReplacements": [
+						{
+							"replace": "libs/todo-app/domain/src/environments/environment.ts",
+							"with": "libs/todo-app/domain/src/environments/environment.prod.ts"
+						}
+					],
+					"optimization": true,
+					"outputHashing": "all",
+					"sourceMap": false,
+					"namedChunks": false,
+					"aot": true,
+					"extractLicenses": true,
+					"vendorChunk": false,
+					"buildOptimizer": true,
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "2mb",
+							"maximumError": "5mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "6kb"
+						}
+					],
+					"serviceWorker": true
+				},
+				"development": {
+					"buildOptimizer": false,
+					"optimization": false,
+					"vendorChunk": true,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true
+				},
+				"defaultConfiguration": "production"
+			}
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"options": {
+				"browserTarget": "todo-app:build",
+				"proxyConfig": "apps/todo-app/proxy.conf.json"
+			},
+			"configurations": {
+				"production": {
+					"browserTarget": "todo-app:build:production"
+				},
+				"development": {
+					"browserTarget": "todo-app:build:development"
+				}
+			}
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"browserTarget": "todo-app:build"
+			}
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "apps/todo-app/src/test.ts",
+				"polyfills": "apps/todo-app/src/polyfills.ts",
+				"tsConfig": "apps/todo-app/tsconfig.spec.json",
+				"karmaConfig": "apps/todo-app/karma.conf.js",
+				"styles": ["apps/todo-app/src/styles.scss"],
+				"stylePreprocessorOptions": {
+					"includePaths": ["libs/shared/ui/styles/src/lib"]
+				},
+				"scripts": [],
+				"assets": [
+					"apps/todo-app/src/favicon.ico",
+					"apps/todo-app/src/assets",
+					"apps/todo-app/src/manifest.json"
+				]
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/todo-app/**/*.ts", "apps/todo-app/**/*.html"]
+			}
+		},
+		"component-test": {
+			"executor": "@nrwl/cypress:cypress",
+			"options": {
+				"cypressConfig": "apps/todo-app/cypress.config.ts",
+				"testingType": "component",
+				"skipServe": true,
+				"devServerTarget": "todo-app:build"
+			}
+		}
+	},
+	"tags": ["scope:todo-app", "type:app"]
 }
