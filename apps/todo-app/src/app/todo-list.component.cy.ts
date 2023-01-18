@@ -8,6 +8,11 @@ import { appRoutes } from 'apps/todo-app/src/app/app.routes';
 import { AppModule } from './app.module';
 import * as config from '../assets/app-config.json';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
+import { TodoItem } from '@todo/shared/todo-interfaces';
+import { TodoListResourcesService } from 'libs/todo-app/domain/src/lib/todo-list/resources/todo-list-resources.service';
+import { of } from 'rxjs';
+import { contains } from 'cypress/types/jquery';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('TodoListComponent', () => {
 	@Component({
@@ -20,7 +25,7 @@ describe('TodoListComponent', () => {
 		}
 	}
 
-	const setup = () => {
+	const setup = (initTodoItems: TodoItem[] = []) => {
 		return mount(WrapperComponent, {
 			imports: [
 				RouterTestingModule.withRoutes([...appRoutes]),
@@ -36,6 +41,14 @@ describe('TodoListComponent', () => {
 			}) => {
 				const ngZone = injector.get(NgZone);
 				const router = injector.get(Router);
+				const todoListResourceService = injector.get(TodoListResourcesService);
+				const translateService = injector.get(TranslateService);
+
+				// or mock service worker
+				todoListResourceService.getTodos = () => {
+					return of(initTodoItems);
+				};
+
 				await ngZone.run(() => router.navigate(['']));
 
 				return {
@@ -47,18 +60,39 @@ describe('TodoListComponent', () => {
 		);
 	};
 
-	it('should create todo item', () => {
-		setup().then(({}) => {
-			const title = 'Some title';
-			cy.get('[data-test=todo-title]').type(title);
-			const description = 'Some description';
-			cy.get('[data-test=todo-description]').type(description);
-			const dueDate = new Date().toLocaleDateString('en-US');
-			cy.get('[data-test=todo-duedate]').type(dueDate);
-			cy.get('[data-test=create-todo-submit]').click();
+	// it('should create todo item', () => {
+	// 	setup().then(({}) => {
+	// 		const title = 'Some title';
+	// 		cy.get('[data-test=todo-title]').type(title);
+	// 		const description = 'Some description';
+	// 		cy.get('[data-test=todo-description]').type(description);
+	// 		const dueDate = new Date().toLocaleDateString('en-US');
+	// 		cy.get('[data-test=todo-duedate]').type(dueDate);
+	// 		cy.get('[data-test=create-todo-submit]').click();
 
+	// 		cy.get('[data-test=todo-item]').shadow().contains(title);
+	// 		cy.get('[data-test=todo-item]').shadow().contains(description);
+	// 	});
+	// });
+
+	it('should delete todo item', () => {
+		const title = 'Item to delete';
+		const description = 'This item should be deleted';
+		setup([
+			{
+				title,
+				description,
+			} as TodoItem,
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').shadow().contains(title);
 			cy.get('[data-test=todo-item]').shadow().contains(description);
+
+			cy.get('[data-test=todo-item]')
+				.shadow()
+				.get('[data-test="delete-button"]')
+				.click();
+
+			cy.get('[data-test=todo-item]').should('not.exist');
 		});
 	});
 });

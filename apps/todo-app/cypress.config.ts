@@ -3,4 +3,5 @@ import { nxComponentTestingPreset } from '@nrwl/angular/plugins/component-testin
 
 export default defineConfig({
 	component: nxComponentTestingPreset(__filename),
+	includeShadowDom: true,
 });

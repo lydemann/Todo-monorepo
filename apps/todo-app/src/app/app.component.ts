@@ -33,8 +33,6 @@ export class AppComponent implements OnInit {
 			env: environment.environment,
 		});
 
-		this.todoListSandboxService.loadTodoList();
-
 		this.themeService.activeTheme$.subscribe(theme => {
 			this.renderer.removeAttribute(this.elementRef.nativeElement, 'class');
 			this.renderer.addClass(this.elementRef.nativeElement, theme);

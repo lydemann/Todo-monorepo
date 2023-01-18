@@ -6,6 +6,7 @@ import {
 	FeatureTogglePreloadingStrategy,
 } from '@todo/shared/util-feature-toggle';
 import { completedTodoPath, TodoListComponent } from '@todo/todo-app/feature';
+import { TodoListResolver } from './todo-list.resolver';
 
 export const rootPath = '';
 export const registerPath = 'register';
@@ -13,23 +14,29 @@ export const registerPath = 'register';
 export const appRoutes: Routes = [
 	{
 		path: rootPath,
-		component: TodoListComponent,
-		pathMatch: 'full',
+		resolve: [TodoListResolver],
+		children: [
+			{
+				path: rootPath,
+				component: TodoListComponent,
+				pathMatch: 'full',
+			},
+			{
+				path: completedTodoPath,
+				data: {
+					flags: ['completed-todos'],
+				},
+				canActivate: [FeatureToggleCanActivateGuard],
+				canLoad: [FeatureToggleCanLoadGuard],
+				loadChildren: () =>
+					import('@todo/todo-app/feature').then(m => m.TodoListCompletedModule),
+			},
+		],
 	},
 	{
 		path: registerPath,
 		loadChildren: () =>
 			import('@todo/todo-app/feature').then(m => m.RegisterModule),
-	},
-	{
-		path: completedTodoPath,
-		data: {
-			flags: ['completed-todos'],
-		},
-		canActivate: [FeatureToggleCanActivateGuard],
-		canLoad: [FeatureToggleCanLoadGuard],
-		loadChildren: () =>
-			import('@todo/todo-app/feature').then(m => m.TodoListCompletedModule),
 	},
 ];
 

@@ -73,6 +73,7 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 		FeatureToggleModule,
 	],
 	providers: [
+		// TODO: enable when load from assets bug is fixed for Cypress component tests with Nx
 		// {
 		// 	provide: APP_INITIALIZER,
 		// 	multi: true,
