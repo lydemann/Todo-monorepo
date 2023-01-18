@@ -7,6 +7,7 @@ import { Component, NgZone } from '@angular/core';
 import { appRoutes } from 'apps/todo-app/src/app/app.routes';
 import { AppModule } from './app.module';
 import * as config from '../assets/app-config.json';
+import { TodoListFacadeService } from '@todo/todo-app/domain';
 
 describe('TodoListComponent', () => {
 	@Component({
@@ -40,19 +41,24 @@ describe('TodoListComponent', () => {
 				return {
 					ngZone,
 					router,
+					injector,
 				};
 			},
 		);
 	};
 
 	it('should create todo item', () => {
-		setup().then(() => {
-			cy.get('[data-test=todo-title]').type('Some title');
-			cy.get('[data-test=todo-description]').type('Some description');
-			cy.get('[data-test=todo-duedate]').type(
-				new Date().toLocaleDateString('en-US'),
-			);
+		setup().then(({}) => {
+			const title = 'Some title';
+			cy.get('[data-test=todo-title]').type(title);
+			const description = 'Some description';
+			cy.get('[data-test=todo-description]').type(description);
+			const dueDate = new Date().toLocaleDateString('en-US');
+			cy.get('[data-test=todo-duedate]').type(dueDate);
 			cy.get('[data-test=create-todo-submit]').click();
+
+			cy.get('[data-test=todo-item]').shadow().contains(title);
+			cy.get('[data-test=todo-item]').shadow().contains(description);
 		});
 	});
 });
