@@ -73,12 +73,12 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 		FeatureToggleModule,
 	],
 	providers: [
-		{
-			provide: APP_INITIALIZER,
-			multi: true,
-			useFactory: preloadFeagureFlags,
-			deps: [FeatureToggleService],
-		},
+		// {
+		// 	provide: APP_INITIALIZER,
+		// 	multi: true,
+		// 	useFactory: preloadFeagureFlags,
+		// 	deps: [FeatureToggleService],
+		// },
 		{ provide: API_ENDPOINTS, useFactory: apiEndpointsFactory },
 		{ provide: ErrorHandler, useClass: GlobalErrorHandler },
 		AppInitService,
