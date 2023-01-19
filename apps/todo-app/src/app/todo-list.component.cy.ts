@@ -45,7 +45,6 @@ describe('TodoListComponent', () => {
 				RouterTestingModule.withRoutes([...appRoutes]),
 				HttpClientModule,
 				AppModule,
-				// CoreModule,
 				TranslateModule.forRoot({
 					loader: {
 						provide: TranslateLoader,
@@ -62,7 +61,6 @@ describe('TodoListComponent', () => {
 				const ngZone = injector.get(NgZone);
 				const router = injector.get(Router);
 				const todoListResourceService = injector.get(TodoListResourcesService);
-				const translateService = injector.get(TranslateService);
 
 				// or mock service worker
 				todoListResourceService.getTodos = () => {
