@@ -16,11 +16,7 @@ import {
 	FeatureToggleService,
 } from '@todo/shared/util-feature-toggle';
 import { environment } from '@todo/todo-app/domain';
-import {
-	LayoutModule,
-	CoreModule,
-	TodoListModule,
-} from '@todo/todo-app/feature';
+import { LayoutModule, CoreModule } from '@todo/todo-app/feature';
 import { AppInitService } from './app-init.service';
 import { AppComponent } from './app.component';
 import { appRouterModule } from './app.routes';
@@ -57,7 +53,6 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 		BrowserAnimationsModule,
 		CoreModule,
 		HttpClientModule,
-		TodoListModule,
 		appRouterModule,
 		TranslateModule.forRoot({
 			loader: {

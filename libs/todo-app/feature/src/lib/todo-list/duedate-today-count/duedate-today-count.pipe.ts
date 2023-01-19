@@ -4,6 +4,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 
 @Pipe({
 	name: 'duedateTodayCount',
+	standalone: true,
 })
 export class DuedateTodayCountPipe implements PipeTransform {
 	public transform(todoItems: TodoItem[], args?: any): any {

@@ -3,10 +3,14 @@ import { map } from 'rxjs/operators';
 
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
+import { SharedModule } from '../shared/shared.module';
+import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
 
 @Component({
 	selector: 'app-todo-list',
 	templateUrl: './todo-list.component.html',
+	standalone: true,
+	imports: [SharedModule, DuedateTodayCountPipe],
 })
 export class TodoListComponent {
 	public selectedTodo$ = this.todoListSandboxService.selectedTodo$;
