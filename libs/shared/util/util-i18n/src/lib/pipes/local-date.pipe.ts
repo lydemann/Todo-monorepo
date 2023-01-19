@@ -9,12 +9,12 @@ import { LocaleService } from '../services/locale.service';
 export class LocalDatePipe implements PipeTransform {
 	constructor(private localeService: LocaleService) {}
 
-	public transform(value: any, format: string) {
+	public transform(
+		value: string | number | Date,
+		format: string = 'shortDate',
+	) {
 		if (!value) {
 			return '';
-		}
-		if (!format) {
-			format = 'shortDate';
 		}
 
 		return formatDate(value, format, this.localeService.locale);
