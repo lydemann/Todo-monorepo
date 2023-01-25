@@ -1,12 +1,10 @@
 import { mount } from 'cypress/angular';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, NgZone } from '@angular/core';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { appRoutes } from 'apps/todo-app/src/app/app.routes';
-import { AppModule } from './app.module';
-import * as config from '../assets/app-config.json';
+import { AppModule } from 'apps/todo-app/src/app/app.module';
+import * as config from 'apps/todo-app/src/assets/app-config.json';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListResourcesService } from 'libs/todo-app/domain/src/lib/todo-list/resources/todo-list-resources.service';
 import { Observable, of } from 'rxjs';
@@ -16,8 +14,7 @@ import {
 	TranslateService,
 } from '@ngx-translate/core';
 import { formatDate } from '@angular/common';
-import { environment } from '@todo/todo-app/domain';
-import * as transactions from '../../../todo-service/src/assets/i18n/en-lang.json';
+import * as transactions from 'apps/todo-service/src/assets/i18n/en-lang.json';
 
 class CustomLoader implements TranslateLoader {
 	getTranslation(lang: string): Observable<any> {
@@ -43,7 +40,6 @@ describe('TodoListComponent', () => {
 		return mount(WrapperComponent, {
 			imports: [
 				RouterTestingModule.withRoutes([...appRoutes]),
-				HttpClientModule,
 				AppModule,
 				TranslateModule.forRoot({
 					loader: {
@@ -89,16 +85,16 @@ describe('TodoListComponent', () => {
 				description,
 				dueDate,
 			} as TodoItem,
-		]).then(({}) => {
-			cy.get('[data-test=todo-item]').shadow().contains(title);
-			cy.get('[data-test=todo-item]').shadow().contains(description);
+		]).then(({ }) => {
+			cy.get('[data-test=todo-item]').contains(title);
+			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
-			cy.get('[data-test=todo-item]').shadow().contains(formattedDueDate);
+			cy.get('[data-test=todo-item]').contains(formattedDueDate);
 		});
 	});
 
 	it('should create todo item', () => {
-		setup().then(({}) => {
+		setup().then(({ }) => {
 			const title = 'Some title';
 			cy.get('[data-test=todo-title]').type(title);
 			const description = 'Some description';
@@ -107,10 +103,10 @@ describe('TodoListComponent', () => {
 			cy.get('[data-test=todo-duedate]').type(dueDate);
 			cy.get('[data-test=create-todo-submit]').click();
 
-			cy.get('[data-test=todo-item]').shadow().contains(title);
-			cy.get('[data-test=todo-item]').shadow().contains(description);
+			cy.get('[data-test=todo-item]').contains(title);
+			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
-			cy.get('[data-test=todo-item]').shadow().contains(formattedDueDate);
+			cy.get('[data-test=todo-item]').contains(formattedDueDate);
 		});
 	});
 
@@ -125,14 +121,14 @@ describe('TodoListComponent', () => {
 				description,
 				dueDate,
 			} as TodoItem,
-		]).then(({}) => {
-			cy.get('[data-test=todo-item]').shadow().contains(title);
-			cy.get('[data-test=todo-item]').shadow().contains(description);
+		]).then(({ }) => {
+			cy.get('[data-test=todo-item]').contains(title);
+			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
-			cy.get('[data-test=todo-item]').shadow().contains(formattedDueDate);
+			cy.get('[data-test=todo-item]').contains(formattedDueDate);
 
 			cy.get('[data-test=todo-item]')
-				.shadow()
+
 				.get('[data-test="edit-button"]')
 				.click();
 			const updatedTitle = 'Edited title';
@@ -147,15 +143,14 @@ describe('TodoListComponent', () => {
 
 			cy.get('[data-test=create-todo-submit]').click();
 
-			cy.get('[data-test=todo-item]').shadow().contains(updatedTitle);
-			cy.get('[data-test=todo-item]').shadow().contains(updatedDescription);
+			cy.get('[data-test=todo-item]').contains(updatedTitle);
+			cy.get('[data-test=todo-item]').contains(updatedDescription);
 			const updatedFormattedDueDate = formatDate(
 				updatedDueDate,
 				'shortDate',
 				'en-US',
 			);
 			cy.get('[data-test=todo-item]')
-				.shadow()
 				.contains(updatedFormattedDueDate);
 		});
 	});
@@ -168,12 +163,11 @@ describe('TodoListComponent', () => {
 				title,
 				description,
 			} as TodoItem,
-		]).then(({}) => {
-			cy.get('[data-test=todo-item]').shadow().contains(title);
-			cy.get('[data-test=todo-item]').shadow().contains(description);
+		]).then(({ }) => {
+			cy.get('[data-test=todo-item]').contains(title);
+			cy.get('[data-test=todo-item]').contains(description);
 
 			cy.get('[data-test=todo-item]')
-				.shadow()
 				.get('[data-test="delete-button"]')
 				.click();
 
