@@ -20,7 +20,7 @@ describe('TodoListComponent', () => {
 	let spectator: Spectator<TodoListComponent>;
 	const createComponent = createComponentFactory({
 		component: TodoListComponent,
-		declarations: [AddTodoComponent, DuedateTodayCountPipe],
+		declarations: [AddTodoComponent],
 		imports: [
 			FormsModule,
 			TranslateModule.forRoot(),
@@ -40,8 +40,8 @@ describe('TodoListComponent', () => {
 
 	describe('get todo list', () => {
 		it('should show three todo items', waitForAsync(() => {
-			const todoListSandboxService = spectator.inject(TodoListFacadeService);
-			todoListSandboxService.todoList$ = of([
+			const todoListFacadeService = spectator.inject(TodoListFacadeService);
+			todoListFacadeService.todoList$ = of([
 				new TodoItem('1', ''),
 				new TodoItem('2', ''),
 				new TodoItem('3', ''),

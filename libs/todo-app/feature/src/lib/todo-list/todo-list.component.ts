@@ -13,10 +13,10 @@ import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count
 	imports: [SharedModule, DuedateTodayCountPipe],
 })
 export class TodoListComponent {
-	public selectedTodo$ = this.todoListSandboxService.selectedTodo$;
-	public todoList$ = this.todoListSandboxService.todoList$;
-	public isLoading$ = this.todoListSandboxService.isLoading$;
-	public isSavingTodo$ = this.todoListSandboxService.isSavingTodo$;
+	public selectedTodo$ = this.todoListFacadeService.selectedTodo$;
+	public todoList$ = this.todoListFacadeService.todoList$;
+	public isLoading$ = this.todoListFacadeService.isLoading$;
+	public isSavingTodo$ = this.todoListFacadeService.isSavingTodo$;
 	public duedateTodayCount$ = this.todoList$.pipe(
 		map(
 			todoList =>
@@ -26,22 +26,22 @@ export class TodoListComponent {
 		),
 	);
 
-	constructor(private todoListSandboxService: TodoListFacadeService) {}
+	constructor(private todoListFacadeService: TodoListFacadeService) { }
 
 	public deleteTodo(id: string) {
-		this.todoListSandboxService.deleteTodo(id);
+		this.todoListFacadeService.deleteTodo(id);
 	}
 
 	public selectTodoForEdit(todoItem: TodoItem) {
-		this.todoListSandboxService.selectTodoForEdit(todoItem);
+		this.todoListFacadeService.selectTodoForEdit(todoItem);
 	}
 
 	public onSaveTodo(todoItem: TodoItem) {
-		this.todoListSandboxService.saveTodoItem(todoItem);
+		this.todoListFacadeService.saveTodoItem(todoItem);
 	}
 
 	public todoCompleteToggled(todoId: string) {
-		this.todoListSandboxService.todoCompletedToggled(todoId);
+		this.todoListFacadeService.todoCompletedToggled(todoId);
 	}
 	private isToday(todoDate) {
 		let newTodoDate = todoDate;
