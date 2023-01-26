@@ -1,77 +1,108 @@
 {
-	"npmScope": "todo",
-	"tasksRunnerOptions": {
-		"default": {
-			"runner": "@nrwl/nx-cloud",
-			"options": {}
-		}
-	},
-	"defaultProject": "todo-app",
-	"generators": {
-		"@schematics/angular:component": {
-			"changeDetection": "OnPush"
-		},
-		"@nrwl/react": {
-			"application": {
-				"style": "scss",
-				"bundler": "webpack",
-				"babel": true
-			},
-			"component": {
-				"style": "scss"
-			},
-			"library": {
-				"style": "scss"
-			}
-		},
-		"@nrwl/angular:application": {
-			"style": "css",
-			"unitTestRunner": "jest",
-			"e2eTestRunner": "cypress"
-		},
-		"@nrwl/angular:library": {
-			"unitTestRunner": "jest"
-		},
-		"@nrwl/angular:component": {
-			"style": "css"
-		}
-	},
-	"affected": {
-		"defaultBase": "master"
-	},
-	"targetDefaults": {
-		"build": {
-			"dependsOn": ["^build"],
-			"inputs": ["production", "^production"]
-		},
-		"test": {
-			"inputs": ["default", "^production", "{workspaceRoot}/karma.conf.js"]
-		},
-		"e2e": {
-			"inputs": ["default", "^production"]
-		},
-		"lint": {
-			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
-		}
-	},
-	"$schema": "./node_modules/nx/schemas/nx-schema.json",
-	"namedInputs": {
-		"default": ["{projectRoot}/**/*", "sharedGlobals"],
-		"sharedGlobals": [
-			"{workspaceRoot}/angular.json",
-			"{workspaceRoot}/tsconfig.json",
-			"{workspaceRoot}/.eslintrc.json",
-			"{workspaceRoot}/nx.json",
-			"{workspaceRoot}/babel.config.json"
-		],
-		"production": [
-			"default",
-			"!{projectRoot}/**/*.spec.[jt]s",
-			"!{projectRoot}/tsconfig.spec.json",
-			"!{projectRoot}/karma.conf.js",
-			"!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-			"!{projectRoot}/jest.config.[jt]s",
-			"!{projectRoot}/.eslintrc.json"
-		]
-	}
+  "npmScope": "todo",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "component-test"
+        ]
+      }
+    }
+  },
+  "defaultProject": "todo-app",
+  "generators": {
+    "@schematics/angular:component": {
+      "changeDetection": "OnPush"
+    },
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "bundler": "webpack",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "css",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
+    }
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    },
+    "test": {
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/karma.conf.js"
+      ]
+    },
+    "e2e": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
+    },
+    "component-test": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/angular.json",
+      "{workspaceRoot}/tsconfig.json",
+      "{workspaceRoot}/.eslintrc.json",
+      "{workspaceRoot}/nx.json",
+      "{workspaceRoot}/babel.config.json"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.[jt]s",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/karma.conf.js",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s"
+    ]
+  }
 }

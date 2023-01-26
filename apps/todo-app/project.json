@@ -127,6 +127,15 @@
 			"options": {
 				"lintFilePatterns": ["apps/todo-app/**/*.ts", "apps/todo-app/**/*.html"]
 			}
+		},
+		"component-test": {
+			"executor": "@nrwl/cypress:cypress",
+			"options": {
+				"cypressConfig": "apps/todo-app/cypress.config.ts",
+				"testingType": "component",
+				"skipServe": true,
+				"devServerTarget": "todo-app:build"
+			}
 		}
 	},
 	"tags": ["scope:todo-app", "type:app"]

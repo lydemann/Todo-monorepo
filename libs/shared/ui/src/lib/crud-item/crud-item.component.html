@@ -1,6 +1,7 @@
 <div class="todo-item" *ngIf="todoItem">
 	<li
 		class="list-group-item d-flex justify-content-between lh-condensed theme-background"
+		data-test="todo-item"
 		[ngClass]="todoItem.completed ? 'bg-completed' : ''"
 	>
 		<div class="item-content">

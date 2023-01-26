@@ -1,16 +1,20 @@
 {
-	"extends": "../../../tsconfig.json",
+	"extends": "../../../tsconfig.base.json",
 	"files": [],
-	"include": [],
 	"references": [
 		{
 			"path": "./tsconfig.lib.json"
 		},
 		{
 			"path": "./tsconfig.spec.json"
+		},
+		{
+			"path": "./tsconfig.cy.json"
 		}
 	],
 	"compilerOptions": {
+		"allowJs": true,
+		"resolveJsonModule": true,
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitOverride": true,
 		"noPropertyAccessFromIndexSignature": true,
@@ -19,6 +23,7 @@
 		"target": "es2020"
 	},
 	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false,
 		"strictInjectionParameters": true,
 		"strictInputAccessModifiers": true,
 		"strictTemplates": true

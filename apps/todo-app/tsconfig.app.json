@@ -1,5 +1,5 @@
 {
-	"extends": "../../tsconfig.json",
+	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"outDir": "../../dist/out-tsc/apps/todo-app",
 		"types": ["jasmine", "node"],
@@ -7,5 +7,13 @@
 		"useDefineForClassFields": false
 	},
 	"files": ["src/main.ts", "src/polyfills.ts"],
-	"include": ["apps/todo-app/src/**/*.d.ts"]
+	"include": ["apps/todo-app/src/**/*.d.ts"],
+	"exclude": [
+		"cypress/**/*",
+		"cypress.config.ts",
+		"**/*.cy.ts",
+		"**/*.cy.js",
+		"**/*.cy.tsx",
+		"**/*.cy.jsx"
+	]
 }
