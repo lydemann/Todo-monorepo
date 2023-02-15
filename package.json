@@ -75,6 +75,7 @@
     "faker": "^4.1.0",
     "immer": "^9.0.16",
     "moment": "^2.29.3",
+    "msw": "^1.0.1",
     "ngx-build-plus": "^9.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -104,11 +105,11 @@
     "@babel/preset-typescript": "7.3.3",
     "@commitlint/cli": "^7.6.0",
     "@commitlint/config-conventional": "^7.6.0",
+    "@cypress/webpack-dev-server": "3.2.2",
     "@nestjs/schematics": "9.0.4",
     "@nestjs/testing": "9.2.1",
     "@ngneat/spectator": "14.0.0",
     "@nrwl/angular": "15.6.2",
-    "@cypress/webpack-dev-server": "3.2.2",
     "@nrwl/cypress": "15.5.2",
     "@nrwl/eslint-plugin-nx": "15.5.2",
     "@nrwl/jest": "15.5.2",
@@ -212,6 +213,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.75.0",
     "webpack-merge": "^5.8.0"
+  },
+  "msw": {
+    "workerDirectory": "apps/todo-app/src"
   }
 }
-
