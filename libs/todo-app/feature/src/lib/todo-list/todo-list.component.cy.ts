@@ -15,6 +15,7 @@ import {
 } from '@ngx-translate/core';
 import { formatDate } from '@angular/common';
 import * as transactions from 'apps/todo-service/src/assets/i18n/en-lang.json';
+import { worker } from 'libs/todo-app/domain/src/mocks/browser';
 
 class CustomLoader implements TranslateLoader {
 	getTranslation(lang: string): Observable<any> {
@@ -37,6 +38,12 @@ describe('TodoListComponent', () => {
 	}
 
 	const setup = (initTodoItems: TodoItem[] = []) => {
+		// TOOD: fix load problem
+		// worker.start({
+		// 	serviceWorker: {
+		// 		url: '/__cypress/src/mockServiceWorker.js',
+		// 	},
+		// });
 		return mount(WrapperComponent, {
 			imports: [
 				RouterTestingModule.withRoutes([...appRoutes]),
@@ -85,7 +92,7 @@ describe('TodoListComponent', () => {
 				description,
 				dueDate,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
@@ -94,7 +101,7 @@ describe('TodoListComponent', () => {
 	});
 
 	it('should create todo item', () => {
-		setup().then(({ }) => {
+		setup().then(({}) => {
 			const title = 'Some title';
 			cy.get('[data-test=todo-title]').type(title);
 			const description = 'Some description';
@@ -121,7 +128,7 @@ describe('TodoListComponent', () => {
 				description,
 				dueDate,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
@@ -150,8 +157,7 @@ describe('TodoListComponent', () => {
 				'shortDate',
 				'en-US',
 			);
-			cy.get('[data-test=todo-item]')
-				.contains(updatedFormattedDueDate);
+			cy.get('[data-test=todo-item]').contains(updatedFormattedDueDate);
 		});
 	});
 
@@ -163,7 +169,7 @@ describe('TodoListComponent', () => {
 				title,
 				description,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 
