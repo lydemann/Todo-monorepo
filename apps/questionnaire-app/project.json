@@ -14,6 +14,12 @@
 			"executor": "@angular-devkit/build-angular:browser",
 			"options": {
 				"aot": true,
+				"buildOptimizer": false,
+				"optimization": false,
+				"vendorChunk": true,
+				"extractLicenses": false,
+				"sourceMap": true,
+				"namedChunks": true,
 				"outputPath": "dist/apps/questionnaire-app",
 				"index": "apps/questionnaire-app/src/index.html",
 				"main": "apps/questionnaire-app/src/main.ts",
@@ -56,7 +62,8 @@
 							"maximumWarning": "6kb"
 						}
 					]
-				}
+				},
+				"development": {}
 			}
 		},
 		"serve": {
@@ -67,8 +74,12 @@
 			"configurations": {
 				"production": {
 					"browserTarget": "questionnaire-app:build:production"
+				},
+				"development": {
+					"browserTarget": "questionnaire-app:build:development"
 				}
-			}
+			},
+			"defaultConfiguration": "development"
 		},
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",
