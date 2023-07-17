@@ -1,86 +1,109 @@
 {
-	"npmScope": "todo",
-	"tasksRunnerOptions": {
-		"default": {
-			"runner": "nx-cloud",
-			"options": {
-				"cacheableOperations": ["component-test"]
-			}
-		}
-	},
-	"generators": {
-		"@schematics/angular:component": {
-			"changeDetection": "OnPush"
-		},
-		"@nx/angular:application": {
-			"style": "css",
-			"unitTestRunner": "jest",
-			"e2eTestRunner": "cypress"
-		},
-		"@nx/angular:library": {
-			"unitTestRunner": "jest"
-		},
-		"@nx/angular:component": {
-			"style": "css"
-		},
-		"@nx/react": {
-			"application": {
-				"style": "scss",
-				"bundler": "webpack",
-				"babel": true
-			},
-			"component": {
-				"style": "scss"
-			},
-			"library": {
-				"style": "scss"
-			}
-		}
-	},
-	"affected": {
-		"defaultBase": "master"
-	},
-	"targetDefaults": {
-		"build": {
-			"dependsOn": ["^build"],
-			"inputs": ["production", "^production"]
-		},
-		"test": {
-			"inputs": ["default", "^production", "{workspaceRoot}/karma.conf.js"]
-		},
-		"e2e": {
-			"inputs": ["default", "^production"]
-		},
-		"lint": {
-			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
-		},
-		"component-test": {
-			"inputs": ["default", "^production"]
-		}
-	},
-	"$schema": "./node_modules/nx/schemas/nx-schema.json",
-	"namedInputs": {
-		"default": ["{projectRoot}/**/*", "sharedGlobals"],
-		"sharedGlobals": [
-			"{workspaceRoot}/angular.json",
-			"{workspaceRoot}/tsconfig.json",
-			"{workspaceRoot}/.eslintrc.json",
-			"{workspaceRoot}/nx.json",
-			"{workspaceRoot}/babel.config.json"
-		],
-		"production": [
-			"default",
-			"!{projectRoot}/**/*.spec.[jt]s",
-			"!{projectRoot}/tsconfig.spec.json",
-			"!{projectRoot}/karma.conf.js",
-			"!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-			"!{projectRoot}/jest.config.[jt]s",
-			"!{projectRoot}/.eslintrc.json",
-			"!{projectRoot}/cypress/**/*",
-			"!{projectRoot}/**/*.cy.[jt]s?(x)",
-			"!{projectRoot}/cypress.config.[jt]s",
-			"!{projectRoot}/src/test-setup.[jt]s"
-		]
-	},
-	"defaultProject": "todo-app"
+  "npmScope": "todo",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "component-test"
+        ]
+      }
+    }
+  },
+  "generators": {
+    "@schematics/angular:component": {
+      "changeDetection": "OnPush"
+    },
+    "@nx/angular:application": {
+      "style": "css",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nx/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "css"
+    },
+    "@nx/react": {
+      "application": {
+        "style": "scss",
+        "bundler": "webpack",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss"
+      }
+    }
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    },
+    "test": {
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/karma.conf.js"
+      ]
+    },
+    "e2e": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json"
+      ]
+    },
+    "component-test": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/angular.json",
+      "{workspaceRoot}/tsconfig.json",
+      "{workspaceRoot}/.eslintrc.json",
+      "{workspaceRoot}/nx.json",
+      "{workspaceRoot}/babel.config.json"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.[jt]s",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/karma.conf.js",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s"
+    ]
+  },
+  "defaultProject": "todo-app"
 }

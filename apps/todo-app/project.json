@@ -103,7 +103,7 @@
 			}
 		},
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/jest:jest",
 			"options": {
 				"jestConfig": "apps/todo-app/jest.config.ts",
 				"passWithNoTests": true
