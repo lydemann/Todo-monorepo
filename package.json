@@ -108,6 +108,7 @@
     "@nestjs/testing": "10.0.5",
     "@ngneat/spectator": "14.0.0",
     "@nrwl/js": "16.5.2",
+    "@nx/angular": "16.5.2",
     "@nx/cypress": "16.5.2",
     "@nx/eslint-plugin": "16.5.2",
     "@nx/jest": "16.5.2",
@@ -210,8 +211,6 @@
     "typescript": "5.1.6",
     "url-loader": "^4.1.1",
     "webpack": "^5.75.0",
-    "webpack-merge": "^5.8.0",
-    "@nx/angular": "16.5.2"
+    "webpack-merge": "^5.8.0"
   }
 }
-
