@@ -1,9 +1,9 @@
-$AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD --plain';
+$AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD';
 $AffectedAppsString = $AffectedAppsObj[4];
 
 if ($AffectedAppsString -eq "") {
     Write-Host "No affected apps. Tagging with all apps.";
-    $AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --all --plain';
+    $AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --all';
     $AffectedAppsString = $AffectedAppsObj[4];
 }
 
