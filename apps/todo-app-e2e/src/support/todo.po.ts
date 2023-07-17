@@ -19,7 +19,6 @@ export class TodoPage {
 		cy.get('[data-test=todo-item]').should('have.length', 5);
 		cy.get('[data-test=todo-item]')
 			.first()
-			.shadow()
 			.find('[data-test=delete-button]')
 			.click();
 		cy.get('[data-test=todo-item]').should('have.length', 4);
@@ -30,7 +29,6 @@ export class TodoPage {
 		cy.get('[data-test=todo-item]').should('have.length', 5);
 		cy.get('[data-test=todo-item]')
 			.first()
-			.shadow()
 			.find('[data-test=edit-button]')
 			.click();
 		cy.get('[data-test=todo-title]').clear().type('Edited name');

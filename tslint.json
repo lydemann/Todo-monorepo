@@ -7,7 +7,7 @@
 	],
 	"rulesDirectory": [
 		"node_modules/codelyzer",
-		"node_modules/@nrwl/workspace/src/tslint"
+		"node_modules/@nx/workspace/src/tslint"
 	],
 	"rules": {
 		"deprecation": {

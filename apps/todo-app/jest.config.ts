@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
-	displayName: 'todo-app-feature',
-	preset: '../../../jest.preset.js',
+	displayName: 'todo-app',
+	preset: '../../jest.preset.js',
 	setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
 	globals: {},
-	coverageDirectory: '../../../coverage/libs/todo-app/feature',
+	coverageDirectory: '../../coverage/apps/todo-app',
 	transform: {
 		'^.+\\.(ts|mjs|js|html)$': [
 			'jest-preset-angular',

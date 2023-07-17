@@ -1,20 +1,20 @@
-import { mount } from 'cypress/angular';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 import { Component, NgZone } from '@angular/core';
-import { appRoutes } from 'apps/todo-app/src/app/app.routes';
-import { AppModule } from 'apps/todo-app/src/app/app.module';
-import * as config from 'apps/todo-app/src/assets/app-config.json';
-import { TodoItem } from '@todo/shared/todo-interfaces';
-import { TodoListResourcesService } from 'libs/todo-app/domain/src/lib/todo-list/resources/todo-list-resources.service';
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import {
 	TranslateLoader,
 	TranslateModule,
 	TranslateService,
 } from '@ngx-translate/core';
-import { formatDate } from '@angular/common';
+import { TodoItem } from '@todo/shared/todo-interfaces';
+import { AppModule } from 'apps/todo-app/src/app/app.module';
+import { appRoutes } from 'apps/todo-app/src/app/app.routes';
+import * as config from 'apps/todo-app/src/assets/app-config.json';
 import * as transactions from 'apps/todo-service/src/assets/i18n/en-lang.json';
+import { mount } from 'cypress/angular';
+import { TodoListResourcesService } from 'libs/todo-app/domain/src/lib/todo-list/resources/todo-list-resources.service';
+import { Observable, of } from 'rxjs';
 
 class CustomLoader implements TranslateLoader {
 	getTranslation(lang: string): Observable<any> {
@@ -85,7 +85,7 @@ describe('TodoListComponent', () => {
 				description,
 				dueDate,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
@@ -94,7 +94,7 @@ describe('TodoListComponent', () => {
 	});
 
 	it('should create todo item', () => {
-		setup().then(({ }) => {
+		setup().then(({}) => {
 			const title = 'Some title';
 			cy.get('[data-test=todo-title]').type(title);
 			const description = 'Some description';
@@ -121,7 +121,7 @@ describe('TodoListComponent', () => {
 				description,
 				dueDate,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
@@ -150,8 +150,7 @@ describe('TodoListComponent', () => {
 				'shortDate',
 				'en-US',
 			);
-			cy.get('[data-test=todo-item]')
-				.contains(updatedFormattedDueDate);
+			cy.get('[data-test=todo-item]').contains(updatedFormattedDueDate);
 		});
 	});
 
@@ -163,7 +162,7 @@ describe('TodoListComponent', () => {
 				title,
 				description,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 

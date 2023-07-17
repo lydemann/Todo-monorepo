@@ -6,7 +6,7 @@
 	"generators": {},
 	"targets": {
 		"build": {
-			"executor": "@nrwl/webpack:webpack",
+			"executor": "@nx/webpack:webpack",
 			"outputs": ["{options.outputPath}"],
 			"defaultConfiguration": "production",
 			"options": {
@@ -20,7 +20,7 @@
 				"assets": ["apps/reactapp/src/favicon.ico", "apps/reactapp/src/assets"],
 				"styles": ["apps/reactapp/src/styles.scss"],
 				"scripts": [],
-				"webpackConfig": "@nrwl/react/plugins/webpack"
+				"webpackConfig": "@nx/react/plugins/webpack"
 			},
 			"configurations": {
 				"development": {
@@ -46,7 +46,7 @@
 			}
 		},
 		"serve": {
-			"executor": "@nrwl/webpack:dev-server",
+			"executor": "@nx/webpack:dev-server",
 			"options": {
 				"buildTarget": "reactapp:build",
 				"port": 4201
@@ -58,7 +58,7 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": ["apps/reactapp/**/*.tsx"]

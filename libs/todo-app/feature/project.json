@@ -6,7 +6,7 @@
 	"prefix": "todo",
 	"targets": {
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/libs/todo-app/feature"],
 			"options": {
 				"jestConfig": "libs/todo-app/feature/jest.config.ts",
@@ -14,7 +14,7 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": [
@@ -24,7 +24,7 @@
 			}
 		},
 		"component-test": {
-			"executor": "@nrwl/cypress:cypress",
+			"executor": "@nx/cypress:cypress",
 			"options": {
 				"cypressConfig": "libs/todo-app/feature/cypress.config.ts",
 				"testingType": "component",

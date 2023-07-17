@@ -5,9 +5,10 @@
 	"projectType": "application",
 	"targets": {
 		"e2e": {
-			"executor": "@nrwl/cypress:cypress",
+			"executor": "@nx/cypress:cypress",
 			"options": {
-				"cypressConfig": "apps/todo-app-e2e/cypress.json",
+				"cypressConfig": "apps/todo-app-e2e/cypress.config.ts",
+				"browser": "chrome",
 				"devServerTarget": "todo-app:serve:development"
 			},
 			"configurations": {
@@ -17,7 +18,7 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": ["apps/todo-app-e2e/**/*.{js,ts}"]
