@@ -178,7 +178,7 @@
     "karma-jasmine-html-reporter": "2.0.0",
     "karma-junit-reporter": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
-    "lint-staged": "^8.1.6",
+    "lint-staged": "^14.0.0",
     "ng-mocks": "14.11.0",
     "ng-packagr": "16.1.0",
     "ngrx-store-freeze": "0.2.4",
@@ -214,4 +214,3 @@
     "webpack-merge": "^5.8.0"
   }
 }
-
