@@ -1,5 +1,13 @@
-import { ApplicationRef, ChangeDetectorRef, HostListener } from '@angular/core';
+import {
+	ApplicationRef,
+	ChangeDetectorRef,
+	Component,
+	HostListener,
+} from '@angular/core';
 
+@Component({
+	template: '',
+})
 export abstract class ElementComponent {
 	constructor(
 		private changeDetectionRef: ChangeDetectorRef,

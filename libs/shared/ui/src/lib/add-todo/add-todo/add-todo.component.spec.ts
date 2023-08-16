@@ -4,11 +4,11 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { of } from 'rxjs';
 
-import { DatePickerModule } from '@todo/shared/ui';
 import { provideMagicalMock } from '@todo/shared/util-test';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { TodoListFacadeService } from '@todo/todo-app/domain';
+import { DatePickerModule } from '../../date-picker/date-picker.module';
 import { AddTodoComponent } from './add-todo.component';
 
 describe('AddTodoComponent', () => {
