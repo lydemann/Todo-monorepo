@@ -1,4 +1,4 @@
-$AffectedAppsObj = Invoke-Expression 'nx print-affected --type=app --select=projects';
+$AffectedAppsObj = Invoke-Expression 'npx nx print-affected --type=app --select=projects';
 $AffectedAppsString = $AffectedAppsObj;
 
 if ($AffectedAppsString -eq "") {
