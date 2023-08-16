@@ -57,13 +57,11 @@ Write-Host "Tagging git hash in artifact: $($sourceVersion)";
 addTagToBuildArtifact -tag $sourceVersion;
 
 
-$AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD';
-$AffectedAppsString = $AffectedAppsObj[4];
+$AffectedAppsString = Invoke-Expression 'npx nx print-affected --type=app --select=projects --base=origin/master';
 
 if (!$AffectedAppsString -and $AffectedAppsString -eq "") {
     Write-Host "No affected apps. Tagging with all apps.";
-    $AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --all';
-    $AffectedAppsString = $AffectedAppsObj[4];
+    $AffectedAppsString = Invoke-Expression 'npx nx print-affected --type=app --select=projects --base=origin/master';
 }
 
 $AffectedApps = $AffectedAppsString.Split(" ");
