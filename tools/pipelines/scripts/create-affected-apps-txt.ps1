@@ -1,9 +1,9 @@
-$AffectedAppsObj = Invoke-Expression 'npx nx print-affected --type=app --select=projects';
+$AffectedAppsObj = Invoke-Expression 'npx nx print-affected --type=app --select=projects --base=origin/master';
 $AffectedAppsString = $AffectedAppsObj;
 
 if ($AffectedAppsString -eq "") {
     Write-Host "No affected apps. Tagging with all apps.";
-    $AffectedAppsObj = Invoke-Expression 'npx nx print-affected --type=app --select=projects';
+    $AffectedAppsObj = Invoke-Expression 'npx nx print-affected --type=app --select=projects --base=origin/master';
     $AffectedAppsString = $AffectedAppsObj;
 }
 
