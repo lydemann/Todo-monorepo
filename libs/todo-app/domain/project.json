@@ -6,7 +6,7 @@
 	"prefix": "todo",
 	"targets": {
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/libs/todo-app/domain"],
 			"options": {
 				"jestConfig": "libs/todo-app/domain/jest.config.ts",
@@ -14,7 +14,7 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"options": {
 				"lintFilePatterns": [
 					"libs/todo-app/domain/**/*.ts",

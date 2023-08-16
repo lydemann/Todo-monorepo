@@ -5,5 +5,11 @@
 		"types": ["jasmine"]
 	},
 	"include": ["**/*.ts"],
-	"exclude": ["src/test-setup.ts", "**/*.spec.ts", "util-test"]
+	"exclude": [
+		"src/test-setup.ts",
+		"**/*.spec.ts",
+		"util-test",
+		"**/*.stories.ts",
+		"**/*.stories.js"
+	]
 }

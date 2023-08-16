@@ -7,7 +7,7 @@
 	"generators": {},
 	"targets": {
 		"build": {
-			"executor": "@nrwl/webpack:webpack",
+			"executor": "@nx/webpack:webpack",
 			"options": {
 				"outputPath": "dist/apps/logging-service",
 				"main": "apps/logging-service/src/main.ts",
@@ -31,14 +31,14 @@
 			}
 		},
 		"serve": {
-			"executor": "@nrwl/node:execute",
+			"executor": "@nx/node:execute",
 			"options": {
 				"buildTarget": "logging-service:build",
 				"port": 0
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": [
@@ -48,7 +48,7 @@
 			}
 		},
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/jest:jest",
 			"options": {
 				"jestConfig": "apps/logging-service/jest.config.ts",
 				"tsConfig": "apps/logging-service/tsconfig.spec.json"

@@ -5,24 +5,8 @@
 	"projectType": "library",
 	"prefix": "todo",
 	"targets": {
-		"build": {
-			"executor": "ngx-build-plus:browser",
-			"options": {
-				"outputPath": "dist/libs/shared/ui",
-				"index": "libs/shared/ui/src/index.html",
-				"main": "libs/shared/ui/src/main.ts",
-				"polyfills": "libs/shared/ui/src/polyfills.ts",
-				"tsConfig": "libs/shared/ui/tsconfig.lib.json",
-				"stylePreprocessorOptions": {
-					"includePaths": ["libs/shared/ui/styles/src/lib"]
-				},
-				"styles": ["libs/shared/ui/src/styles.scss"],
-				"scripts": [],
-				"singleBundle": true
-			}
-		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": [
@@ -40,6 +24,47 @@
 				"stylePreprocessorOptions": {
 					"includePaths": ["libs/shared/ui/styles/src/lib"]
 				}
+			}
+		},
+		"storybook": {
+			"executor": "@storybook/angular:start-storybook",
+			"options": {
+				"port": 4400,
+				"configDir": "libs/shared/ui/.storybook",
+				"browserTarget": "shared-ui:build-storybook",
+				"compodoc": false,
+				"stylePreprocessorOptions": {
+					"includePaths": ["libs/shared/ui/styles/src/lib"]
+				}
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"build-storybook": {
+			"executor": "@storybook/angular:build-storybook",
+			"outputs": ["{options.outputDir}"],
+			"options": {
+				"outputDir": "dist/storybook/shared-ui",
+				"configDir": "libs/shared/ui/.storybook",
+				"browserTarget": "shared-ui:build-storybook",
+				"compodoc": false,
+				"stylePreprocessorOptions": {
+					"includePaths": ["libs/shared/ui/styles/src/lib"]
+				}
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"test-storybook": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "test-storybook -c libs/shared/ui/.storybook --url=http://localhost:4400"
 			}
 		}
 	},

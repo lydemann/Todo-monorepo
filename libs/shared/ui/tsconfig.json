@@ -4,5 +4,10 @@
 		"types": ["node", "jest"],
 		"target": "es2020"
 	},
-	"include": ["**/*.ts"]
+	"include": ["**/*.ts"],
+	"references": [
+		{
+			"path": "./.storybook/tsconfig.json"
+		}
+	]
 }

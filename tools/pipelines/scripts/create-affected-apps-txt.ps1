@@ -1,10 +1,10 @@
-$AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --base=origin/master --head=HEAD --plain';
-$AffectedAppsString = $AffectedAppsObj[4];
+$AffectedAppsObj = Invoke-Expression 'npx nx print-affected --type=app --select=projects --base=origin/master';
+$AffectedAppsString = $AffectedAppsObj;
 
 if ($AffectedAppsString -eq "") {
     Write-Host "No affected apps. Tagging with all apps.";
-    $AffectedAppsObj = Invoke-Expression 'npm run affected:apps -- --all --plain';
-    $AffectedAppsString = $AffectedAppsObj[4];
+    $AffectedAppsObj = Invoke-Expression 'npx nx print-affected --type=app --select=projects --base=origin/master';
+    $AffectedAppsString = $AffectedAppsObj;
 }
 
 "Affected apps: $AffectedAppsString";

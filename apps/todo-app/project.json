@@ -103,33 +103,21 @@
 			}
 		},
 		"test": {
-			"executor": "@angular-devkit/build-angular:karma",
+			"executor": "@nx/jest:jest",
 			"options": {
-				"main": "apps/todo-app/src/test.ts",
-				"polyfills": "apps/todo-app/src/polyfills.ts",
-				"tsConfig": "apps/todo-app/tsconfig.spec.json",
-				"karmaConfig": "apps/todo-app/karma.conf.js",
-				"styles": ["apps/todo-app/src/styles.scss"],
-				"stylePreprocessorOptions": {
-					"includePaths": ["libs/shared/ui/styles/src/lib"]
-				},
-				"scripts": [],
-				"assets": [
-					"apps/todo-app/src/favicon.ico",
-					"apps/todo-app/src/assets",
-					"apps/todo-app/src/manifest.json"
-				]
+				"jestConfig": "apps/todo-app/jest.config.ts",
+				"passWithNoTests": true
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": ["apps/todo-app/**/*.ts", "apps/todo-app/**/*.html"]
 			}
 		},
 		"component-test": {
-			"executor": "@nrwl/cypress:cypress",
+			"executor": "@nx/cypress:cypress",
 			"options": {
 				"cypressConfig": "apps/todo-app/cypress.config.ts",
 				"testingType": "component",

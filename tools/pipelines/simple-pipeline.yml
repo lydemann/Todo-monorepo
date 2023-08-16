@@ -8,12 +8,12 @@ variables:
     NX_BRANCH: $(System.PullRequest.PullRequestNumber)
     TARGET_BRANCH: $[replace(variables['System.PullRequest.TargetBranch'],'refs/heads/','origin/')]
     BASE_SHA: origin/master
-    AFFECTED_APPS: $(npx nx affected:apps --base=$(BASE_SHA) --plain)
+    AFFECTED_APPS: $(npx nx affected:apps --base=$(BASE_SHA))
   ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
     NX_BRANCH: $(Build.SourceBranchName)
     BASE_SHA: $(git rev-parse HEAD~1)
     HEAD_SHA: $(git rev-parse HEAD)
-    AFFECTED_APPS: if [ -z $(npx nx affected:apps --base=$(BASE_SHA) ]; then echo $(npx nx affected:apps --all --plain); else echo $(npx nx affected:apps --base=$(BASE_SHA) --plain); fi;
+    AFFECTED_APPS: if [ -z $(npx nx affected:apps --base=$(BASE_SHA) ]; then echo $(npx nx affected:apps --all); else echo $(npx nx affected:apps --base=$(BASE_SHA)); fi;
 jobs:
   - job: Lint
     pool:

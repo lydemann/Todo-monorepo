@@ -6,7 +6,7 @@
 	"generators": {},
 	"targets": {
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
+			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
 				"lintFilePatterns": [
@@ -16,7 +16,7 @@
 			}
 		},
 		"test": {
-			"executor": "@nrwl/jest:jest",
+			"executor": "@nx/jest:jest",
 			"options": {
 				"jestConfig": "libs/shared/interfaces/todo-interfaces/jest.config.ts",
 				"passWithNoTests": true

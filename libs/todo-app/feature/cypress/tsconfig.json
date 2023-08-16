@@ -1,0 +1,16 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../../dist/out-tsc",
+		"module": "commonjs",
+		"lib": ["es5", "dom"],
+		"types": ["cypress"],
+		"sourceMap": false
+	},
+	"include": [
+		"../cypress.config.ts",
+		"**/*.ts",
+		"../**/*.cy.ts",
+		"../**/*/*.d.ts"
+	]
+}

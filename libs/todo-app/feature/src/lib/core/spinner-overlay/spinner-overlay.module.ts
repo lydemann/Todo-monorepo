@@ -8,7 +8,6 @@ import { SpinnerOverlayService } from './spinner-overlay.service';
 @NgModule({
 	imports: [CommonModule, SpinnerModule],
 	declarations: [SpinnerOverlayComponent],
-	entryComponents: [SpinnerOverlayComponent],
 	providers: [SpinnerOverlayService],
 	exports: [],
 })
