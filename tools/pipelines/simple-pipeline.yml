@@ -1,7 +1,7 @@
 trigger:
-  - main
+  - master
 pr:
-  - main
+  - master
 
 variables:
   CI: "true"
@@ -10,7 +10,7 @@ variables:
   HEAD_SHA: $(git rev-parse HEAD)
 
 jobs:
-  - job: main
+  - job: master
     pool:
       vmImage: "ubuntu-latest"
     steps:
