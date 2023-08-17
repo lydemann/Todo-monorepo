@@ -6,7 +6,7 @@ pr: none
 jobs:
   - job: PrepareAppRelease
     pool:
-    vmImage: ubuntu-latest
+      vmImage: "ubuntu-latest"
     variables:
       TAGS: "$(Build.SourceVersion)"
     steps:
