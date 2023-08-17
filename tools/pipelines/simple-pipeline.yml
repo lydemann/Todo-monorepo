@@ -1,50 +1,41 @@
 trigger:
-  - master
+  - main
 pr:
-  - master
+  - main
 
 variables:
-  ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
-    NX_BRANCH: $(System.PullRequest.PullRequestNumber)
-    TARGET_BRANCH: $[replace(variables['System.PullRequest.TargetBranch'],'refs/heads/','origin/')]
-    BASE_SHA: origin/master
-    AFFECTED_APPS: $(npx nx affected:apps --base=$(BASE_SHA))
-  ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
-    NX_BRANCH: $(Build.SourceBranchName)
-    BASE_SHA: $(git rev-parse HEAD~1)
-    HEAD_SHA: $(git rev-parse HEAD)
-    AFFECTED_APPS: if [ -z $(npx nx affected:apps --base=$(BASE_SHA) ]; then echo $(npx nx affected:apps --all); else echo $(npx nx affected:apps --base=$(BASE_SHA)); fi;
+  CI: "true"
+  NX_BRANCH: $(Build.SourceBranchName)
+  DEFAULT_BASE_SHA: $(git rev-parse HEAD~1)
+  HEAD_SHA: $(git rev-parse HEAD)
+
 jobs:
-  - job: Lint
+  - job: main
     pool:
       vmImage: "ubuntu-latest"
     steps:
+      # Set Azure Devops CLI default settings
+      - bash: az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)
+        displayName: "Set default Azure DevOps organization and project"
+
+      # Get last successfull commit from Azure Devops CLI
+      - bash: |
+          LAST_SHA=$(az pipelines build list --branch $(Build.SourceBranchName) --definition-ids $(System.DefinitionId) --result succeeded --top 1 --query "[0].triggerInfo.\"ci.sourceSha\"")
+          if [ -z "$LAST_SHA" ]
+          then
+            LAST_SHA=$DEFAULT_BASE_SHA
+          fi
+          echo "Last successful commit SHA: $LAST_SHA"
+          echo "##vso[task.setvariable variable=BASE_SHA]$LAST_SHA"
+        displayName: "Get last successful commit SHA"
+        env:
+          AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+
       - script: npm ci
 
       - script: npx nx workspace-lint
-      - script: npx nx affected --base=$(BASE_SHA) --target=lint --parallel=3
-  - job: Test
-    pool:
-      vmImage: "ubuntu-latest"
-    steps:
-      - script: npm ci
+      - script: npx nx format:check
 
-      - script: npx nx affected --base=$(BASE_SHA) --target=test --parallel=1 --code-coverage
-  - job: Build
-    pool:
-      vmImage: "ubuntu-latest"
-    steps:
-      - script: npm ci
-
-      - script: npx nx affected --target=build --base=$(BASE_SHA) --parallel=3
-
-      - task: PowerShell@2
-        displayName: Tags build artifact for affected apps
-        env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-        inputs:
-          targetType: "filePath"
-          filePath: "tools/pipelines/scripts/tags-for-affected-apps.ps1"
-          pwsh: true
-
-      - template: templates/publish-artifacts.yml
+      - script: npx nx affected --base=$(BASE_SHA) -t lint --parallel=3
+      - script: npx nx affected --base=$(BASE_SHA) -t test --parallel=3 --ci --code-coverage
+      - script: npx nx affected --base=$(BASE_SHA) -t build --parallel=3

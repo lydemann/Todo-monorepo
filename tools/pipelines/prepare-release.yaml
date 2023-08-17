@@ -2,8 +2,11 @@ name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger:
   - master
 pr: none
+
 jobs:
   - job: PrepareAppRelease
+    pool:
+    vmImage: ubuntu-latest
     variables:
       TAGS: "$(Build.SourceVersion)"
     steps:
