@@ -61,7 +61,8 @@ $AffectedAppsString = Invoke-Expression 'npx nx print-affected --type=app --sele
 
 if (!$AffectedAppsString -and $AffectedAppsString -eq "") {
     Write-Host "No affected apps. Tagging with all apps.";
-    $AffectedAppsString = Invoke-Expression 'npx nx print-affected --type=app --select=projects --base=origin/master';
+    $AffectedAppsObj = Invoke-Expression 'npx nx show projects -t build';
+    $AffectedAppsString = $AffectedAppsObj -join ' ';
 }
 
 $AffectedApps = $AffectedAppsString.Split(" ");
