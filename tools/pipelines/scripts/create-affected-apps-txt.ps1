@@ -3,8 +3,8 @@ $AffectedAppsString = $AffectedAppsObj;
 
 if ($AffectedAppsString -eq "") {
     Write-Host "No affected apps. Tagging with all apps.";
-    $AffectedAppsObj = Invoke-Expression 'npx nx print-affected --type=app --select=projects --base=origin/master';
-    $AffectedAppsString = $AffectedAppsObj;
+    $AffectedAppsObj = Invoke-Expression 'npx nx show projects -t build';
+    $AffectedAppsString = $AffectedAppsObj -join ' ';
 }
 
 "Affected apps: $AffectedAppsString";
