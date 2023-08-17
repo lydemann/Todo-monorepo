@@ -31,7 +31,7 @@ jobs:
         env:
           AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
 
-      - script: npm ci
+      - script: yarn --frozen-lockfile
 
       - script: npx nx workspace-lint
       - script: npx nx format:check
