@@ -1,5 +1,5 @@
 {
-	"{apps,libs}/**/*.{ts,json,md,scss,html}": ["prettier --write"],
+	"**/*.{ts,json,md,scss,html}": ["npx nx format:write"],
 	"*.ts": ["eslint --fix"],
 	"*.scss": ["stylelint --fix"]
 }

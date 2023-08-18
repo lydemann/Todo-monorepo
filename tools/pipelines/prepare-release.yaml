@@ -6,34 +6,34 @@ pr: none
 jobs:
   - job: PrepareAppRelease
     pool:
-      vmImage: "ubuntu-latest"
+      vmImage: 'ubuntu-latest'
     variables:
-      TAGS: "$(Build.SourceVersion)"
+      TAGS: '$(Build.SourceVersion)'
     steps:
       # Install Node dependencies
       - script: yarn add @octokit/rest --ignore-scripts
-        displayName: "Install NPM dependencies"
+        displayName: 'Install NPM dependencies'
 
       - script: node tools/pipelines/scripts/set-last-merged-pr-commit-sha.js $(GITHUB_TOKEN)
-        displayName: "Set last merged pr commit SHA"
+        displayName: 'Set last merged pr commit SHA'
 
       - script: mkdir $(System.ArtifactsDirectory)/monorepopackage
         displayName: CreateDownloadOutputDirectory
 
       - task: DownloadBuildArtifacts@1
-        displayName: "Download Build Artifacts"
+        displayName: 'Download Build Artifacts'
         inputs:
           buildType: specific
-          project: "f6995a74-0552-4d3b-b372-a80af3d9b89a"
+          project: 'f6995a74-0552-4d3b-b372-a80af3d9b89a'
           pipeline: 4
-          tags: "$(LAST_PR_SHA)"
+          tags: '$(LAST_PR_SHA)'
           downloadType: single
           artifactName: drop
-          downloadPath: "$(System.ArtifactsDirectory)/monorepopackage"
+          downloadPath: '$(System.ArtifactsDirectory)/monorepopackage'
 
       - task: ExtractFiles@1
         inputs:
-          archiveFilePatterns: "$(System.ArtifactsDirectory)/monorepopackage/drop/*.zip"
+          archiveFilePatterns: '$(System.ArtifactsDirectory)/monorepopackage/drop/*.zip'
           destinationFolder: $(System.DefaultWorkingDirectory)/dist
           cleanDestinationFolder: true
 
@@ -43,8 +43,8 @@ jobs:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
           GITHUB_TOKEN: $(GithubToken)
         inputs:
-          targetType: "filePath"
-          filePath: "tools/pipelines/scripts/read-and-tag-affected-apps-in-artifact.ps1"
+          targetType: 'filePath'
+          filePath: 'tools/pipelines/scripts/read-and-tag-affected-apps-in-artifact.ps1'
           pwsh: true
 
       - template: templates/publish-artifacts.yml
