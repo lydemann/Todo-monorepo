@@ -26,7 +26,7 @@ export class TodoListComponent {
 		),
 	);
 
-	constructor(private todoListFacadeService: TodoListFacadeService) { }
+	constructor(private todoListFacadeService: TodoListFacadeService) {}
 
 	public deleteTodo(id: string) {
 		this.todoListFacadeService.deleteTodo(id);
