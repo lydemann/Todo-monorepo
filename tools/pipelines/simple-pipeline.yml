@@ -51,7 +51,7 @@ jobs:
       - script: npx nx affected --base=$(BASE_SHA) -t build --parallel=3
         displayName: 'Build'
       - script: |
-          projects=`npx nx show projects --affected --json --base=$(BASE_SHA) --head=$(HEAD_SHA)`
+          projects=`npx nx show projects --affected`
           echo "Touched projects:"
           echo $projects
 
