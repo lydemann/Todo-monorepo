@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpinnerModule } from '@todo/shared/ui';
+import { SpinnerModule } from '../spinner/spinner.module';
 import { SpinnerOverlayWrapperComponent } from './spinner-overlay-wrapper.component';
 
 describe('SpinnerOverlayWrapperComponent', () => {
