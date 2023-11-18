@@ -7,8 +7,8 @@ import {
 	TranslateModule,
 	TranslateService,
 } from '@ngx-translate/core';
+import { AppModule } from '@todo-app/src/app/app.module';
 import { TodoItem } from '@todo/shared/todo-interfaces';
-import { AppModule } from 'apps/todo-app/src/app/app.module';
 import { appRoutes } from 'apps/todo-app/src/app/app.routes';
 import * as config from 'apps/todo-app/src/assets/app-config.json';
 import * as transactions from 'apps/todo-service/src/assets/i18n/en-lang.json';

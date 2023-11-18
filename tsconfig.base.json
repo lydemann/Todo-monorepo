@@ -17,8 +17,8 @@
 		"paths": {
 			"@questionnaire-app/*": ["apps/questionnaire-app/src/app/*"],
 			"@test-setup-base": ["test-setup.base.ts"],
-			"@todo-app/*": ["apps/todo-app/src/app/*", "apps/todo-app/src/*"],
-			"@todo-app/ui": ["libs/shared/ui2/src/index.ts"],
+			"@todo-app/src/*": ["apps/todo-app/src/*"],
+			"@todo-app/ui": ["libs/shared/ui/src/index.ts"],
 			"@todo/shared/data-access": ["libs/shared/data-access/src/index.ts"],
 			"@todo/shared/data-access-logging": [
 				"libs/shared/data-access/data-access-logging/src/index.ts"

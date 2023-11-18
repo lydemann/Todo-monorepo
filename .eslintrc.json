@@ -75,21 +75,15 @@
 			"rules": {}
 		},
 		{
-			"files": ["*.ts", "*.tsx"],
-			"extends": [
-				"plugin:@nx/typescript",
-				"plugin:@nx/angular",
-				"plugin:@angular-eslint/template/process-inline-templates",
-				"prettier"
-			],
-			"rules": {
-				"import/order": "error"
-			},
-			"plugins": ["eslint-plugin-import"]
-		},
-		{
 			"files": ["*.js", "*.jsx"],
 			"extends": ["plugin:@nx/javascript"],
+			"rules": {}
+		},
+		{
+			"files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+			"env": {
+				"jest": true
+			},
 			"rules": {}
 		}
 	]
