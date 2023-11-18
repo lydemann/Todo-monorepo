@@ -14,7 +14,6 @@ import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { TestingModule } from '@todo/todo-app/testing-util';
 import { SharedModule } from '../shared/shared.module';
 import { TodoListComponent } from './todo-list.component';
-import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
 
 describe('TodoListComponent', () => {
 	let spectator: Spectator<TodoListComponent>;
@@ -49,8 +48,6 @@ describe('TodoListComponent', () => {
 			spectator = createComponent();
 
 			spectator.detectChanges();
-
-			// expect(spectator.element).toMatchInlineSnapshot();
 
 			expect(spectator.queryAll('[data-test=todo-item]').length).toBe(3);
 		}));
