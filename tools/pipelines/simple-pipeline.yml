@@ -50,5 +50,14 @@ jobs:
         displayName: 'Test'
       - script: npx nx affected --base=$(BASE_SHA) -t build --parallel=3
         displayName: 'Build'
+      - script: |
+          projects=`npx nx show projects --affected --json --base=$(BASE_SHA) --head=$(HEAD_SHA)`
+          echo "Touched projects:"
+          echo $projects
 
-      # Add tags for affected projects
+          for project in ${projects//,/ }
+          do
+            echo "##vso[build.addbuildtag]$project"
+            echo "Creating tag for: $project"
+          done
+        displayName: 'Tag build'
