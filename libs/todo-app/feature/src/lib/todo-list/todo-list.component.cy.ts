@@ -1,3 +1,5 @@
+/* eslint-disable no-empty-pattern */
+/* eslint-disable @nx/enforce-module-boundaries */
 import { formatDate } from '@angular/common';
 import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,8 +10,8 @@ import {
 	TranslateService,
 } from '@ngx-translate/core';
 import { AppModule } from '@todo-app/src/app/app.module';
+import { appRoutes } from '@todo-app/src/app/app.routes';
 import { TodoItem } from '@todo/shared/todo-interfaces';
-import { appRoutes } from 'apps/todo-app/src/app/app.routes';
 import * as config from 'apps/todo-app/src/assets/app-config.json';
 import * as transactions from 'apps/todo-service/src/assets/i18n/en-lang.json';
 import { mount } from 'cypress/angular';
@@ -85,7 +87,7 @@ describe('TodoListComponent', () => {
 				description,
 				dueDate,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
@@ -94,7 +96,7 @@ describe('TodoListComponent', () => {
 	});
 
 	it('should create todo item', () => {
-		setup().then(({ }) => {
+		setup().then(({}) => {
 			const title = 'Some title';
 			cy.get('[data-test=todo-title]').type(title);
 			const description = 'Some description';
@@ -121,7 +123,7 @@ describe('TodoListComponent', () => {
 				description,
 				dueDate,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
@@ -162,7 +164,7 @@ describe('TodoListComponent', () => {
 				title,
 				description,
 			} as TodoItem,
-		]).then(({ }) => {
+		]).then(({}) => {
 			cy.get('[data-test=todo-item]').contains(title);
 			cy.get('[data-test=todo-item]').contains(description);
 

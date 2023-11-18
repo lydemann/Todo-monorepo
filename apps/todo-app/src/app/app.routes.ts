@@ -5,7 +5,8 @@ import {
 	FeatureToggleCanLoadGuard,
 	FeatureTogglePreloadingStrategy,
 } from '@todo/shared/util-feature-toggle';
-import { completedTodoPath, TodoListComponent } from '@todo/todo-app/feature';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { TodoListComponent, completedTodoPath } from '@todo/todo-app/feature';
 import { TodoListResolver } from './todo-list.resolver';
 
 export const rootPath = '';
