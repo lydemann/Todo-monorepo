@@ -46,7 +46,7 @@ jobs:
         displayName: 'Format check'
       - script: npx nx affected --base=$(BASE_SHA) -t lint --parallel=3
         displayName: 'Lint'
-      - script: npx nx affected --base=$(BASE_SHA) -t test --parallel=3 --ci --code-coverage
+      - script: npx nx affected --base=$(BASE_SHA) -t test --parallel=3
         displayName: 'Test'
       - script: npx nx affected --base=$(BASE_SHA) -t build --parallel=3
         displayName: 'Build'
