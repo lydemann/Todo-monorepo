@@ -41,7 +41,9 @@ jobs:
       # Required for nx affected if we're on a branch
       - script: git branch --track master origin/master
       - script: yarn install --frozen-lockfile
+        displayName: 'Install dependencies'
       - script: npx nx format:check --base=$(BASE_SHA)
+        displayName: 'Format check'
       - script: npx nx affected --base=$(BASE_SHA) -t lint --parallel=3
         displayName: 'Lint'
       - script: npx nx affected --base=$(BASE_SHA) -t test --parallel=3 --ci --code-coverage
