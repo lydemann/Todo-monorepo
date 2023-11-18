@@ -16,8 +16,8 @@ export class ToggleComponent {
 		return this._isIcon;
 	}
 	@Input() public labelPosition: 'before' | 'after' = 'after';
-	@Input() public labelTextOn: string;
-	@Input() public labelTextOff: string;
+	@Input() public labelTextOn = '';
+	@Input() public labelTextOff = '';
 	@Input() public disabled = false;
 	@Input() public checked = false;
 	@Output() public toggleChange = new EventEmitter<boolean>();
