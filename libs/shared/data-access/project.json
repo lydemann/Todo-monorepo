@@ -29,5 +29,5 @@
 			"styleext": "scss"
 		}
 	},
-	"tags": ["type:data-access", "scope:shared"]
+	"tags": ["type:domain", "scope:shared"]
 }

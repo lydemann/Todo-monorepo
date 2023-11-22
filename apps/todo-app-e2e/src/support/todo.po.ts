@@ -31,9 +31,12 @@ export class TodoPage {
 			.first()
 			.find('[data-test=edit-button]')
 			.click();
-		cy.get('[data-test=todo-title]').clear().type('Edited name');
-		cy.get('[data-test=todo-description]').clear().type('Some description');
-		cy.get('[data-test=todo-duedate]').clear().type('2019-10-10');
+		cy.get('[data-test=todo-title]').clear();
+		cy.get('[data-test=todo-title]').type('Edited name');
+		cy.get('[data-test=todo-description]').clear();
+		cy.get('[data-test=todo-description]').type('Some description');
+		cy.get('[data-test=todo-duedate]').clear();
+		cy.get('[data-test=todo-duedate]').type('2019-10-10');
 		cy.get('[data-test=create-todo-submit]').click();
 
 		cy.get('[data-test=todo-item]').should('have.length', 5);

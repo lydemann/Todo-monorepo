@@ -3,65 +3,68 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "apps/reactapp/src",
 	"projectType": "application",
-	"generators": {},
 	"targets": {
 		"build": {
-			"executor": "@nx/webpack:webpack",
+			"executor": "@nx/vite:build",
 			"outputs": ["{options.outputPath}"],
 			"defaultConfiguration": "production",
 			"options": {
-				"compiler": "babel",
-				"outputPath": "dist/apps/reactapp",
-				"index": "apps/reactapp/src/index.html",
-				"baseHref": "/",
-				"main": "apps/reactapp/src/main.tsx",
-				"polyfills": "apps/reactapp/src/polyfills.ts",
-				"tsConfig": "apps/reactapp/tsconfig.app.json",
-				"assets": ["apps/reactapp/src/favicon.ico", "apps/reactapp/src/assets"],
-				"styles": ["apps/reactapp/src/styles.scss"],
-				"scripts": [],
-				"webpackConfig": "@nx/react/plugins/webpack"
+				"outputPath": "dist/apps/reactapp"
 			},
 			"configurations": {
 				"development": {
-					"extractLicenses": false,
-					"optimization": false,
-					"sourceMap": true,
-					"vendorChunk": true
+					"mode": "development"
 				},
 				"production": {
-					"fileReplacements": [
-						{
-							"replace": "apps/reactapp/src/environments/environment.ts",
-							"with": "apps/reactapp/src/environments/environment.prod.ts"
-						}
-					],
-					"optimization": true,
-					"outputHashing": "all",
-					"sourceMap": false,
-					"namedChunks": false,
-					"extractLicenses": true,
-					"vendorChunk": false
+					"mode": "production"
 				}
 			}
 		},
 		"serve": {
-			"executor": "@nx/webpack:dev-server",
+			"executor": "@nx/vite:dev-server",
+			"defaultConfiguration": "development",
 			"options": {
-				"buildTarget": "reactapp:build",
-				"port": 4201
+				"buildTarget": "reactapp:build"
 			},
 			"configurations": {
+				"development": {
+					"buildTarget": "reactapp:build:development",
+					"hmr": true
+				},
+				"production": {
+					"buildTarget": "reactapp:build:production",
+					"hmr": false
+				}
+			}
+		},
+		"preview": {
+			"executor": "@nx/vite:preview-server",
+			"defaultConfiguration": "development",
+			"options": {
+				"buildTarget": "reactapp:build"
+			},
+			"configurations": {
+				"development": {
+					"buildTarget": "reactapp:build:development"
+				},
 				"production": {
 					"buildTarget": "reactapp:build:production"
 				}
 			}
 		},
+		"test": {
+			"executor": "@nx/vite:test",
+			"outputs": ["{options.reportsDirectory}"],
+			"options": {
+				"passWithNoTests": true,
+				"reportsDirectory": "../../coverage/apps/reactapp"
+			}
+		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
+			"executor": "@nx/eslint:lint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
-				"lintFilePatterns": ["apps/reactapp/**/*.tsx"]
+				"lintFilePatterns": ["apps/reactapp/**/*.{ts,tsx,js,jsx}"]
 			}
 		}
 	},

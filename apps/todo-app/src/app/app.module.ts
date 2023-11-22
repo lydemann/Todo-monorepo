@@ -1,12 +1,12 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { ApiEndpoints, API_ENDPOINTS } from '@todo/shared/data-access';
+import { API_ENDPOINTS, ApiEndpoints } from '@todo/shared/data-access';
 import {
 	GlobalErrorHandler,
 	LogService,
@@ -16,7 +16,8 @@ import {
 	FeatureToggleService,
 } from '@todo/shared/util-feature-toggle';
 import { environment } from '@todo/todo-app/domain';
-import { LayoutModule, CoreModule } from '@todo/todo-app/feature';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { CoreModule, LayoutModule } from '@todo/todo-app/feature';
 import { AppInitService } from './app-init.service';
 import { AppComponent } from './app.component';
 import { appRouterModule } from './app.routes';

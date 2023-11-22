@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LocaleService {
-	private _locale: string;
+	private _locale = 'en-US';
 
 	public set locale(value: string) {
 		this._locale = value;

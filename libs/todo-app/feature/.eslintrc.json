@@ -4,9 +4,6 @@
 	"overrides": [
 		{
 			"files": ["*.ts"],
-			"parserOptions": {
-				"project": ["libs/todo-app/feature/tsconfig.*?.json"]
-			},
 			"rules": {
 				"@angular-eslint/directive-selector": [
 					"error",

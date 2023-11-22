@@ -21,14 +21,12 @@ export const TodoForm = ({ todoItem, saveTodo }) => {
 	}, [todoItem]);
 
 	return (
-		<React.Fragment>
-			<app-todo-form
-				headline-text='Add todo'
-				due-date-text='Due date'
-				create-text='Create'
-				save-text='Save'
-			></app-todo-form>
-		</React.Fragment>
+		<app-todo-form
+			headline-text='Add todo'
+			due-date-text='Due date'
+			create-text='Create'
+			save-text='Save'
+		></app-todo-form>
 	);
 };
 

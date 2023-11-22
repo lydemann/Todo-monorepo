@@ -23,5 +23,5 @@
 			}
 		}
 	},
-	"tags": ["type:interface", "scope:shared"]
+	"tags": ["type:domain", "scope:shared"]
 }
