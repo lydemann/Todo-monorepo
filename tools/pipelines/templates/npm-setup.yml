@@ -1,6 +1,6 @@
 parameters:
   - name: 'installCypress'
-    default: false
+    default: true
     type: boolean
 
 steps:
