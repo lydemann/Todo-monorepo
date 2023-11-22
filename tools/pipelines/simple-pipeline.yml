@@ -13,6 +13,7 @@ variables:
     NX_BRANCH: $(Build.SourceBranchName)
     BASE_SHA: $(git rev-parse HEAD~1)
   HEAD_SHA: $(git rev-parse HEAD)
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 jobs:
   - job: master
@@ -40,10 +41,41 @@ jobs:
 
       # Required for nx affected if we're on a branch
       - script: git branch --track master origin/master
-      - template: templates/npm-setup.yml
+
+      - task: Cache@2
+        inputs:
+          key: '"yarn" | "$(Agent.OS)" | yarn.lock'
+          restoreKeys: |
+            "yarn" | "$(Agent.OS)"
+            "yarn"
+          path: $(YARN_CACHE_FOLDER)
+        displayName: Cache Yarn packages
+
+      - script: yarn --frozen-lockfile
+
       - script: npx nx format:check --base=$(BASE_SHA)
         displayName: 'Format check'
       - script: npx nx affected --base=$(BASE_SHA) -t lint,test,build --parallel=3
+
+      # archive and publish artifacts
+      - task: ArchiveFiles@2
+        displayName: Archive Build Artifacts
+        condition: always()
+        continueOnError: true
+        inputs:
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Build Artifacts
+        condition: always()
+        continueOnError: true
+        inputs:
+          pathtoPublish: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
+          artifactName: 'drop'
+
+      # Tag build to trigger release pipelines
       - script: |
           projects=`npx nx show projects --affected --base=$(BASE_SHA) --head=$(HEAD_SHA)`
           echo "Touched projects:"
