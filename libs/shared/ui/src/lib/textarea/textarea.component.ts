@@ -23,10 +23,10 @@ export class TextareaComponent implements ControlValueAccessor {
 	public value = '';
 
 	// tslint:disable-next-line: no-empty
-	public propagateChange: any = _ => { };
+	public propagateChange: any = _ => {};
 
 	// tslint:disable-next-line: no-empty
-	public onTouched: any = _ => { };
+	public onTouched: any = _ => {};
 
 	public onChange(event) {
 		this.propagateChange(event);
