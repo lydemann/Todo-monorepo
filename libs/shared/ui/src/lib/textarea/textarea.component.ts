@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -9,6 +10,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
+			// tslint:disable-next-line: no-forward-ref
 			useExisting: forwardRef(() => TextareaComponent),
 			multi: true,
 		},
