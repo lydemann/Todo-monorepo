@@ -41,7 +41,6 @@ jobs:
       # Required for nx affected if we're on a branch
       - script: git branch --track master origin/master
       - template: templates/npm-setup.yml
-        displayName: 'Install dependencies'
       - script: npx nx format:check --base=$(BASE_SHA)
         displayName: 'Format check'
       - script: npx nx affected --base=$(BASE_SHA) -t lint,test,build --parallel=3
