@@ -1,7 +1,7 @@
 trigger:
-  - master
+  - main
 pr:
-  - master
+  - main
 
 variables:
   CI: 'true'
@@ -22,20 +22,27 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: npm ci
+      - task: Cache@2
+        inputs:
+          key: '"yarn" | "$(Agent.OS)" | yarn.lock'
+          restoreKeys: |
+            "yarn" | "$(Agent.OS)"
+            "yarn"
+          path: $(YARN_CACHE_FOLDER)
+        displayName: Cache Yarn packages
+
+      - script: yarn --frozen-lockfile
+        displayName: 'Install dependencies'
+
       - script: npx nx-cloud start-agent
 
-  - job: master
-    displayName: Nx Cloud master
+  - job: main
+    displayName: Nx Cloud main
     pool:
       vmImage: 'ubuntu-latest'
     steps:
       # Get last successfull commit from Azure Devops CLI
-      - displayName: 'Get last successful commit SHA'
-        condition: ne(variables['Build.Reason'], 'PullRequest')
-        env:
-          AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
-        bash: |
+      - bash: |
           LAST_SHA=$(az pipelines build list --branch $(Build.SourceBranchName) --definition-ids $(System.DefinitionId) --result succeeded --top 1 --query "[0].triggerInfo.\"ci.sourceSha\"")
           if [ -z "$LAST_SHA" ]
           then
@@ -44,9 +51,24 @@ jobs:
             echo "Last successful commit SHA: $LAST_SHA"
             echo "##vso[task.setvariable variable=BASE_SHA]$LAST_SHA"
           fi
+        displayName: 'Get last successful commit SHA'
+        condition: ne(variables['Build.Reason'], 'PullRequest')
+        env:
+          AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
 
-      - script: git branch --track master origin/master
-      - script: npm ci
+      - script: git branch --track main origin/main
+
+      - task: Cache@2
+        inputs:
+          key: '"yarn" | "$(Agent.OS)" | yarn.lock'
+          restoreKeys: |
+            "yarn" | "$(Agent.OS)"
+            "yarn"
+          path: $(YARN_CACHE_FOLDER)
+        displayName: Cache Yarn packages
+
+      - script: yarn --frozen-lockfile
+        displayName: 'Install dependencies'
       - script: npx nx-cloud start-ci-run --stop-agents-after="build"
       - script: npx nx-cloud record -- npx nx format:check --base=$(BASE_SHA) --head=$(HEAD_SHA)
       - script: npx nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) -t lint,test,build --parallel=2

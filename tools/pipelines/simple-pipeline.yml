@@ -1,7 +1,7 @@
 trigger:
-  - master
+  - main
 pr:
-  - master
+  - main
 
 variables:
   CI: 'true'
@@ -16,7 +16,7 @@ variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 jobs:
-  - job: master
+  - job: main
     pool:
       vmImage: 'ubuntu-latest'
     steps:
@@ -40,7 +40,7 @@ jobs:
           AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
 
       # Required for nx affected if we're on a branch
-      - script: git branch --track master origin/master
+      - script: git branch --track main origin/main
 
       - task: Cache@2
         inputs:
