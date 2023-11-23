@@ -52,6 +52,7 @@ jobs:
         displayName: Cache Yarn packages
 
       - script: yarn --frozen-lockfile
+        displayName: 'Install dependencies'
 
       - script: npx nx format:check --base=$(BASE_SHA)
         displayName: 'Format check'
