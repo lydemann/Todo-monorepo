@@ -13,6 +13,7 @@ variables:
     NX_BRANCH: $(Build.SourceBranchName)
     BASE_SHA: $(git rev-parse HEAD~1)
   HEAD_SHA: $(git rev-parse HEAD)
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 jobs:
   - job: agents
@@ -33,11 +34,11 @@ jobs:
 
       - script: yarn --frozen-lockfile
         displayName: 'Install dependencies'
-
       - script: npx nx-cloud start-agent
+        displayName: Start Nx-Cloud agent
 
   - job: main
-    displayName: Nx Cloud main
+    displayName: Nx Cloud Main
     pool:
       vmImage: 'ubuntu-latest'
     steps:
@@ -57,7 +58,6 @@ jobs:
           AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
 
       - script: git branch --track main origin/main
-
       - task: Cache@2
         inputs:
           key: '"yarn" | "$(Agent.OS)" | yarn.lock'
@@ -68,10 +68,16 @@ jobs:
         displayName: Cache Yarn packages
 
       - script: yarn --frozen-lockfile
-        displayName: 'Install dependencies'
-      - script: npx nx-cloud start-ci-run --stop-agents-after="build"
-      - script: npx nx-cloud record -- npx nx format:check --base=$(BASE_SHA) --head=$(HEAD_SHA)
-      - script: npx nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) -t lint,test,build --parallel=2
+      - script: yarn nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+        displayName: Start CI run
+      - script: yarn nx-cloud record -- yarn nx format:check --base=$(BASE_SHA) --head=$(HEAD_SHA)
+        displayName: Check format
+      - script: yarn nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=lint --parallel=3
+        displayName: Run lint
+      - script: yarn nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=test --parallel=3 --ci --code-coverage
+        displayName: Run test
+      - script: yarn nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=build --parallel=3
+        displayName: Run build
       - script: |
           projects=`npx nx show projects --affected --base=$(BASE_SHA) --head=$(HEAD_SHA)`
           echo "Touched projects:"
@@ -83,3 +89,7 @@ jobs:
             echo "Creating tag for: $project"
           done
         displayName: 'Tag build'
+
+      - script: yarn nx-cloud stop-all-agents
+        condition: always()
+        displayName: Stop all Nx-Cloud agents
