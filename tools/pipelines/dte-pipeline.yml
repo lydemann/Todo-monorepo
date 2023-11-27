@@ -68,7 +68,7 @@ jobs:
         displayName: Cache Yarn packages
 
       - script: yarn --frozen-lockfile
-      - script: yarn nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+      - script: yarn nx-cloud start-ci-run --agent-count=3
         displayName: Start CI run
       - script: yarn nx-cloud record -- yarn nx format:check --base=$(BASE_SHA) --head=$(HEAD_SHA)
         displayName: Check format
