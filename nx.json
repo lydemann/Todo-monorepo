@@ -76,7 +76,8 @@
 			"{workspaceRoot}/tsconfig.json",
 			"{workspaceRoot}/.eslintrc.json",
 			"{workspaceRoot}/nx.json",
-			"{workspaceRoot}/babel.config.json"
+			"{workspaceRoot}/babel.config.json",
+			"{workspaceRoot}/tools/**/*"
 		],
 		"production": [
 			"default",
