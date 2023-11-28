@@ -68,7 +68,7 @@ jobs:
         displayName: Cache Yarn packages
 
       - script: yarn --frozen-lockfile
-      - script: yarn nx-cloud start-ci-run --stop-agents-after="build" --agent-count=3
+      - script: yarn nx-cloud start-ci-run --agent-count=3
         displayName: Start CI run
       - script: yarn nx-cloud record -- yarn nx format:check --base=$(BASE_SHA) --head=$(HEAD_SHA)
         displayName: Check format
@@ -78,6 +78,24 @@ jobs:
         displayName: Run test
       - script: yarn nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=build --parallel=3
         displayName: Run build
+        # archive and publish artifacts
+      - task: ArchiveFiles@2
+        displayName: Archive Build Artifacts
+        condition: always()
+        continueOnError: true
+        inputs:
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Build Artifacts
+        condition: always()
+        continueOnError: true
+        inputs:
+          pathtoPublish: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
+          artifactName: 'drop'
+
       - script: |
           projects=`npx nx show projects --affected --base=$(BASE_SHA) --head=$(HEAD_SHA)`
           echo "Touched projects:"
