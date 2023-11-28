@@ -78,6 +78,24 @@ jobs:
         displayName: Run test
       - script: yarn nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=build --parallel=3
         displayName: Run build
+        # archive and publish artifacts
+      - task: ArchiveFiles@2
+        displayName: Archive Build Artifacts
+        condition: always()
+        continueOnError: true
+        inputs:
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Build Artifacts
+        condition: always()
+        continueOnError: true
+        inputs:
+          pathtoPublish: $(Build.ArtifactStagingDirectory)/build/$(Build.BuildId).zip
+          artifactName: 'drop'
+
       - script: |
           projects=`npx nx show projects --affected --base=$(BASE_SHA) --head=$(HEAD_SHA)`
           echo "Touched projects:"
