@@ -24,6 +24,7 @@ import { TodoListStoreModuleModule } from './todo-list/state/todo-list-store.mod
 		StoreDevtoolsModule.instrument({
 			name: 'NgRx Testing Store DevTools',
 			logOnly: environment.production,
+			connectInZone: true,
 		}),
 		StoreRouterConnectingModule.forRoot({
 			serializer: CustomRouterSerializer,

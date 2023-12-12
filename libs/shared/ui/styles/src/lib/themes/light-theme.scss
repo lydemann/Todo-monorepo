@@ -1,25 +1,28 @@
 // setup material theme
-@import '@angular/material/theming';
+@use '@angular/material' as mat;
 @import './theme-common';
 
-$todo-primary: mat-palette($mat-indigo, 800, 300, 900);
-$todo-accent: mat-palette($mat-light-blue);
-$todo-warn: mat-palette($mat-pink, 600);
-
-$todo-light-theme: mat-light-theme($todo-primary, $todo-accent, $todo-warn);
+$todo-primary: mat.define-palette(mat.$indigo-palette, 800, 300, 900);
+$todo-accent: mat.define-palette(mat.$light-blue-palette);
+$todo-warn: mat.define-palette(mat.$pink-palette, 600);
+$todo-light-theme: mat.define-light-theme(
+	$todo-primary,
+	$todo-accent,
+	$todo-warn
+);
 
 @mixin generate-light-theme {
 	// the new way of theming using css vars
 	@include generate-css-vars-for-theme($todo-light-theme);
 
-	@include angular-material-theme($todo-light-theme);
+	@include mat.core-theme($todo-light-theme);
 
 	// component styling - the old way of theming by including extra styling here
-	$foreground: map-get($todo-light-theme, foreground);
-	$background: map-get($todo-light-theme, background);
+	$foreground: map.get($todo-light-theme, foreground);
+	$background: map.get($todo-light-theme, background);
 
 	.theme-background {
-		color: mat-color($foreground, text);
-		background-color: mat-color($background, background);
+		color: mat.get-color-from-palette($foreground, text);
+		background-color: mat.get-color-from-palette($background, background);
 	}
 }

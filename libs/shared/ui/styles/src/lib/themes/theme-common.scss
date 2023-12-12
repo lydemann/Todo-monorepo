@@ -1,22 +1,22 @@
-@import '.././helpers/colors.scss';
+@use '@angular/material' as mat;
+@import '.././helpers/colors';
 
 @mixin generate-css-vars-for-theme($theme) {
-	$primary: map-get($theme, primary);
-	$accent: map-get($theme, accent);
-	$warn: map-get($theme, warn);
-	$foreground: map-get($theme, foreground);
-	$background: map-get($theme, background);
-
+	$primary: map.get($theme, primary);
+	$accent: map.get($theme, accent);
+	$warn: map.get($theme, warn);
+	$foreground: map.get($theme, foreground);
+	$background: map.get($theme, background);
 	$all-colors: (
-		--todo-primary: mat-color($primary),
-		--todo-accent: mat-color($accent),
-		--todo-warn: mat-color($warn),
-		--todo-foreground: mat-color($foreground, text),
-		--todo-background: mat-color($background, background),
-		--todo-selected: mat-color($accent, 600),
-		--todo-hover: mat-color($accent, 700),
-		--todo-black: map-get($unit-colors-vals, 'black'),
-		--todo-white: map-get($unit-colors-vals, 'white'),
+		--todo-primary: mat.get-color-from-palette($primary),
+		--todo-accent: mat.get-color-from-palette($accent),
+		--todo-warn: mat.get-color-from-palette($warn),
+		--todo-foreground: mat.get-color-from-palette($foreground, text),
+		--todo-background: mat.get-color-from-palette($background, background),
+		--todo-selected: mat.get-color-from-palette($accent, 600),
+		--todo-hover: mat.get-color-from-palette($accent, 700),
+		--todo-black: map.get($unit-colors-vals, 'black'),
+		--todo-white: map.get($unit-colors-vals, 'white'),
 	);
 
 	@each $colorVar, $colorVal in $all-colors {
