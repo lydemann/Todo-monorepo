@@ -2,21 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { createMagicalMock, Mock } from '@todo/shared/util-test';
+import { SpyObject, createSpyObject } from '@ngneat/spectator/jest';
 import { FeatureToggleService } from './feature-toggle.service';
 
 describe('FeatureToggleService', () => {
 	let service: FeatureToggleService;
-	let httpService: Mock<HttpClient>;
+	let httpService: SpyObject<HttpClient>;
 
 	beforeEach(() => {
-		httpService = createMagicalMock(HttpClient);
+		httpService = createSpyObject(HttpClient);
 		service = new FeatureToggleService(httpService);
 	});
 
 	describe('getFeatureFlags', () => {
 		it('should get feature flags', done => {
-			httpService.get.and.returnValue(of({ 'completed-todos': true }));
+			httpService.get.andReturn(of({ 'completed-todos': true }));
 
 			service
 				.getFeatureFlags('someId')

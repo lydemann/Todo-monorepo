@@ -4,7 +4,6 @@ import { FeatureStoreAnonymizer } from '@todo/shared/data-access-logging';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { AppState } from '../../app-state';
 import { todoListAdapter, TodoListState } from './todo-list.model';
-import { selectTodoList } from './todo-list.selector';
 
 @Injectable()
 export class TodoListAnonymizer extends FeatureStoreAnonymizer<
@@ -16,7 +15,6 @@ export class TodoListAnonymizer extends FeatureStoreAnonymizer<
 	}
 
 	public anonymizeFeatureState(featureState: TodoListState) {
-		const todos = selectTodoList.projector(featureState);
 		const anonymizedState = todoListAdapter.map(
 			todo => ({ ...todo, title: '', description: '' } as TodoItem),
 			featureState,

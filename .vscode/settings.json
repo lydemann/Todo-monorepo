@@ -1,6 +1,6 @@
 {
 	"editor.codeActionsOnSave": {
-		"source.fixAll.tslint": true
+		"source.fixAll.tslint": "explicit"
 	},
 	"editor.formatOnSave": true,
 	"angular.enable-strict-mode-prompt": false

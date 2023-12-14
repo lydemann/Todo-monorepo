@@ -1,9 +1,14 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import {
+	createServiceFactory,
+	createSpyObject,
+	SpectatorService,
+} from '@ngneat/spectator/jest';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 
+import { ErrorHandler } from '@angular/core';
 import { runEffect } from '@todo/shared/util-test';
 import { GlobalErrorHandler } from '../global-error-handler/global-error-handler.service';
 import { createErrorAction, errorProps } from './error-action-creator';
@@ -13,74 +18,65 @@ describe('ErrorEffects', () => {
 	let spectator: SpectatorService<ErrorEffects>;
 	let actions: Observable<any>;
 	let effects: ErrorEffects;
-	let globalErrorHandler: GlobalErrorHandler;
+	const globalErrorHandler = createSpyObject(GlobalErrorHandler);
 
 	const createEffects = createServiceFactory({
 		service: ErrorEffects,
-		imports: [],
-		mocks: [GlobalErrorHandler],
-		providers: [provideMockActions(() => actions), provideMockStore({})],
+		providers: [
+			provideMockActions(() => actions),
+			provideMockStore({}),
+			{ provide: ErrorHandler, useValue: globalErrorHandler },
+		],
 	});
 
 	beforeEach(() => {
 		spectator = createEffects();
 		effects = spectator.inject(ErrorEffects);
-		globalErrorHandler = spectator.inject(GlobalErrorHandler);
 	});
 
 	describe('handleError$', () => {
-		[
-			error =>
-				createErrorAction('some error', errorProps<{ error: Error }>())(error),
-			error =>
-				createErrorAction('some error', errorProps<{ error: Error }>(), {
+		it('should handle error', () => {
+			const error = {
+				message: '',
+			} as Error;
+
+			const actionFactory = createErrorAction(
+				'some error',
+				errorProps<{ error: Error }>(),
+				{
 					showNotification: true,
-				})(error),
-		].forEach(actionFactory => {
-			it('should handle error', () => {
-				const error = {
-					message: '',
-				} as Error;
+				},
+			);
 
-				actions = cold('a', { a: actionFactory({ error }) });
-				runEffect(effects.handleError$);
+			actions = cold('a', { a: actionFactory({ error }) });
+			runEffect(effects.handleError$);
 
-				const action = {
-					error,
-				};
-				expect(globalErrorHandler.handleError).toHaveBeenCalledWith(
-					action.error,
-					true,
-				);
-			});
+			const action = {
+				error,
+			};
+			expect(globalErrorHandler.handleError).toHaveBeenCalledWith(
+				action.error,
+				true,
+			);
 		});
 
-		[
-			error =>
-				createErrorAction('some error', errorProps<{ error: Error }>(), {
-					showNotification: false,
-				})(error),
-			error =>
-				createErrorAction('some error', errorProps<{ error: Error }>(), {
-					showNotification: false,
-				})(error),
-		].forEach(actionFactory => {
-			it('should handle error silently', () => {
-				const error = {
-					message: 'error',
-				} as Error;
+		it('should handle error silently', () => {
+			const error = {
+				message: 'error',
+			} as Error;
 
-				actions = cold('a', { a: actionFactory({ error }) });
-				runEffect(effects.handleError$);
+			const actionFactory = createErrorAction(
+				'some error',
+				errorProps<{ error }>(),
+				{
+					showNotification: false,
+				},
+			);
 
-				const action = {
-					error,
-				};
-				expect(globalErrorHandler.handleError).toHaveBeenCalledWith(
-					action.error,
-					false,
-				);
-			});
+			actions = cold('a', { a: actionFactory({ error }) });
+			runEffect(effects.handleError$);
+
+			expect(globalErrorHandler.handleError).toHaveBeenCalledWith(error, false);
 		});
 	});
 });

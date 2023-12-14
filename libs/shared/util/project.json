@@ -16,11 +16,10 @@
 			}
 		},
 		"test": {
-			"executor": "@angular-devkit/build-angular:karma",
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"main": "libs/shared/util/src/test.ts",
-				"tsConfig": "libs/shared/util/tsconfig.spec.json",
-				"karmaConfig": "libs/shared/util/karma.conf.js"
+				"jestConfig": "libs/shared/util/jest.config.ts"
 			}
 		}
 	},
