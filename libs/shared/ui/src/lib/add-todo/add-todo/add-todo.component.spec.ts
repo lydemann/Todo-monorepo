@@ -32,7 +32,7 @@ describe('AddTodoComponent', () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(AddTodoComponent);
 		component = fixture.componentInstance;
-		spyOn(component.saveTodoItem, 'next');
+		jest.spyOn(component.saveTodoItem, 'next');
 		fixture.detectChanges();
 	});
 

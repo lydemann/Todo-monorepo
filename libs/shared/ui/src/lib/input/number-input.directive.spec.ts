@@ -1,6 +1,9 @@
 import { LOCALE_ID } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { createDirectiveFactory, SpectatorDirective } from '@ngneat/spectator';
+import {
+	SpectatorDirective,
+	createDirectiveFactory,
+} from '@ngneat/spectator/jest';
 
 import { NumberInputDirective } from './number-input.directive';
 
@@ -222,7 +225,7 @@ describe('Directive: NumberInputDirective', () => {
 					spectator.detectChanges();
 
 					const htmlElement = spectator.element as HTMLInputElement;
-					spyOn(htmlElement, 'setSelectionRange');
+					jest.spyOn(htmlElement, 'setSelectionRange');
 					expect(htmlElement.value).toBe('');
 					expect(htmlElement.setSelectionRange).not.toHaveBeenCalled();
 				});

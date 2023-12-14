@@ -15,17 +15,6 @@
 				]
 			}
 		},
-		"test": {
-			"executor": "@angular-devkit/build-angular:karma",
-			"options": {
-				"main": "libs/shared/ui/src/test.ts",
-				"tsConfig": "libs/shared/ui/tsconfig.spec.json",
-				"karmaConfig": "libs/shared/ui/karma.conf.js",
-				"stylePreprocessorOptions": {
-					"includePaths": ["libs/shared/ui/styles/src/lib"]
-				}
-			}
-		},
 		"storybook": {
 			"executor": "@storybook/angular:start-storybook",
 			"options": {
@@ -65,6 +54,13 @@
 			"executor": "nx:run-commands",
 			"options": {
 				"command": "test-storybook -c libs/shared/ui/.storybook --url=http://localhost:4400"
+			}
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/shared/ui/jest.config.ts"
 			}
 		}
 	},

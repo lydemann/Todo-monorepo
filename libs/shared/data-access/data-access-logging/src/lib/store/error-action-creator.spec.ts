@@ -7,21 +7,11 @@ import {
 } from './error-action-creator';
 
 describe('Error Action Creator', () => {
-	let originalTimeout: number;
 	const error = {
 		status: 500,
 		message: '',
 		name: '',
 	} as Error;
-
-	beforeEach(() => {
-		originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
-	});
-
-	afterEach(() => {
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-	});
 
 	describe('createErrorAction', () => {
 		it('should create an action', () => {

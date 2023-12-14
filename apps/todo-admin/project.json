@@ -84,15 +84,17 @@
 			}
 		},
 		"test": {
-			"executor": "@angular-devkit/build-angular:karma",
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"main": "apps/todo-admin/src/test.ts",
-				"tsConfig": "apps/todo-admin/tsconfig.spec.json",
-				"karmaConfig": "apps/todo-admin/karma.conf.js",
-				"polyfills": "apps/todo-admin/src/polyfills.ts",
-				"styles": [],
-				"scripts": [],
-				"assets": []
+				"jestConfig": "apps/todo-admin/jest.config.ts",
+				"passWithNoTests": true
+			},
+			"configurations": {
+				"ci": {
+					"ci": true,
+					"codeCoverage": true
+				}
 			}
 		}
 	},

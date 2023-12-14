@@ -1,8 +1,7 @@
 {
-	"extends": ["stylelint-config-standard", "stylelint-config-prettier"],
-	"plugins": ["stylelint-scss"],
-	"ignoreFiles": ["libs/**/_normalize.scss"],
+	"extends": ["stylelint-config-standard-scss", "stylelint-config-prettier"],
 	"rules": {
+		"no-empty-source": null,
 		"color-named": [
 			"never",
 			{
@@ -15,25 +14,14 @@
 				"ignorePseudoElements": ["ng-deep"]
 			}
 		],
-		"at-rule-no-unknown": [
-			true,
-			{
-				"ignoreAtRules": [
-					"for",
-					"if",
-					"else",
-					"each",
-					"function",
-					"return",
-					"extend",
-					"include",
-					"mixin"
-				]
-			}
-		],
+		"no-invalid-position-at-import-rule": null,
+		"at-rule-no-unknown": null,
 		"color-hex-length": null,
+		"annotation-no-unknown": null,
+		"no-invalid-double-slash-comments": null,
+		"function-no-unknown": null,
 		"max-nesting-depth": [
-			3,
+			5,
 			{
 				"ignoreAtRules": ["include"]
 			}

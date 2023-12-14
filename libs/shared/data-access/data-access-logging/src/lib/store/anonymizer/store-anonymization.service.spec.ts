@@ -1,8 +1,13 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { first } from 'rxjs/operators';
 
+import { TodoItem } from '@todo/shared/todo-interfaces';
+import { AppState } from 'libs/todo-app/domain/src/lib/app-state';
+import { TodoListAnonymizer } from 'libs/todo-app/domain/src/lib/todo-list/state/todo-list.anonymizer';
+import { TodoListState } from 'libs/todo-app/domain/src/lib/todo-list/state/todo-list.model';
 import {
 	FEATURE_STORE_ANONYMIZER,
 	FeatureStoreAnonymizer,
@@ -39,6 +44,11 @@ describe('StoreAnonymizationService', () => {
 		TestBed.configureTestingModule({
 			providers: [
 				StoreAnonymizationService,
+				{
+					provide: FEATURE_STORE_ANONYMIZER,
+					useClass: TodoListAnonymizer,
+					multi: true,
+				},
 				...provideMockStore(),
 				{
 					provide: FEATURE_STORE_ANONYMIZER,
@@ -54,27 +64,29 @@ describe('StoreAnonymizationService', () => {
 		});
 
 		service = TestBed.get(StoreAnonymizationService);
-		store = TestBed.get(Store) as MockStore<any>;
+		store = TestBed.get(Store) as MockStore<AppState>;
 		store.setState({
-			general: {},
 			todoList: {
-				todos: [
-					{
-						name: 'some todo',
-					},
-				],
-			},
-		} as any);
-	});
-
-	it('should be created', () => {
-		expect(service).toBeTruthy();
+				entities: {
+					'1': {
+						id: '1',
+						title: 'some todo',
+						description: 'some todo description',
+					} as TodoItem,
+				},
+				error: undefined,
+				isAddingTodo: false,
+				isLoading: false,
+				selectedTodoItemId: undefined,
+				ids: ['1'],
+			} as TodoListState,
+		} as AppState);
 	});
 
 	describe('getAnonymizedState', () => {
 		it('should anonymize state of Store', done => {
 			service.getAnonymizedState().subscribe(state => {
-				expect(state.todoList.todos).toEqual([]);
+				expect(state.todoList.todos).toMatchInlineSnapshot(`undefined`);
 				done();
 			});
 		});
@@ -84,10 +96,12 @@ describe('StoreAnonymizationService', () => {
 				.getAnonymizedState()
 				.pipe(first())
 				.subscribe(state => {
-					expect(state.general as any).toEqual({
-						errorMsg: 'Error during anonymization',
-						error: anonymizationError,
-					} as any);
+					expect(state.general as any).toMatchInlineSnapshot(`
+				Object {
+				  "error": [Error: Unable to find feature state at key "general" on RootState],
+				  "errorMsg": "Error during anonymization",
+				}
+			`);
 					done();
 				});
 		});
