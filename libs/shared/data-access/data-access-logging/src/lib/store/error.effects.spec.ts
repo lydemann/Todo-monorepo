@@ -16,6 +16,7 @@ import { ErrorEffects } from './error.effects';
 
 describe('ErrorEffects', () => {
 	let spectator: SpectatorService<ErrorEffects>;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	let actions: Observable<any>;
 	let effects: ErrorEffects;
 	const globalErrorHandler = createSpyObject(GlobalErrorHandler);

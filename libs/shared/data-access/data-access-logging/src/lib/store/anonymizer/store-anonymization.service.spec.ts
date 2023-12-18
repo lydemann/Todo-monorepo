@@ -14,23 +14,25 @@ import {
 } from './feature-store-anonymizer';
 import { StoreAnonymizationService } from './store-anonymization.service';
 
-class DummyAnonymizer extends FeatureStoreAnonymizer<any> {
+class DummyAnonymizer extends FeatureStoreAnonymizer<AppState> {
 	public getFeatureStateName() {
 		return 'todo';
 	}
 
 	public anonymizeFeatureState(featureState) {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		featureState.todos = featureState.todos.map(todo => ({}));
 	}
 }
 
 const anonymizationError = new Error('Some error');
 
-class FailingDummyAnonymizer extends FeatureStoreAnonymizer<any> {
+class FailingDummyAnonymizer extends FeatureStoreAnonymizer<AppState> {
 	public getFeatureStateName() {
 		return 'general';
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public anonymizeFeatureState(featureState) {
 		throw anonymizationError;
 	}
@@ -38,7 +40,7 @@ class FailingDummyAnonymizer extends FeatureStoreAnonymizer<any> {
 
 describe('StoreAnonymizationService', () => {
 	let service: StoreAnonymizationService;
-	let store: MockStore<any>;
+	let store: MockStore<unknown>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -96,7 +98,7 @@ describe('StoreAnonymizationService', () => {
 				.getAnonymizedState()
 				.pipe(first())
 				.subscribe(state => {
-					expect(state.general as any).toMatchInlineSnapshot(`
+					expect(state.general as unknown).toMatchInlineSnapshot(`
 				Object {
 				  "error": [Error: Unable to find feature state at key "general" on RootState],
 				  "errorMsg": "Error during anonymization",
@@ -113,7 +115,7 @@ export namespace StoreAnonymizationTestHelpers {
 	export function expectDifferent<T>(
 		expected: T,
 		actual: T,
-		picker: (from: T) => any,
+		picker: (from: T) => unknown,
 	) {
 		const pickedExpected = picker(expected);
 		const pickedActual = picker(actual);

@@ -9,6 +9,7 @@ import { LocaleService } from '../services/locale.service';
 export class LocalCurrencyPipe implements PipeTransform {
 	constructor(private localeService: LocaleService) {}
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	public transform(value: any, currencyCode?: string, digitsInfo?: string) {
 		if (!value) {
 			return '';

@@ -11,14 +11,17 @@ export class CachedValue<T> {
 
 export const createFetchCachedValueEffect = <
 	ReturnType,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	ResponseActionType extends (ReturnType) => any,
-	FailedActionType extends () => any
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	FailedActionType extends () => any,
 >(
 	fetchFn: () => Observable<ReturnType>,
 	responseActionType: ResponseActionType,
 	failedAction: FailedActionType,
 ) => {
 	return fetchFn().pipe(
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		exhaustMap(val => responseActionType(responseActionType)),
 		catchError(() => failedAction()),
 	);

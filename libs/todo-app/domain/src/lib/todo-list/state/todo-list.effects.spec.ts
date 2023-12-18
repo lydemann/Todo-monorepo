@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TestBed } from '@angular/core/testing';
 import { mockProvider, SpyObject } from '@ngneat/spectator/jest';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -10,6 +11,7 @@ import { TodoListActions } from './todo-list.actions';
 import { TodoListEffects } from './todo-list.effects';
 
 describe('TodoListEffects', () => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	let actions: Observable<any>;
 
 	let effects: TodoListEffects;
@@ -46,6 +48,7 @@ describe('TodoListEffects', () => {
 
 		it('should fail and return an action with the error', () => {
 			const action = TodoListActions.getTodoListRequest();
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			const error = new Error('some error') as any;
 			const outcome = TodoListActions.getTodoListFailed({ error });
 

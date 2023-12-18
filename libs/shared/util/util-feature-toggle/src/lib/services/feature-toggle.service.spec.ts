@@ -21,6 +21,7 @@ describe('FeatureToggleService', () => {
 			service
 				.getFeatureFlags('someId')
 				.pipe(first())
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
 				.subscribe(_ => {
 					const res = service.hasFlags('completed-todos');
 					expect(res).toBe(true);

@@ -1,11 +1,13 @@
 import { InjectionToken, Injector } from '@angular/core';
 
 export const FEATURE_STORE_ANONYMIZER = new InjectionToken<
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	FeatureStoreAnonymizer<any>
 >('FeatureStoreAnonymizer');
 
 export abstract class FeatureStoreAnonymizer<
 	FeatureStoreState,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	RootState = any,
 > {
 	public abstract getFeatureStateName(): keyof RootState;

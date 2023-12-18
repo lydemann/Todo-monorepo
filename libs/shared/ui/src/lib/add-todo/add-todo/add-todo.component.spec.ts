@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { mockProvider } from '@ngneat/spectator/jest';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { DatePickerModule } from '../../date-picker/date-picker.module';
 import { AddTodoComponent } from './add-todo.component';
