@@ -1,13 +1,5 @@
 {
 	"npmScope": "todo",
-	"tasksRunnerOptions": {
-		"default": {
-			"runner": "nx-cloud",
-			"options": {
-				"cacheableOperations": ["component-test", "build-storybook"]
-			}
-		}
-	},
 	"generators": {
 		"@schematics/angular:component": {
 			"changeDetection": "OnPush"
