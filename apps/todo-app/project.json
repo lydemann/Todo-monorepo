@@ -11,7 +11,7 @@
 	},
 	"targets": {
 		"build": {
-			"executor": "@angular-devkit/build-angular:browser",
+			"executor": "@angular-devkit/build-angular:browser-esbuild",
 			"options": {
 				"aot": true,
 				"buildOptimizer": false,

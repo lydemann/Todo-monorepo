@@ -39,12 +39,13 @@
 
 <ng-template #todoListRef let-todos="data">
 	<ul class="list-group mb-3">
-		<app-crud-item
-			*ngFor="let todo of todos"
-			[todoItem]="todo"
-			(todoDelete)="deleteTodo($event)"
-			(todoEdit)="selectTodoForEdit($event)"
-			(todoCompleteToggled)="todoCompleteToggled($event)"
-		></app-crud-item>
+		@for (todo of todos; track todo.id) {
+			<app-crud-item
+				[todoItem]="todo"
+				(todoDelete)="deleteTodo($event)"
+				(todoEdit)="selectTodoForEdit($event)"
+				(todoCompleteToggled)="todoCompleteToggled($event)"
+			></app-crud-item>
+		}
 	</ul>
 </ng-template>
