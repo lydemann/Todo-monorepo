@@ -8,6 +8,7 @@ export class AppService {
 	}
 
 	// get todolist with faked data
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	public getTodoList(): any[] {
 		const todoList = [];
 
