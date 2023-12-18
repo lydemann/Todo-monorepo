@@ -14,13 +14,7 @@
 			}
 		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"options": {
-				"lintFilePatterns": [
-					"libs/todo-app/domain/**/*.ts",
-					"libs/todo-app/domain/**/*.html"
-				]
-			}
+			"executor": "@nx/eslint:lint"
 		}
 	},
 	"tags": ["type:domain", "scope:todo-app"]

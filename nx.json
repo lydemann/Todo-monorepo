@@ -1,5 +1,4 @@
 {
-	"npmScope": "todo",
 	"generators": {
 		"@schematics/angular:component": {
 			"changeDetection": "OnPush"

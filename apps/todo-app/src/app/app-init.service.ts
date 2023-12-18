@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare let window: any;
 
 @Injectable()

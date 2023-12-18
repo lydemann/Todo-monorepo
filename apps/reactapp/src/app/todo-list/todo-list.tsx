@@ -9,7 +9,6 @@ import './todo-list.scss';
 
 export const TodoList = () => {
 	const [todoList, setTodoList] = useState(getTodoList());
-	const [currentTodo, setCurrentTodo] = useState(null);
 
 	const saveTodo = (savedTodoItem: TodoItem) => {
 		savedTodoItem.id = faker.random.uuid();
@@ -27,24 +26,24 @@ export const TodoList = () => {
 			}
 		}, 2000);
 	};
-	const toggleTodoCompleted = (todoItemId: string) => {
-		const updatedTodoList = todoList.map(todoItm =>
-			todoItm.id === todoItemId
-				? ({ ...todoItm, completed: !todoItm.completed } as TodoItem)
-				: todoItm,
-		);
-
-		setTodoList(updatedTodoList);
-	};
-
-	const handleTodoCompleteToggle = (data: AngularElementsEvent) => {
-		toggleTodoCompleted(data.detail);
-	};
 
 	useEffect(() => {
 		const todoItemsElms = document.querySelectorAll<
 			Element & CrudItemComponent
 		>('app-crud-item');
+		const toggleTodoCompleted = (todoItemId: string) => {
+			const updatedTodoList = todoList.map(todoItm =>
+				todoItm.id === todoItemId
+					? ({ ...todoItm, completed: !todoItm.completed } as TodoItem)
+					: todoItm,
+			);
+
+			setTodoList(updatedTodoList);
+		};
+
+		const handleTodoCompleteToggle = (data: AngularElementsEvent) => {
+			toggleTodoCompleted(data.detail);
+		};
 
 		todoItemsElms.forEach((item, idx) => {
 			item.todoItem = todoList[idx];

@@ -15,14 +15,8 @@
 			}
 		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": [
-					"libs/todo-app/feature/**/*.ts",
-					"libs/todo-app/feature/**/*.html"
-				]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		},
 		"component-test": {
 			"executor": "@nx/cypress:cypress",

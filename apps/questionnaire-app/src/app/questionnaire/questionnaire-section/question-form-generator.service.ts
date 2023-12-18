@@ -9,7 +9,6 @@ import {
 import { AnswerOption, Question } from '../../questionnaire.model';
 import { ValidationRule } from './validation-rules';
 
-const selectOne = 'SELECTONE';
 const selectMulti = 'SELECTMULTI';
 
 @Injectable()
@@ -24,7 +23,7 @@ export class QuestionFormGeneratorService {
 					? new FormGroup(
 							this.getAnswerOptionsControlsObj(question.answerOptions),
 							validatiors,
-					  )
+						)
 					: new FormControl(question.answer || '', validatiors);
 		});
 		return new FormGroup(group);

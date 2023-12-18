@@ -15,5 +15,5 @@ export class AccordionComponent {
 	@Input() public boldTitle = '';
 	@Input() public normalTitle = '';
 	@Input() public isExpanded = false;
-	@Input() public templateRef: TemplateRef<any>;
+	@Input() public templateRef: TemplateRef<unknown>;
 }

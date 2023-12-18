@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Question } from '../../questionnaire.model';
@@ -29,9 +29,8 @@ export class QuestionComponent {
 	}
 
 	public getTemplateRefForQuestion(questionId: string) {
-		const templateRef = this.hardcodedQuestionService.hardcodedQuestionsMap.get(
-			questionId,
-		);
+		const templateRef =
+			this.hardcodedQuestionService.hardcodedQuestionsMap.get(questionId);
 		return templateRef;
 	}
 }

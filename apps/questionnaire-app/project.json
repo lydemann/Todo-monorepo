@@ -69,14 +69,14 @@
 		"serve": {
 			"executor": "@angular-devkit/build-angular:dev-server",
 			"options": {
-				"browserTarget": "questionnaire-app:build"
+				"buildTarget": "questionnaire-app:build"
 			},
 			"configurations": {
 				"production": {
-					"browserTarget": "questionnaire-app:build:production"
+					"buildTarget": "questionnaire-app:build:production"
 				},
 				"development": {
-					"browserTarget": "questionnaire-app:build:development"
+					"buildTarget": "questionnaire-app:build:development"
 				}
 			},
 			"defaultConfiguration": "development"
@@ -84,18 +84,12 @@
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",
 			"options": {
-				"browserTarget": "questionnaire-app:build"
+				"buildTarget": "questionnaire-app:build"
 			}
 		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": [
-					"apps/questionnaire-app/**/*.ts",
-					"apps/questionnaire-app/**/*.html"
-				]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		}
 	},
 	"tags": ["type:app"]

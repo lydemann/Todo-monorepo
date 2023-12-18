@@ -6,6 +6,7 @@ import { AppModule } from './app/app.module';
 
 declare global {
 	interface Window {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		config: any;
 	}
 }

@@ -19,7 +19,8 @@ import { TodoListResourcesService } from 'libs/todo-app/domain/src/lib/todo-list
 import { Observable, of } from 'rxjs';
 
 class CustomLoader implements TranslateLoader {
-	getTranslation(lang: string): Observable<any> {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	getTranslation(lang: string): Observable<unknown> {
 		return of(transactions);
 	}
 }
@@ -31,6 +32,7 @@ describe('TodoListComponent', () => {
 	})
 	class WrapperComponent {
 		constructor(translateService: TranslateService) {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			(window as any).config = config;
 
 			translateService.addLangs(['en']);

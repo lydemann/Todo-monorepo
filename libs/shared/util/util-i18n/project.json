@@ -18,14 +18,8 @@
 			}
 		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": [
-					"libs/shared/util/util-i18n/**/*.ts",
-					"libs/shared/util/util-i18n/**/*.html"
-				]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		},
 		"test": {
 			"executor": "@nx/jest:jest",

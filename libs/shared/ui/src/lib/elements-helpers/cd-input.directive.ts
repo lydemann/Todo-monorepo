@@ -14,6 +14,7 @@ export class CDInputDirective implements OnChanges {
 		private applicationRef: ApplicationRef,
 	) {}
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public ngOnChanges(changes: SimpleChanges): void {
 		this.runCD();
 	}

@@ -24,9 +24,7 @@ export class SpinnerOverlayService {
 		// run in async context for triggering "tick", thus avoid ExpressionChangedAfterItHasBeenCheckedError
 		setTimeout(() => {
 			const component = this.overlayRef.attach(spinnerOverlayPortal); // Attach ComponentPortal to PortalHost
-
-			// TODO: set message
-			// component.instance.message = message;
+			component.instance.message = message;
 		});
 	}
 

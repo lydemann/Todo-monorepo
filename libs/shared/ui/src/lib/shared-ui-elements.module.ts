@@ -1,4 +1,4 @@
-import { Injector, NgModule, Type } from '@angular/core';
+import { DoBootstrap, Injector, NgModule, Type } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
@@ -20,11 +20,11 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 	imports: [BrowserAnimationsModule, SharedUiModule, TranslateModule.forRoot()],
 	declarations: [],
 })
-export class SharedUiElementsModule {
+export class SharedUiElementsModule implements DoBootstrap {
 	constructor(private injector: Injector) {}
 
 	public ngDoBootstrap() {
-		const elements: [Type<any>, string][] = [
+		const elements: [Type<unknown>, string][] = [
 			// UI lib components go here
 			[SpinnerComponent, 'app-spinner'],
 			[SpinnerOverlayWrapperComponent, 'app-spinner-overlay-wrapper'],

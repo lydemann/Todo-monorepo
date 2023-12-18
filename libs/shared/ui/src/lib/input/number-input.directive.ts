@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getLocaleNumberSymbol, NumberSymbol } from '@angular/common';
 import {
 	Directive,
@@ -209,7 +210,7 @@ export class NumberInputDirective implements OnInit, OnDestroy {
 				? beforeWithoutThousandSeparators.replace(
 						/^0+/,
 						onlyContains0Regex.test(beforeWithoutThousandSeparators) ? '0' : '',
-				  )
+					)
 				: beforeWithoutThousandSeparators;
 		const beforeWithThousandSeparators = trimmedBeforeDecimals.replace(
 			/(\d)(?=(\d{3})+(?!\d))/g,

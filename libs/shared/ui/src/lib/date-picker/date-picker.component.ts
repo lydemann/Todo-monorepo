@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	AfterViewInit,
 	ApplicationRef,
@@ -124,6 +125,6 @@ export class DatePickerComponent
 		this.changeDetectionRef.detectChanges();
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
 	private onChange = (date: Date) => {};
 }

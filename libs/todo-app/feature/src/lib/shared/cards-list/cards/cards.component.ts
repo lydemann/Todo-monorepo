@@ -6,6 +6,6 @@ import { Component, Input, TemplateRef } from '@angular/core';
 	styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent {
-	@Input() public cardRef: TemplateRef<any>;
-	@Input() public data: any;
+	@Input() public cardRef: TemplateRef<unknown>;
+	@Input() public data: unknown;
 }

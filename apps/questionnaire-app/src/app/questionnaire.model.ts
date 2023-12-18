@@ -9,7 +9,7 @@ export class MatchCriteria {
 	public answerValue: string;
 }
 
-export class Question<T = any> {
+export class Question<T = unknown> {
 	public externalQuestionId: string;
 	public questionText: string;
 	public helpText: string;

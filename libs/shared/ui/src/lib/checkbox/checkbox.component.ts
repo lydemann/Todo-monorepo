@@ -12,7 +12,7 @@ export class CheckboxComponent {
 	@Input() public labelPosition = 'after'; // Supports 'before' and 'after'
 	@Input() public indeterminate = false; // True renders indeterminate state regardless of checked value. Interactions (e.g. clicking) sets this to false.
 	// eslint-disable-next-line @angular-eslint/no-output-native
-	@Output() public change = new EventEmitter<any>();
+	@Output() public change = new EventEmitter<unknown>();
 
 	public onChanged($event) {
 		this.change.emit($event.checked);

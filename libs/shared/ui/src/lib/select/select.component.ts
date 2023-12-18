@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	AfterContentInit,
 	Component,
@@ -41,19 +43,19 @@ export class SelectComponent
 	@Output() public valueChange = new EventEmitter();
 	public options: SelectOption[];
 	public optionsGroups: SelectOptionGroup[];
-	public selected;
+	public selected: null;
 	public disabled = false;
 	public touched = false;
 	private internalValue: SelectOption;
 
-	public onChange: any = _ => {
+	public onChange: any = (_: SelectOption) => {
 		/*Empty*/
 	};
 
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	public onTouched: any = _ => {};
+	public onTouched: any = (_: any) => {};
 
-	public onSelected($event) {
+	public onSelected($event: { value: any }) {
 		this.selected = $event.value;
 		this.onChange($event.value);
 		this.valueChange.emit($event.value);
@@ -117,7 +119,7 @@ export class SelectComponent
 			? list.map(group => ({
 					label: group.label,
 					options: this.getOptions(group.selectOptions),
-			  }))
+				}))
 			: [];
 	}
 
@@ -126,7 +128,7 @@ export class SelectComponent
 			? list.map((item: SelectOptionComponent) => ({
 					value: item.value,
 					templateRef: item.templateRef,
-			  }))
+				}))
 			: [];
 	}
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { TodoItem } from '@todo/shared/todo-interfaces';
@@ -7,6 +8,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 	standalone: true,
 })
 export class DuedateTodayCountPipe implements PipeTransform {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	public transform(todoItems: TodoItem[], args?: any): any {
 		return todoItems.filter(todo => this.isToday(new Date(todo.dueDate)))
 			.length;
