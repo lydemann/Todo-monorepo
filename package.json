@@ -112,6 +112,7 @@
 		"@nrwl/storybook": "17.2.5",
 		"@nx/angular": "17.2.5",
 		"@nx/cypress": "17.2.5",
+		"@nx/eslint": "v17.2.5",
 		"@nx/eslint-plugin": "17.2.5",
 		"@nx/jest": "17.2.5",
 		"@nx/js": "17.2.5",
@@ -121,6 +122,7 @@
 		"@nx/storybook": "17.2.5",
 		"@nx/vite": "17.2.5",
 		"@nx/web": "17.2.5",
+		"@nx/webpack": "^17.2.6",
 		"@nx/workspace": "17.2.5",
 		"@octokit/rest": "^17.2.0",
 		"@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
@@ -165,7 +167,7 @@
 		"babel-plugin-macros": "2.6.1",
 		"codecov": "^3.6.5",
 		"concurrently": "^5.0.0",
-		"copy-webpack-plugin": "^5.1.1",
+		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.4.0",
 		"cypress": "^13.0.0",
 		"eslint": "8.48.0",
@@ -176,7 +178,7 @@
 		"eslint-plugin-prefer-arrow": "^1.2.3",
 		"eslint-plugin-react": "7.32.2",
 		"eslint-plugin-react-hooks": "4.6.0",
-		"generate-package-json-webpack-plugin": "^1.0.1",
+		"generate-package-json-webpack-plugin": "^2.6.0",
 		"html-webpack-plugin": "^5.5.3",
 		"husky": "^8.0.3",
 		"jasmine-core": "4.2.0",
@@ -229,7 +231,6 @@
 		"url-loader": "^4.1.1",
 		"vitest": "0.34.6",
 		"webpack": "^5.75.0",
-		"webpack-merge": "^5.8.0",
-		"@nx/eslint": "v17.2.5"
+		"webpack-merge": "^5.8.0"
 	}
 }

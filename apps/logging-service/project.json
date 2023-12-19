@@ -9,6 +9,7 @@
 		"build": {
 			"executor": "@nx/webpack:webpack",
 			"options": {
+				"webpackConfig": "webpack.node.config.js",
 				"outputPath": "dist/apps/logging-service",
 				"main": "apps/logging-service/src/main.ts",
 				"tsConfig": "apps/logging-service/tsconfig.app.json",

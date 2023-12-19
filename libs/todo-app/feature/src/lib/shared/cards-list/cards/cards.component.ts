@@ -7,5 +7,5 @@ import { Component, Input, TemplateRef } from '@angular/core';
 })
 export class CardsComponent {
 	@Input() public cardRef: TemplateRef<unknown>;
-	@Input() public data: unknown;
+	@Input() public data: unknown[];
 }
