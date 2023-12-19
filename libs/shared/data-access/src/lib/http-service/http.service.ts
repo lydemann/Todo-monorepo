@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
@@ -22,7 +23,10 @@ export class HttpService {
 
 	private errorSubject = new Subject<ErrorPayload>();
 
-	constructor(private http: HttpClient, private logService: LogService) {
+	constructor(
+		private http: HttpClient,
+		private logService: LogService,
+	) {
 		this.error$ = this.errorSubject.asObservable();
 	}
 
@@ -53,12 +57,11 @@ export class HttpService {
 		);
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public authDelete<T = any>(endpoint: string, noop?): Observable<T> {
-		return this.http.delete<T>(endpoint).pipe(
-			retry(retryCount),
-			take(1),
-			catchError(this.handleError<T>()),
-		);
+		return this.http
+			.delete<T>(endpoint)
+			.pipe(retry(retryCount), take(1), catchError(this.handleError<T>()));
 	}
 
 	public authGet<T = any>(

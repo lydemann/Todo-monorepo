@@ -7,6 +7,7 @@
 /junit
 
 /.angular
+.nx/**/*
 
 # dependencies
 /node_modules

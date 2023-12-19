@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * This file contains an action creator for throwing errors
  * It is inspired from the `createAction` in NgRx https://github.com/ngrx/platform/blob/master/modules/store/src/action_creator.ts
  *  Example:
  *  ```
  *  export const getPaperSearchFailed = createErrorAction(
-      PaperSearchActionTypes.GetPaperSearchFailed,
+	  PaperSearchActionTypes.GetPaperSearchFailed,
 	  errorProps<{ error: ErrorDetails }>(),
 	  {
 		  showNotification: false,
 	  }
-    );
+	);
  * ```
  */
 
@@ -28,12 +29,12 @@ export class ErrorAction implements Action {
 export type ErrorPropsReturnType<T extends object> = T extends any[]
 	? ArraysAreNotAllowed
 	: T extends { type: any }
-	? TypePropertyIsNotAllowed
-	: T extends {
-			[IS_ERROR_ACTION]: any;
-	  }
-	? IsErrorPropertyIsNotAllowed
-	: { _as: 'props'; _p: T };
+		? TypePropertyIsNotAllowed
+		: T extends {
+					[IS_ERROR_ACTION]: any;
+			  }
+			? IsErrorPropertyIsNotAllowed
+			: { _as: 'props'; _p: T };
 
 export function errorProps<
 	P extends {
@@ -60,8 +61,8 @@ export type FunctionWithParametersType<P extends unknown[], R = void> = (
 export type DisallowArraysAndTypeProperty<T> = T extends any[]
 	? ArraysAreNotAllowed
 	: T extends { type: any }
-	? TypePropertyIsNotAllowed
-	: T;
+		? TypePropertyIsNotAllowed
+		: T;
 
 export function createErrorAction<T extends string>(
 	type: T,

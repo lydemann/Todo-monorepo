@@ -19,6 +19,7 @@ describe('TodoList reducer', () => {
 
 	describe('default', () => {
 		it('should return init state', () => {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			const noopAction = new GenericAction('noop' as any);
 			const newState = todoListReducer(undefined, noopAction);
 

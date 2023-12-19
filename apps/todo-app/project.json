@@ -11,7 +11,7 @@
 	},
 	"targets": {
 		"build": {
-			"executor": "@angular-devkit/build-angular:browser",
+			"executor": "@angular-devkit/build-angular:browser-esbuild",
 			"options": {
 				"aot": true,
 				"buildOptimizer": false,
@@ -78,28 +78,39 @@
 					"sourceMap": true,
 					"namedChunks": true
 				},
-				"defaultConfiguration": "production"
+				"defaultConfiguration": {
+					"0": "p",
+					"1": "r",
+					"2": "o",
+					"3": "d",
+					"4": "u",
+					"5": "c",
+					"6": "t",
+					"7": "i",
+					"8": "o",
+					"9": "n"
+				}
 			}
 		},
 		"serve": {
 			"executor": "@angular-devkit/build-angular:dev-server",
 			"options": {
-				"browserTarget": "todo-app:build",
-				"proxyConfig": "apps/todo-app/proxy.conf.json"
+				"proxyConfig": "apps/todo-app/proxy.conf.json",
+				"buildTarget": "todo-app:build"
 			},
 			"configurations": {
 				"production": {
-					"browserTarget": "todo-app:build:production"
+					"buildTarget": "todo-app:build:production"
 				},
 				"development": {
-					"browserTarget": "todo-app:build:development"
+					"buildTarget": "todo-app:build:development"
 				}
 			}
 		},
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",
 			"options": {
-				"browserTarget": "todo-app:build"
+				"buildTarget": "todo-app:build"
 			}
 		},
 		"test": {
@@ -110,11 +121,8 @@
 			}
 		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": ["apps/todo-app/**/*.ts", "apps/todo-app/**/*.html"]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		},
 		"component-test": {
 			"executor": "@nx/cypress:cypress",

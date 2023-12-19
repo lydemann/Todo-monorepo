@@ -3,9 +3,7 @@ import {
 	Component,
 	EventEmitter,
 	Input,
-	OnChanges,
 	Output,
-	SimpleChanges,
 	ViewEncapsulation,
 } from '@angular/core';
 

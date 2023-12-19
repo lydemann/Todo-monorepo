@@ -14,7 +14,7 @@ import { HardcodedQuestionService as HardcodedQuestionsService } from './hardcod
 })
 export class HardcodedQuestionsComponent implements AfterViewInit {
 	@ViewChild('questionToBeHardCoded')
-	public questionToBeHardCoded: TemplateRef<any>;
+	public questionToBeHardCoded: TemplateRef<unknown>;
 
 	constructor(
 		private hardcodedQuestionsMapService: HardcodedQuestionsService,

@@ -19,6 +19,7 @@ describe('TodoListCompletedComponent', () => {
 		completed: true,
 	};
 	const todoList = [todo1];
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	let todoListSandboxServiceStub: SpyObject<TodoListFacadeService>;
 
 	beforeEach(async(() => {

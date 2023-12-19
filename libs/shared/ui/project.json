@@ -6,14 +6,8 @@
 	"prefix": "todo",
 	"targets": {
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": [
-					"libs/shared/ui/**/*.ts",
-					"libs/shared/ui/**/*.html"
-				]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		},
 		"storybook": {
 			"executor": "@storybook/angular:start-storybook",

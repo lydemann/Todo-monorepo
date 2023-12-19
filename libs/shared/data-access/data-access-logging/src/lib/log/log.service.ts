@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { first } from 'rxjs/operators';
 import * as StackTrace from 'stacktrace-js';
@@ -16,6 +17,7 @@ export class LogService {
 		// tslint:disable-next-line: no-empty
 		// eslint-disable-next-line @typescript-eslint/no-empty-function
 		log: () => {},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} as any;
 	private userId: string;
 	private browserAndVendor = 'Unknown browser';

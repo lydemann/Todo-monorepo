@@ -17,7 +17,7 @@ export class FeatureToggleDirective implements OnInit {
 
 	constructor(
 		private vcr: ViewContainerRef,
-		private tpl: TemplateRef<any>,
+		private tpl: TemplateRef<unknown>,
 		private featureToggleService: FeatureToggleService,
 	) {}
 

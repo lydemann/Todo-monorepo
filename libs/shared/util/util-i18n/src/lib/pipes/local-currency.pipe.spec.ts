@@ -13,6 +13,7 @@ describe('Pipe: LocalCurrencye', () => {
 	});
 
 	it('should format currency', () => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const pipe = new LocalCurrencyPipe(localeServiceMock as any);
 
 		const currencyCode = 'USD';

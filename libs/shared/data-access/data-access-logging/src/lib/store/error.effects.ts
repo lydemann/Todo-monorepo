@@ -1,6 +1,6 @@
 import { ErrorHandler, Inject, Injectable } from '@angular/core';
 import { Actions, createEffect } from '@ngrx/effects';
-import { catchError, filter, tap } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 
 import { GlobalErrorHandler } from '../global-error-handler/global-error-handler.service';
 import { ErrorAction } from './error-action-creator';

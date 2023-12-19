@@ -5,7 +5,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { provideMagicalMock } from '@todo/shared/util-test';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { mockProvider } from '@ngneat/spectator/jest';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { DatePickerModule } from '../../date-picker/date-picker.module';
@@ -24,7 +25,7 @@ describe('AddTodoComponent', () => {
 				DatePickerModule,
 				NoopAnimationsModule,
 			],
-			providers: [provideMagicalMock(TodoListFacadeService)],
+			providers: [mockProvider(TodoListFacadeService)],
 			schemas: [NO_ERRORS_SCHEMA],
 		}).compileComponents();
 	}));

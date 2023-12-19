@@ -12,6 +12,7 @@ export class AppController {
 	}
 
 	@Post()
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	public postLog(data: any) {
 		return this.appService.postLog(data);
 	}

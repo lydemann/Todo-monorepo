@@ -25,6 +25,7 @@ export class FeatureToggleService {
 			.get('/assets/feature-flags.json?userId=' + userId)
 			.pipe(
 				first(),
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				tap((features: any) => {
 					if (!features) {
 						throw new Error('No features!');

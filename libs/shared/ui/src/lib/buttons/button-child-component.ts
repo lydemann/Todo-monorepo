@@ -5,7 +5,7 @@ import { ButtonParentComponent } from './button-parent-component';
 @Component({
 	template: '',
 })
-export abstract class ButtonChildComponent<ButtonTypes = any> {
+export abstract class ButtonChildComponent<ButtonTypes = unknown> {
 	@Input() public parent: ButtonParentComponent<ButtonTypes>;
 
 	public get iconButton() {

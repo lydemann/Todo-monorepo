@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 export class MockSelectComponent {
 	@Input() public placeholder: string;
 	@Input() public disabled = false;
-	@Input() public options: [{ label: string; value: any }];
+	@Input() public options: [{ label: string; value: unknown }];
 }

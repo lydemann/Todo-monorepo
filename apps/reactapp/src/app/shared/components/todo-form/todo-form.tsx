@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { AddTodoReactiveFormsComponent } from '@todo/shared/ui';
 import { AngularElementsEvent } from '../../models/angular-elements-output';
 
 export const TodoForm = ({ todoItem, saveTodo }) => {
-	const onSaveTodo = (event: AngularElementsEvent<TodoItem>) =>
-		saveTodo(event.detail);
-
 	useEffect(() => {
+		const onSaveTodo = (event: AngularElementsEvent<TodoItem>) =>
+			saveTodo(event.detail);
 		const addTodoFormElm = document.querySelector<
 			Element & AddTodoReactiveFormsComponent
 		>('app-todo-form');
@@ -18,7 +17,7 @@ export const TodoForm = ({ todoItem, saveTodo }) => {
 		return () => {
 			addTodoFormElm.removeEventListener('saveTodo', onSaveTodo);
 		};
-	}, [todoItem]);
+	}, [todoItem, saveTodo]);
 
 	return (
 		<app-todo-form

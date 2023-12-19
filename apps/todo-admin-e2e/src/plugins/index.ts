@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //

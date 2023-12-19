@@ -68,6 +68,7 @@ export class AddTodoReactiveFormsComponent implements OnChanges {
 		this.changeDetectionRef.detectChanges();
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public ngOnChanges(changes: SimpleChanges): void {
 		this.changeDetectionRef.detectChanges();
 	}

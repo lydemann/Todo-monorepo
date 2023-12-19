@@ -4,5 +4,5 @@ import { Injectable, TemplateRef } from '@angular/core';
 	providedIn: 'root',
 })
 export class HardcodedQuestionService {
-	public hardcodedQuestionsMap = new Map<string, TemplateRef<any>>();
+	public hardcodedQuestionsMap = new Map<string, TemplateRef<unknown>>();
 }

@@ -9,6 +9,7 @@
 		"build": {
 			"executor": "@nx/webpack:webpack",
 			"options": {
+				"webpackConfig": "webpack.node.config.js",
 				"outputPath": "dist/apps/logging-service",
 				"main": "apps/logging-service/src/main.ts",
 				"tsConfig": "apps/logging-service/tsconfig.app.json",
@@ -38,14 +39,8 @@
 			}
 		},
 		"lint": {
-			"executor": "@nx/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": [
-					"apps/logging-service/**/*.ts",
-					"apps/logging-service/**/*.html"
-				]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		},
 		"test": {
 			"executor": "@nx/jest:jest",

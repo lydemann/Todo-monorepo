@@ -2,8 +2,9 @@ import { getTestScheduler } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 /*
-    This is used to run effects in tests with dispatch: false in a synchronous execution context (through the TestScheduler).
+	This is used to run effects in tests with dispatch: false in a synchronous execution context (through the TestScheduler).
 */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const runEffect = (effect: Observable<any>) => {
 	const scheduler = getTestScheduler();
 	scheduler.schedule(() => {

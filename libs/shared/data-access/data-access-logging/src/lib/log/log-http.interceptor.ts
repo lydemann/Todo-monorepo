@@ -18,11 +18,14 @@ export class LogHttpInterceptor implements HttpInterceptor {
 	constructor(private logService: LogService) {}
 
 	public intercept(
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		oldReq: HttpRequest<any>,
 		next: HttpHandler,
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	): Observable<HttpEvent<any>> {
 		const requestBeginTime = moment();
 		return next.handle(oldReq).pipe(
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			tap(_ => {
 				this.logTime(requestBeginTime, oldReq.url, oldReq.method);
 			}),
