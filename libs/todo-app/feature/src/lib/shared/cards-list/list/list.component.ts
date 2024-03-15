@@ -1,17 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CommonModule } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
 	Component,
-	Input,
+	input,
 	TemplateRef,
 } from '@angular/core';
 
 @Component({
 	selector: 'app-list',
-	templateUrl: './list.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	template: `
+		<ng-container
+			[ngTemplateOutlet]="tableRef()"
+			[ngTemplateOutletContext]="{ data: data() }"
+		></ng-container>
+	`,
+	standalone: true,
+	imports: [CommonModule],
 })
 export class ListComponent {
-	@Input() public tableRef: TemplateRef<any>;
-	@Input() public data: any;
+	tableRef = input.required<TemplateRef<unknown>>();
+	data = input<unknown[]>();
 }

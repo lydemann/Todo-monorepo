@@ -16,11 +16,11 @@ import {
 	providedIn: 'root',
 })
 export class TodoListFacadeService {
-	public isLoading$ = this.store.select(selectIsLoading);
+	public isLoading = this.store.selectSignal(selectIsLoading);
 	public selectedTodo$ = this.store.select(selectSelectedTodoItem);
 	public completedTodos$ = this.store.select(selectCompletedTodos);
 	public isSavingTodo$ = this.store.select(selectIsSavingTodo);
-	public todoList$ = this.store.select(selectTodoList);
+	public todoList = this.store.selectSignal(selectTodoList);
 
 	constructor(private store: Store<TodoListState>) {}
 	public todoCompletedToggled(todoId: string) {

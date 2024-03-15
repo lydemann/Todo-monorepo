@@ -5,7 +5,7 @@ import { AccordionModule } from './accordion/accordion.module';
 import { AddTodoReactiveFormsModule } from './add-todo/add-todo-reactive-forms/add-todo-reactive-forms.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
-import { CrudItemModule } from './crud-item/crud-item.module';
+import { CrudItemComponent } from './crud-item';
 import { DatePickerModule } from './date-picker/date-picker.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
@@ -27,7 +27,7 @@ const IMPORTS = [
 	TooltipModule,
 	DatePickerModule,
 	InputModule,
-	CrudItemModule,
+	CrudItemComponent,
 	AddTodoReactiveFormsModule,
 ];
 

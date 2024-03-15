@@ -8,7 +8,7 @@ import { SharedUiModule } from '@todo/shared/ui';
 import { FeatureToggleModule } from '@todo/shared/util-feature-toggle';
 import { SharedUtilUtilI18nModule } from '@todo/shared/util-i18n';
 import { AppMaterialModule } from './app-material/app-material.module';
-import { CardListModule } from './cards-list/cards-list.module';
+import { CardsListComponent } from './cards-list/cards-list.component';
 import { TodoItemCardComponent } from './todo-item-card/todo-item-card.component';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { TodoItemCardComponent } from './todo-item-card/todo-item-card.component
 		RouterModule,
 		FormsModule,
 		TranslateModule,
-		CardListModule,
+		CardsListComponent,
 		AppMaterialModule,
 		FeatureToggleModule,
 		SharedUtilUtilI18nModule,
@@ -29,7 +29,7 @@ import { TodoItemCardComponent } from './todo-item-card/todo-item-card.component
 		FormsModule,
 		RouterModule,
 		TranslateModule,
-		CardListModule,
+		CardsListComponent,
 		TodoItemCardComponent,
 		AppMaterialModule,
 		FeatureToggleModule,
