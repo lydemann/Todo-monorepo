@@ -17,6 +17,7 @@
 			@switch (getQuestionRendering(question).toString()) {
 				@case ('TEXTBOX') {
 					<input
+						appNumberInput
 						[formControlName]="question.externalQuestionId"
 						[id]="question.externalQuestionId"
 					/>
