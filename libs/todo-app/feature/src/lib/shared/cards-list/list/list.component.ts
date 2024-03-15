@@ -19,6 +19,6 @@ import {
 	imports: [CommonModule],
 })
 export class ListComponent {
-	tableRef = input.required<TemplateRef<unknown>>();
+	tableRef = input<TemplateRef<unknown>>();
 	data = input<unknown[]>();
 }

@@ -10,8 +10,8 @@ describe('CrudItemComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [CrudItemComponent],
-			imports: [],
+			declarations: [],
+			imports: [CrudItemComponent],
 		})
 			.overrideTemplate(CrudItemComponent, '')
 			.compileComponents();

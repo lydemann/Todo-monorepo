@@ -6,8 +6,8 @@ import {
 	Spectator,
 } from '@ngneat/spectator/jest';
 import { TranslateModule } from '@ngx-translate/core';
-import { of } from 'rxjs';
 
+import { signal } from '@angular/core';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { AddTodoComponent, AddTodoReactiveFormsModule } from '@todo/shared/ui';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
@@ -22,6 +22,7 @@ describe('TodoListComponent', () => {
 		declarations: [AddTodoComponent],
 		imports: [
 			FormsModule,
+			TodoListComponent,
 			TranslateModule.forRoot(),
 			SharedModule,
 			AddTodoReactiveFormsModule,
@@ -29,8 +30,12 @@ describe('TodoListComponent', () => {
 		],
 		providers: [
 			mockProvider(TodoListFacadeService, {
-				todoList$: of([]),
-				isLoading$: of(false),
+				isLoading: signal(false),
+				todoList: signal([
+					new TodoItem('1', ''),
+					new TodoItem('2', ''),
+					new TodoItem('3', ''),
+				]),
 			}),
 		],
 	});
@@ -39,12 +44,6 @@ describe('TodoListComponent', () => {
 
 	describe('get todo list', () => {
 		it('should show three todo items', waitForAsync(() => {
-			const todoListFacadeService = spectator.inject(TodoListFacadeService);
-			todoListFacadeService.todoList$ = of([
-				new TodoItem('1', ''),
-				new TodoItem('2', ''),
-				new TodoItem('3', ''),
-			]);
 			spectator = createComponent();
 
 			spectator.detectChanges();
