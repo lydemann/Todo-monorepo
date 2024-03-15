@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import {
 	ApplicationRef,
 	Component,
-	EventEmitter,
 	Input,
-	Output,
 	ViewEncapsulation,
+	output,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedUtilUtilI18nModule } from '@todo/shared/util-i18n';
@@ -81,9 +80,9 @@ export class CrudItemComponent {
 	@Input() public editBtnText = 'todo-item.edit';
 	@Input() public deleteBtnText = 'todo-item.delete';
 
-	@Output() public todoDelete = new EventEmitter();
-	@Output() public todoEdit = new EventEmitter();
-	@Output() public todoCompleteToggled = new EventEmitter<string>();
+	todoDelete = output<string>();
+	todoEdit = output<TodoItem>();
+	todoCompleteToggled = output<string>();
 
 	constructor(private applicationRef: ApplicationRef) {}
 
