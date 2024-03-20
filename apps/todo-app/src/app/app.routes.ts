@@ -29,8 +29,10 @@ export const appRoutes: Routes = [
 				},
 				canActivate: [FeatureToggleCanActivateGuard],
 				canLoad: [FeatureToggleCanLoadGuard],
-				loadChildren: () =>
-					import('@todo/todo-app/feature').then(m => m.TodoListCompletedModule),
+				loadComponent: () =>
+					import('@todo/todo-app/feature').then(
+						m => m.TodoListCompletedComponent,
+					),
 			},
 		],
 	},

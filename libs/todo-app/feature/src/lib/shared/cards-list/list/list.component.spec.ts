@@ -9,7 +9,7 @@ describe('TableComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ListComponent],
+			imports: [ListComponent],
 		}).compileComponents();
 	}));
 

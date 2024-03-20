@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
 
+import { CrudItemComponent } from '@todo-app/ui';
 import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { SharedModule } from '../shared/shared.module';
@@ -8,23 +8,63 @@ import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count
 
 @Component({
 	selector: 'app-todo-list',
-	templateUrl: './todo-list.component.html',
+	template: `@if (this.isLoading() === false) {
+			<div class="todo-list-wrapper">
+				<div class="mx-auto col-10">
+					<h5>{{ 'todo-list' | translate }}</h5>
+					<hr />
+					<app-cards-list
+						[tableRef]="todoListRef"
+						[cardRef]="todoItemCardRef"
+						[data]="todoList()"
+					></app-cards-list>
+
+					<hr />
+					<div>
+						{{ 'todo-list-section.todos-duedate-today' | translate }}:
+						{{ todoList() | duedateTodayCount }}
+					</div>
+					<hr />
+					<app-add-todo-reactive-forms
+						[currentTodo]="selectedTodo$ | async"
+						[isSavingTodo]="isSavingTodo$ | async"
+						(saveTodo)="onSaveTodo($event)"
+					></app-add-todo-reactive-forms>
+				</div>
+			</div>
+		} @else {
+			<app-spinner [message]="'Getting todo items'"></app-spinner>
+		}
+
+		<ng-template #todoItemCardRef let-todo="data">
+			<app-todo-item-card
+				[todoItem]="todo"
+				(todoDelete)="deleteTodo($event)"
+				(todoEdit)="selectTodoForEdit($event)"
+				(todoCompleteToggled)="todoCompleteToggled($event)"
+			></app-todo-item-card>
+		</ng-template>
+
+		<ng-template #todoListRef let-todos="data">
+			<ul class="list-group mb-3">
+				@for (todo of todos; track todo.id) {
+					<app-crud-item
+						[todoItem]="todo"
+						(todoDelete)="deleteTodo($event)"
+						(todoEdit)="selectTodoForEdit($event)"
+						(todoCompleteToggled)="todoCompleteToggled($event)"
+					></app-crud-item>
+				}
+			</ul>
+		</ng-template>`,
 	standalone: true,
-	imports: [SharedModule, DuedateTodayCountPipe],
+	imports: [SharedModule, DuedateTodayCountPipe, CrudItemComponent],
 })
 export class TodoListComponent {
 	public selectedTodo$ = this.todoListFacadeService.selectedTodo$;
-	public todoList$ = this.todoListFacadeService.todoList$;
-	public isLoading$ = this.todoListFacadeService.isLoading$;
+	public todoList = this.todoListFacadeService.todoList;
+	public isLoading = this.todoListFacadeService.isLoading;
 	public isSavingTodo$ = this.todoListFacadeService.isSavingTodo$;
-	public duedateTodayCount$ = this.todoList$.pipe(
-		map(
-			todoList =>
-				todoList.filter(
-					todoItem => todoItem.dueDate && this.isToday(todoItem.dueDate),
-				).length,
-		),
-	);
 
 	constructor(private todoListFacadeService: TodoListFacadeService) {}
 

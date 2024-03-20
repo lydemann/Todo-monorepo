@@ -1,21 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { TodoItem } from '@todo/shared/todo-interfaces';
+import { Component } from '@angular/core';
 
 import { TodoListFacadeService } from '@todo/todo-app/domain';
-import { Observable } from 'rxjs';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
 	selector: 'app-todo-list-completed',
-	templateUrl: './todo-list-completed.component.html',
+	template: `
+		<div class="todo-list-wrapper">
+			<div class="mx-auto col-10">
+				<h5>{{ 'completed-todo-list' | translate }}</h5>
+				<hr />
+				<ul class="list-group mb-3">
+					<app-crud-item
+						*ngFor="let todo of completedTodos$ | async"
+						(todoCompleteToggled)="todoCompleteToggled($event)"
+						[todoItem]="todo"
+						[isReadOnly]="true"
+					></app-crud-item>
+				</ul>
+			</div>
+			<hr />
+		</div>
+	`,
+	standalone: true,
+	imports: [SharedModule],
 })
-export class TodoListCompletedComponent implements OnInit {
-	public completedTodos$!: Observable<TodoItem[]>;
+export class TodoListCompletedComponent {
+	completedTodos$ = this.todoListFacadeService.completedTodos$;
 
 	constructor(private todoListFacadeService: TodoListFacadeService) {}
-
-	public ngOnInit() {
-		this.completedTodos$ = this.todoListFacadeService.completedTodos$;
-	}
 
 	public todoCompleteToggled(todoId: string) {
 		this.todoListFacadeService.todoCompletedToggled(todoId);
