@@ -2,7 +2,9 @@
 	"extends": "../../../tsconfig.base.json",
 	"compilerOptions": {
 		"types": ["jasmine"],
-		"target": "es2020"
+		"target": "es2020",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true
 	},
 	"include": ["**/*.ts"]
 }

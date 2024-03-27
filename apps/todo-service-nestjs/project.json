@@ -1,0 +1,55 @@
+{
+	"name": "todo-service-nestjs",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/todo-service-nestjs/src",
+	"projectType": "application",
+	"prefix": "todo-service-nestjs",
+	"generators": {},
+	"targets": {
+		"build": {
+			"executor": "@nx/webpack:webpack",
+			"options": {
+				"webpackConfig": "webpack.node.config.js",
+				"buildLibsFromSource": true,
+				"outputPath": "dist/apps/todo-service-nestjs",
+				"main": "apps/todo-service-nestjs/src/main.ts",
+				"tsConfig": "apps/todo-service-nestjs/tsconfig.app.json",
+				"assets": ["apps/todo-service-nestjs/src/assets"],
+				"target": "node",
+				"compiler": "tsc"
+			},
+			"configurations": {
+				"production": {
+					"optimization": true,
+					"extractLicenses": true,
+					"inspect": false,
+					"fileReplacements": [
+						{
+							"replace": "apps/todo-service-nestjs/src/environments/environment.ts",
+							"with": "apps/todo-service-nestjs/src/environments/environment.prod.ts"
+						}
+					]
+				}
+			}
+		},
+		"serve": {
+			"executor": "@nx/js:node",
+			"options": {
+				"buildTarget": "todo-service-nestjs:build",
+				"port": 0
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"options": {
+				"jestConfig": "apps/todo-service-nestjs/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	},
+	"tags": ["scope:todo-service-nestjs", "type:service"]
+}

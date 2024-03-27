@@ -38,6 +38,9 @@
 			"@todo/shared/util-i18n": ["libs/shared/util/util-i18n/src/index.ts"],
 			"@todo/shared/util-test": ["libs/shared/util/util-test/src/index.ts"],
 			"@todo/todo-app/domain": ["libs/todo-app/domain/src/index.ts"],
+			"@todo/todo-app/domain/trpc-server": [
+				"libs/todo-app/domain/trpc-server/src/index.ts"
+			],
 			"@todo/todo-app/feature": ["libs/todo-app/feature/src/index.ts"],
 			"@todo/todo-app/testing-util": ["libs/todo-app/testing-util/src/index.ts"]
 		}

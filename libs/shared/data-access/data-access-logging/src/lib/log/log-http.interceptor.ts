@@ -5,7 +5,7 @@ import {
 	HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -31,7 +31,7 @@ export class LogHttpInterceptor implements HttpInterceptor {
 			}),
 		);
 	}
-
+	k;
 	private logTime(startMoment: moment.Moment, url: string, method: string) {
 		const requestDuration = moment().diff(startMoment, 'milliseconds');
 

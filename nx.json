@@ -57,6 +57,11 @@
 				"{projectRoot}/.storybook/**/*",
 				"{projectRoot}/tsconfig.storybook.json"
 			]
+		},
+		"@nx/webpack:webpack": {
+			"cache": true,
+			"dependsOn": ["^build"],
+			"inputs": ["production", "^production"]
 		}
 	},
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",

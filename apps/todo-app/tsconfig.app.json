@@ -4,7 +4,8 @@
 		"outDir": "../../dist/out-tsc/apps/todo-app",
 		"types": ["jasmine", "node"],
 		"target": "ES2022",
-		"useDefineForClassFields": false
+		"useDefineForClassFields": false,
+		"allowSyntheticDefaultImports": true
 	},
 	"files": ["src/main.ts", "src/polyfills.ts"],
 	"include": ["apps/todo-app/src/**/*.d.ts"],
