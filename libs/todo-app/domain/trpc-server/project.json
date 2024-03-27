@@ -1,0 +1,20 @@
+{
+	"name": "trpc",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/todo-app/domain/trpc-server/src",
+	"projectType": "library",
+	"targets": {
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/todo-app/domain/trpc-server/jest.config.ts"
+			}
+		}
+	},
+	"tags": ["scope:todo-app", "type:domain"]
+}
