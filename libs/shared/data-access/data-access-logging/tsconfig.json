@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"types": ["node", "jest"],
 		"target": "es2020",
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true
 	}
 }
