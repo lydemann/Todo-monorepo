@@ -11,8 +11,6 @@ const vapidKeys = {
 	privateKey: 'fnXDm1-sNIxo7ANOzLVHayVTEvKWscgJM-Y41AO3jdo',
 };
 
-const fakeDatabase = [] as PushSubscription[];
-
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -21,16 +19,17 @@ webpush.setVapidDetails(
 	vapidKeys.publicKey,
 	vapidKeys.privateKey,
 );
+const inmemoryDB = [] as PushSubscription[];
 
 app.post('/subscription', (req, res) => {
 	const subscription = req.body as PushSubscription;
 	console.log(subscription);
 
-	if (fakeDatabase.some(sub => sub.endpoint === subscription.endpoint)) {
+	if (inmemoryDB.some(sub => sub.endpoint === subscription.endpoint)) {
 		return res.status(200).json({ message: 'Subscription already exists' });
 	}
 
-	fakeDatabase.push(subscription);
+	inmemoryDB.push(subscription);
 	return res.status(200).json({ message: 'Subscription added successfully' });
 });
 
@@ -67,8 +66,7 @@ app.post('/send-notification', (req, res) => {
 	};
 
 	const promises: PushSubscription[] = [];
-	fakeDatabase.forEach(subscription => {
-		// if(fakeDatabase.every(sub => sub.endpoint !== subscription.endpoint)) {
+	inmemoryDB.forEach(subscription => {
 		promises.push(
 			webpush.sendNotification(
 				subscription,

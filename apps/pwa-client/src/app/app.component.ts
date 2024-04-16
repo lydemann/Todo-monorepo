@@ -4,11 +4,13 @@ import {
 	PushNotificationService,
 	VAPID_PUBLIC,
 } from './push-notification.service';
-import { SwPush } from '@angular/service-worker';
+import { SwPush, SwUpdate } from '@angular/service-worker';
+import { SharedUiModule } from '@todo-app/ui';
+import { first } from 'rxjs';
 
 @Component({
 	standalone: true,
-	imports: [RouterModule],
+	imports: [RouterModule, SharedUiModule],
 	selector: 'app-root',
 	template: `<h1>Welcome pwa-client</h1>
 		<button (click)="sendNotification()">Send Notification</button>`,
@@ -22,7 +24,27 @@ export class AppComponent {
 	constructor(
 		swPush: SwPush,
 		private pushNotification: PushNotificationService,
+		swUpdate: SwUpdate,
 	) {
+		if (swUpdate.isEnabled) {
+			// check for updates every 6 hours
+			setInterval(
+				() => {
+					swUpdate.checkForUpdate();
+				},
+				6 * 60 * 60 * 1000,
+			);
+
+			// if a new version is available, ask the user to load it
+			swUpdate.versionUpdates.subscribe(versionEvent => {
+				if (versionEvent.type === 'VERSION_READY') {
+					if (confirm('New version available. Load New Version?')) {
+						window.location.reload();
+					}
+				}
+			});
+		}
+
 		//check if the browser supports service workers
 		if (!swPush.isEnabled) {
 			console.log('Service worker is not enabled');
@@ -37,17 +59,7 @@ export class AppComponent {
 			console.log('Push message', message);
 		});
 
-		swPush
-			.requestSubscription({
-				serverPublicKey: VAPID_PUBLIC,
-			})
-			.then(subscription => {
-				//send subsription to server
-				this.pushNotification
-					.SendSubsriptionToService(subscription)
-					.subscribe();
-			})
-			.catch(console.error);
+		pushNotification.requestSubscription();
 	}
 
 	sendNotification() {

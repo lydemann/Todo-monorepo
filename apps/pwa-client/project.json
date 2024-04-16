@@ -1,6 +1,6 @@
 {
 	"name": "pwa-client",
-	"$schema": "../node_modules/nx/schemas/project-schema.json",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "application",
 	"prefix": "app",
 	"sourceRoot": "apps/pwa-client/src",
@@ -21,6 +21,9 @@
 					"apps/pwa-client/src/assets",
 					"apps/pwa-client/src/manifest.webmanifest"
 				],
+				"stylePreprocessorOptions": {
+					"includePaths": ["libs/shared/ui/styles/src/lib"]
+				},
 				"styles": ["apps/pwa-client/src/styles.scss"],
 				"scripts": []
 			},
@@ -59,10 +62,10 @@
 			"executor": "@angular-devkit/build-angular:dev-server",
 			"configurations": {
 				"production": {
-					"buildTarget": "apps/pwa-client:build:production"
+					"buildTarget": "pwa-client:build:production"
 				},
 				"development": {
-					"buildTarget": "apps/pwa-client:build:development"
+					"buildTarget": "pwa-client:build:development"
 				}
 			},
 			"defaultConfiguration": "development"
@@ -70,7 +73,7 @@
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",
 			"options": {
-				"buildTarget": "apps/pwa-client:build"
+				"buildTarget": "pwa-client:build"
 			}
 		},
 		"lint": {
@@ -81,7 +84,7 @@
 			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"jestConfig": "apps/pwa-client/jest.config.ts",
+				"jestConfig": "pwa-client/jest.config.ts",
 				"passWithNoTests": true
 			}
 		}
