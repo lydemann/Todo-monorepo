@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"target": "es2022",
+		"useDefineForClassFields": false,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true
+	},
+	"files": [],
+	"include": [],
+	"references": [
+		{
+			"path": "./tsconfig.app.json"
+		},
+		{
+			"path": "./tsconfig.spec.json"
+		},
+		{
+			"path": "./tsconfig.editor.json"
+		}
+	],
+	"extends": "../../tsconfig.base.json"
+}

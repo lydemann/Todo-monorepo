@@ -30,9 +30,6 @@
 			}
 		}
 	},
-	"affected": {
-		"defaultBase": "origin/main"
-	},
 	"targetDefaults": {
 		"build": {
 			"dependsOn": ["^build"],
@@ -43,9 +40,6 @@
 		},
 		"e2e": {
 			"inputs": ["default", "^production"]
-		},
-		"lint": {
-			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
 		},
 		"component-test": {
 			"inputs": ["default", "^production"]
@@ -62,6 +56,15 @@
 			"cache": true,
 			"dependsOn": ["^build"],
 			"inputs": ["production", "^production"]
+		},
+		"@nx/esbuild:esbuild": {
+			"cache": true,
+			"dependsOn": ["^build"],
+			"inputs": ["production", "^production"]
+		},
+		"@nx/eslint:lint": {
+			"inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+			"cache": true
 		}
 	},
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
@@ -92,5 +95,7 @@
 			"!{projectRoot}/tsconfig.storybook.json"
 		]
 	},
-	"defaultProject": "todo-app"
+	"defaultProject": "todo-app",
+	"useInferencePlugins": false,
+	"defaultBase": "origin/main"
 }

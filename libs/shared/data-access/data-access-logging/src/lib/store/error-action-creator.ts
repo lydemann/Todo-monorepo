@@ -15,7 +15,7 @@
  */
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { Action, ActionCreator, Creator } from '@ngrx/store';
+import { Action, ActionCreator, Creator, NotAllowedCheck } from '@ngrx/store';
 
 export const IS_ERROR_ACTION = '_isError';
 
@@ -84,7 +84,7 @@ export function createErrorAction<
 	R extends object,
 >(
 	type: T,
-	creator: Creator<P, DisallowArraysAndTypeProperty<R>>,
+	creator: Creator<P, R & NotAllowedCheck<R>>,
 	errorConfig?: {
 		showNotification?: boolean;
 	},
