@@ -1,4 +1,8 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+	HttpClient,
+	provideHttpClient,
+	withInterceptorsFromDi,
+} from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,11 +53,11 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 
 @NgModule({
 	declarations: [AppComponent],
+	bootstrap: [AppComponent],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		CoreModule,
-		HttpClientModule,
 		appRouterModule,
 		TranslateModule.forRoot({
 			loader: {
@@ -80,7 +84,7 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 		{ provide: ErrorHandler, useClass: GlobalErrorHandler },
 		AppInitService,
 		LogService,
+		provideHttpClient(withInterceptorsFromDi()),
 	],
-	bootstrap: [AppComponent],
 })
 export class AppModule {}
