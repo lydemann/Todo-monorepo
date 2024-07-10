@@ -18,6 +18,7 @@
 		--todo-hover: mat.get-color-from-palette($accent, 700),
 		--todo-black: map.get($unit-colors-vals, 'black'),
 		--todo-white: map.get($unit-colors-vals, 'white'),
+		--todo-success: map.get($unit-colors-vals, 'success'),
 	);
 
 	@each $colorVar, $colorVal in $all-colors {

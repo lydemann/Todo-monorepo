@@ -1,6 +1,10 @@
 {
-	"extends": ["stylelint-config-standard-scss", "stylelint-config-prettier"],
+	"extends": [
+		"stylelint-config-standard-scss",
+		"stylelint-config-prettier-scss"
+	],
 	"rules": {
+		"scss/dollar-variable-pattern": null,
 		"no-empty-source": null,
 		"color-named": [
 			"never",

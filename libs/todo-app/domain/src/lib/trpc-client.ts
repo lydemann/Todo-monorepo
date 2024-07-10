@@ -1,7 +1,6 @@
 /**
  * We only import the `TodoTrpcRouter` type from the server - this is not available at runtime
  */
-import { DataTransformerOptions } from '@trpc/server';
 import { createTRPCProxyClient, httpBatchLink, loggerLink } from '@trpc/client';
 import type { TodoTrpcRouter } from '@todo/todo-app/domain/trpc-server';
 /**
@@ -14,7 +13,8 @@ export const trpc = createTRPCProxyClient<TodoTrpcRouter>({
 		loggerLink(),
 		httpBatchLink({
 			url: 'http://localhost:3333/api',
+			fetch: fetch,
 		}),
 	],
-	transformer: {} as DataTransformerOptions,
-});
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+} as any);

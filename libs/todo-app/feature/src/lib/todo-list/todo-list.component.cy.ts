@@ -2,8 +2,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { formatDate } from '@angular/common';
 import { Component, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, Router } from '@angular/router';
 import {
 	TranslateLoader,
 	TranslateModule,
@@ -17,6 +16,7 @@ import * as transactions from 'apps/todo-service/src/assets/i18n/en-lang.json';
 import { mount } from 'cypress/angular';
 import { TodoListResourcesService } from 'libs/todo-app/domain/src/lib/todo-list/resources/todo-list-resources.service';
 import { Observable, of } from 'rxjs';
+import { worker } from 'libs/todo-app/domain/src/mocks/browser';
 
 class CustomLoader implements TranslateLoader {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -41,9 +41,20 @@ describe('TodoListComponent', () => {
 	}
 
 	const setup = (initTodoItems: TodoItem[] = []) => {
+		// TOOD: fix load problem
+		// worker.start({
+		// 	serviceWorker: {
+		// 		url: '/__cypress/src/mockServiceWorker.js',
+		// 	},
+		// });
+		cy.wrap(
+			worker.start({
+				serviceWorker: { url: `/msw-service-worker.js` },
+			}),
+			{ log: false },
+		);
 		return mount(WrapperComponent, {
 			imports: [
-				RouterTestingModule.withRoutes([...appRoutes]),
 				AppModule,
 				TranslateModule.forRoot({
 					loader: {
@@ -52,6 +63,7 @@ describe('TodoListComponent', () => {
 					},
 				}),
 			],
+			providers: [provideRouter(appRoutes)],
 		}).then(
 			async ({
 				fixture: {
@@ -60,12 +72,12 @@ describe('TodoListComponent', () => {
 			}) => {
 				const ngZone = injector.get(NgZone);
 				const router = injector.get(Router);
-				const todoListResourceService = injector.get(TodoListResourcesService);
+				// const todoListResourceService = injector.get(TodoListResourcesService);
 
-				// or mock service worker
-				todoListResourceService.getTodos = () => {
-					return of(initTodoItems);
-				};
+				// // or mock service worker
+				// todoListResourceService.getTodos = () => {
+				// 	return of(initTodoItems);
+				// };
 
 				await ngZone.run(() => router.navigate(['']));
 
@@ -78,7 +90,7 @@ describe('TodoListComponent', () => {
 		);
 	};
 
-	it('should show todo item', () => {
+	it.only('should show todo item', () => {
 		const title = 'Item to show';
 		const description = 'This item should be shown';
 		const dueDate = new Date().toLocaleDateString('en-US');

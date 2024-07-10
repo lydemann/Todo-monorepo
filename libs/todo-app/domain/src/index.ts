@@ -2,3 +2,4 @@ export * from './lib/todo-app-lib.module';
 export * from './lib/todo-list/todo-list-facade.service';
 export * from './environments/environment';
 export * from './lib/trpc-client';
+export * from './mocks/';
