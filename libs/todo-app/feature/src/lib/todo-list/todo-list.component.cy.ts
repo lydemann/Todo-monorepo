@@ -2,33 +2,22 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { formatDate } from '@angular/common';
 import { Component, NgZone } from '@angular/core';
-import { provideRouter, Router } from '@angular/router';
-import {
-	TranslateLoader,
-	TranslateModule,
-	TranslateService,
-} from '@ngx-translate/core';
-import { AppModule } from '@todo-app/src/app/app.module';
-import { appRoutes } from '@todo-app/src/app/app.routes';
+import { Router, RouterModule } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { appConfig } from '@todo-app/src/app.config';
 import { TodoItem } from '@todo/shared/todo-interfaces';
+import { GET_TODOLIST_REGEX, MOCK_TODO_ITEMS } from '@todo/todo-app/domain';
 import * as config from 'apps/todo-app/src/assets/app-config.json';
-import * as transactions from 'apps/todo-service/src/assets/i18n/en-lang.json';
 import { mount } from 'cypress/angular';
-import { TodoListResourcesService } from 'libs/todo-app/domain/src/lib/todo-list/resources/todo-list-resources.service';
-import { Observable, of } from 'rxjs';
 import { worker } from 'libs/todo-app/domain/src/mocks/browser';
-
-class CustomLoader implements TranslateLoader {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	getTranslation(lang: string): Observable<unknown> {
-		return of(transactions);
-	}
-}
+import { http, HttpResponse } from 'msw';
 
 describe('TodoListComponent', () => {
 	@Component({
 		selector: 'app-wrapper-component',
 		template: '<router-outlet></router-outlet>',
+		standalone: true,
+		imports: [RouterModule],
 	})
 	class WrapperComponent {
 		constructor(translateService: TranslateService) {
@@ -40,71 +29,74 @@ describe('TodoListComponent', () => {
 		}
 	}
 
-	const setup = (initTodoItems: TodoItem[] = []) => {
-		// TOOD: fix load problem
-		// worker.start({
-		// 	serviceWorker: {
-		// 		url: '/__cypress/src/mockServiceWorker.js',
-		// 	},
-		// });
-		cy.wrap(
-			worker.start({
-				serviceWorker: { url: `/msw-service-worker.js` },
-			}),
-			{ log: false },
-		);
-		return mount(WrapperComponent, {
-			imports: [
-				AppModule,
-				TranslateModule.forRoot({
-					loader: {
-						provide: TranslateLoader,
-						useClass: CustomLoader,
-					},
+	const setup = (
+		{ todoItems }: { todoItems: TodoItem[] } = { todoItems: null },
+	) => {
+		return cy
+			.wrap(
+				worker.start({
+					serviceWorker: { url: `/mockServiceWorker.js` },
 				}),
-			],
-			providers: [provideRouter(appRoutes)],
-		}).then(
-			async ({
-				fixture: {
-					debugElement: { injector },
-				},
-			}) => {
-				const ngZone = injector.get(NgZone);
-				const router = injector.get(Router);
-				// const todoListResourceService = injector.get(TodoListResourcesService);
+			)
+			.then(() => {
+				if (todoItems) {
+					return cy.wrap(
+						worker.use(
+							http.get(GET_TODOLIST_REGEX, () => {
+								return HttpResponse.json([
+									{
+										result: {
+											data: todoItems,
+										},
+									},
+								]);
+							}),
+						),
+					);
+				}
+				return null;
+			})
+			.then(() => {
+				mount(WrapperComponent, {
+					imports: [],
+					providers: [...appConfig.providers],
+				}).then(
+					async ({
+						fixture: {
+							debugElement: { injector },
+						},
+					}) => {
+						const ngZone = injector.get(NgZone);
+						const router = injector.get(Router);
+						// const todoListResourceService = injector.get(TodoListResourcesService);
 
-				// // or mock service worker
-				// todoListResourceService.getTodos = () => {
-				// 	return of(initTodoItems);
-				// };
+						// // or mock service worker
+						// todoListResourceService.getTodos = () => {
+						// 	return of(initTodoItems);
+						// };
 
-				await ngZone.run(() => router.navigate(['']));
+						await ngZone.run(() => router.navigate(['']));
 
-				return {
-					ngZone,
-					router,
-					injector,
-				};
-			},
-		);
+						return {
+							ngZone,
+							router,
+							injector,
+						};
+					},
+				);
+			});
 	};
 
-	it.only('should show todo item', () => {
-		const title = 'Item to show';
-		const description = 'This item should be shown';
-		const dueDate = new Date().toLocaleDateString('en-US');
-		setup([
-			{
-				id: '1',
-				title,
-				description,
-				dueDate,
-			} as TodoItem,
-		]).then(({}) => {
-			cy.get('[data-test=todo-item]').contains(title);
-			cy.get('[data-test=todo-item]').contains(description);
-			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
+	it('should show todo item', () => {
+		const todoItem = MOCK_TODO_ITEMS[0];
+		setup().then(({}) => {
+			cy.get('[data-test=todo-item]').contains(todoItem.title);
+			cy.get('[data-test=todo-item]').contains(todoItem.description);
+			const formattedDueDate = formatDate(
+				todoItem.dueDate,
+				'shortDate',
+				'en-US',
+			);
 			cy.get('[data-test=todo-item]').contains(formattedDueDate);
 		});
 	});
@@ -127,25 +119,21 @@ describe('TodoListComponent', () => {
 	});
 
 	it('should update todo item', () => {
-		const title = 'Item to edited';
-		const description = 'This item should be edited';
-		const dueDate = new Date().toLocaleDateString('en-US');
-		setup([
-			{
-				id: '1',
-				title,
-				description,
-				dueDate,
-			} as TodoItem,
-		]).then(({}) => {
-			cy.get('[data-test=todo-item]').contains(title);
-			cy.get('[data-test=todo-item]').contains(description);
-			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
+		const todoItem = MOCK_TODO_ITEMS[0];
+		setup({ todoItems: [todoItem] }).then(({}) => {
+			cy.get('[data-test=todo-item]').contains(todoItem.title);
+			cy.get('[data-test=todo-item]').contains(todoItem.description);
+			const formattedDueDate = formatDate(
+				todoItem.dueDate,
+				'shortDate',
+				'en-US',
+			);
 			cy.get('[data-test=todo-item]').contains(formattedDueDate);
 
 			cy.get('[data-test=todo-item]')
 
 				.get('[data-test="edit-button"]')
+				.first()
 				.click();
 			const updatedTitle = 'Edited title';
 			cy.get('[data-test=todo-title]').clear().type(updatedTitle);
@@ -171,16 +159,10 @@ describe('TodoListComponent', () => {
 	});
 
 	it('should delete todo item', () => {
-		const title = 'Item to delete';
-		const description = 'This item should be deleted';
-		setup([
-			{
-				title,
-				description,
-			} as TodoItem,
-		]).then(({}) => {
-			cy.get('[data-test=todo-item]').contains(title);
-			cy.get('[data-test=todo-item]').contains(description);
+		const todoItem = MOCK_TODO_ITEMS[0];
+		setup({ todoItems: [todoItem] }).then(({}) => {
+			cy.get('[data-test=todo-item]').contains(todoItem.title);
+			cy.get('[data-test=todo-item]').contains(todoItem.description);
 
 			cy.get('[data-test=todo-item]')
 				.get('[data-test="delete-button"]')
