@@ -11,7 +11,7 @@
 		"build:ui-elements": "nx build shared-ui --output-hashing=none",
 		"start:pwa": "rimraf dist && npm run build && cd dist && http-server -p 4200",
 		"test": "nx test",
-		"test:pr": "npm run affected:test -- --base origin/main --head HEAD",
+		"test:pr": "npm run affected:test -- --base origin/main --head HEAD && nx affected -t component-test",
 		"test:watch": "ng test --watch true --browsers=Chrome",
 		"lint": "./node_modules/.bin/nx lint && nx lint",
 		"e2e": "nx e2e todo-app-e2e",
