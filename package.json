@@ -16,6 +16,7 @@
 		"lint": "./node_modules/.bin/nx lint && nx lint",
 		"e2e": "nx e2e todo-app-e2e",
 		"codecov": "codecov -t ",
+		"postinstall": "nx format:write",
 		"start:reactapp": "npm run build -- shared-ui && npm run start -- reactapp",
 		"start:reactapp:watch": "onchange -i -k 'libs/shared/ui/**/*.*' -- npm run start:reactapp",
 		"e2e:todo-app": "start-server-and-test start:todo-server http-get://localhost:3333/api/todo-list 'npm run e2e -- todo-app-e2e'",
