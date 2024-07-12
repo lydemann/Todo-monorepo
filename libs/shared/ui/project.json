@@ -14,7 +14,7 @@
 			"options": {
 				"port": 4400,
 				"configDir": "libs/shared/ui/.storybook",
-				"browserTarget": "shared-ui:build-storybook",
+				"buildTarget": "shared-ui:build-storybook",
 				"compodoc": false,
 				"stylePreprocessorOptions": {
 					"includePaths": ["libs/shared/ui/styles/src/lib"]
@@ -32,7 +32,7 @@
 			"options": {
 				"outputDir": "dist/storybook/shared-ui",
 				"configDir": "libs/shared/ui/.storybook",
-				"browserTarget": "shared-ui:build-storybook",
+				"buildTarget": "shared-ui:build-storybook",
 				"compodoc": false,
 				"stylePreprocessorOptions": {
 					"includePaths": ["libs/shared/ui/styles/src/lib"]

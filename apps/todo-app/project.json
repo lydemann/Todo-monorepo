@@ -16,7 +16,6 @@
 				"aot": true,
 				"buildOptimizer": false,
 				"optimization": false,
-				"vendorChunk": true,
 				"extractLicenses": false,
 				"sourceMap": true,
 				"namedChunks": true,
@@ -29,7 +28,8 @@
 					"apps/todo-app/src/favicon.ico",
 					"apps/todo-app/src/assets",
 					"apps/todo-app/src/manifest.json",
-					"apps/todo-app/src/web.config"
+					"apps/todo-app/src/web.config",
+					"apps/todo-app/src/mockServiceWorker.js"
 				],
 				"styles": ["apps/todo-app/src/styles.scss"],
 				"stylePreprocessorOptions": {
@@ -52,7 +52,6 @@
 					"optimization": true,
 					"outputHashing": "all",
 					"sourceMap": false,
-					"namedChunks": false,
 					"aot": true,
 					"extractLicenses": true,
 					"vendorChunk": false,
@@ -89,8 +88,17 @@
 					"7": "i",
 					"8": "o",
 					"9": "n"
+				},
+				"mock": {
+					"fileReplacements": [
+						{
+							"replace": "libs/todo-app/domain/src/environments/environment.ts",
+							"with": "libs/todo-app/domain/src/environments/environment.mock.ts"
+						}
+					]
 				}
-			}
+			},
+			"defaultConfiguration": "production"
 		},
 		"serve": {
 			"executor": "@angular-devkit/build-angular:dev-server",
@@ -104,8 +112,12 @@
 				},
 				"development": {
 					"buildTarget": "todo-app:build:development"
+				},
+				"mock": {
+					"buildTarget": "todo-app:build:mock"
 				}
-			}
+			},
+			"defaultConfiguration": "mock"
 		},
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",
@@ -123,15 +135,6 @@
 		"lint": {
 			"executor": "@nx/eslint:lint",
 			"outputs": ["{options.outputFile}"]
-		},
-		"component-test": {
-			"executor": "@nx/cypress:cypress",
-			"options": {
-				"cypressConfig": "apps/todo-app/cypress.config.ts",
-				"testingType": "component",
-				"skipServe": true,
-				"devServerTarget": "todo-app:build"
-			}
 		}
 	},
 	"tags": ["scope:todo-app", "type:app"]

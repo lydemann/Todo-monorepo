@@ -2,6 +2,27 @@
 @import './global/spinner';
 @import 'themes';
 
-.danger {
-	background: get-color('warn') !important;
+body {
+	margin: 0;
+	padding: 0;
+	background: #f5f6f8;
+	font-family: AvenirNextLTPro-Regular, 'Helvetica Neue', Helvetica, Roboto,
+		Arial, sans-serif;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #646a6f;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 1.75rem;
+	color: #787e82;
+	margin: 25px 0 20px;
+	font-family: Sagona-Medium, Georgia, serif;
+	line-height: 140%;
+	font-weight: 400;
 }

@@ -1,0 +1,12 @@
+{
+	"name": "todo-app-domain-mocks",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/todo-app/domain/mocks/src",
+	"projectType": "library",
+	"tags": ["scope:todo-app", "type:domain"],
+	"targets": {
+		"lint": {
+			"executor": "@nx/eslint:lint"
+		}
+	}
+}

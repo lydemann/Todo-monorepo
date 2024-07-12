@@ -1,26 +1,32 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
+import {
+	ApplicationConfig,
+	ErrorHandler,
+	importProvidersFrom,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ServiceWorkerModule } from '@angular/service-worker';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { CoreModule } from '@todo/todo-app/feature';
+import { appRouterModule } from './app/app.routes';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { API_ENDPOINTS, ApiEndpoints } from '@todo/shared/data-access';
-import {
-	GlobalErrorHandler,
-	LogService,
-} from '@todo/shared/data-access-logging';
+import { AppInitService } from './app/app-init.service';
 import {
 	FeatureToggleModule,
 	FeatureToggleService,
 } from '@todo/shared/util-feature-toggle';
+import {
+	HttpClient,
+	provideHttpClient,
+	withInterceptorsFromDi,
+} from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from '@todo/todo-app/domain';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { CoreModule, LayoutModule } from '@todo/todo-app/feature';
-import { AppInitService } from './app-init.service';
-import { AppComponent } from './app.component';
-import { appRouterModule } from './app.routes';
+import { API_ENDPOINTS, ApiEndpoints } from '@todo/shared/data-access';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {
+	GlobalErrorHandler,
+	LogService,
+} from '@todo/shared/data-access-logging';
 
 export function init_app(appLoadService: AppInitService) {
 	return () => appLoadService.init();
@@ -47,29 +53,25 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 	loggingService: environment.loggingServiceUrl,
 });
 
-@NgModule({
-	declarations: [AppComponent],
-	imports: [
-		BrowserModule,
-		BrowserAnimationsModule,
-		CoreModule,
-		HttpClientModule,
-		appRouterModule,
-		TranslateModule.forRoot({
-			loader: {
-				provide: TranslateLoader,
-				useFactory: HttpLoaderFactory,
-				deps: [HttpClient],
-			},
-		}),
-		ServiceWorkerModule.register('ngsw-worker.js', {
-			enabled: environment.production,
-		}),
-		LayoutModule,
-		FeatureToggleModule,
-	],
+export const appConfig: ApplicationConfig = {
 	providers: [
-		// TODO: enable when load from assets bug is fixed for Cypress component tests with Nx
+		importProvidersFrom(
+			BrowserModule,
+			BrowserAnimationsModule,
+			CoreModule,
+			appRouterModule,
+			TranslateModule.forRoot({
+				loader: {
+					provide: TranslateLoader,
+					useFactory: HttpLoaderFactory,
+					deps: [HttpClient],
+				},
+			}),
+			ServiceWorkerModule.register('ngsw-worker.js', {
+				enabled: environment.production,
+			}),
+			FeatureToggleModule,
+		),
 		// {
 		// 	provide: APP_INITIALIZER,
 		// 	multi: true,
@@ -80,7 +82,6 @@ const apiEndpointsFactory = (): ApiEndpoints => ({
 		{ provide: ErrorHandler, useClass: GlobalErrorHandler },
 		AppInitService,
 		LogService,
+		provideHttpClient(withInterceptorsFromDi()),
 	],
-	bootstrap: [AppComponent],
-})
-export class AppModule {}
+};

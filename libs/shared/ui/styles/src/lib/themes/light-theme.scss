@@ -6,10 +6,15 @@
 $todo-primary: mat.define-palette(mat.$indigo-palette, 800, 300, 900);
 $todo-accent: mat.define-palette(mat.$light-blue-palette);
 $todo-warn: mat.define-palette(mat.$pink-palette, 600);
-$todo-light-theme: mat.define-light-theme(
-	$todo-primary,
-	$todo-accent,
-	$todo-warn
+$todo-light-theme: mat.define-theme(
+	(
+		color: (
+			theme-type: light,
+			primary: $todo-primary,
+			accent: $todo-accent,
+			warn: $todo-warn,
+		),
+	)
 );
 
 @mixin generate-light-theme {

@@ -1,9 +1,9 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SharedUtilModule } from './shared-util.module';
 
 describe('SharedUtilModule', () => {
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			imports: [SharedUtilModule],
 		}).compileComponents();

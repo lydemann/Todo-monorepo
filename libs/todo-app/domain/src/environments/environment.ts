@@ -7,6 +7,7 @@ declare let window: any;
 
 export const environment = {
 	production: false,
+	mock: false,
 
 	get environment() {
 		return window.config?.environment || '';

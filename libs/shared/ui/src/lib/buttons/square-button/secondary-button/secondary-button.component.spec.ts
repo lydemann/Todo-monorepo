@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SquareButtonComponent } from '../square-button.component';
 import { SecondaryButtonComponent } from './secondary-button.component';
@@ -7,7 +7,7 @@ describe('SecondaryButtonComponent', () => {
 	let component: SecondaryButtonComponent;
 	let fixture: ComponentFixture<SecondaryButtonComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [SecondaryButtonComponent],
 			providers: [

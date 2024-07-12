@@ -6,10 +6,15 @@
 $todo-black-primary: mat.define-palette(mat.$grey-palette, 700, 300, 900);
 $todo-black-accent: mat.define-palette(mat.$blue-grey-palette, 400);
 $todo-black-warn: mat.define-palette(mat.$red-palette, 500);
-$todo-black-theme: mat.define-dark-theme(
-	$todo-black-primary,
-	$todo-black-accent,
-	$todo-black-warn
+$todo-black-theme: mat.define-theme(
+	(
+		color: (
+			theme-type: light,
+			primary: $todo-black-primary,
+			accent: $todo-black-accent,
+			warn: $todo-black-warn,
+		),
+	)
 );
 
 @mixin generate-dark-theme {

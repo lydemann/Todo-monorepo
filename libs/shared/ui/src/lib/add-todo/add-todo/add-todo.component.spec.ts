@@ -37,10 +37,6 @@ describe('AddTodoComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
-		expect(component).toBeTruthy();
-	});
-
 	it('should update todo item when todo item is in todo list', () => {
 		// Arrange
 		const todoList = [

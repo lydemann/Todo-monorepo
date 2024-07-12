@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IconComponent } from '../../icon';
 import { AppMaterialModule } from '../../material/material.module';
@@ -11,7 +11,7 @@ describe('ListButtonComponent', () => {
 	let component: ListButtonComponent;
 	let fixture: ComponentFixture<ListButtonComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			imports: [AppMaterialModule],
 			declarations: [
