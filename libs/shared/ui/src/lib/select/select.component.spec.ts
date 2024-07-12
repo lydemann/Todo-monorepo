@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -9,7 +9,7 @@ describe('SelectComponent', () => {
 	let component: SelectComponent;
 	let fixture: ComponentFixture<SelectComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [SelectComponent],
 			imports: [AppMaterialModule, NoopAnimationsModule, FormsModule],

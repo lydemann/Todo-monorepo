@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListComponent } from './list.component';
 
@@ -7,7 +7,7 @@ describe('TableComponent', () => {
 	let component: ListComponent;
 	let fixture: ComponentFixture<ListComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			imports: [ListComponent],
 		}).compileComponents();

@@ -1,4 +1,16 @@
 /* eslint-disable */
+
+const esModules = [
+	// 'msw',
+	// 'msw/browser',
+	// '@angular/core',
+	// '@angular',
+	// '@ngx-translate',
+	// '@ngneat/spectator',
+	// 'rxjs',
+	// '@ngrx',
+].join('|');
+
 export default {
 	displayName: 'shared-ui',
 	preset: '../../../jest.preset.js',
@@ -14,7 +26,10 @@ export default {
 			},
 		],
 	},
-	transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+	transformIgnorePatterns: [
+		'node_modules/(?!.*\\.mjs$)',
+		`node_modules/(?!${esModules})`,
+	],
 	snapshotSerializers: [
 		'jest-preset-angular/build/serializers/no-ng-attributes',
 		'jest-preset-angular/build/serializers/ng-snapshot',

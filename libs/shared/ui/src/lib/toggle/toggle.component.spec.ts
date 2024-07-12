@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppMaterialModule } from '../material/material.module';
 import { ToggleComponent } from './toggle.component';
@@ -7,7 +7,7 @@ describe('ToggleComponent', () => {
 	let component: ToggleComponent;
 	let fixture: ComponentFixture<ToggleComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [ToggleComponent],
 			imports: [AppMaterialModule],

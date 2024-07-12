@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListButtonComponent } from '../list-button.component';
 import { SmallFabComponent } from './small-fab.component';
@@ -7,7 +7,7 @@ describe('SmallFabComponent', () => {
 	let component: SmallFabComponent;
 	let fixture: ComponentFixture<SmallFabComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [SmallFabComponent],
 			providers: [

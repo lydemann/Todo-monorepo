@@ -6,10 +6,13 @@ import { Router, RouterModule } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { appConfig } from '@todo-app/src/app.config';
 import { TodoItem } from '@todo/shared/todo-interfaces';
-import { GET_TODOLIST_REGEX, MOCK_TODO_ITEMS } from '@todo/todo-app/domain';
+import {
+	GET_TODOLIST_REGEX,
+	MOCK_TODO_ITEMS,
+	worker,
+} from '@todo/todo-app/domain/mocks';
 import * as config from 'apps/todo-app/src/assets/app-config.json';
 import { mount } from 'cypress/angular';
-import { worker } from 'libs/todo-app/domain/src/mocks/browser';
 import { http, HttpResponse } from 'msw';
 
 describe('TodoListComponent', () => {
