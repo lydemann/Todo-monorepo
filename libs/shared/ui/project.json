@@ -4,6 +4,12 @@
 	"sourceRoot": "libs/shared/ui/src",
 	"projectType": "library",
 	"prefix": "todo",
+	"tags": ["type:ui", "scope:shared"],
+	"generators": {
+		"@nrwl/schematics:component": {
+			"styleext": "scss"
+		}
+	},
 	"targets": {
 		"lint": {
 			"executor": "@nx/eslint:lint",
@@ -14,7 +20,7 @@
 			"options": {
 				"port": 4400,
 				"configDir": "libs/shared/ui/.storybook",
-				"buildTarget": "shared-ui:build-storybook",
+				"browserTarget": "shared-ui:build-storybook",
 				"compodoc": false,
 				"stylePreprocessorOptions": {
 					"includePaths": ["libs/shared/ui/styles/src/lib"]
@@ -32,11 +38,8 @@
 			"options": {
 				"outputDir": "dist/storybook/shared-ui",
 				"configDir": "libs/shared/ui/.storybook",
-				"buildTarget": "shared-ui:build-storybook",
-				"compodoc": false,
-				"stylePreprocessorOptions": {
-					"includePaths": ["libs/shared/ui/styles/src/lib"]
-				}
+				"browserTarget": "shared-ui:build-storybook",
+				"compodoc": false
 			},
 			"configurations": {
 				"ci": {
@@ -56,12 +59,19 @@
 			"options": {
 				"jestConfig": "libs/shared/ui/jest.config.ts"
 			}
+		},
+		"static-storybook": {
+			"executor": "@nx/web:file-server",
+			"options": {
+				"buildTarget": "shared-ui:build-storybook",
+				"staticFilePath": "dist/storybook/shared-ui",
+				"spa": true
+			},
+			"configurations": {
+				"ci": {
+					"buildTarget": "shared-ui:build-storybook:ci"
+				}
+			}
 		}
-	},
-	"generators": {
-		"@nrwl/schematics:component": {
-			"styleext": "scss"
-		}
-	},
-	"tags": ["type:ui", "scope:shared"]
+	}
 }
