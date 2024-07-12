@@ -1,5 +1,5 @@
 import { enableProdMode } from '@angular/core';
-import { worker } from '@todo/todo-app/domain';
+import { worker } from '@todo/todo-app/domain/mocks';
 import { environment } from '@todo/todo-app/domain';
 
 import { bootstrapApplication } from '@angular/platform-browser';
