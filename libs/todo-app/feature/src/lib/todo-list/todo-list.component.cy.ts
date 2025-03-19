@@ -26,11 +26,11 @@ describe('TodoListComponent', () => {
 		constructor(translateService: TranslateService) {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			(window as any).config = config;
-
 			translateService.addLangs(['en']);
 			translateService.setDefaultLang('en');
 		}
 	}
+	1122;
 
 	const setup = (
 		{ todoItems }: { todoItems: TodoItem[] } = { todoItems: null },
@@ -60,7 +60,7 @@ describe('TodoListComponent', () => {
 				return null;
 			})
 			.then(() => {
-				mount(WrapperComponent, {
+				return mount(WrapperComponent, {
 					imports: [],
 					providers: [...appConfig.providers],
 				}).then(
@@ -71,12 +71,6 @@ describe('TodoListComponent', () => {
 					}) => {
 						const ngZone = injector.get(NgZone);
 						const router = injector.get(Router);
-						// const todoListResourceService = injector.get(TodoListResourcesService);
-
-						// // or mock service worker
-						// todoListResourceService.getTodos = () => {
-						// 	return of(initTodoItems);
-						// };
 
 						await ngZone.run(() => router.navigate(['']));
 
@@ -105,7 +99,7 @@ describe('TodoListComponent', () => {
 	});
 
 	it('should create todo item', () => {
-		setup().then(({}) => {
+		setup({ todoItems: [] }).then(({}) => {
 			const title = 'Some title';
 			cy.get('[data-test=todo-title]').type(title);
 			const description = 'Some description';
@@ -136,7 +130,6 @@ describe('TodoListComponent', () => {
 			cy.get('[data-test=todo-item]')
 
 				.get('[data-test="edit-button"]')
-				.first()
 				.click();
 			const updatedTitle = 'Edited title';
 			cy.get('[data-test=todo-title]').clear().type(updatedTitle);
