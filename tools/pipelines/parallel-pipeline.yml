@@ -13,7 +13,7 @@ variables:
     NX_BRANCH: $(Build.SourceBranchName)
     BASE_SHA: $(git rev-parse HEAD~1)
   HEAD_SHA: $(git rev-parse HEAD)
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  PNPM_CACHE_FOLDER: $(Pipeline.Workspace)/.pnpm-store
 
 jobs:
   - job: Build
@@ -44,14 +44,14 @@ jobs:
 
       - task: Cache@2
         inputs:
-          key: '"yarn" | "$(Agent.OS)" | yarn.lock'
+          key: '"pnpm" | "$(Agent.OS)" | pnpm-lock.yaml'
           restoreKeys: |
-            "yarn" | "$(Agent.OS)"
-            "yarn"
-          path: $(YARN_CACHE_FOLDER)
-        displayName: Cache Yarn packages
+            "pnpm" | "$(Agent.OS)"
+            "pnpm"
+          path: $(PNPM_CACHE_FOLDER)
+        displayName: Cache pnpm packages
 
-      - script: yarn --frozen-lockfile
+      - script: pnpm install
         displayName: 'Install dependencies'
 
       - script: npx nx affected --base=$(BASE_SHA) -t build --parallel=3
@@ -116,14 +116,14 @@ jobs:
 
       - task: Cache@2
         inputs:
-          key: '"yarn" | "$(Agent.OS)" | yarn.lock'
+          key: '"pnpm" | "$(Agent.OS)" | pnpm-lock.yaml'
           restoreKeys: |
-            "yarn" | "$(Agent.OS)"
-            "yarn"
-          path: $(YARN_CACHE_FOLDER)
-        displayName: Cache Yarn packages
+            "pnpm" | "$(Agent.OS)"
+            "pnpm"
+          path: $(PNPM_CACHE_FOLDER)
+        displayName: Cache pnpm packages
 
-      - script: yarn --frozen-lockfile
+      - script: pnpm install
         displayName: 'Install dependencies'
 
       - script: npx nx affected --base=$(BASE_SHA) -t test --parallel=3
@@ -157,14 +157,14 @@ jobs:
 
       - task: Cache@2
         inputs:
-          key: '"yarn" | "$(Agent.OS)" | yarn.lock'
+          key: '"pnpm" | "$(Agent.OS)" | pnpm-lock.yaml'
           restoreKeys: |
-            "yarn" | "$(Agent.OS)"
-            "yarn"
-          path: $(YARN_CACHE_FOLDER)
-        displayName: Cache Yarn packages
+            "pnpm" | "$(Agent.OS)"
+            "pnpm"
+          path: $(PNPM_CACHE_FOLDER)
+        displayName: Cache pnpm packages
 
-      - script: yarn --frozen-lockfile
+      - script: pnpm install
         displayName: 'Install dependencies'
 
       - script: npx nx format:check --base=$(BASE_SHA)

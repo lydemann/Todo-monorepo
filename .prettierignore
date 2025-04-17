@@ -3,3 +3,7 @@
 .angular
 
 /.nx/cache
+
+.pnpm-store
+pnpm-lock.yaml
+tools/pipelines
