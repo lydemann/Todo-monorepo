@@ -44,3 +44,4 @@ Thumbs.db
 
 .angular
 playwright-report/*
+playwright-report/index.html

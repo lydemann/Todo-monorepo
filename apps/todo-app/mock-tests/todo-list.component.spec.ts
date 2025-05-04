@@ -1,5 +1,7 @@
+/* eslint-disable playwright/expect-expect */
+/* eslint-disable @nx/enforce-module-boundaries */
 import { test } from '@playwright/test';
-import { TodoListPage } from './todo-list.page';
+import { TodoListPage } from '../../../libs/todo-app/feature/src/lib/todo-list/todo-list.page';
 import { MOCK_TODO_ITEMS } from '@todo/todo-app/domain/mocks/handlers/todo-data';
 // import { formatDate } from '@angular/common';
 

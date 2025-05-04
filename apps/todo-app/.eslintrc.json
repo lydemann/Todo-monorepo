@@ -1,5 +1,9 @@
 {
-	"extends": ["../../.eslintrc.json"],
+	"extends": [
+		"plugin:playwright/recommended",
+		"plugin:playwright/recommended",
+		"../../.eslintrc.json"
+	],
 	"ignorePatterns": ["!**/*"],
 	"overrides": [
 		{
@@ -31,6 +35,14 @@
 		{
 			"files": ["*.html"],
 			"extends": ["plugin:@nx/angular-template"],
+			"rules": {}
+		},
+		{
+			"files": ["e2e/**/*.{ts,js,tsx,jsx}"],
+			"rules": {}
+		},
+		{
+			"files": ["mock-tests/**/*.{ts,js,tsx,jsx}"],
 			"rules": {}
 		}
 	]

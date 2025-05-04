@@ -39,7 +39,8 @@
 			"inputs": ["default", "^production", "{workspaceRoot}/karma.conf.js"]
 		},
 		"e2e": {
-			"inputs": ["default", "^production"]
+			"inputs": ["default", "^production"],
+			"cache": true
 		},
 		"component-test": {
 			"inputs": ["default", "^production"]

@@ -4,6 +4,7 @@
 	"sourceRoot": "apps/todo-app/src",
 	"projectType": "application",
 	"prefix": "app",
+	"tags": ["scope:todo-app", "type:app"],
 	"generators": {
 		"@schematics/angular:component": {
 			"style": "scss"
@@ -135,7 +136,20 @@
 		"lint": {
 			"executor": "@nx/eslint:lint",
 			"outputs": ["{options.outputFile}"]
+		},
+		"e2e": {
+			"executor": "@nx/playwright:playwright",
+			"outputs": ["{workspaceRoot}/dist/.playwright/apps/todo-app/e2e"],
+			"options": {
+				"config": "apps/todo-app/e2e/playwright.config.ts"
+			}
+		},
+		"mock-tests": {
+			"executor": "@nx/playwright:playwright",
+			"outputs": ["{workspaceRoot}/dist/.playwright/apps/todo-app/mock-tests"],
+			"options": {
+				"config": "apps/todo-app/mock-tests/playwright-mock-tests.config.ts"
+			}
 		}
-	},
-	"tags": ["scope:todo-app", "type:app"]
+	}
 }

@@ -61,11 +61,11 @@ export class TodoListPage {
 
 	// Assertions
 	async expectTodoItemVisible() {
-		await this.todoItem.isVisible();
+		await expect(this.todoItem).toBeVisible();
 	}
 
 	async expectTodoItemNotVisible() {
-		await this.todoItem.isHidden();
+		await expect(this.todoItem).toBeHidden();
 	}
 
 	async expectTodoItemContains(text: string) {

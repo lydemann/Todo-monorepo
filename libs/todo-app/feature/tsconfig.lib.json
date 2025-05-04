@@ -20,5 +20,9 @@
 		"**/*.cy.jsx",
 		"**/*.pw.ts"
 	],
-	"include": ["**/*.ts"]
+	"include": [
+		"**/*.ts",
+		"../../../apps/todo-app/mock-tests/todo-list.component.spec.ts",
+		"../../../apps/todo-app/mock-tests/playwright.config.ts"
+	]
 }

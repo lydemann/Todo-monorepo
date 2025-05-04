@@ -6,5 +6,9 @@
 		"moduleResolution": "node",
 		"types": ["node", "@playwright/test"]
 	},
-	"include": ["src/**/*.ts", "src/**/*.pw.ts"]
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.pw.ts",
+		"../../../apps/todo-app/mock-tests/todo-list.component.spec.ts"
+	]
 }

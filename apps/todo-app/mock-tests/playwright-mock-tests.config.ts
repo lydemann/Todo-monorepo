@@ -1,8 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-	testDir: './src',
-	testMatch: '**/*.pw.ts',
+	testDir: './',
 	fullyParallel: true,
 	forbidOnly: !!process.env['CI'],
 	retries: process.env['CI'] ? 2 : 0,
@@ -28,7 +27,7 @@ export default defineConfig({
 		// },
 	],
 	webServer: {
-		command: 'nx serve todo-app',
+		command: 'nx run todo-app:serve:mock',
 		url: 'http://localhost:4200',
 		reuseExistingServer: !process.env['CI'],
 	},
