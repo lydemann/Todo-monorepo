@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { TodoListPage } from './todo-list.page';
-// import { formatDate } from '@angular/common';
 import { MOCK_TODO_ITEMS } from '@todo/todo-app/domain/mocks/handlers/todo-data';
+// import { formatDate } from '@angular/common';
 
 test.describe('TodoListComponent', () => {
 	let todoListPage: TodoListPage;
@@ -16,20 +16,20 @@ test.describe('TodoListComponent', () => {
 		await todoListPage.expectTodoItemVisible();
 		await todoListPage.expectTodoItemContains(todoItem.title);
 		await todoListPage.expectTodoItemContains(todoItem.description);
-		// const formattedDueDate = formatDate(todoItem.dueDate, 'shortDate', 'en-US');
-		// await todoListPage.expectTodoItemContains(formattedDueDate);
+		const formattedDueDate = '5/4/25';
+		await todoListPage.expectTodoItemContains(formattedDueDate);
 	});
 
-	// test('should create todo item', async () => {
+	// test('should create todo item', async ({ page }) => {
 	// 	const title = 'Some title';
 	// 	const description = 'Some description';
-	// 	const dueDate = new Date().toLocaleDateString('en-US');
+	// 	const dueDate = new Date('2025-05-02').toLocaleDateString('en-US');
 
 	// 	await todoListPage.createTodo(title, description, dueDate);
 
 	// 	await todoListPage.expectTodoItemContains(title);
 	// 	await todoListPage.expectTodoItemContains(description);
-	// 	const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
+	// 	const formattedDueDate = '5/4/25';
 	// 	await todoListPage.expectTodoItemContains(formattedDueDate);
 	// });
 

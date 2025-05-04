@@ -2,9 +2,9 @@
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
 		"outDir": "../../../dist/out-tsc",
-		"module": "commonjs",
-		"types": ["jest", "node"]
+		"module": "CommonJS",
+		"types": ["jest", "node", "@playwright/test"]
 	},
 	"files": ["src/test-setup.ts"],
-	"include": ["jest.config.ts", "**/*.test.ts", "**/*.spec.ts", "**/*.d.ts"]
+	"include": ["**/*.spec.ts", "**/*.test.ts", "**/*.d.ts"]
 }

@@ -19,7 +19,7 @@ export const todoHandlers = [
 			{
 				result: {
 					data: {
-						...(newTodoItem[0] as TodoItem),
+						...(newTodoItem as TodoItem),
 						// random id
 						id: Math.random().toString(36).substring(7),
 					},
@@ -33,7 +33,7 @@ export const todoHandlers = [
 			{
 				result: {
 					data: {
-						...(newTodoItem[0] as TodoItem),
+						...(newTodoItem as TodoItem),
 					},
 				},
 			},

@@ -19,7 +19,7 @@
 					name="todo-title"
 					[(ngModel)]="currentTodo.title"
 					class="form-control"
-					data-test="todo-title"
+					data-testid="todo-title"
 					id="todo-title"
 					placeholder="Enter title"
 				/>
@@ -34,7 +34,7 @@
 					name="todo-description"
 					[(ngModel)]="currentTodo.description"
 					class="form-control"
-					data-test="todo-description"
+					data-testid="todo-description"
 					id="todo-description"
 					placeholder="Enter description"
 				/>
@@ -45,7 +45,7 @@
 					<app-date-picker
 						name="todo-due-date"
 						[appInvalidDate]
-						data-test="todo-duedate"
+						data-testid="todo-duedate"
 						[(ngModel)]="currentTodo.dueDate"
 						placeholder="Enter due date"
 					></app-date-picker>
@@ -54,7 +54,7 @@
 			<app-square-button
 				[buttonType]="'Primary'"
 				[type]="'submit'"
-				data-test="create-todo-submit"
+				data-testid="create-todo-submit"
 			>
 				{{
 					!_currentTODO.id

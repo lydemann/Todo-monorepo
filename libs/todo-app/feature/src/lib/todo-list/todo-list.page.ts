@@ -1,11 +1,11 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export class TodoListPage {
 	constructor(private page: Page) {}
 
 	// Selectors
 	private get todoItem() {
-		return this.page.getByTestId('todo-item');
+		return this.page.getByTestId('todo-item').first();
 	}
 
 	private get todoTitleInput() {
@@ -69,6 +69,6 @@ export class TodoListPage {
 	}
 
 	async expectTodoItemContains(text: string) {
-		await this.todoItem.getByText(text).isVisible();
+		await expect(this.todoItem.getByText(text)).toBeVisible();
 	}
 }
