@@ -22,7 +22,7 @@ test.describe('TodoListComponent', () => {
 		await todoListPage.expectTodoItemContains(formattedDueDate);
 	});
 
-	// test('should create todo item', async ({ page }) => {
+	// test('should create todo item', async () => {
 	// 	const title = 'Some title';
 	// 	const description = 'Some description';
 	// 	const dueDate = new Date('2025-05-02').toLocaleDateString('en-US');

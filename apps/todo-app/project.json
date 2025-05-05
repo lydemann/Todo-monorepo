@@ -146,7 +146,7 @@
 		},
 		"mock-tests": {
 			"executor": "@nx/playwright:playwright",
-			"outputs": ["{workspaceRoot}/dist/.playwright/apps/todo-app/mock-tests"],
+			"outputs": ["{workspaceRoot}/dist/.playwright/apps/todo-app/e2e"],
 			"options": {
 				"config": "apps/todo-app/mock-tests/playwright-mock-tests.config.ts"
 			}
