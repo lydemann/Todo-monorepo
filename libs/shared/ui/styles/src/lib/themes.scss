@@ -1,11 +1,11 @@
 @use '@angular/material' as mat;
 @use './themesm3-theme.scss' as m3-theme;
-@import './helpers/colors';
+@use './helpers/colors' as colors;
 
 @include mat.core;
 
 body {
-	@include generateUnitColors;
+	@include colors.generateUnitColors;
 }
 
 body,

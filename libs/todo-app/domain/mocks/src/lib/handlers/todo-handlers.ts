@@ -15,6 +15,7 @@ export const todoHandlers = [
 	}),
 	http.post('**api/createTodoItem', async req => {
 		const newTodoItem = await req.request.json();
+		console.log('newTodoItem', newTodoItem);
 		return HttpResponse.json([
 			{
 				result: {

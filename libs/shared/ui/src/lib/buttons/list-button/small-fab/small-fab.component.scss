@@ -1,10 +1,10 @@
-@import 'helpers.scss';
-@import '../../button.styles.scss';
+@use 'helpers.scss';
+@use '../../button.styles.scss';
 
 $round-btn-width: 30px;
 $font-size: 18px;
 
-@include disabledBtn();
+@include button.disabledBtn();
 
 .round-btn {
 	width: $round-btn-width;

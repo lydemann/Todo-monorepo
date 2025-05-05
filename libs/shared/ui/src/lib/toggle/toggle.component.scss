@@ -1,4 +1,4 @@
-@import 'helpers';
+@use 'helpers';
 :host::ng-deep {
 	// Make element style-able from parent
 	.mat-slide-toggle-label {

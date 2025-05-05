@@ -1,12 +1,12 @@
-@import 'helpers';
-@import '../button.styles';
+@use 'helpers';
+@use '../button.styles' as button;
 $line-height: 36px;
 :host ::ng-deep {
 	display: inline-flex;
 	justify-content: center;
 	justify-items: center;
 	align-items: center;
-	@include disabledBtn();
+	@include button.disabledBtn();
 
 	button {
 		text-transform: uppercase;
