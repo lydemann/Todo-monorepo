@@ -43,6 +43,7 @@
 			"@todo/todo-app/domain/mocks": [
 				"libs/todo-app/domain/mocks/src/index.ts"
 			],
+			"@todo/todo-app/domain/mocks/*": ["libs/todo-app/domain/mocks/src/lib/*"],
 			"@todo/todo-app/domain/trpc-server": [
 				"libs/todo-app/domain/trpc-server/src/index.ts"
 			],
