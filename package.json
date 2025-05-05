@@ -80,6 +80,7 @@
 		"express": "4.21.2",
 		"faker": "^4.1.0",
 		"immer": "^9.0.16",
+		"lodash": "^4.17.21",
 		"moment": "^2.29.3",
 		"ngx-build-plus": "16.0.0",
 		"react": "18.3.1",
