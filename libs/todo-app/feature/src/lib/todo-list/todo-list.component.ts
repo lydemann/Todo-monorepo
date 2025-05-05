@@ -12,7 +12,7 @@ import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count
 			<div class="todo-list-wrapper">
 				<div class="mx-auto col-10">
 					<h5>{{ 'todo-list' | translate }}</h5>
-					dfdfdfdf
+
 					<hr />
 					<app-cards-list
 						[tableRef]="todoListRef"
