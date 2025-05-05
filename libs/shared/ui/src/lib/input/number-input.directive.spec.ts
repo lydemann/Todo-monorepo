@@ -15,7 +15,6 @@ describe('Directive: NumberInputDirective', () => {
 		describe(`locale: ${locale.id}`, () => {
 			const createHost = createDirectiveFactory({
 				directive: NumberInputDirective,
-				declarations: [NumberInputDirective],
 				imports: [FormsModule, ReactiveFormsModule],
 				providers: [
 					{
