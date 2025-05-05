@@ -1,7 +1,7 @@
 /**
  * We only import the `TodoTrpcRouter` type from the server - this is not available at runtime
  */
-import { createTRPCProxyClient, httpBatchLink, loggerLink } from '@trpc/client';
+import { createTRPCProxyClient, httpLink, loggerLink } from '@trpc/client';
 import type { TodoTrpcRouter } from '@todo/todo-app/domain/trpc-server';
 import { environment } from '../environments/environment';
 /**
@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 export const trpc = createTRPCProxyClient<TodoTrpcRouter>({
 	links: [
 		loggerLink(),
-		httpBatchLink({
+		httpLink({
 			url: `${environment.todoServiceUrl}/api`,
 		}),
 	],
