@@ -1,6 +1,6 @@
 @use 'helpers';
 
-@mixin disabledBtn() {
+@mixin disabled-btn() {
 	button[disabled] {
 		background-color: get-color('grey') !important;
 		color: get-color('white') !important;

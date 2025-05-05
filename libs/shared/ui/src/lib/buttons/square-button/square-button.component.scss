@@ -6,7 +6,7 @@ $line-height: 36px;
 	justify-content: center;
 	justify-items: center;
 	align-items: center;
-	@include button.disabledBtn();
+	@include button.disabled-btn();
 
 	button {
 		text-transform: uppercase;
