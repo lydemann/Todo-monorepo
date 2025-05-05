@@ -27,6 +27,13 @@
 				"tsConfig": "libs/todo-app/feature/tsconfig.cy.json",
 				"skipServe": true
 			}
+		},
+		"e2e": {
+			"executor": "@nx/playwright:playwright",
+			"outputs": ["{workspaceRoot}/dist/.playwright"],
+			"options": {
+				"config": "libs/todo-app/feature/playwright.config.ts"
+			}
 		}
 	},
 	"tags": ["scope:todo-app", "type:feature"]
