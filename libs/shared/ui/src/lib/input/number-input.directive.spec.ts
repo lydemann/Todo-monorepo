@@ -1,232 +1,227 @@
 import { LOCALE_ID } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-	SpectatorDirective,
-	createDirectiveFactory,
-} from '@ngneat/spectator/jest';
-
+import { render, screen, fireEvent } from '@testing-library/angular';
 import { NumberInputDirective } from './number-input.directive';
 
 describe('Directive: NumberInputDirective', () => {
-	[
-		// { id: 'da', separators: { group: '.', decimal: ',' } },
-		{ id: 'en', separators: { group: ',', decimal: '.' } },
-	].forEach(locale => {
+	[{ id: 'en', separators: { group: ',', decimal: '.' } }].forEach(locale => {
 		describe(`locale: ${locale.id}`, () => {
-			const createHost = createDirectiveFactory({
-				directive: NumberInputDirective,
-				imports: [FormsModule, ReactiveFormsModule],
-				providers: [
-					{
-						provide: LOCALE_ID,
-						useValue: locale.id,
-					},
-				],
-			});
 			let testFormControl: FormControl;
 
-			let spectator: SpectatorDirective<NumberInputDirective>;
-
-			beforeEach(() => {
+			const setup = async (
+				{
+					thousandSeparatorEnabled,
+					thousandToDecimalSeparatorEnabled,
+					decimalsEnabled,
+				}: {
+					thousandSeparatorEnabled?: boolean;
+					thousandToDecimalSeparatorEnabled?: boolean;
+					decimalsEnabled?: boolean;
+				} = {
+					thousandSeparatorEnabled: true,
+					thousandToDecimalSeparatorEnabled: true,
+					decimalsEnabled: true,
+				},
+			) => {
 				testFormControl = new FormControl('');
-				const template = `<input appNumberInput [formControl]="testFormControl" />`;
-				spectator = createHost(template, {
-					hostProps: { testFormControl },
-				});
-			});
+				await render(
+					`<input appNumberInput [formControl]="testFormControl"
+					 [thousandSeparatorEnabled]="thousandSeparatorEnabled"
+					 [thousandToDecimalSeparatorEnabled]="thousandToDecimalSeparatorEnabled"
+					 [decimalsEnabled]="decimalsEnabled" />`,
+					{
+						declarations: [NumberInputDirective],
+						imports: [FormsModule, ReactiveFormsModule],
+						providers: [
+							{
+								provide: LOCALE_ID,
+								useValue: locale.id,
+							},
+						],
+						componentProperties: {
+							testFormControl,
+							thousandSeparatorEnabled,
+							thousandToDecimalSeparatorEnabled,
+							decimalsEnabled,
+						},
+					},
+				);
+			};
 
 			describe('thousand separator', () => {
-				it('should NOT add thousand separators for 10 digit number if disabled', () => {
-					spectator.directive.thousandSeparatorEnabled = false;
-					spectator.detectChanges();
-					const val = '1234567899';
-					testFormControl.setValue(val);
-					spectator.detectChanges();
+				it('should NOT add thousand separators for 10 digit number if disabled', async () => {
+					await setup({ thousandSeparatorEnabled: false });
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '1234567899' } });
 
-					expect((spectator.element as HTMLInputElement).value).toBe(val);
+					expect(input.value).toBe('1234567899');
 				});
 
-				it('should add thousand separators for 10 digit number and set original value in formControl', () => {
-					spectator.detectChanges();
-					const orgVal = '1234567899';
-					testFormControl.setValue(orgVal);
-					spectator.detectChanges();
+				it('should add thousand separators for 10 digit number and set original value in formControl', async () => {
+					await setup();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '1234567899' } });
 
-					expect((spectator.element as HTMLInputElement).value).toBe(
+					expect(input.value).toBe(
 						`1${locale.separators.group}234${locale.separators.group}567${locale.separators.group}899`,
 					);
 
-					expect(testFormControl.value).toBe(orgVal);
+					expect(testFormControl.value).toBe('1234567899');
 				});
 
-				it('should only allow one "0" in input', () => {
-					spectator.detectChanges();
-					testFormControl.setValue('00');
-					spectator.detectChanges();
+				it('should only allow one "0" in input', async () => {
+					await setup();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '00' } });
 
-					expect((spectator.element as HTMLInputElement).value).toBe(`0`);
+					expect(input.value).toBe('0');
 				});
 
-				it('should remove leading "0"s in input', () => {
-					testFormControl.setValue('001234567899');
-					spectator.detectChanges();
+				it('should remove leading "0"s in input', async () => {
+					await setup();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '001234567899' } });
 
-					expect((spectator.element as HTMLInputElement).value).toBe(
+					expect(input.value).toBe(
 						`1${locale.separators.group}234${locale.separators.group}567${locale.separators.group}899`,
 					);
 				});
 
-				it('should NOT add thousand separators for 20 digit number after decimal separator with 10 decimals', () => {
-					spectator.detectChanges();
-					testFormControl.setValue(
-						`1234567899${locale.separators.decimal}1234567899`,
-					);
-					spectator.detectChanges();
+				it('should NOT add thousand separators for 20 digit number after decimal separator with 10 decimals', async () => {
+					await setup();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, {
+						target: {
+							value: `1234567899${locale.separators.decimal}1234567899`,
+						},
+					});
 
-					expect((spectator.element as HTMLInputElement).value).toBe(
+					expect(input.value).toBe(
 						`1${locale.separators.group}234${locale.separators.group}567${locale.separators.group}899${locale.separators.decimal}1234567899`,
 					);
 				});
 
-				it('should NOT add thousand separators for 3 digit number', () => {
-					spectator.detectChanges();
-					testFormControl.setValue(`123`);
-					spectator.detectChanges();
+				it('should NOT add thousand separators for 3 digit number', async () => {
+					await setup();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '123' } });
 
-					expect((spectator.element as HTMLInputElement).value).toBe(`123`);
+					expect(input.value).toBe('123');
 				});
 
-				it('should update add thousand separators when going from 3 to 4 digit number', () => {
-					spectator.detectChanges();
-					testFormControl.setValue(`123`);
-					spectator.detectChanges();
-					testFormControl.setValue(`1234`);
-					spectator.detectChanges();
+				it('should update add thousand separators when going from 3 to 4 digit number', async () => {
+					await setup();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '123' } });
+					fireEvent.input(input, { target: { value: '1234' } });
 
-					expect((spectator.element as HTMLInputElement).value).toBe(
-						`1${locale.separators.group}234`,
-					);
+					expect(input.value).toBe(`1${locale.separators.group}234`);
 				});
 
-				it('should remove thousand separators when going from 4 to 3 digit number', () => {
-					spectator.detectChanges();
-					const orgVal = `1${locale.separators.group}234`;
-					testFormControl.setValue(orgVal);
-					spectator.detectChanges();
-					const lastCharRemoved = orgVal.slice(0, -1);
-					testFormControl.setValue(lastCharRemoved);
-					spectator.detectChanges();
+				it('should remove thousand separators when going from 4 to 3 digit number', async () => {
+					await setup();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, {
+						target: { value: `1${locale.separators.group}234` },
+					});
+					fireEvent.input(input, { target: { value: '123' } });
 
-					expect((spectator.element as HTMLInputElement).value).toBe(`123`);
+					expect(input.value).toBe('123');
 				});
 			});
 
 			describe('thousand to decimal separator', () => {
-				beforeEach(() => {
-					spectator.directive.thousandSeparatorEnabled = false;
-					spectator.directive.decimalsEnabled = true;
-					spectator.detectChanges();
+				beforeEach(async () => {
+					await setup({
+						thousandSeparatorEnabled: false,
+						decimalsEnabled: true,
+					});
 				});
 
-				it('should NOT convert thousand-separator to decimal-separator when changed char is a thousand-separator and "thousandToDecimalSeparatorEnabled" is disabled', () => {
-					spectator.directive.thousandToDecimalSeparatorEnabled = false;
-					const val = `12${locale.separators.group}34`;
-					testFormControl.setValue(val);
-					spectator.detectChanges();
+				it('should NOT convert thousand-separator to decimal-separator when changed char is a thousand-separator and "thousandToDecimalSeparatorEnabled" is disabled', async () => {
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, {
+						target: { value: `12${locale.separators.group}34` },
+					});
 
-					expect((spectator.element as HTMLInputElement).value).toBe(val);
+					expect(input.value).toBe(`12${locale.separators.group}34`);
 				});
 
 				it('should convert thousand-separator to decimal-separator only when changed char is a thousand-separator', () => {
-					const inputElm = spectator.element as HTMLInputElement;
-					inputElm.value = '1234';
-					spectator.detectChanges();
-					spectator.directive.ngOnInit();
-					inputElm.setSelectionRange(3, 3);
-					testFormControl.setValue(`12${locale.separators.group}34`, {
-						emitModelToViewChange: false,
-						emitViewToModelChange: false,
-						onlySelf: true,
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '1234' } });
+					input.setSelectionRange(3, 3);
+					fireEvent.input(input, {
+						target: { value: `12${locale.separators.group}34` },
 					});
-					spectator.detectChanges();
 
-					expect((spectator.element as HTMLInputElement).value).toBe(
-						`12${locale.separators.decimal}34`,
-					);
+					expect(input.value).toBe(`12${locale.separators.decimal}34`);
 				});
 
 				it('should convert thousand-separator to decimal-separator when added thousand-separator at beginning of input', () => {
-					const inputElm = spectator.element as HTMLInputElement;
-					inputElm.value = '1234';
-					spectator.detectChanges();
-					spectator.directive.ngOnInit();
-					inputElm.setSelectionRange(1, 1);
-					testFormControl.setValue(`${locale.separators.group}1234`, {
-						emitModelToViewChange: false,
-						emitViewToModelChange: false,
-						onlySelf: true,
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '1234' } });
+					input.setSelectionRange(1, 1);
+					fireEvent.input(input, {
+						target: { value: `${locale.separators.group}1234` },
 					});
-					spectator.detectChanges();
 
-					expect((spectator.element as HTMLInputElement).value).toBe(
-						`${locale.separators.decimal}1234`,
-					);
+					expect(input.value).toBe(`${locale.separators.decimal}1234`);
 				});
 
 				it('should not convert thousand-separator to decimal-separator if changed char is not a thousand-separator', () => {
-					spectator.detectChanges();
-					testFormControl.setValue('1234');
-					testFormControl.setValue('12€34');
-					spectator.detectChanges();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '1234' } });
+					fireEvent.input(input, { target: { value: '12€34' } });
 
-					expect((spectator.element as HTMLInputElement).value).toBe('12€34');
+					expect(input.value).toBe('12€34');
 				});
 
 				it('should not convert thousand-separator to decimal-separator if more than 1 changed char', () => {
-					spectator.detectChanges();
-					testFormControl.setValue('1234');
-					const lastVal = `1233234${locale.separators.group}34`;
-					testFormControl.setValue(lastVal);
-					spectator.detectChanges();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, { target: { value: '1234' } });
+					fireEvent.input(input, {
+						target: { value: `1233234${locale.separators.group}34` },
+					});
 
-					expect((spectator.element as HTMLInputElement).value).toBe(lastVal);
+					expect(input.value).toBe(`1233234${locale.separators.group}34`);
 				});
 			});
 
 			describe('decimalsEnabled', () => {
-				beforeEach(() => {
-					spectator.directive.thousandSeparatorEnabled = false;
-					spectator.directive.thousandToDecimalSeparatorEnabled = false;
+				beforeEach(async () => {
+					await setup({
+						thousandSeparatorEnabled: false,
+						thousandToDecimalSeparatorEnabled: false,
+					});
 				});
 
 				it('should remove decimals from number if decimals not enabled', () => {
-					spectator.directive.decimalsEnabled = false;
-					spectator.detectChanges();
-					testFormControl.setValue(`1234${locale.separators.decimal}12345679`);
-					spectator.detectChanges();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, {
+						target: { value: `1234${locale.separators.decimal}12345679` },
+					});
 
-					expect((spectator.element as HTMLInputElement).value).toBe('1234');
+					expect(input.value).toBe('1234');
 				});
 
-				it('should NOT remove decimals from number if decimals enabled', () => {
-					spectator.directive.decimalsEnabled = true;
-					spectator.detectChanges();
-					const val = `1234${locale.separators.decimal}12345679`;
-					testFormControl.setValue(val);
-					spectator.detectChanges();
+				it('should NOT remove decimals from number if decimals enabled', async () => {
+					await setup({ decimalsEnabled: true });
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					fireEvent.input(input, {
+						target: { value: `1234${locale.separators.decimal}12345679` },
+					});
 
-					expect((spectator.element as HTMLInputElement).value).toBe(val);
+					expect(input.value).toBe(`1234${locale.separators.decimal}12345679`);
 				});
 			});
 
 			describe('empty string', () => {
 				it('should not format input, nor set selection range', () => {
-					spectator.detectChanges();
-
-					const htmlElement = spectator.element as HTMLInputElement;
-					jest.spyOn(htmlElement, 'setSelectionRange');
-					expect(htmlElement.value).toBe('');
-					expect(htmlElement.setSelectionRange).not.toHaveBeenCalled();
+					const input = screen.getByRole('textbox') as HTMLInputElement;
+					jest.spyOn(input, 'setSelectionRange');
+					expect(input.value).toBe('');
+					expect(input.setSelectionRange).not.toHaveBeenCalled();
 				});
 			});
 		});

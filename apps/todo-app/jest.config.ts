@@ -1,5 +1,7 @@
+import type { Config } from 'jest';
+
 /* eslint-disable */
-export default {
+const config: Config = {
 	displayName: 'todo-app',
 	preset: '../../jest.preset.js',
 	setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
@@ -14,6 +16,7 @@ export default {
 			},
 		],
 	},
+	testMatch: ['<rootDir>/src/**/*.spec.(ts|js)'],
 	transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
 	snapshotSerializers: [
 		'jest-preset-angular/build/serializers/no-ng-attributes',
@@ -21,3 +24,5 @@ export default {
 		'jest-preset-angular/build/serializers/html-comment',
 	],
 };
+
+export default config;
