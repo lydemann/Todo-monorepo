@@ -30,4 +30,6 @@ Object.defineProperty(window, 'IntersectionObserver', {
 
 Element.prototype.scrollIntoView = jest.fn();
 
-import 'jest-preset-angular/setup-jest';
+import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone';
+
+setupZoneTestEnv();
