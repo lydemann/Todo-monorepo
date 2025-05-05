@@ -40,45 +40,41 @@ test.describe('TodoListComponent', () => {
 		await todoListPage.expectTodoItemContains(formattedDueDate);
 	});
 
-	// test('should update todo item', async () => {
-	// 	const todoItem = MOCK_TODO_ITEMS[0];
-	// 	await todoListPage.expectTodoItemVisible();
-	// 	await todoListPage.expectTodoItemContains(todoItem.title);
-	// 	await todoListPage.expectTodoItemContains(todoItem.description);
-	// 	const formattedDueDate = formatDate(todoItem.dueDate, 'shortDate', 'en-US');
-	// 	await todoListPage.expectTodoItemContains(formattedDueDate);
+	test('should update todo item', async () => {
+		const todoItem = MOCK_TODO_ITEMS[0];
+		await todoListPage.expectTodoItemVisible();
+		await todoListPage.expectTodoItemContains(todoItem.title);
+		await todoListPage.expectTodoItemContains(todoItem.description);
+		const formattedDueDate = formatAsShortDate(new Date(todoItem.dueDate));
+		await todoListPage.expectTodoItemContains(formattedDueDate);
 
-	// 	const updatedTitle = 'Edited title';
-	// 	const updatedDescription = 'Edited description';
-	// 	const currentDate = new Date();
-	// 	const updatedDueDate = new Date(
-	// 		currentDate.setDate(currentDate.getDate() + 1),
-	// 	).toLocaleDateString('en-US');
+		const updatedTitle = 'Edited title';
+		const updatedDescription = 'Edited description';
+		const currentDate = new Date();
+		const updatedDueDate = new Date(
+			currentDate.setDate(currentDate.getDate() + 1),
+		).toLocaleDateString('en-US');
 
-	// 	await todoListPage.editTodo(
-	// 		updatedTitle,
-	// 		updatedDescription,
-	// 		updatedDueDate,
-	// 	);
+		await todoListPage.editTodo(
+			updatedTitle,
+			updatedDescription,
+			updatedDueDate,
+		);
 
-	// 	await todoListPage.expectTodoItemContains(updatedTitle);
-	// 	await todoListPage.expectTodoItemContains(updatedDescription);
-	// 	const updatedFormattedDueDate = formatDate(
-	// 		updatedDueDate,
-	// 		'shortDate',
-	// 		'en-US',
-	// 	);
-	// 	await todoListPage.expectTodoItemContains(updatedFormattedDueDate);
-	// });
+		await todoListPage.expectTodoItemContains(updatedTitle);
+		await todoListPage.expectTodoItemContains(updatedDescription);
+		const updatedFormattedDueDate = formatAsShortDate(new Date(updatedDueDate));
+		await todoListPage.expectTodoItemContains(updatedFormattedDueDate);
+	});
 
-	// test('should delete todo item', async () => {
-	// 	const todoItem = MOCK_TODO_ITEMS[0];
-	// 	await todoListPage.expectTodoItemVisible();
-	// 	await todoListPage.expectTodoItemContains(todoItem.title);
-	// 	await todoListPage.expectTodoItemContains(todoItem.description);
+	test('should delete todo item', async () => {
+		const todoItem = MOCK_TODO_ITEMS[0];
+		await todoListPage.expectTodoItemVisible();
+		await todoListPage.expectTodoItemContains(todoItem.title);
+		await todoListPage.expectTodoItemContains(todoItem.description);
 
-	// 	await todoListPage.deleteTodo();
+		await todoListPage.deleteTodo();
 
-	// 	await todoListPage.expectTodoItemNotVisible();
-	// });
+		await todoListPage.expectTodoItemCount(MOCK_TODO_ITEMS.length - 1);
+	});
 });

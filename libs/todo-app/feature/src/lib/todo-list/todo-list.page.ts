@@ -45,7 +45,7 @@ export class TodoListPage {
 	}
 
 	async editTodo(title: string, description: string, dueDate: string) {
-		await this.editButton.click();
+		await this.editButton.first().click();
 		await this.todoTitleInput.clear();
 		await this.todoTitleInput.fill(title);
 		await this.todoDescriptionInput.clear();
@@ -56,7 +56,7 @@ export class TodoListPage {
 	}
 
 	async deleteTodo() {
-		await this.deleteButton.click();
+		await this.deleteButton.first().click();
 	}
 
 	// Assertions
@@ -64,8 +64,12 @@ export class TodoListPage {
 		await expect(this.todoItem.first()).toBeVisible();
 	}
 
+	async expectTodoItemCount(count: number) {
+		await expect(this.todoItem).toHaveCount(count);
+	}
+
 	async expectTodoItemNotVisible() {
-		await expect(this.todoItem).toBeHidden();
+		await expect(this.todoItem).toHaveCount(0);
 	}
 
 	async expectTodoItemContains(text: string) {
