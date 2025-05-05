@@ -12,7 +12,7 @@
 	},
 	"targets": {
 		"build": {
-			"executor": "@angular-devkit/build-angular:browser-esbuild",
+			"executor": "@nx/angular:browser-esbuild",
 			"options": {
 				"aot": true,
 				"buildOptimizer": false,
@@ -102,7 +102,7 @@
 			"defaultConfiguration": "production"
 		},
 		"serve": {
-			"executor": "@angular-devkit/build-angular:dev-server",
+			"executor": "@nx/angular:dev-server",
 			"options": {
 				"proxyConfig": "apps/todo-app/proxy.conf.json",
 				"buildTarget": "todo-app:build"
@@ -141,12 +141,12 @@
 			"executor": "@nx/playwright:playwright",
 			"outputs": ["{workspaceRoot}/dist/.playwright/apps/todo-app/e2e"],
 			"options": {
-				"config": "apps/todo-app/e2e/playwright.config.ts"
+				"config": "apps/todo-app/e2e/playwright-e2e.config.ts"
 			}
 		},
 		"mock-tests": {
 			"executor": "@nx/playwright:playwright",
-			"outputs": ["{workspaceRoot}/dist/.playwright/apps/todo-app/e2e"],
+			"outputs": ["{workspaceRoot}/dist/.playwright/apps/todo-app/mock-tests"],
 			"options": {
 				"config": "apps/todo-app/mock-tests/playwright-mock-tests.config.ts"
 			}

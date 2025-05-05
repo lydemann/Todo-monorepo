@@ -17,7 +17,7 @@ export class TodoListPage {
 	}
 
 	private get todoDueDateInput() {
-		return this.page.getByTestId('todo-duedate');
+		return this.page.getByTestId('todo-duedate').getByRole('textbox');
 	}
 
 	private get createTodoSubmitButton() {

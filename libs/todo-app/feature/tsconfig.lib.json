@@ -23,6 +23,6 @@
 	"include": [
 		"**/*.ts",
 		"../../../apps/todo-app/mock-tests/todo-list.component.spec.ts",
-		"../../../apps/todo-app/mock-tests/playwright.config.ts"
+		"../../../apps/todo-app/mock-tests/playwright-mock-tests.config.ts"
 	]
 }

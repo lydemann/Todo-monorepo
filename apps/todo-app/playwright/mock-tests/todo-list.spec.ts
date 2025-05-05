@@ -1,9 +1,13 @@
 /* eslint-disable playwright/expect-expect */
 /* eslint-disable @nx/enforce-module-boundaries */
 import { test } from '@playwright/test';
-import { TodoListPage } from '../../../libs/todo-app/feature/src/lib/todo-list/todo-list.page';
 import { MOCK_TODO_ITEMS } from '@todo/todo-app/domain/mocks/handlers/todo-data';
+import { TodoListPage } from 'libs/todo-app/feature/src/lib/todo-list/todo-list.page';
 // import { formatDate } from '@angular/common';
+
+const formatAsShortDate = (date: Date) => {
+	return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear().toString().slice(-2)}`;
+};
 
 test.describe('TodoListComponent', () => {
 	let todoListPage: TodoListPage;
@@ -18,22 +22,23 @@ test.describe('TodoListComponent', () => {
 		await todoListPage.expectTodoItemVisible();
 		await todoListPage.expectTodoItemContains(todoItem.title);
 		await todoListPage.expectTodoItemContains(todoItem.description);
-		const formattedDueDate = '5/4/25';
+		const today = new Date();
+		const formattedDueDate = formatAsShortDate(today);
 		await todoListPage.expectTodoItemContains(formattedDueDate);
 	});
 
-	// test('should create todo item', async () => {
-	// 	const title = 'Some title';
-	// 	const description = 'Some description';
-	// 	const dueDate = new Date('2025-05-02').toLocaleDateString('en-US');
+	test('should create todo item', async () => {
+		const title = 'Some title';
+		const description = 'Some description';
+		const dueDate = new Date('2025-05-02').toLocaleDateString('en-US');
 
-	// 	await todoListPage.createTodo(title, description, dueDate);
+		await todoListPage.createTodo(title, description, dueDate);
 
-	// 	await todoListPage.expectTodoItemContains(title);
-	// 	await todoListPage.expectTodoItemContains(description);
-	// 	const formattedDueDate = '5/4/25';
-	// 	await todoListPage.expectTodoItemContains(formattedDueDate);
-	// });
+		await todoListPage.expectTodoItemContains(title);
+		await todoListPage.expectTodoItemContains(description);
+		const formattedDueDate = formatAsShortDate(new Date('2025-05-02'));
+		await todoListPage.expectTodoItemContains(formattedDueDate);
+	});
 
 	// test('should update todo item', async () => {
 	// 	const todoItem = MOCK_TODO_ITEMS[0];
