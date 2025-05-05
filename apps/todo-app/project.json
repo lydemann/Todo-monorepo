@@ -148,7 +148,7 @@
 			"executor": "@nx/playwright:playwright",
 			"outputs": ["{workspaceRoot}/dist/.playwright/apps/todo-app/mock-tests"],
 			"options": {
-				"config": "apps/todo-app/mock-tests/playwright-mock-tests.config.ts"
+				"config": "apps/todo-app/mock-tests/playwright-mock.config.ts"
 			}
 		}
 	}

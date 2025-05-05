@@ -18,6 +18,7 @@ export class TodoListResourcesService {
 			trpc.createTodoItem.mutate({
 				description: todo.description,
 				title: todo.title,
+				dueDate: todo.dueDate,
 			}),
 		).pipe(delay(2000));
 	}

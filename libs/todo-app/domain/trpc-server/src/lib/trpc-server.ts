@@ -21,7 +21,13 @@ export const trpcRouter = t.router({
 		return todoList;
 	}),
 	createTodoItem: t.procedure
-		.input(z.object({ title: z.string(), description: z.string() }))
+		.input(
+			z.object({
+				title: z.string(),
+				description: z.string(),
+				dueDate: z.string(),
+			}),
+		)
 		.mutation(({ input }) => {
 			console.log('createTodoItem procedure');
 			const newItem = {
@@ -29,6 +35,7 @@ export const trpcRouter = t.router({
 				title: input.title,
 				description: input.description,
 				completed: false,
+				dueDate: input.dueDate,
 			};
 			todoList.push(newItem);
 			return newItem;

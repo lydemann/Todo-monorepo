@@ -5,7 +5,7 @@ export class TodoListPage {
 
 	// Selectors
 	private get todoItem() {
-		return this.page.getByTestId('todo-item').first();
+		return this.page.getByTestId('todo-item');
 	}
 
 	private get todoTitleInput() {
@@ -61,7 +61,7 @@ export class TodoListPage {
 
 	// Assertions
 	async expectTodoItemVisible() {
-		await expect(this.todoItem).toBeVisible();
+		await expect(this.todoItem.first()).toBeVisible();
 	}
 
 	async expectTodoItemNotVisible() {
@@ -69,6 +69,6 @@ export class TodoListPage {
 	}
 
 	async expectTodoItemContains(text: string) {
-		await expect(this.todoItem.getByText(text)).toBeVisible();
+		await expect(this.todoItem.getByText(text).first()).toBeVisible();
 	}
 }
