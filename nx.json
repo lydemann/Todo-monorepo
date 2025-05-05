@@ -1,33 +1,18 @@
 {
 	"generators": {
-		"@schematics/angular:component": {
-			"changeDetection": "OnPush"
-		},
+		"@schematics/angular:component": { "changeDetection": "OnPush" },
 		"@nx/angular:application": {
 			"style": "css",
 			"linter": "eslint",
 			"unitTestRunner": "jest",
 			"e2eTestRunner": "cypress"
 		},
-		"@nx/angular:library": {
-			"linter": "eslint",
-			"unitTestRunner": "jest"
-		},
-		"@nx/angular:component": {
-			"style": "css"
-		},
+		"@nx/angular:library": { "linter": "eslint", "unitTestRunner": "jest" },
+		"@nx/angular:component": { "style": "css" },
 		"@nx/react": {
-			"application": {
-				"style": "scss",
-				"bundler": "webpack",
-				"babel": true
-			},
-			"component": {
-				"style": "scss"
-			},
-			"library": {
-				"style": "scss"
-			}
+			"application": { "style": "scss", "bundler": "webpack", "babel": true },
+			"component": { "style": "scss" },
+			"library": { "style": "scss" }
 		}
 	},
 	"targetDefaults": {
@@ -38,12 +23,8 @@
 		"test": {
 			"inputs": ["default", "^production", "{workspaceRoot}/karma.conf.js"]
 		},
-		"e2e": {
-			"inputs": ["default", "^production"]
-		},
-		"component-test": {
-			"inputs": ["default", "^production"]
-		},
+		"e2e": { "inputs": ["default", "^production"] },
+		"component-test": { "inputs": ["default", "^production"] },
 		"build-storybook": {
 			"inputs": [
 				"default",
@@ -98,5 +79,6 @@
 	},
 	"defaultProject": "todo-app",
 	"useInferencePlugins": false,
-	"defaultBase": "origin/main"
+	"defaultBase": "origin/main",
+	"nxCloudAccessToken": "ZGRiMzNjNGQtNzAwYS00MmQ3LWI4MWQtNTYwMGI5OWQ2Nzk5fHJlYWQtd3JpdGU="
 }
