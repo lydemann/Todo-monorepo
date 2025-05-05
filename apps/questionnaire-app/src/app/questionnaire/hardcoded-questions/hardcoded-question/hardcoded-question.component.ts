@@ -6,6 +6,7 @@ import { Question } from '../../../questionnaire.model';
 	selector: 'app-hardcoded-question',
 	templateUrl: './hardcoded-question.component.html',
 	styleUrls: ['./hardcoded-question.component.scss'],
+	standalone: false,
 })
 export class HardcodedQuestionComponent {
 	@Input() public question: Question;

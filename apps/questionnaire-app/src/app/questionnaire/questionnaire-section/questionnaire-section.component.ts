@@ -8,6 +8,7 @@ import { QuestionFormGeneratorService } from './question-form-generator.service'
 	selector: 'app-questionnaire-section',
 	templateUrl: './questionnaire-section.component.html',
 	styleUrls: ['./questionnaire-section.component.css'],
+	standalone: false,
 })
 export class QuestionnaireSectionComponent implements OnInit {
 	public get sectionQuestions(): Question[] {

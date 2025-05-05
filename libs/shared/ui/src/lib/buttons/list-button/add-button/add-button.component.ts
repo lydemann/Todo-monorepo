@@ -7,6 +7,7 @@ import { ListButtonComponent, ListButtonTypes } from '../list-button.component';
 	selector: 'app-add-button',
 	templateUrl: './add-button.component.html',
 	styleUrls: ['./add-button.component.scss'],
+	standalone: false,
 })
 export class AddButtonComponent extends ButtonChildComponent<ListButtonTypes> {
 	constructor(@Inject(ListButtonComponent) parent: ListButtonComponent) {

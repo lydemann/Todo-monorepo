@@ -5,6 +5,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 	selector: 'app-toggle',
 	templateUrl: './toggle.component.html',
 	styleUrls: ['./toggle.component.scss'],
+	standalone: false,
 })
 export class ToggleComponent {
 	@Input()

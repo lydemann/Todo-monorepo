@@ -11,6 +11,7 @@ import { HardcodedQuestionService as HardcodedQuestionsService } from './hardcod
 	selector: 'app-hardcoded-questions',
 	templateUrl: './hardcoded-questions.component.html',
 	styleUrls: ['./hardcoded-questions.component.scss'],
+	standalone: false,
 })
 export class HardcodedQuestionsComponent implements AfterViewInit {
 	@ViewChild('questionToBeHardCoded')

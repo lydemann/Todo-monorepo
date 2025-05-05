@@ -14,7 +14,12 @@ export class TodoListResourcesService {
 	}
 
 	public addTodoItem(todo: TodoItem) {
-		return from(trpc.createTodoItem.mutate(todo)).pipe(delay(2000));
+		return from(
+			trpc.createTodoItem.mutate({
+				description: todo.description,
+				title: todo.title,
+			}),
+		).pipe(delay(2000));
 	}
 
 	public updateTodoItem(todo: TodoItem) {

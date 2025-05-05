@@ -30,6 +30,7 @@
 			}
 		}
 	},
+	"useDaemonProcess": true,
 	"targetDefaults": {
 		"build": {
 			"dependsOn": ["^build"],
@@ -99,5 +100,6 @@
 	},
 	"defaultProject": "todo-app",
 	"useInferencePlugins": false,
-	"defaultBase": "origin/main"
+	"defaultBase": "origin/main",
+	"nxCloudId": "6818ee0f875bb6647c55c176"
 }

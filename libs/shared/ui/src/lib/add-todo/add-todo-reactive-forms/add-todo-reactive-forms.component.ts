@@ -18,6 +18,7 @@ import { InvalidDateValidator } from '../../form-validation/invalid-date.directi
 	selector: 'app-add-todo-reactive-forms',
 	templateUrl: './add-todo-reactive-forms.component.html',
 	styleUrls: ['./add-todo-reactive-forms.component.scss'],
+	standalone: false,
 })
 export class AddTodoReactiveFormsComponent implements OnChanges {
 	@Input() public headlineText = 'add-todo.headline';

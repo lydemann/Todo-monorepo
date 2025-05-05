@@ -6,6 +6,7 @@ import { Questionnaire, QuestionSection } from '../questionnaire.model';
 	selector: 'app-questionnaire',
 	templateUrl: './questionnaire.component.html',
 	styleUrls: ['./questionnaire.component.css'],
+	standalone: false,
 })
 export class QuestionnaireComponent {
 	@Input() public questionnaire = new Questionnaire();

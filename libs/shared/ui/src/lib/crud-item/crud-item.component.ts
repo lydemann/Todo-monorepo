@@ -69,7 +69,6 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 	`,
 	styleUrls: ['./crud-item.component.scss'],
 	encapsulation: ViewEncapsulation.ShadowDom,
-	standalone: true,
 	imports: [CommonModule, TranslateModule, SharedUtilUtilI18nModule],
 })
 export class CrudItemComponent {

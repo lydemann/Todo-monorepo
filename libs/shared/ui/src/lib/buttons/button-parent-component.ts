@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
 	template: '',
+	standalone: false,
 })
 export abstract class ButtonParentComponent<ButtonTypes = unknown> {
 	@Input() public type: 'button' | 'submit' = 'button';

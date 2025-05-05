@@ -7,6 +7,7 @@ import { ListButtonComponent, ListButtonTypes } from '../list-button.component';
 	selector: 'app-small-fab',
 	templateUrl: './small-fab.component.html',
 	styleUrls: ['./small-fab.component.scss'],
+	standalone: false,
 })
 export class SmallFabComponent extends ButtonChildComponent<ListButtonTypes> {
 	constructor(@Inject(ListButtonComponent) parent: ListButtonComponent) {

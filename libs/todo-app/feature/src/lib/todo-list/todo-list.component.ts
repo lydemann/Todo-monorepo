@@ -5,6 +5,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 import { TodoListFacadeService } from '@todo/todo-app/domain';
 import { SharedModule } from '../shared/shared.module';
 import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
 	selector: 'app-todo-list',
@@ -12,14 +13,13 @@ import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count
 			<div class="todo-list-wrapper">
 				<div class="mx-auto col-10">
 					<h5>{{ 'todo-list' | translate }}</h5>
-
+					{{ todoList() | json }}
 					<hr />
 					<app-cards-list
 						[tableRef]="todoListRef"
 						[cardRef]="todoItemCardRef"
 						[data]="todoList()"
 					></app-cards-list>
-
 					<hr />
 					<div>
 						{{ 'todo-list-section.todos-duedate-today' | translate }}:
@@ -58,8 +58,12 @@ import { DuedateTodayCountPipe } from './duedate-today-count/duedate-today-count
 				}
 			</ul>
 		</ng-template>`,
-	standalone: true,
-	imports: [SharedModule, DuedateTodayCountPipe, CrudItemComponent],
+	imports: [
+		CommonModule,
+		SharedModule,
+		DuedateTodayCountPipe,
+		CrudItemComponent,
+	],
 })
 export class TodoListComponent {
 	public selectedTodo$ = this.todoListFacadeService.selectedTodo$;
