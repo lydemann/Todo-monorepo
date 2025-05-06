@@ -257,6 +257,7 @@
 		"ts-node": "10.9.1",
 		"typescript": "5.7.3",
 		"url-loader": "^4.1.1",
+		"vite": "^6.3.5",
 		"vitest": "1.4.0",
 		"webpack": "5.98.0",
 		"webpack-merge": "^5.8.0",
