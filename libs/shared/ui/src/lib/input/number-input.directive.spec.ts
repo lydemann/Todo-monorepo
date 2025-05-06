@@ -5,7 +5,7 @@ import { NumberInputDirective } from './number-input.directive';
 
 describe('Directive: NumberInputDirective', () => {
 	[{ id: 'en', separators: { group: ',', decimal: '.' } }].forEach(locale => {
-		describe(`locale: ${locale.id}`, () => {
+		describe(`locale: en`, () => {
 			let testFormControl: FormControl;
 
 			const setup = async (
@@ -25,7 +25,7 @@ describe('Directive: NumberInputDirective', () => {
 			) => {
 				testFormControl = new FormControl('');
 				await render(
-					`<input appNumberInput [formControl]="testFormControl"
+					`<input appNumberInput role="textbox" data-testid="input" [formControl]="testFormControl"
 					 [thousandSeparatorEnabled]="thousandSeparatorEnabled"
 					 [thousandToDecimalSeparatorEnabled]="thousandToDecimalSeparatorEnabled"
 					 [decimalsEnabled]="decimalsEnabled" />`,
@@ -134,6 +134,7 @@ describe('Directive: NumberInputDirective', () => {
 				beforeEach(async () => {
 					await setup({
 						thousandSeparatorEnabled: false,
+						thousandToDecimalSeparatorEnabled: true,
 						decimalsEnabled: true,
 					});
 				});
@@ -151,10 +152,11 @@ describe('Directive: NumberInputDirective', () => {
 					const input = screen.getByRole('textbox') as HTMLInputElement;
 					fireEvent.input(input, { target: { value: '1234' } });
 					input.setSelectionRange(3, 3);
-					fireEvent.input(input, {
-						target: { value: `12${locale.separators.group}34` },
+					testFormControl.setValue(`12${locale.separators.group}34`, {
+						emitModelToViewChange: false,
+						emitViewToModelChange: false,
+						onlySelf: true,
 					});
-
 					expect(input.value).toBe(`12${locale.separators.decimal}34`);
 				});
 
@@ -162,8 +164,11 @@ describe('Directive: NumberInputDirective', () => {
 					const input = screen.getByRole('textbox') as HTMLInputElement;
 					fireEvent.input(input, { target: { value: '1234' } });
 					input.setSelectionRange(1, 1);
-					fireEvent.input(input, {
-						target: { value: `${locale.separators.group}1234` },
+
+					testFormControl.setValue(`${locale.separators.group}1234`, {
+						emitModelToViewChange: false,
+						emitViewToModelChange: false,
+						onlySelf: true,
 					});
 
 					expect(input.value).toBe(`${locale.separators.decimal}1234`);
@@ -189,14 +194,12 @@ describe('Directive: NumberInputDirective', () => {
 			});
 
 			describe('decimalsEnabled', () => {
-				beforeEach(async () => {
+				it('should remove decimals from number if decimals not enabled', async () => {
 					await setup({
 						thousandSeparatorEnabled: false,
 						thousandToDecimalSeparatorEnabled: false,
+						decimalsEnabled: false,
 					});
-				});
-
-				it('should remove decimals from number if decimals not enabled', () => {
 					const input = screen.getByRole('textbox') as HTMLInputElement;
 					fireEvent.input(input, {
 						target: { value: `1234${locale.separators.decimal}12345679` },
@@ -206,7 +209,12 @@ describe('Directive: NumberInputDirective', () => {
 				});
 
 				it('should NOT remove decimals from number if decimals enabled', async () => {
-					await setup({ decimalsEnabled: true });
+					await setup({
+						thousandSeparatorEnabled: false,
+						thousandToDecimalSeparatorEnabled: false,
+						decimalsEnabled: true,
+					});
+
 					const input = screen.getByRole('textbox') as HTMLInputElement;
 					fireEvent.input(input, {
 						target: { value: `1234${locale.separators.decimal}12345679` },
@@ -217,7 +225,8 @@ describe('Directive: NumberInputDirective', () => {
 			});
 
 			describe('empty string', () => {
-				it('should not format input, nor set selection range', () => {
+				it('should not format input, nor set selection range', async () => {
+					await setup();
 					const input = screen.getByRole('textbox') as HTMLInputElement;
 					jest.spyOn(input, 'setSelectionRange');
 					expect(input.value).toBe('');
