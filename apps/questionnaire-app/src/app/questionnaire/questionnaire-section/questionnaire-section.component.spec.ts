@@ -32,7 +32,9 @@ describe('QuestionnaireSectionComponent', () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(QuestionnaireSectionComponent);
 		component = fixture.componentInstance;
-		component.section = (mockQuestionnaireJson as QuestionnaireRoot).questionnaire.questionSections[0];
+		component.section = (
+			mockQuestionnaireJson as QuestionnaireRoot
+		).questionnaire.questionSections[0];
 		fixture.detectChanges();
 	});
 
