@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 			<div class="todo-list-wrapper">
 				<div class="mx-auto col-10">
 					<h5>{{ 'todo-list' | translate }}</h5>
-					{{ todoList() | json }}
 					<hr />
 					<app-cards-list
 						[tableRef]="todoListRef"
