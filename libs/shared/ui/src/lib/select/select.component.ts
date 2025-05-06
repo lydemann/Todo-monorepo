@@ -31,6 +31,7 @@ import { SelectOption } from './select-option/select-option.interface';
 			multi: true,
 		},
 	],
+	standalone: false,
 })
 export class SelectComponent
 	implements OnChanges, AfterContentInit, ControlValueAccessor

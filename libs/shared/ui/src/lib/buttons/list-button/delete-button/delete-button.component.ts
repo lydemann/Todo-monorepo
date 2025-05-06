@@ -7,10 +7,9 @@ import { ListButtonComponent, ListButtonTypes } from '../list-button.component';
 	selector: 'app-delete-button',
 	templateUrl: './delete-button.component.html',
 	styleUrls: ['./delete-button.component.scss'],
+	standalone: false,
 })
-export class DeleteButtonComponent extends ButtonChildComponent<
-	ListButtonTypes
-> {
+export class DeleteButtonComponent extends ButtonChildComponent<ListButtonTypes> {
 	constructor(@Inject(ListButtonComponent) parent: ListButtonComponent) {
 		super();
 		this.parent = parent;

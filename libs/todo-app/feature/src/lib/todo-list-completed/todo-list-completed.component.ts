@@ -22,7 +22,6 @@ import { SharedModule } from '../shared/shared.module';
 			<hr />
 		</div>
 	`,
-	standalone: true,
 	imports: [SharedModule],
 })
 export class TodoListCompletedComponent {

@@ -4,7 +4,7 @@
   No shadows
 */
 
-@import 'helpers';
+@use 'helpers';
 :host {
 	.primary-btn {
 		color: get-color('white');

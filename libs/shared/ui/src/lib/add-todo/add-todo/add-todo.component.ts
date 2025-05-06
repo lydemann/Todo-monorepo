@@ -7,6 +7,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 	selector: 'app-add-todo',
 	templateUrl: './add-todo.component.html',
 	styleUrls: ['add-todo.component.scss'],
+	standalone: false,
 })
 export class AddTodoComponent {
 	@Input() public isSavingTodo: boolean;

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare let window: any;
 
 // This file can be replaced during build by using the `fileReplacements` array.

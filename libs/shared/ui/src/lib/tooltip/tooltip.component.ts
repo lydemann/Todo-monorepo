@@ -14,6 +14,7 @@ import { StringHelpers } from '@todo/shared/util';
 	// Need to remove view encapsulation so that the custom tooltip style defined in
 	// `tooltip-component.css` will not be scoped to this component's view.
 	encapsulation: ViewEncapsulation.None,
+	standalone: false,
 })
 export class TooltipComponent implements AfterViewInit {
 	@Input() public tooltipText: string;

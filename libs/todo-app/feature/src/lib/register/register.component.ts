@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 	templateUrl: './register.component.html',
 	styleUrls: ['./register.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: false,
 })
 export class RegisterComponent implements OnInit {
 	public emailFormGroup: FormGroup;
@@ -14,7 +15,10 @@ export class RegisterComponent implements OnInit {
 	public birthdayFormGroup: FormGroup;
 	public isEditable = true;
 
-	constructor(private _formBuilder: FormBuilder, private router: Router) {}
+	constructor(
+		private _formBuilder: FormBuilder,
+		private router: Router,
+	) {}
 
 	public ngOnInit() {
 		this.emailFormGroup = this._formBuilder.group({

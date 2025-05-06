@@ -7,7 +7,10 @@ export const ERROR_NOTIFICATION_DURATION = 2000;
 
 @Injectable()
 export class GlobalErrorHandler extends ErrorHandler {
-	constructor(private injector: Injector, private snackBar: MatSnackBar) {
+	constructor(
+		private injector: Injector,
+		private snackBar: MatSnackBar,
+	) {
 		super();
 	}
 

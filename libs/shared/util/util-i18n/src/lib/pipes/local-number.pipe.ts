@@ -5,6 +5,7 @@ import { LocaleService } from '../services/locale.service';
 
 @Pipe({
 	name: 'localNumber',
+	standalone: false,
 })
 export class LocalNumberPipe implements PipeTransform {
 	constructor(private localeService: LocaleService) {}

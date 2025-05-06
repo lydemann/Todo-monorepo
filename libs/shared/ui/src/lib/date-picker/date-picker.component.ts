@@ -49,6 +49,7 @@ class DateErrorStateMatcher implements ErrorStateMatcher {
 	selector: 'app-date-picker',
 	templateUrl: './date-picker.component.html',
 	styleUrls: ['./date-picker.component.scss'],
+	standalone: false,
 })
 export class DatePickerComponent
 	implements ControlValueAccessor, OnDestroy, AfterViewInit

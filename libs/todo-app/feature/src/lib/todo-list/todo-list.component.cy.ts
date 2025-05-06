@@ -87,84 +87,84 @@ describe('TodoListComponent', () => {
 	it('should show todo item', () => {
 		const todoItem = MOCK_TODO_ITEMS[0];
 		setup().then(({}) => {
-			cy.get('[data-test=todo-item]').contains(todoItem.title);
-			cy.get('[data-test=todo-item]').contains(todoItem.description);
+			cy.get('[data-testid=todo-item]').contains(todoItem.title);
+			cy.get('[data-testid=todo-item]').contains(todoItem.description);
 			const formattedDueDate = formatDate(
 				todoItem.dueDate,
 				'shortDate',
 				'en-US',
 			);
-			cy.get('[data-test=todo-item]').contains(formattedDueDate);
+			cy.get('[data-testid=todo-item]').contains(formattedDueDate);
 		});
 	});
 
 	it('should create todo item', () => {
 		setup({ todoItems: [] }).then(({}) => {
 			const title = 'Some title';
-			cy.get('[data-test=todo-title]').type(title);
+			cy.get('[data-testid=todo-title]').type(title);
 			const description = 'Some description';
-			cy.get('[data-test=todo-description]').type(description);
+			cy.get('[data-testid=todo-description]').type(description);
 			const dueDate = new Date().toLocaleDateString('en-US');
-			cy.get('[data-test=todo-duedate]').type(dueDate);
-			cy.get('[data-test=create-todo-submit]').click();
+			cy.get('[data-testid=todo-duedate]').type(dueDate);
+			cy.get('[data-testid=create-todo-submit]').click();
 
-			cy.get('[data-test=todo-item]').contains(title);
-			cy.get('[data-test=todo-item]').contains(description);
+			cy.get('[data-testid=todo-item]').contains(title);
+			cy.get('[data-testid=todo-item]').contains(description);
 			const formattedDueDate = formatDate(dueDate, 'shortDate', 'en-US');
-			cy.get('[data-test=todo-item]').contains(formattedDueDate);
+			cy.get('[data-testid=todo-item]').contains(formattedDueDate);
 		});
 	});
 
 	it('should update todo item', () => {
 		const todoItem = MOCK_TODO_ITEMS[0];
 		setup({ todoItems: [todoItem] }).then(({}) => {
-			cy.get('[data-test=todo-item]').contains(todoItem.title);
-			cy.get('[data-test=todo-item]').contains(todoItem.description);
+			cy.get('[data-testid=todo-item]').contains(todoItem.title);
+			cy.get('[data-testid=todo-item]').contains(todoItem.description);
 			const formattedDueDate = formatDate(
 				todoItem.dueDate,
 				'shortDate',
 				'en-US',
 			);
-			cy.get('[data-test=todo-item]').contains(formattedDueDate);
+			cy.get('[data-testid=todo-item]').contains(formattedDueDate);
 
-			cy.get('[data-test=todo-item]')
+			cy.get('[data-testid=todo-item]')
 
-				.get('[data-test="edit-button"]')
+				.get('[data-testid="edit-button"]')
 				.click();
 			const updatedTitle = 'Edited title';
-			cy.get('[data-test=todo-title]').clear().type(updatedTitle);
+			cy.get('[data-testid=todo-title]').clear().type(updatedTitle);
 			const updatedDescription = 'Edited description';
-			cy.get('[data-test=todo-description]').clear().type(updatedDescription);
+			cy.get('[data-testid=todo-description]').clear().type(updatedDescription);
 			const currentDate = new Date();
 			const updatedDueDate = new Date(
 				currentDate.setDate(currentDate.getDate() + 1),
 			).toLocaleDateString('en-US');
-			cy.get('[data-test=todo-duedate]').clear().type(updatedDueDate);
+			cy.get('[data-testid=todo-duedate]').clear().type(updatedDueDate);
 
-			cy.get('[data-test=create-todo-submit]').click();
+			cy.get('[data-testid=create-todo-submit]').click();
 
-			cy.get('[data-test=todo-item]').contains(updatedTitle);
-			cy.get('[data-test=todo-item]').contains(updatedDescription);
+			cy.get('[data-testid=todo-item]').contains(updatedTitle);
+			cy.get('[data-testid=todo-item]').contains(updatedDescription);
 			const updatedFormattedDueDate = formatDate(
 				updatedDueDate,
 				'shortDate',
 				'en-US',
 			);
-			cy.get('[data-test=todo-item]').contains(updatedFormattedDueDate);
+			cy.get('[data-testid=todo-item]').contains(updatedFormattedDueDate);
 		});
 	});
 
 	it('should delete todo item', () => {
 		const todoItem = MOCK_TODO_ITEMS[0];
 		setup({ todoItems: [todoItem] }).then(({}) => {
-			cy.get('[data-test=todo-item]').contains(todoItem.title);
-			cy.get('[data-test=todo-item]').contains(todoItem.description);
+			cy.get('[data-testid=todo-item]').contains(todoItem.title);
+			cy.get('[data-testid=todo-item]').contains(todoItem.description);
 
-			cy.get('[data-test=todo-item]')
-				.get('[data-test="delete-button"]')
+			cy.get('[data-testid=todo-item]')
+				.get('[data-testid="delete-button"]')
 				.click();
 
-			cy.get('[data-test=todo-item]').should('not.exist');
+			cy.get('[data-testid=todo-item]').should('not.exist');
 		});
 	});
 });

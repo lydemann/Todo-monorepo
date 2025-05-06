@@ -10,6 +10,7 @@ import { RenderingTranslationService } from './rendering-translation.service';
 	templateUrl: './question.component.html',
 	styleUrls: ['./question.component.css'],
 	providers: [RenderingTranslationService],
+	standalone: false,
 })
 export class QuestionComponent {
 	@Input() public question = new Question();

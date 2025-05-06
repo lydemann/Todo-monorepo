@@ -7,6 +7,7 @@ import { colorTheme, ThemeService } from '@todo/shared/ui-styles';
 	selector: 'app-navbar',
 	templateUrl: './navbar.component.html',
 	styleUrls: ['./navbar.component.scss'],
+	standalone: false,
 })
 export class NavbarComponent {
 	public themes = this.themeService.themes;

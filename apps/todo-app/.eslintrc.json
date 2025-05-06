@@ -1,5 +1,9 @@
 {
-	"extends": ["../../.eslintrc.json"],
+	"extends": [
+		"plugin:playwright/recommended",
+		"plugin:playwright/recommended",
+		"../../.eslintrc.json"
+	],
 	"ignorePatterns": ["!**/*"],
 	"overrides": [
 		{
@@ -20,7 +24,8 @@
 						"prefix": "app",
 						"style": "kebab-case"
 					}
-				]
+				],
+				"@angular-eslint/prefer-standalone": "off"
 			},
 			"extends": [
 				"plugin:@nx/angular",
@@ -31,6 +36,14 @@
 		{
 			"files": ["*.html"],
 			"extends": ["plugin:@nx/angular-template"],
+			"rules": {}
+		},
+		{
+			"files": ["e2e/**/*.{ts,js,tsx,jsx}"],
+			"rules": {}
+		},
+		{
+			"files": ["mock-tests/**/*.{ts,js,tsx,jsx}"],
 			"rules": {}
 		}
 	]

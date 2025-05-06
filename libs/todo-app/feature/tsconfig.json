@@ -10,6 +10,9 @@
 		},
 		{
 			"path": "./cypress/tsconfig.json"
+		},
+		{
+			"path": "./tsconfig.pw.json"
 		}
 	],
 	"compilerOptions": {

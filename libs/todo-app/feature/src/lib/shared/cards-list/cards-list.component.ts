@@ -37,7 +37,6 @@ import { ListComponent } from './list/list.component';
 		</ng-container>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [
 		CommonModule,
 		AppMaterialModule,

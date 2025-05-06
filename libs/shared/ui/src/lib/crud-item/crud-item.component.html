@@ -1,7 +1,7 @@
 <div class="todo-item" *ngIf="todoItem">
 	<li
 		class="list-group-item d-flex justify-content-between lh-condensed theme-background"
-		data-test="todo-item"
+		data-testid="todo-item"
 		[ngClass]="todoItem.completed ? 'bg-completed' : ''"
 	>
 		<div class="item-content">
@@ -33,7 +33,7 @@
 				type="button"
 				class="btn btn-info"
 				aria-label="Edit"
-				data-test="edit-button"
+				data-testid="edit-button"
 			>
 				{{ editBtnText | translate }}
 			</button>
@@ -43,7 +43,7 @@
 				type="button"
 				class="btn btn-danger"
 				aria-label="Delete"
-				data-test="delete-button"
+				data-testid="delete-button"
 			>
 				{{ deleteBtnText | translate }}
 			</button>

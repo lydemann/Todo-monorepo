@@ -1,4 +1,4 @@
-@import 'helpers';
+@use 'helpers';
 
 .error {
 	border: 1px solid get-color('warn');
