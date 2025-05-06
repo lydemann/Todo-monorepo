@@ -154,7 +154,7 @@
 				"{workspaceRoot}/dist/.playwright/apps/todo-app/playwright/mock-tests"
 			],
 			"options": {
-				"config": "apps/todo-app/playwright/mock-tests/playwright-mock.config.ts"
+				"config": "apps/todo-app/playwright/mock-tests/playwright-mock.ts"
 			}
 		}
 	}
