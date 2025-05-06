@@ -130,6 +130,13 @@ jobs:
           path: $(PNPM_CACHE_FOLDER)
         displayName: Cache pnpm packages
 
+      - script: |
+          npm install --global corepack@latest
+          corepack enable
+          corepack prepare pnpm@latest-10 --activate
+          pnpm config set store-dir $(pnpm_config_cache)
+        displayName: "Setup pnpm"
+
       - script: pnpm install
         displayName: 'Install dependencies'
 
@@ -170,6 +177,13 @@ jobs:
             "pnpm"
           path: $(PNPM_CACHE_FOLDER)
         displayName: Cache pnpm packages
+
+      - script: |
+          npm install --global corepack@latest
+          corepack enable
+          corepack prepare pnpm@latest-10 --activate
+          pnpm config set store-dir $(pnpm_config_cache)
+        displayName: "Setup pnpm"
 
       - script: pnpm install
         displayName: 'Install dependencies'

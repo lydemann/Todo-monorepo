@@ -73,7 +73,12 @@ jobs:
             "pnpm"
           path: $(PNPM_CACHE_FOLDER)
         displayName: Cache pnpm packages
-
+      - script: |
+          npm install --global corepack@latest
+          corepack enable
+          corepack prepare pnpm@latest-10 --activate
+          pnpm config set store-dir $(pnpm_config_cache)
+        displayName: "Setup pnpm"
       - script: pnpm install
       - script: pnpm nx-cloud start-ci-run --agent-count=3
         displayName: Start CI run
