@@ -43,9 +43,6 @@
 			"inputs": ["default", "^production"],
 			"cache": true
 		},
-		"component-test": {
-			"inputs": ["default", "^production"]
-		},
 		"build-storybook": {
 			"inputs": [
 				"default",
