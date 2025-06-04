@@ -75,4 +75,8 @@ export class TodoListPage {
 	async expectTodoItemContains(text: string) {
 		await expect(this.todoItem.getByText(text).first()).toBeVisible();
 	}
+
+	async expectErrorMessageVisible(text: string) {
+		await expect(this.page.getByText(text)).toBeVisible();
+	}
 }

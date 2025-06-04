@@ -1,6 +1,6 @@
 /* eslint-disable playwright/expect-expect */
 /* eslint-disable @nx/enforce-module-boundaries */
-import { test } from '@playwright/test';
+import { BrowserContext, test } from '@playwright/test';
 import { MOCK_TODO_ITEMS } from '@todo/todo-app/domain/mocks/handlers/todo-data';
 import { TodoListPage } from 'libs/todo-app/feature/src/lib/todo-list/todo-list.page';
 // import { formatDate } from '@angular/common';
@@ -77,4 +77,30 @@ test.describe('TodoListComponent', () => {
 
 		await todoListPage.expectTodoItemCount(MOCK_TODO_ITEMS.length - 1);
 	});
+
+	test('should show error message when create todo item fails', async ({
+		context,
+	}) => {
+		await setMockScenarios(context, todoListPage);
+
+		const title = 'Some title';
+		const description = 'Some description';
+		const dueDate = new Date('2025-05-02').toLocaleDateString('en-US');
+
+		await todoListPage.createTodo(title, description, dueDate);
+
+		await todoListPage.expectTodoItemCount(MOCK_TODO_ITEMS.length);
+		await todoListPage.expectErrorMessageVisible('Error creating todo item');
+	});
 });
+async function setMockScenarios(
+	context: BrowserContext,
+	todoListPage: TodoListPage,
+) {
+	context.addInitScript(() => {
+		(window as any).mockScenarios = {
+			postCreateTodoFailed: true,
+		};
+	});
+	await todoListPage.navigate();
+}
