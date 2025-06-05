@@ -12,7 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 				<hr />
 				<ul class="list-group mb-3">
 					<app-crud-item
-						*ngFor="let todo of completedTodos$ | async"
+						*ngFor="let todo of completedTodos()"
 						(todoCompleteToggled)="todoCompleteToggled($event)"
 						[todoItem]="todo"
 						[isReadOnly]="true"
@@ -25,7 +25,7 @@ import { SharedModule } from '../shared/shared.module';
 	imports: [SharedModule],
 })
 export class TodoListCompletedComponent {
-	completedTodos$ = this.todoListFacadeService.completedTodos$;
+	completedTodos = this.todoListFacadeService.completedTodos;
 
 	constructor(private todoListFacadeService: TodoListFacadeService) {}
 

@@ -26,4 +26,8 @@ export class TodoListResourcesService {
 	public updateTodoItem(todo: TodoItem) {
 		return from(trpc.updateTodoItem.mutate(todo)).pipe(delay(2000));
 	}
+
+	public deleteTodoItem(id: string) {
+		return from(trpc.deleteTodoItem.mutate(id)).pipe(delay(2000));
+	}
 }

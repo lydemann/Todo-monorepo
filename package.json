@@ -120,6 +120,8 @@
 		"@nestjs/schematics": "10.0.1",
 		"@nestjs/testing": "10.0.5",
 		"@ngneat/spectator": "^15.0.1",
+		"@ngrx/operators": "^19.2.1",
+		"@ngrx/signals": "^19.2.1",
 		"@nrwl/esbuild": "19.4.2",
 		"@nrwl/js": "19.4.2",
 		"@nx/angular": "20.8.1",

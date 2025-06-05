@@ -26,8 +26,8 @@ import { CommonModule } from '@angular/common';
 					</div>
 					<hr />
 					<app-add-todo-reactive-forms
-						[currentTodo]="selectedTodo$ | async"
-						[isSavingTodo]="isSavingTodo$ | async"
+						[currentTodo]="selectedTodo()"
+						[isSavingTodo]="isSavingTodo()"
 						(saveTodo)="onSaveTodo($event)"
 					></app-add-todo-reactive-forms>
 				</div>
@@ -65,10 +65,10 @@ import { CommonModule } from '@angular/common';
 	],
 })
 export class TodoListComponent {
-	public selectedTodo$ = this.todoListFacadeService.selectedTodo$;
+	public selectedTodo = this.todoListFacadeService.selectedTodo;
 	public todoList = this.todoListFacadeService.todoList;
 	public isLoading = this.todoListFacadeService.isLoading;
-	public isSavingTodo$ = this.todoListFacadeService.isSavingTodo$;
+	public isSavingTodo = this.todoListFacadeService.isSavingTodo;
 
 	constructor(private todoListFacadeService: TodoListFacadeService) {}
 

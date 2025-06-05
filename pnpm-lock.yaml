@@ -222,6 +222,12 @@ importers:
       '@ngneat/spectator':
         specifier: ^15.0.1
         version: 15.0.1(@angular/animations@19.2.9(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/router@19.2.9(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.9(@angular/animations@19.2.9(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1))
+      '@ngrx/operators':
+        specifier: ^19.2.1
+        version: 19.2.1(rxjs@7.8.1)
+      '@ngrx/signals':
+        specifier: ^19.2.1
+        version: 19.2.1(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
       '@nrwl/esbuild':
         specifier: 19.4.2
         version: 19.4.2(@babel/traverse@7.27.0)(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.21)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11))(@types/node@18.19.31)(esbuild@0.19.12)(nx@20.8.1(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.21)(typescript@5.7.3))(@swc/core@1.5.7(@swc/helpers@0.5.11)))(typescript@5.7.3)
@@ -3489,6 +3495,11 @@ packages:
       '@ngrx/store': 19.1.0
       rxjs: ^6.5.3 || ^7.5.0
 
+  '@ngrx/operators@19.2.1':
+    resolution: {integrity: sha512-umjSny5nWe7+a3XPeyMfE8vjhXD4ec6nA/KSV7bQA43Yt3eW8cQQr5ng7UZOkC0rbqcBGpSsJPt5thTeXiMXQg==}
+    peerDependencies:
+      rxjs: ^6.5.3 || ^7.4.0
+
   '@ngrx/router-store@19.1.0':
     resolution: {integrity: sha512-eMS6WtZfx29Zmlm3imgEm1WcNTRY3UGdNL7fWJyPWUPUMLArkmyDQsP+NBveLIEj1yJs8U4S8V9gzqPSiGYLHA==}
     peerDependencies:
@@ -3497,6 +3508,15 @@ packages:
       '@angular/router': ^19.0.0
       '@ngrx/store': 19.1.0
       rxjs: ^6.5.3 || ^7.5.0
+
+  '@ngrx/signals@19.2.1':
+    resolution: {integrity: sha512-Tajd2TVjkxxyFMhnMSWLa5pAWfynjP0VM0B/BCMaLiBrwBBxybxRVENoUDU5tGyiKSax/2tBJC3+sOglmxm27A==}
+    peerDependencies:
+      '@angular/core': ^19.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    peerDependenciesMeta:
+      rxjs:
+        optional: true
 
   '@ngrx/store-devtools@19.1.0':
     resolution: {integrity: sha512-c8sV5FQofqm7lF6HTJ4Bb7L/69TaIYHAwEFMbgqbsNoWDx+pilw/It6X9J3LnU8bXjQK4xg6qsgJ7fJIH5X2NA==}
@@ -17981,6 +18001,11 @@ snapshots:
       rxjs: 7.8.1
       tslib: 2.8.1
 
+  '@ngrx/operators@19.2.1(rxjs@7.8.1)':
+    dependencies:
+      rxjs: 7.8.1
+      tslib: 2.8.1
+
   '@ngrx/router-store@19.1.0(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(@angular/router@19.2.9(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.9(@angular/animations@19.2.9(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1))(@ngrx/store@19.1.0(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(rxjs@7.8.1)':
     dependencies:
       '@angular/common': 19.2.9(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
@@ -17989,6 +18014,13 @@ snapshots:
       '@ngrx/store': 19.1.0(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
       rxjs: 7.8.1
       tslib: 2.8.1
+
+  '@ngrx/signals@19.2.1(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)':
+    dependencies:
+      '@angular/core': 19.2.9(rxjs@7.8.1)(zone.js@0.15.0)
+      tslib: 2.8.1
+    optionalDependencies:
+      rxjs: 7.8.1
 
   '@ngrx/store-devtools@19.1.0(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(@ngrx/store@19.1.0(@angular/core@19.2.9(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(rxjs@7.8.1)':
     dependencies:

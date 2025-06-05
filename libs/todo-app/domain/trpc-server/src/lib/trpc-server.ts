@@ -64,6 +64,14 @@ export const trpcRouter = t.router({
 			todoItem.completed = !todoItem.completed;
 			return todoItem;
 		}),
+	deleteTodoItem: t.procedure.input(z.string()).mutation(({ input }) => {
+		const todoItem = todoList.find(todo => todo.id === input);
+		if (!todoItem) {
+			throw new Error('not found');
+		}
+		todoList.splice(todoList.indexOf(todoItem), 1);
+		return todoItem;
+	}),
 });
 
 export type TodoTrpcRouter = typeof trpcRouter;
