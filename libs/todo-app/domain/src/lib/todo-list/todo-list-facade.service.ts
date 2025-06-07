@@ -65,8 +65,15 @@ const TodoListStore = signalStore(
 					.updateTodoItem(todoItem)
 					.pipe(
 						tapResponse(
-							() => patchState(store, { todoList: store.todoList() }),
-							() => patchState(store, { isSavingTodo: false }),
+							() =>
+								patchState(store, {
+									todoList: store.todoList(),
+									isSavingTodo: false,
+								}),
+							error => {
+								patchState(store, { isSavingTodo: false });
+								throw error;
+							},
 						),
 					)
 					.subscribe();
@@ -76,40 +83,46 @@ const TodoListStore = signalStore(
 					tap(() => patchState(store, { isLoading: true })),
 					exhaustMap(() => todoListResourcesService.getTodos()),
 					tapResponse(
-						todos => patchState(store, { todoList: store.todoList() }),
+						() =>
+							patchState(store, {
+								todoList: store.todoList(),
+								isLoading: false,
+							}),
 						() => patchState(store, { isLoading: false }),
 					),
 					tapResponse(
-						todos => patchState(store, { todoList: store.todoList() }),
-						() => patchState(store, { isLoading: false }),
+						() => {
+							patchState(store, { todoList: store.todoList() });
+						},
+						error => {
+							patchState(store, { isLoading: false });
+							throw error;
+						},
 					),
 				),
 			),
 			deleteTodo(id: string) {
 				// Optimistically update the state
+				const originalTodoList = [...store.todoList()];
 				const updatedTodoList = store.todoList().filter(todo => todo.id !== id);
 				patchState(store, { todoList: updatedTodoList });
-
-				const originalTodoList = store.todoList();
 
 				// Call the resource service to delete the todo item
 				todoListResourcesService
 					.deleteTodoItem(id)
 					.pipe(
 						tapResponse(
-							() => patchState(store, { todoList: store.todoList() }),
 							() => {
+								// eslint-disable-next-line @typescript-eslint/no-empty-function
+							},
+							error => {
 								// Revert the state if the deletion fails
 								patchState(store, { todoList: originalTodoList });
+								throw error;
 							},
 						),
 					)
-					.subscribe({
-						error: () => {
-							// Revert the state if the deletion fails
-							patchState(store, { todoList: originalTodoList });
-						},
-					});
+					.subscribe();
 			},
 		}),
 	),

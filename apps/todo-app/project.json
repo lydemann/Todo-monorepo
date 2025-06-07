@@ -118,7 +118,8 @@
 					"buildTarget": "todo-app:build:mock"
 				}
 			},
-			"defaultConfiguration": "mock"
+			"defaultConfiguration": "mock",
+			"continuous": true
 		},
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",

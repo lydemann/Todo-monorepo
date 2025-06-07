@@ -22,6 +22,8 @@ export class GlobalErrorHandler extends ErrorHandler {
 				this.snackBar.open('Something went wrong', '', {
 					duration: ERROR_NOTIFICATION_DURATION,
 					panelClass: 'danger',
+					verticalPosition: 'top',
+					horizontalPosition: 'center',
 				});
 			}
 
