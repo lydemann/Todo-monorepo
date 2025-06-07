@@ -61,43 +61,66 @@ const TodoListStore = signalStore(
 			},
 			saveTodoItem(todoItem: TodoItem) {
 				patchState(store, { isSavingTodo: true });
-				todoListResourcesService
-					.updateTodoItem(todoItem)
-					.pipe(
-						tapResponse(
-							() =>
-								patchState(store, {
-									todoList: store.todoList(),
-									isSavingTodo: false,
-								}),
-							error => {
-								patchState(store, { isSavingTodo: false });
-								throw error;
-							},
-						),
-					)
-					.subscribe();
+				if (todoItem.id) {
+					todoListResourcesService
+						.updateTodoItem(todoItem)
+						.pipe(
+							tapResponse(
+								newTodoItem => {
+									return patchState(store, {
+										todoList: store
+											.todoList()
+											.map(todo =>
+												todo.id === todoItem.id ? todoItem : todo,
+											) as TodoItem[],
+										isSavingTodo: false,
+									});
+								},
+								error => {
+									patchState(store, { isSavingTodo: false });
+									throw error;
+								},
+							),
+						)
+						.subscribe();
+				} else {
+					todoListResourcesService
+						.addTodoItem(todoItem)
+						.pipe(
+							tapResponse(
+								newTodoItem => {
+									return patchState(store, {
+										todoList: [...store.todoList(), newTodoItem] as TodoItem[],
+										isSavingTodo: false,
+									});
+								},
+								error => {
+									patchState(store, { isSavingTodo: false });
+									throw error;
+								},
+							),
+						)
+						.subscribe();
+				}
 			},
 			loadTodoList: rxMethod<void>(
 				pipe(
 					tap(() => patchState(store, { isLoading: true })),
-					exhaustMap(() => todoListResourcesService.getTodos()),
-					tapResponse(
-						() =>
-							patchState(store, {
-								todoList: store.todoList(),
-								isLoading: false,
-							}),
-						() => patchState(store, { isLoading: false }),
-					),
-					tapResponse(
-						() => {
-							patchState(store, { todoList: store.todoList() });
-						},
-						error => {
-							patchState(store, { isLoading: false });
-							throw error;
-						},
+					exhaustMap(() =>
+						todoListResourcesService.getTodos().pipe(
+							tapResponse(
+								todoList => {
+									patchState(store, {
+										todoList: todoList as TodoItem[],
+										isLoading: false,
+									});
+								},
+								error => {
+									patchState(store, { isLoading: false });
+									throw error;
+								},
+							),
+						),
 					),
 				),
 			),

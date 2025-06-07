@@ -9,10 +9,12 @@ const todoList: TodoItem[] = [];
 
 for (let index = 0; index < 5; index++) {
 	const newTodo = {
-		id: faker.random.uuid(),
-		title: faker.random.words(2),
-		description: faker.random.words(5),
-	};
+		id: faker.random.uuid() as string,
+		title: faker.random.words(2) as string,
+		description: faker.random.words(5) as string,
+		completed: faker.datatype.boolean(),
+		dueDate: faker.date.future().toISOString(),
+	} as TodoItem;
 	todoList.push(newTodo);
 }
 
