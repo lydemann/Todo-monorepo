@@ -1,6 +1,6 @@
 /* eslint-disable playwright/expect-expect */
 /* eslint-disable @nx/enforce-module-boundaries */
-import { BrowserContext, test } from '@playwright/test';
+import { Page, test } from '@playwright/test';
 import { MOCK_TODO_ITEMS } from '@todo/todo-app/domain/mocks/handlers/todo-data';
 import { MockScenario } from '@todo/todo-app/domain/mocks/scenarios';
 import { TodoListPage } from 'libs/todo-app/feature/src/lib/todo-list/todo-list.page';
@@ -26,6 +26,14 @@ test.describe('TodoListComponent', () => {
 		const today = new Date();
 		const formattedDueDate = formatAsShortDate(today);
 		await todoListPage.expectTodoItemContains(formattedDueDate);
+	});
+
+	test('should show error message when get todo items fails', async ({
+		page,
+	}) => {
+		await setMockScenarios(page, todoListPage, ['getTodoListBadReqest']);
+		await todoListPage.expectTodoItemCount(0);
+		await todoListPage.expectErrorMessageVisible('Something went wrong');
 	});
 
 	test('should create todo item', async () => {
@@ -80,11 +88,9 @@ test.describe('TodoListComponent', () => {
 	});
 
 	test('should show error message when create todo item fails', async ({
-		context,
+		page,
 	}) => {
-		await setMockScenarios(context, todoListPage, [
-			'postCreateTodoItemBadReqest',
-		]);
+		await setMockScenarios(page, todoListPage, ['postCreateTodoItemBadReqest']);
 
 		const title = 'Some title';
 		const description = 'Some description';
@@ -95,17 +101,40 @@ test.describe('TodoListComponent', () => {
 		await todoListPage.expectTodoItemCount(MOCK_TODO_ITEMS.length);
 		await todoListPage.expectErrorMessageVisible('Something went wrong');
 	});
+
+	test('should show error message when update todo item fails', async ({
+		page,
+	}) => {
+		await setMockScenarios(page, todoListPage, ['postUpdateTodoItemBadReqest']);
+		await todoListPage.editTodo('Some title', 'Some description', '2025-05-02');
+		await todoListPage.expectTodoItemCount(MOCK_TODO_ITEMS.length);
+		await todoListPage.expectErrorMessageVisible('Something went wrong');
+	});
+
+	test('should show error message when delete todo item fails', async ({
+		page,
+	}) => {
+		await setMockScenarios(page, todoListPage, ['deleteTodoItemBadReqest']);
+		await todoListPage.deleteTodo();
+		await todoListPage.expectTodoItemCount(MOCK_TODO_ITEMS.length);
+		await todoListPage.expectErrorMessageVisible('Something went wrong');
+	});
 });
+
 async function setMockScenarios(
-	context: BrowserContext,
+	page: Page,
 	todoListPage: TodoListPage,
 	enabledScenarios: MockScenario[],
 ) {
-	context.addInitScript(() => {
-		(window as any).mockScenarios = enabledScenarios.reduce((acc, scenario) => {
-			acc[scenario] = true;
-			return acc;
-		}, {});
-	});
+	await page.evaluate((enabledScenarios: MockScenario[]) => {
+		const mockScenarios = enabledScenarios.reduce(
+			(acc: Record<string, boolean>, scenario: MockScenario) => {
+				acc[scenario] = true;
+				return acc;
+			},
+			{},
+		);
+		localStorage.setItem('MOCK_SCENARIOS_KEY', JSON.stringify(mockScenarios));
+	}, enabledScenarios);
 	await todoListPage.navigate();
 }

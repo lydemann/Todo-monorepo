@@ -22,14 +22,7 @@ interface TodoListState {
 }
 
 const initialState: TodoListState = {
-	todoList: [
-		{
-			id: '1',
-			title: 'Todo 1',
-			description: 'Description 1',
-			completed: false,
-		},
-	],
+	todoList: [],
 	selectedTodoItem: null,
 	isLoading: false,
 	isSavingTodo: false,

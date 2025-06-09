@@ -31,10 +31,9 @@ export default defineConfig({
 	},
 	projects: [
 		{
-			name: 'chromium',
+			name: 'Google Chrome',
 			use: { ...devices['Desktop Chrome'] },
 		},
-
 		// Uncomment for mobile browsers support
 		/* {
       name: 'Mobile Chrome',
