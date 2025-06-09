@@ -46,7 +46,7 @@ export const trpcRouter = t.router({
 		.input(
 			z.object({ id: z.string(), title: z.string(), description: z.string() }),
 		)
-		.mutation(({ input }) => {
+		.mutation<TodoItem>(({ input }) => {
 			const todoItem = todoList.find(todo => todo.id === input);
 			if (!todoItem) {
 				throw new Error('not found');

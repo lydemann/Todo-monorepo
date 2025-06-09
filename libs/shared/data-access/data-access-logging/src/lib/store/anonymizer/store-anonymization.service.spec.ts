@@ -13,15 +13,23 @@ import {
 	FeatureStoreAnonymizer,
 } from './feature-store-anonymizer';
 import { StoreAnonymizationService } from './store-anonymization.service';
+import { Dictionary } from '@ngrx/entity';
 
 class DummyAnonymizer extends FeatureStoreAnonymizer<AppState> {
 	public getFeatureStateName() {
 		return 'todo';
 	}
 
-	public anonymizeFeatureState(featureState) {
+	public anonymizeFeatureState(featureState: AppState) {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		featureState.todos = featureState.todos.map(todo => ({}));
+		featureState.todoList = {
+			...featureState.todoList,
+			entities: Object.values(featureState.todoList.entities).map(todo => ({
+				...todo,
+				description: 'anonymized',
+			})) as unknown as Dictionary<TodoItem>,
+			ids: featureState.todoList.ids,
+		};
 	}
 }
 
@@ -33,7 +41,7 @@ class FailingDummyAnonymizer extends FeatureStoreAnonymizer<AppState> {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	public anonymizeFeatureState(featureState) {
+	public anonymizeFeatureState(featureState: AppState) {
 		throw anonymizationError;
 	}
 }

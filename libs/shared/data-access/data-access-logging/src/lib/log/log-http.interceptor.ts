@@ -31,7 +31,7 @@ export class LogHttpInterceptor implements HttpInterceptor {
 			}),
 		);
 	}
-	k;
+
 	private logTime(startMoment: moment.Moment, url: string, method: string) {
 		const requestDuration = moment().diff(startMoment, 'milliseconds');
 

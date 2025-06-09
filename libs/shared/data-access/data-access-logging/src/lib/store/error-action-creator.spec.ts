@@ -82,7 +82,7 @@ describe('Error Action Creator', () => {
 		it('should create an action', () => {
 			const foo = createErrorAction(
 				'FOO',
-				errorProps<{ foo: number; error }>(),
+				errorProps<{ foo: number; error: Error }>(),
 			);
 			const fooAction = foo({ foo: 42, error });
 
@@ -98,7 +98,7 @@ describe('Error Action Creator', () => {
 		it('should create an action that is not showing error', () => {
 			const errorActionCreator = createErrorAction(
 				'FOO',
-				errorProps<{ foo: number; error }>(),
+				errorProps<{ foo: number; error: Error }>(),
 				{
 					showNotification: false,
 				},
@@ -117,11 +117,11 @@ describe('Error Action Creator', () => {
 		it('should narrow the action', () => {
 			const foo = createErrorAction(
 				'FOO',
-				errorProps<{ foo: number; error }>(),
+				errorProps<{ foo: number; error: Error }>(),
 			);
 			const bar = createErrorAction(
 				'BAR',
-				errorProps<{ bar: number; error }>(),
+				errorProps<{ bar: number; error: Error }>(),
 			);
 			const both = union({ foo, bar });
 			const narrow = (action: typeof both) => {
@@ -138,7 +138,7 @@ describe('Error Action Creator', () => {
 		it('should be serializable', () => {
 			const foo = createErrorAction(
 				'FOO',
-				errorProps<{ foo: number; error }>(),
+				errorProps<{ foo: number; error: Error }>(),
 			);
 			const fooAction = foo({ foo: 42, error });
 			const text = JSON.stringify(fooAction);

@@ -108,14 +108,14 @@ describe('TodoList reducer', () => {
 			state = todoListAdapter.setAll([oldTodoItem], state);
 
 			expect(state.ids.length).toBe(1);
-			expect(state.entities[oldTodoItem.id].completed).toBe(false);
+			expect(state.entities[oldTodoItem.id]?.completed).toBe(false);
 
 			const loadTodoItemsAction = TodoListActions.toggleCompleteTodoItem({
 				todoItemId: oldTodoItem.id,
 			});
 			const newState = todoListReducer(state, loadTodoItemsAction);
 
-			expect(newState.entities[oldTodoItem.id].completed).toBe(true);
+			expect(newState.entities[oldTodoItem.id]?.completed).toBe(true);
 		});
 	});
 });

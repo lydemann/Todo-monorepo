@@ -17,9 +17,9 @@ export class LogService {
 		log: () => {},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} as any;
-	private userId: string;
+	private userId = '';
 	private browserAndVendor = 'Unknown browser';
-	private env: string;
+	private env = '';
 	private logAsWarningSentences: string[] = [];
 
 	constructor(
@@ -129,7 +129,7 @@ export class LogService {
 		this.logger.log('Information', info, logFields);
 	}
 
-	public onUserChange(userId) {
+	public onUserChange(userId: string) {
 		this.userId = userId;
 	}
 
