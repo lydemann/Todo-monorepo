@@ -7,8 +7,6 @@ import {
 export const MOCK_SCENARIOS_LOCAL_STORAGE_KEY = 'MOCK_SCENARIOS_KEY';
 export type MockScenario = TodoScenarioHandlers;
 
-export type mockScenariosMap = Record<MockScenario, HttpHandler>;
-
 const mockScenariosMap: Record<MockScenario, HttpHandler> = {
 	...todoScenarioHandlers,
 };
