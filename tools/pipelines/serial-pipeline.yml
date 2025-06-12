@@ -71,9 +71,9 @@ jobs:
         displayName: 'Test'
       - script: npx nx affected --base=$(BASE_SHA) -t build --parallel=3
         displayName: 'Build'
-      - script: npx nx affected --base=$(BASE_SHA) -t mock-tests --parallel=3
+      - script: npx nx affected --base=$(BASE_SHA) -t mock-tests --parallel=1
         displayName: 'Mock tests'
-      - script: npx nx affected --base=$(BASE_SHA) -t e2e --parallel=3
+      - script: npx nx affected --base=$(BASE_SHA) -t e2e --parallel=1
         displayName: 'E2E'
 
       # archive and publish artifacts
