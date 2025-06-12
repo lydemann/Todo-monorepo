@@ -27,7 +27,7 @@ export default defineConfig({
 		// },
 	],
 	webServer: {
-		command: 'nx run todo-app:serve:mock',
+		command: 'npm run start:todo-app-and-server',
 		url: 'http://localhost:4200',
 		reuseExistingServer: !process.env['CI'],
 	},
