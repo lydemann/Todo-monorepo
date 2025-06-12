@@ -41,6 +41,7 @@ jobs:
 
       # Required for nx affected if we're on a branch
       - script: git branch --track main origin/main
+        condition: eq(variables['Build.Reason'], 'PullRequest')
 
       - task: Cache@2
         inputs:
