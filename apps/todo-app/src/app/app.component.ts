@@ -12,7 +12,6 @@ import { LayoutModule } from '@todo/todo-app/feature';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	standalone: true,
 	imports: [LayoutModule, RouterModule],
 })
 export class AppComponent implements OnInit {

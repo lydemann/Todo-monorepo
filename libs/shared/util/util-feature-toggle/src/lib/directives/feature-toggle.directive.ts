@@ -11,6 +11,7 @@ import { FeatureToggleService } from '../services/feature-toggle.service';
 
 @Directive({
 	selector: '[appFeatureToggle]',
+	standalone: false,
 })
 export class FeatureToggleDirective implements OnInit {
 	@Input('appFeatureToggle') public featureFlag: featureFlags | featureFlags[];

@@ -26,7 +26,7 @@ module.exports = composePlugins(withNx(), (config, context) => {
  * @returns {Array} An array of Webpack plugins
  */
 function extractRelevantNodeModules() {
-	return [copyYarnLockFile(), generatePackageJson()];
+	return [copyPnpmLockFile(), generatePackageJson()];
 }
 
 /**
@@ -36,12 +36,12 @@ function extractRelevantNodeModules() {
  * @param {String} outputPath The path to the bundle being built
  * @returns {*} A Webpack plugin
  */
-function copyYarnLockFile() {
+function copyPnpmLockFile() {
 	return new CopyPlugin({
 		patterns: [
 			{
-				from: path.join(process.cwd(), 'yarn.lock'),
-				to: 'yarn.lock',
+				from: path.join(process.cwd(), 'pnpm-lock.yaml'),
+				to: 'pnpm-lock.yaml',
 			},
 		],
 	});

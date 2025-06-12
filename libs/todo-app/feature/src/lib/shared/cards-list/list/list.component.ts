@@ -15,7 +15,6 @@ import {
 			[ngTemplateOutletContext]="{ data: data() }"
 		></ng-container>
 	`,
-	standalone: true,
 	imports: [CommonModule],
 })
 export class ListComponent {

@@ -4,6 +4,7 @@
 	"sourceRoot": "apps/todo-app/src",
 	"projectType": "application",
 	"prefix": "app",
+	"tags": ["scope:todo-app", "type:app"],
 	"generators": {
 		"@schematics/angular:component": {
 			"style": "scss"
@@ -11,7 +12,7 @@
 	},
 	"targets": {
 		"build": {
-			"executor": "@angular-devkit/build-angular:browser-esbuild",
+			"executor": "@nx/angular:browser-esbuild",
 			"options": {
 				"aot": true,
 				"buildOptimizer": false,
@@ -101,7 +102,7 @@
 			"defaultConfiguration": "production"
 		},
 		"serve": {
-			"executor": "@angular-devkit/build-angular:dev-server",
+			"executor": "@nx/angular:dev-server",
 			"options": {
 				"proxyConfig": "apps/todo-app/proxy.conf.json",
 				"buildTarget": "todo-app:build"
@@ -117,7 +118,8 @@
 					"buildTarget": "todo-app:build:mock"
 				}
 			},
-			"defaultConfiguration": "mock"
+			"defaultConfiguration": "mock",
+			"continuous": true
 		},
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",
@@ -135,7 +137,26 @@
 		"lint": {
 			"executor": "@nx/eslint:lint",
 			"outputs": ["{options.outputFile}"]
+		},
+		"e2e": {
+			"executor": "@nx/playwright:playwright",
+			"target": "e2e",
+			"outputs": [
+				"{workspaceRoot}/dist/.playwright/apps/todo-app/playwright/e2e"
+			],
+			"options": {
+				"config": "apps/todo-app/playwright/e2e/playwright-e2e.config.ts"
+			}
+		},
+		"mock-tests": {
+			"executor": "@nx/playwright:playwright",
+			"target": "mock-tests",
+			"outputs": [
+				"{workspaceRoot}/dist/.playwright/apps/todo-app/playwright/mock-tests"
+			],
+			"options": {
+				"config": "apps/todo-app/playwright/mock-tests/playwright-mock.config.ts"
+			}
 		}
-	},
-	"tags": ["scope:todo-app", "type:app"]
+	}
 }

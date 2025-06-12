@@ -9,10 +9,12 @@ const todoList: TodoItem[] = [];
 
 for (let index = 0; index < 5; index++) {
 	const newTodo = {
-		id: faker.random.uuid(),
-		title: faker.random.words(2),
-		description: faker.random.words(5),
-	};
+		id: faker.random.uuid() as string,
+		title: faker.random.words(2) as string,
+		description: faker.random.words(5) as string,
+		completed: faker.datatype.boolean(),
+		dueDate: faker.date.future().toISOString(),
+	} as TodoItem;
 	todoList.push(newTodo);
 }
 
@@ -21,7 +23,13 @@ export const trpcRouter = t.router({
 		return todoList;
 	}),
 	createTodoItem: t.procedure
-		.input(z.object({ title: z.string(), description: z.string() }))
+		.input(
+			z.object({
+				title: z.string(),
+				description: z.string(),
+				dueDate: z.string(),
+			}),
+		)
 		.mutation(({ input }) => {
 			console.log('createTodoItem procedure');
 			const newItem = {
@@ -29,6 +37,7 @@ export const trpcRouter = t.router({
 				title: input.title,
 				description: input.description,
 				completed: false,
+				dueDate: input.dueDate,
 			};
 			todoList.push(newItem);
 			return newItem;
@@ -37,7 +46,7 @@ export const trpcRouter = t.router({
 		.input(
 			z.object({ id: z.string(), title: z.string(), description: z.string() }),
 		)
-		.mutation(({ input }) => {
+		.mutation<TodoItem>(({ input }) => {
 			const todoItem = todoList.find(todo => todo.id === input);
 			if (!todoItem) {
 				throw new Error('not found');
@@ -57,6 +66,14 @@ export const trpcRouter = t.router({
 			todoItem.completed = !todoItem.completed;
 			return todoItem;
 		}),
+	deleteTodoItem: t.procedure.input(z.string()).mutation(({ input }) => {
+		const todoItem = todoList.find(todo => todo.id === input);
+		if (!todoItem) {
+			throw new Error('not found');
+		}
+		todoList.splice(todoList.indexOf(todoItem), 1);
+		return todoItem;
+	}),
 });
 
 export type TodoTrpcRouter = typeof trpcRouter;

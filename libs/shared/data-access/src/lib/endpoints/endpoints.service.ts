@@ -17,12 +17,9 @@ export class EndpointsService {
 	private endpoints: ApiEndpoints;
 
 	constructor(@Inject(API_ENDPOINTS) endpoints: ApiEndpoints) {
-		this.endpoints = Object.keys(endpoints).reduce(
-			(ep, key) => {
-				return { ...ep, [key]: this.removeTrailingSlash(endpoints[key]) };
-			},
-			{} as ApiEndpoints,
-		);
+		this.endpoints = Object.keys(endpoints).reduce((ep, key) => {
+			return { ...ep, [key]: this.removeTrailingSlash(endpoints[key]) };
+		}, {} as ApiEndpoints);
 	}
 
 	private removeTrailingSlash(str: string): string {

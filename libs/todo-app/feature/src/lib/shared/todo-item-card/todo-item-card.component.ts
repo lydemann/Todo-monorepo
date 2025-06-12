@@ -6,6 +6,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 	selector: 'app-todo-item-card',
 	templateUrl: './todo-item-card.component.html',
 	styleUrls: ['./todo-item-card.component.scss'],
+	standalone: false,
 })
 export class TodoItemCardComponent {
 	@Input() public todoItem: TodoItem;

@@ -44,9 +44,9 @@ export class TodoListEffects {
 			ofType(TodoListActions.updateTodoItemRequest),
 			exhaustMap(action =>
 				this.todoListResourcesService.updateTodoItem(action.todoItem).pipe(
-					map(todoItm => {
+					map(todoItem => {
 						return TodoListActions.updateTodoItemResponse({
-							todoItem: todoItm,
+							todoItem,
 						});
 					}),
 					catchError(error =>

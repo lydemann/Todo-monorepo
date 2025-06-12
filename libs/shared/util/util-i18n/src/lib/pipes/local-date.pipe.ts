@@ -5,6 +5,7 @@ import { LocaleService } from '../services/locale.service';
 
 @Pipe({
 	name: 'localDate',
+	standalone: false,
 })
 export class LocalDatePipe implements PipeTransform {
 	constructor(private localeService: LocaleService) {}

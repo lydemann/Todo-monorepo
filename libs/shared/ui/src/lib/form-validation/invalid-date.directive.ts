@@ -23,6 +23,7 @@ export function InvalidDateValidator(): ValidatorFn {
 			multi: true,
 		},
 	],
+	standalone: false,
 })
 export class InvalidDateValidatorDirective implements Validator {
 	// tslint:disable-next-line:no-input-rename

@@ -4,6 +4,7 @@
 	"sourceRoot": "apps/todo-admin/src",
 	"projectType": "application",
 	"prefix": "todo",
+	"tags": ["scope:todo-admin", "type:app"],
 	"generators": {
 		"@nrwl/schematics:component": {
 			"styleext": "scss"
@@ -65,7 +66,8 @@
 				"production": {
 					"buildTarget": "todo-admin:build:production"
 				}
-			}
+			},
+			"continuous": true
 		},
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",
@@ -91,6 +93,5 @@
 				}
 			}
 		}
-	},
-	"tags": ["scope:todo-admin", "type:app"]
+	}
 }

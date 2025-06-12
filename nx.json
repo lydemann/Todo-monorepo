@@ -30,6 +30,7 @@
 			}
 		}
 	},
+	"useDaemonProcess": true,
 	"targetDefaults": {
 		"build": {
 			"dependsOn": ["^build"],
@@ -39,10 +40,8 @@
 			"inputs": ["default", "^production", "{workspaceRoot}/karma.conf.js"]
 		},
 		"e2e": {
-			"inputs": ["default", "^production"]
-		},
-		"component-test": {
-			"inputs": ["default", "^production"]
+			"inputs": ["default", "^production"],
+			"cache": true
 		},
 		"build-storybook": {
 			"inputs": [
@@ -98,5 +97,6 @@
 	},
 	"defaultProject": "todo-app",
 	"useInferencePlugins": false,
-	"defaultBase": "origin/main"
+	"defaultBase": "origin/main",
+	"nxCloudId": "6818eeeb0174572d640e6131"
 }

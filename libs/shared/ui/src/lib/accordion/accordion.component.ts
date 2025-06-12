@@ -10,6 +10,7 @@ import {
 	templateUrl: './accordion.component.html',
 	styleUrls: ['./accordion.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: false,
 })
 export class AccordionComponent {
 	@Input() public boldTitle = '';

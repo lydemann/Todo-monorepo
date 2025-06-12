@@ -31,7 +31,7 @@ export class BrowserDetectorService implements IBrowserDetectorService {
 		const navigatorRef = window.navigator;
 		const ua = navigatorRef.userAgent;
 		const agentStrings = this.getAgentStrings(navigatorRef.userAgent);
-		let temp: string[];
+		let temp: RegExpMatchArray | null = null;
 
 		if (this.isIEAgent(agentStrings[1])) {
 			return this.getIEString(ua);

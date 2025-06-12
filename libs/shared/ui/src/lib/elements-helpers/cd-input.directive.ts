@@ -7,7 +7,10 @@ import {
 	SimpleChanges,
 } from '@angular/core';
 
-@Directive({ selector: '[appCDTrigger]' })
+@Directive({
+	selector: '[appCDTrigger]',
+	standalone: false,
+})
 export class CDInputDirective implements OnChanges {
 	constructor(
 		private changeDetectionRef: ChangeDetectorRef,

@@ -41,6 +41,11 @@ export const appRoutes: Routes = [
 		loadChildren: () =>
 			import('@todo/todo-app/feature').then(m => m.RegisterModule),
 	},
+	{
+		path: 'mock-scenarios',
+		loadComponent: () =>
+			import('@todo/todo-app/feature').then(m => m.MockScenariosComponent),
+	},
 ];
 
 export const appRouterModule = RouterModule.forRoot(appRoutes, {

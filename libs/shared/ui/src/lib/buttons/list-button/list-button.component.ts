@@ -11,5 +11,6 @@ export enum ListButtonTypes {
 @Component({
 	selector: 'app-list-button',
 	templateUrl: './list-button.component.html',
+	standalone: false,
 })
 export class ListButtonComponent extends ButtonParentComponent<ListButtonTypes> {}

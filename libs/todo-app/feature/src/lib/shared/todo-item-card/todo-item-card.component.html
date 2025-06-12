@@ -34,7 +34,7 @@
 			{{ 'todo-item.edit' | translate }}
 		</button>
 		<button
-			data-test="todo-item-delete"
+			data-testid="todo-item-delete"
 			*ngIf="!readOnlyTODO"
 			(click)="deleteClick()"
 			type="button"

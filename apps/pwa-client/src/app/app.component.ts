@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {
-	PushNotificationService,
-	VAPID_PUBLIC,
-} from './push-notification.service';
+import { PushNotificationService } from './push-notification.service';
 import { SwPush, SwUpdate } from '@angular/service-worker';
 import { SharedUiModule } from '@todo-app/ui';
-import { first } from 'rxjs';
 
 @Component({
-	standalone: true,
 	imports: [RouterModule, SharedUiModule],
 	selector: 'app-root',
 	template: `<h1>Welcome pwa-client</h1>

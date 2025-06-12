@@ -98,7 +98,7 @@ export class Logger {
 		return this.safeStringify(index);
 	}
 
-	private safeStringify(value) {
+	private safeStringify(value: unknown) {
 		const seen = new Set();
 		return JSON.stringify(value, (k, v) => {
 			if (seen.has(v)) {

@@ -5,6 +5,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 	templateUrl: './fab.component.html',
 	styleUrls: ['./fab.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: false,
 })
 export class FabComponent {
 	@Input() public mini = false;

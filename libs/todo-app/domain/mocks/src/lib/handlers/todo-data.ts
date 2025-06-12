@@ -1,6 +1,7 @@
 import { TodoItem } from '@todo/shared/todo-interfaces';
 
-export const MOCK_TODO_ITEMS = [
+// eslint-disable-next-line prefer-const
+export let MOCK_TODO_ITEMS = [
 	{
 		id: 'c6893de8-5ea7-4bd5-ab34-b935990abc9e',
 		title: 'Steel Ergonomic',
@@ -33,3 +34,7 @@ export const MOCK_TODO_ITEMS = [
 		dueDate: new Date().toLocaleDateString('en-us'),
 	},
 ] as TodoItem[];
+
+export const TodoMockDB = {
+	items: MOCK_TODO_ITEMS,
+};

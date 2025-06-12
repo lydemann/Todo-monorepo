@@ -1,6 +1,6 @@
-@import './global/positioning';
-@import './global/spinner';
-@import 'themes';
+@use './global/positioning';
+@use './global/spinner';
+@use 'themes';
 
 body {
 	margin: 0;

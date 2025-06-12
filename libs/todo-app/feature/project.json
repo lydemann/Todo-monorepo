@@ -4,6 +4,7 @@
 	"projectType": "library",
 	"sourceRoot": "libs/todo-app/feature/src",
 	"prefix": "todo",
+	"tags": ["scope:todo-app", "type:feature"],
 	"implicitDependencies": ["!todo-app"],
 	"targets": {
 		"test": {
@@ -24,17 +25,8 @@
 				"cypressConfig": "libs/todo-app/feature/cypress.config.ts",
 				"testingType": "component",
 				"devServerTarget": "todo-app:build",
-				"tsConfig": "libs/todo-app/feature/tsconfig.cy.json",
 				"skipServe": true
 			}
-		},
-		"e2e": {
-			"executor": "@nx/playwright:playwright",
-			"outputs": ["{workspaceRoot}/dist/.playwright"],
-			"options": {
-				"config": "libs/todo-app/feature/playwright.config.ts"
-			}
 		}
-	},
-	"tags": ["scope:todo-app", "type:feature"]
+	}
 }

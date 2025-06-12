@@ -41,6 +41,7 @@ jobs:
 
       # Required for nx affected if we're on a branch
       - script: git branch --track main origin/main
+        condition: eq(variables['Build.Reason'], 'PullRequest')
 
       - task: Cache@2
         inputs:
@@ -52,10 +53,11 @@ jobs:
         displayName: Cache pnpm packages
 
       - script: |
+          mkdir -p $(PNPM_CACHE_FOLDER)
           npm install --global corepack@latest
           corepack enable
           corepack prepare pnpm@latest-10 --activate
-          pnpm config set store-dir $(pnpm_config_cache)
+          pnpm config set store-dir $(PNPM_CACHE_FOLDER)
         displayName: "Setup pnpm"
 
       - script: pnpm install
@@ -130,6 +132,14 @@ jobs:
           path: $(PNPM_CACHE_FOLDER)
         displayName: Cache pnpm packages
 
+      - script: |
+          mkdir -p $(PNPM_CACHE_FOLDER)
+          npm install --global corepack@latest
+          corepack enable
+          corepack prepare pnpm@latest-10 --activate
+          pnpm config set store-dir $(PNPM_CACHE_FOLDER)
+        displayName: "Setup pnpm"
+
       - script: pnpm install
         displayName: 'Install dependencies'
 
@@ -170,6 +180,13 @@ jobs:
             "pnpm"
           path: $(PNPM_CACHE_FOLDER)
         displayName: Cache pnpm packages
+
+      - script: |
+          npm install --global corepack@latest
+          corepack enable
+          corepack prepare pnpm@latest-10 --activate
+          pnpm config set store-dir $(pnpm_config_cache)
+        displayName: "Setup pnpm"
 
       - script: pnpm install
         displayName: 'Install dependencies'

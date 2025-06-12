@@ -29,6 +29,7 @@ import { map, takeUntil } from 'rxjs/operators';
 
 @Directive({
 	selector: '[appNumberInput]',
+	standalone: false,
 })
 export class NumberInputDirective implements OnInit, OnDestroy {
 	@Input() public thousandToDecimalSeparatorEnabled = true;

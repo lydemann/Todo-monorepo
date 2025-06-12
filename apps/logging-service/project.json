@@ -4,6 +4,7 @@
 	"sourceRoot": "apps/logging-service/src",
 	"projectType": "application",
 	"prefix": "logging-service",
+	"tags": ["type:app"],
 	"generators": {},
 	"targets": {
 		"build": {
@@ -45,10 +46,8 @@
 		"test": {
 			"executor": "@nx/jest:jest",
 			"options": {
-				"jestConfig": "apps/logging-service/jest.config.ts",
-				"tsConfig": "apps/logging-service/tsconfig.spec.json"
+				"jestConfig": "apps/logging-service/jest.config.ts"
 			}
 		}
-	},
-	"tags": ["type:app"]
+	}
 }

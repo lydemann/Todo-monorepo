@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export class TodoListPage {
 	constructor(private page: Page) {}
@@ -17,7 +17,7 @@ export class TodoListPage {
 	}
 
 	private get todoDueDateInput() {
-		return this.page.getByTestId('todo-duedate');
+		return this.page.getByTestId('todo-duedate').getByRole('textbox');
 	}
 
 	private get createTodoSubmitButton() {
@@ -45,7 +45,7 @@ export class TodoListPage {
 	}
 
 	async editTodo(title: string, description: string, dueDate: string) {
-		await this.editButton.click();
+		await this.editButton.first().click();
 		await this.todoTitleInput.clear();
 		await this.todoTitleInput.fill(title);
 		await this.todoDescriptionInput.clear();
@@ -56,19 +56,27 @@ export class TodoListPage {
 	}
 
 	async deleteTodo() {
-		await this.deleteButton.click();
+		await this.deleteButton.first().click();
 	}
 
 	// Assertions
 	async expectTodoItemVisible() {
-		await this.todoItem.isVisible();
+		await expect(this.todoItem.first()).toBeVisible();
+	}
+
+	async expectTodoItemCount(count: number) {
+		await expect(this.todoItem).toHaveCount(count);
 	}
 
 	async expectTodoItemNotVisible() {
-		await this.todoItem.isHidden();
+		await expect(this.todoItem).toHaveCount(0);
 	}
 
 	async expectTodoItemContains(text: string) {
-		await this.todoItem.getByText(text).isVisible();
+		await expect(this.todoItem.getByText(text).first()).toBeVisible();
+	}
+
+	async expectErrorMessageVisible(text: string) {
+		await expect(this.page.getByText(text)).toBeVisible();
 	}
 }

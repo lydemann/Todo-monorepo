@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
-import { first } from 'rxjs/operators';
 import * as StackTrace from 'stacktrace-js';
 
 import { BrowserDetectorService } from '../browser-detector/browser-detector.service';
-import { StoreAnonymizationService } from '../store/anonymizer/store-anonymization.service';
 import { LogFields } from './log-data.interface';
 import { Logger } from './logger';
 import { SessionIdService } from './session-id.service';
@@ -19,15 +17,14 @@ export class LogService {
 		log: () => {},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} as any;
-	private userId: string;
+	private userId = '';
 	private browserAndVendor = 'Unknown browser';
-	private env: string;
+	private env = '';
 	private logAsWarningSentences: string[] = [];
 
 	constructor(
 		private browserDetectorService: BrowserDetectorService,
 		private sessionIdService: SessionIdService,
-		private storeAnonymizeService: StoreAnonymizationService<any>,
 	) {
 		this.browserAndVendor = this.browserDetectorService.getVendorAndVersion();
 	}
@@ -132,7 +129,7 @@ export class LogService {
 		this.logger.log('Information', info, logFields);
 	}
 
-	public onUserChange(userId) {
+	public onUserChange(userId: string) {
 		this.userId = userId;
 	}
 
@@ -168,12 +165,7 @@ export class LogService {
 
 	private getStandardLogFields() {
 		let state = {};
-		this.storeAnonymizeService
-			.getAnonymizedState()
-			.pipe(first())
-			.subscribe(anonymizedState => {
-				state = anonymizedState;
-			});
+		state = {};
 
 		return {
 			environment: this.env,

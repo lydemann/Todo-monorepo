@@ -6,7 +6,7 @@ import { createGuid } from './guid-helper';
 	providedIn: 'root',
 })
 export class SessionIdService {
-	public sessionId;
+	public sessionId: string | undefined;
 
 	public generateSessionId() {
 		this.sessionId = createGuid();

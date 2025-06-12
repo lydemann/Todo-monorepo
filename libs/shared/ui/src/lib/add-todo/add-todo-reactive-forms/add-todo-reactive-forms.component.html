@@ -12,7 +12,7 @@
 						matInput
 						appCDTrigger
 						name="todo-title"
-						data-test="todo-title"
+						data-testid="todo-title"
 						id="todo-title"
 						placeholder="Enter title"
 					/>
@@ -27,7 +27,7 @@
 						matInput
 						name="todo-description"
 						formControlName="description"
-						data-test="todo-description"
+						data-testid="todo-description"
 						id="todo-description"
 						placeholder="Enter description"
 					/>
@@ -40,7 +40,7 @@
 						name="todo-due-date"
 						formControlName="dueDate"
 						appCDTrigger
-						data-test="todo-duedate"
+						data-testid="todo-duedate"
 						placeholder="Enter due date"
 					></app-date-picker>
 				</div>
@@ -48,7 +48,7 @@
 			<app-square-button
 				[buttonType]="'Primary'"
 				[type]="'submit'"
-				data-test="create-todo-submit"
+				data-testid="create-todo-submit"
 				appCDTrigger
 			>
 				{{

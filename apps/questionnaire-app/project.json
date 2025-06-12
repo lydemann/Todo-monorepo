@@ -2,13 +2,14 @@
 	"name": "questionnaire-app",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "application",
+	"sourceRoot": "apps/questionnaire-app/src",
+	"prefix": "todo",
+	"tags": ["type:app"],
 	"generators": {
 		"@nx/angular:component": {
 			"style": "scss"
 		}
 	},
-	"sourceRoot": "apps/questionnaire-app/src",
-	"prefix": "todo",
 	"targets": {
 		"build": {
 			"executor": "@angular-devkit/build-angular:browser-esbuild",
@@ -79,7 +80,8 @@
 					"buildTarget": "questionnaire-app:build:development"
 				}
 			},
-			"defaultConfiguration": "development"
+			"defaultConfiguration": "development",
+			"continuous": true
 		},
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",
@@ -91,6 +93,5 @@
 			"executor": "@nx/eslint:lint",
 			"outputs": ["{options.outputFile}"]
 		}
-	},
-	"tags": ["type:app"]
+	}
 }

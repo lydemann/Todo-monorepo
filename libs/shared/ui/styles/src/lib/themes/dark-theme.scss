@@ -1,7 +1,7 @@
 // setup material theme
 @use 'sass:map';
 @use '@angular/material' as mat;
-@import './theme-common';
+@use './theme-common';
 
 $todo-black-primary: mat.define-palette(mat.$grey-palette, 700, 300, 900);
 $todo-black-accent: mat.define-palette(mat.$blue-grey-palette, 400);

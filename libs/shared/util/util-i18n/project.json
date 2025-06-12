@@ -4,6 +4,12 @@
 	"projectType": "library",
 	"sourceRoot": "libs/shared/util/util-i18n/src",
 	"prefix": "todo",
+	"tags": ["scope:shared", "type:util"],
+	"generators": {
+		"@nx/angular:component": {
+			"styleext": "scss"
+		}
+	},
 	"targets": {
 		"build": {
 			"executor": "@angular-devkit/build-angular:ng-packagr",
@@ -25,15 +31,8 @@
 			"executor": "@nx/jest:jest",
 			"options": {
 				"jestConfig": "libs/shared/util/util-i18n/jest.config.ts",
-				"tsConfig": "libs/shared/util/util-i18n/tsconfig.spec.json",
 				"setupFile": "libs/shared/util/util-i18n/src/test-setup.ts"
 			}
 		}
-	},
-	"generators": {
-		"@nx/angular:component": {
-			"styleext": "scss"
-		}
-	},
-	"tags": ["scope:shared", "type:util"]
+	}
 }

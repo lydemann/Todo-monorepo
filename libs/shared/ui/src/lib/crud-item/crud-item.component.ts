@@ -17,7 +17,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 		<div class="todo-item" *ngIf="todoItem">
 			<li
 				class="list-group-item d-flex justify-content-between lh-condensed theme-background"
-				data-test="todo-item"
+				data-testid="todo-item"
 				[ngClass]="todoItem.completed ? 'bg-completed' : ''"
 			>
 				<div class="item-content">
@@ -49,7 +49,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 						type="button"
 						class="btn btn-info"
 						aria-label="Edit"
-						data-test="edit-button"
+						data-testid="edit-button"
 					>
 						{{ editBtnText | translate }}
 					</button>
@@ -59,7 +59,7 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 						type="button"
 						class="btn btn-danger"
 						aria-label="Delete"
-						data-test="delete-button"
+						data-testid="delete-button"
 					>
 						{{ deleteBtnText | translate }}
 					</button>
@@ -69,7 +69,6 @@ import { TodoItem } from '@todo/shared/todo-interfaces';
 	`,
 	styleUrls: ['./crud-item.component.scss'],
 	encapsulation: ViewEncapsulation.ShadowDom,
-	standalone: true,
 	imports: [CommonModule, TranslateModule, SharedUtilUtilI18nModule],
 })
 export class CrudItemComponent {

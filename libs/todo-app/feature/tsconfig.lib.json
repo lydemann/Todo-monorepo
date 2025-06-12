@@ -17,7 +17,12 @@
 		"**/*.cy.ts",
 		"**/*.cy.js",
 		"**/*.cy.tsx",
-		"**/*.cy.jsx"
+		"**/*.cy.jsx",
+		"**/*.pw.ts"
 	],
-	"include": ["**/*.ts"]
+	"include": [
+		"**/*.ts",
+		"../../../apps/todo-app/mock-tests/todo-list.component.spec.ts",
+		"../../../apps/todo-app/mock-tests/playwright-mock-tests.config.ts"
+	]
 }

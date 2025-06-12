@@ -8,7 +8,8 @@ export interface RouterState {
 }
 
 export class CustomRouterSerializer
-	implements RouterStateSerializer<RouterState>{
+	implements RouterStateSerializer<RouterState>
+{
 	public serialize(routerState: RouterStateSnapshot): RouterState {
 		let route = routerState.root;
 

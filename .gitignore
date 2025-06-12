@@ -43,3 +43,10 @@ testem.log
 Thumbs.db
 
 .angular
+playwright-report/*
+playwright-report/index.html
+
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md

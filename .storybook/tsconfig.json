@@ -6,7 +6,6 @@
 		"../apps/**/*.po.ts",
 		"../apps/**/*.spec.ts",
 
-
 		"../libs/shared/testing",
 		"../libs/**/*e2e*",
 		"../libs/**/*mocks*",

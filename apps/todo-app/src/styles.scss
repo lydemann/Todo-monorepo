@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@use '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 /* Bootstrap */
-@import 'bootstrap/scss/bootstrap';
+@use 'bootstrap/scss/bootstrap';
+@use 'global-styling';
 
-@import 'global-styling';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
