@@ -65,17 +65,11 @@ jobs:
 
       - script: pnpm nx-cloud start-ci-run --distribute-on="3 linux-medium-js" 
         displayName: Start CI run
-      - script: pnpm nx-cloud record -- pnpm nx format:check --base=$(BASE_SHA) --head=$(HEAD_SHA)
-        displayName: Check format
-      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=lint --parallel=3
-        displayName: Run lint
-      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=test --parallel=3 --ci --code-coverage
-        displayName: Run test
-      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=build --parallel=3
-        displayName: Run build
-      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=mock-tests --parallel=3
+
+      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --targets lint test build
+      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=mock-tests --parallel=1
         displayName: Run mock-tests
-      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=e2e --parallel=3
+      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=e2e --parallel=1
         displayName: Run e2e
         # archive and publish artifacts
       - task: ArchiveFiles@2
