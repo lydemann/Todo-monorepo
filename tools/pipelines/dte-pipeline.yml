@@ -72,6 +72,8 @@ jobs:
         displayName: Run test
       - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=build --parallel=3
         displayName: Run build
+      - script: pnpm nx affected --base=$(BASE_SHA) --head=$(HEAD_SHA) --target=e2e --parallel=3
+        displayName: Run e2e
         # archive and publish artifacts
       - task: ArchiveFiles@2
         displayName: Archive Build Artifacts
