@@ -42,9 +42,6 @@ jobs:
         condition: ne(variables['Build.Reason'], 'PullRequest')
         env:
           AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
-
-      - script: git branch --track main origin/main
-        condition: eq(variables['Build.Reason'], 'PullRequest')
         
       - task: Cache@2
         inputs:
@@ -62,7 +59,11 @@ jobs:
           pnpm config set store-dir $(PNPM_CACHE_FOLDER)
         displayName: "Setup pnpm"
       - script: pnpm install
-      - script: pnpm nx-cloud start-ci-run --agent-count=3
+
+      - script: git branch --track main origin/main
+        condition: eq(variables['Build.Reason'], 'PullRequest')
+
+      - script: pnpm nx-cloud start-ci-run --distribute-on="3 linux-medium-js" 
         displayName: Start CI run
       - script: pnpm nx-cloud record -- pnpm nx format:check --base=$(BASE_SHA) --head=$(HEAD_SHA)
         displayName: Check format
