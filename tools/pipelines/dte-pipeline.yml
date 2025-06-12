@@ -16,40 +16,18 @@ variables:
   PNPM_CACHE_FOLDER: $(Pipeline.Workspace)/.pnpm-store
 
 jobs:
-  - job: agents
-    strategy:
-      parallel: 3
-    displayName: Nx Cloud Agent
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-      - task: Cache@2
-        inputs:
-          key: '"pnpm" | "$(Agent.OS)" | pnpm-lock.yaml'
-          restoreKeys: |
-            "pnpm" | "$(Agent.OS)"
-            "pnpm"
-          path: $(PNPM_CACHE_FOLDER)
-        displayName: Cache pnpm packages
-
-      - script: |
-          mkdir -p $(PNPM_CACHE_FOLDER)
-          npm install --global corepack@latest
-          corepack enable
-          corepack prepare pnpm@latest-10 --activate
-          pnpm config set store-dir $(PNPM_CACHE_FOLDER)
-        displayName: "Setup pnpm"
-
-      - script: pnpm install
-        displayName: 'Install dependencies'
-      - script: npx nx-cloud start-agent
-        displayName: Start Nx-Cloud agent
-
   - job: main
-    displayName: Nx Cloud Main
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+      - checkout: self
+        fetchDepth: 0
+        fetchFilter: tree:0
+        persistCredentials: true
+
+      # Set Azure Devops CLI default settings
+      - bash: az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)
+        displayName: 'Set default Azure DevOps organization and project'
       # Get last successfull commit from Azure Devops CLI
       - bash: |
           LAST_SHA=$(az pipelines build list --branch $(Build.SourceBranchName) --definition-ids $(System.DefinitionId) --result succeeded --top 1 --query "[0].triggerInfo.\"ci.sourceSha\"")
@@ -66,6 +44,8 @@ jobs:
           AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
 
       - script: git branch --track main origin/main
+        condition: eq(variables['Build.Reason'], 'PullRequest')
+        
       - task: Cache@2
         inputs:
           key: '"pnpm" | "$(Agent.OS)" | pnpm-lock.yaml'
