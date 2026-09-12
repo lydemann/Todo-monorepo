@@ -1,0 +1,44 @@
+{
+  "name": "todo-native-comparison",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/todo-native-comparison/src",
+  "projectType": "application",
+  "tags": ["scope:todo-app", "type:app", "platform:native"],
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm install",
+        "cwd": "apps/todo-native-comparison"
+      }
+    },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run start",
+        "cwd": "apps/todo-native-comparison"
+      }
+    },
+    "ios": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run ios",
+        "cwd": "apps/todo-native-comparison"
+      }
+    },
+    "android": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run android",
+        "cwd": "apps/todo-native-comparison"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run typecheck",
+        "cwd": "apps/todo-native-comparison"
+      }
+    }
+  }
+}
