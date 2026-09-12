@@ -1,0 +1,7 @@
+{
+  "name": "shared-todo-comparison",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/todo-comparison/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:domain"]
+}
